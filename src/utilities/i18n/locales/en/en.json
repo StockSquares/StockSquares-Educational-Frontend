@@ -1,0 +1,190 @@
+{
+    "logo": "Stock Squares",
+    "auth": {
+        "login": "Login",
+        "signup": "Sign Up",
+        "signout": "Sign Out"
+    },
+    "general": {
+        "loading": "Loading...",
+        "save": "Save",
+        "cancel": "Cancel",
+        "back": "Back",
+        "next": "Next",
+        "yes": "Yes",
+        "no": "No",
+        "submit": "Submit",
+        "viewMore": "View More",
+        "edit": "Edit",
+        "delete": "Delete",
+        "update": "Update",
+        "moreInfo": "More Information"
+    },
+    "buttons": {
+        "login": "Login",
+        "signup": "Sign Up",
+        "logout": "Logout",
+        "contactUs": "Contact Us",
+        "tryForFree": "Try for Free",
+        "subscribe": "Subscribe",
+        "readMore": "Read More"
+    },
+    "notifications": {
+        "label": "Notifications",
+        "newMessage": "You have a new message",
+        "updateAvailable": "A new update is available",
+        "courseCompleted": "Congratulations! You’ve completed the course"
+    },
+    "topbar": {
+    },
+    "navbar": {
+        "home": "Home",
+        "trainingAndEducation-1": "Training And Education",
+        "recordedCourses-2": "Recorded Courses",
+        "opportunitiesAndRecommendations-3": "Opportunities And Recommendations",
+        "financeAndBusinessLibrary-4": "Finance And Business Library",
+        "partnerApplication-5": "Partner Application",
+        "trainingAndEducation": "Education Hub",
+        "recordedCourses": "Learning Library",
+        "opportunitiesAndRecommendations": "Investment Insights",
+        "financeAndBusinessLibrary": "Finance Library",
+        "educationalBlog": "Educational Blog",
+        "partnerApplication": "Become a Partner",
+        "aboutUs": "About Us",
+        "ourTeam": "Our Team",
+        "successPartners": "Success Partners",
+        "careers": "Careers",
+        "investorPersonalitySurvey": "Investor Personality Survey",
+        "tryTradingForFree": "Try Trading for Free",
+        "tryTradingForFree-sm": "Try Trading",
+        "chatAI": "Basir AI Recommendations",
+        "chatAI-sm": "Basir AI Recommendations"
+    },
+    "footer": {
+        "siteMap": "Site Map",
+        "ourServices": "Our Services",
+        "contactUs": {
+            "title": "Contact Us",
+            "phone-1": "010 0000 0000",
+            "address-1": "Headquarters Address",
+            "email": "company's/hr's email"
+        },
+        "subscribe": {
+            "title": "Get the Latest News and Free Courses",
+            "btn": "Subscribe Now"
+        },
+        "followUs": "Follow Us",
+        "socialLinks": {
+            "facebook": "Facebook",
+            "instagram": "Instagram",
+            "telegram": "Telegram",
+            "tiktok": "TikTok",
+            "x": "X (formerly Twitter)",
+            "youtube": "YouTube"
+        }
+    },  
+    "sections": {
+        "about": {
+            "title": "Why Stock Squares?",
+            "feature_1": "Certified Investment Experts",
+            "feature_2": "Hands-on Simulation Training",
+            "feature_3": "Receive a Training Certificate"
+        },
+        "bookstore": {
+            "title": "Finance and Business Library",
+            "bookCard": {
+                "btn": "Order Now"
+            }
+        },
+        "blog": {
+            "title": "Educational Blog"
+        },
+        "PracticalTraining": {
+            "title": "Practical Training",
+            "btn": "Join as an Expert",
+            "trainingCard": {
+                "btn": "Book Your Seat"
+            }
+        },
+        "recordedCourses": {
+            "title": "Recorded Courses",
+            "courseSection": {
+                "courseCard": {
+                    "btn": "Start For Free"
+                }
+            },
+            "stockOffers": {
+                "title": "Stock Company Offers"
+            }
+        },
+        "testimonials": {
+            "title": "Customer Testimonials",
+            "note": "Your feedback matters"
+        },
+        "vipServices": {
+            "title": "VIP Investor Services",
+            "content_1": "You know the value of money",
+            "content_2": "And we know the secrets of investing it wisely",
+            "btn": "Request Consultation",
+            "note": "Minimum investment plan: {{minInvestment}} EGP"
+        }
+    },
+    "form": {
+        "name": {
+            "label": "Name",
+            "placeholder": "Enter your name",
+            "error": "Name is required"
+        },
+        "firstName": {
+            "label": "First Name",
+            "placeholder": "Enter your first name",
+            "error": "First name is required"
+        },
+        "lastName": {
+            "label": "Last Name",
+            "placeholder": "Enter your last name",
+            "error": "Last name is required"
+        },
+        "email": {
+            "label": "Email Address",
+            "placeholder": "Enter your email address",
+            "error": "A valid email is required"
+        },
+        "password": {
+            "label": "Password",
+            "placeholder": "Enter your password",
+            "error": "Password is required"
+        },
+        "confirmPassword": {
+            "label": "Confirm Password",
+            "placeholder": "Re-enter your password",
+            "error": "Passwords do not match"
+        },
+        "phone": {
+            "label": "Phone Number",
+            "placeholder": "Enter your phone number",
+            "error": "A valid phone number is required"
+        },
+        "address": {
+            "label": "Address",
+            "placeholder": "Enter your address",
+            "error": "Address is required"
+        },
+        "city": {
+            "label": "City",
+            "placeholder": "Enter your city",
+            "error": "City is required"
+        },
+        "zipCode": {
+            "label": "Zip Code",
+            "placeholder": "Enter your zip code",
+            "error": "A valid zip code is required"
+        },
+        "submit": {
+            "label": "Submit"
+        },
+        "reset": {
+            "label": "Reset"
+        }
+    }
+}
