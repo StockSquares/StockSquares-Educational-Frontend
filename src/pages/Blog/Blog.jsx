@@ -22,13 +22,19 @@ function Blog() {
     return <>
         {/* <div className="min-h-screen bg-gray-50"> */}
         <div className="bg-gray-50">
-            <div className='bg-primary-50 h-[50vh] flex-center p-4 mb-6'>
-                <form className='w-full md:w-2/3 lg:w-1/2'>
-                    <div className="flex justify-between">
-                        <TextInput id="emailToSubscibe" type="email" icon={search} className='input-parent grow me-4' placeholder="Search" />
-                        <Button btnText='Search'bgColor='primary' px='px-8' />
-                    </div>
-                </form>
+            <div className='bg-primary-50 h-[30vh] flex-center p-4 mb-6'>
+            <form className="w-full md:w-2/3 lg:w-1/2">
+                <div className="flex flex-col md:flex-row justify-between gap-2">
+                   <TextInput
+                            id="emailToSubscibe"
+                            type="email"
+                            icon={search}
+                            className="input-parent grow mb-2 md:mb-0 me-0 md:me-4"
+                            placeholder="Search"
+                                />
+                      <Button btnText="Search" bgColor="primary" px="px-8" />
+                       </div>
+                    </form>
             </div>
             <div className='container'>
                 <div className='flex justify-between items-start'>
@@ -57,13 +63,15 @@ function Blog() {
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere architecto officia excepturi distinctio, laborum obcaecati atque, corporis nulla est minus enim dolorem dolorum odit laboriosam blanditiis totam laudantium. Repellat, ex odio. Reiciendis provident quisquam repellendus sapiente, officia, impedit aliquid perspiciatis quod sunt accusantium dolor rerum soluta aliquam fugit veritatis doloremque.
                             </Tabs.Item>
                         </Tabs>
-                    </div>
-                    <div className='md:w-2/5 lg:w-1/4 px-4 py-8'>
-                        <Sidebar popularTitle='Popular Articles' recentTitle='Recent Articles' />
-                    </div>
+                    
                 </div>
+                <div className="hidden md:block md:w-2/5 lg:w-1/4 px-4 py-8">
+                                 <Sidebar popularTitle="Popular Articles" recentTitle="Recent Articles" />
+                           </div>
             </div>
         </div>
+        </div>
+        
     </>
 }
 
