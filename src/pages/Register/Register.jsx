@@ -1,12 +1,18 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import axios from 'axios';
+=======
+import React, { useEffect, useState } from 'react';
+
+>>>>>>> 4b237b7 (Your commit message)
 import Style from './Register.module.css';
 
 function Register() {
     const [counter, setCounter] = useState(0);
+<<<<<<< HEAD
     const { t } = useTranslation(); // The 't' function to access translated strings
 
 
@@ -121,3 +127,19 @@ function Register() {
 }
 
 export default Register;
+=======
+
+
+
+    useEffect(() => {
+        
+    }, []);
+
+    return <>
+        <h2>Register</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quidem distinctio dicta tenetur impedit aspernatur!</p>
+    </>
+}
+
+export default Register
+>>>>>>> 4b237b7 (Your commit message)

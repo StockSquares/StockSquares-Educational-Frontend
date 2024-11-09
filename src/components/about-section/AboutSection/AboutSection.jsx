@@ -19,6 +19,7 @@ function AboutSection() {
 
     return <>
         <SectionCard heading={t('sections.about.title')} wrapperClass='wrapperClass-sectionCard'>
+<<<<<<< HEAD
             <div className='flex-y-center justify-between text-sm font-semibold text-center '>
                 <div className='w-full md:w-1/3 px-3 mb-6 md:mb-0 hover:scale-105 transDuration-300'>
                     {/* <div className='md:px-10'><img src={img} alt="" className='w-full' /></div> */}
@@ -26,11 +27,24 @@ function AboutSection() {
                     <p className='inline-block mb-0 mt-1 md:mt-4'>{t('sections.about.feature_1')}</p>
                 </div>
                 <div className='w-full md:w-1/3 px-3 mb-6 md:mb-0 hover:scale-105 transDuration-300'>
+=======
+            <div className='flex-y-center justify-between text-sm font-semibold text-center'>
+                <div className='w-full md:w-1/3 px-1 mb-6 md:mb-0 hover:scale-105 transDuration-300'>
+                    {/* <div className='md:px-10'><img src={img} alt="" className='w-full' /></div> */}
+                    <FontAwesomeIcon className='text-primary text-4xl' icon={handHoldingDollar} />
+                    <p className='mb-0 mt-1 md:mt-4'>{t('sections.about.feature_1')}</p>
+                </div>
+                <div className='w-full md:w-1/3 px-1 mb-6 md:mb-0 hover:scale-105 transDuration-300'>
+>>>>>>> 4b237b7 (Your commit message)
                     {/* <div className='md:px-10'><img src={img} alt="" className='w-full' /></div> */}
                     <FontAwesomeIcon className='text-primary text-4xl' icon={chalkboardUser} />
                     <p className='mb-0 mt-1 md:mt-4'>{t('sections.about.feature_2')}</p>
                 </div>
+<<<<<<< HEAD
                 <div className='w-full md:w-1/3 px-3 hover:scale-105 transDuration-300'>
+=======
+                <div className='w-full md:w-1/3 px-1 hover:scale-105 transDuration-300'>
+>>>>>>> 4b237b7 (Your commit message)
                     {/* <div className='md:px-10'><img src={img} alt="" className='w-full' /></div> */}
                     <FontAwesomeIcon className='text-primary text-4xl' icon={certificate} />
                     <p className='mb-0 mt-1 md:mt-4'>{t('sections.about.feature_3')}</p>

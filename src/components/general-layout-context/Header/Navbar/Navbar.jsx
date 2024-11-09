@@ -33,10 +33,18 @@ function Navbar({ ref_ul, width_ul, height_md, translateY_navbar, translateX_nav
             <div className="">
                 <div className="flex-x-between items-baseline relative">
                     {/* <Link ref={ref_ul} to='' className={`flex-y-center space-x-1 sm:space-x-3 rtl:space-x-reverse text-xl sm:text-2xl lg:me-10 transform transition-transform transDuration-500 absolute ${translateX_navbar  ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}> */}
+<<<<<<< HEAD
                     <Link ref={ref_ul} to='' className={`text-xl sm:text-2xl transform transition-transform transDuration-500 absolute ${translateX_navbar  ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
                         <h1 className="text-xl font-semibold whitespace-nowrap">{t('logo')}</h1>
                     </Link>
                     <div className={`mx-auto transDuration-500`} style={{ // Tailwind doesn't apply parameters values as arbitrary values dynamically
+=======
+                    <Link ref={ref_ul} to='' className={`text-xl sm:text-2xl ps-24 transform transition-transform transDuration-500 absolute ${translateX_navbar  ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
+                        <h1 className="text-xl font-semibold whitespace-nowrap">{t('logo')}</h1>
+                    </Link>
+                    <div className={`mx-auto transDuration-500`}
+                        style={{ // Tailwind doesn't apply parameters values as arbitrary values dynamically
+>>>>>>> 4b237b7 (Your commit message)
                             transform: translateX_navbar
                                 ? `translatex(-${width_ul}px)` 
                                 : `translatex(0)`,

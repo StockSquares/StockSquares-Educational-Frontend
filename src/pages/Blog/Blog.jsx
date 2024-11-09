@@ -63,6 +63,7 @@ function Blog() {
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere architecto officia excepturi distinctio, laborum obcaecati atque, corporis nulla est minus enim dolorem dolorum odit laboriosam blanditiis totam laudantium. Repellat, ex odio. Reiciendis provident quisquam repellendus sapiente, officia, impedit aliquid perspiciatis quod sunt accusantium dolor rerum soluta aliquam fugit veritatis doloremque.
                             </Tabs.Item>
                         </Tabs>
+<<<<<<< HEAD
                     
                 </div>
                 <div className="hidden md:block md:w-2/5 lg:w-1/4 px-4 py-8">
@@ -72,6 +73,15 @@ function Blog() {
         </div>
         </div>
         
+=======
+                    </div>
+                    <div className='hidden md:block md:w-2/5 lg:w-1/4 px-4 py-8'>
+                        <Sidebar popularTitle='Popular Articles' recentTitle='Recent Articles' />
+                    </div>
+                </div>
+            </div>
+        </div>
+>>>>>>> 4b237b7 (Your commit message)
     </>
 }
 

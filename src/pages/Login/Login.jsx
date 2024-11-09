@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -80,3 +81,25 @@ function Login() {
 }
 
 export default Login;
+=======
+import React, { useEffect, useState } from 'react';
+
+import Style from './Login.module.css';
+
+function Login() {
+    const [counter, setCounter] = useState(0);
+
+
+
+    useEffect(() => {
+        
+    }, []);
+
+    return <>
+        <h2>Login</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quidem distinctio dicta tenetur impedit aspernatur!</p>
+    </>
+}
+
+export default Login
+>>>>>>> 4b237b7 (Your commit message)

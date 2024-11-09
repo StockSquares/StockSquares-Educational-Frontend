@@ -9,7 +9,11 @@ import { chalkboardUser, circleUser, clock, handHoldingDollar } from '../../../a
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+<<<<<<< HEAD
 function PracticalTrainingCard() {
+=======
+function PracticalTrainingCard({category = 'Stock Market'}) {
+>>>>>>> 4b237b7 (Your commit message)
     const  { t } = useTranslation();
 
 
@@ -20,9 +24,15 @@ function PracticalTrainingCard() {
 
     return <>
         <div className='h-full p-2'>
+<<<<<<< HEAD
             <div className='h-48 bg-gray m-2'>
                 {/* aspect ratio for img */}
                 <div className=''></div> 
+=======
+            <div className='h-48 bg-primary-100 m-2 flex-center'>
+                {/* aspect ratio for img */}
+                <div className='font-bold text-primary'>{category}</div> 
+>>>>>>> 4b237b7 (Your commit message)
             </div>
             <div className='bg-darkgray text-white p-2 relative'>
                 <ul>
@@ -44,7 +54,10 @@ function PracticalTrainingCard() {
                     </li>
                 </ul>
                 <Button btnText={t('sections.PracticalTraining.trainingCard.btn')} btnClassName='absolute end-4 bottom-5' textColor='black' bgColor='accent' px='px-2' />
+<<<<<<< HEAD
                 
+=======
+>>>>>>> 4b237b7 (Your commit message)
             </div>
         </div>
     </>

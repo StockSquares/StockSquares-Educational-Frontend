@@ -9,12 +9,28 @@ import imgReview2 from './imgs/reviews/Review+2.jpg';
 import imgReview3 from './imgs/reviews/Review+3.jpg';
 
 // Icons as images
+<<<<<<< HEAD
 import facebookIcon from './icons/social-contacts/facebook-logo.png'
 import instagramIcon from './icons/social-contacts/instagram-logo.svg'
 import telegramIcon from './icons/social-contacts/telegram-logo.svg'
 import tiktokIcon from './icons/social-contacts/tiktok-logo.svg'
 import xIcon from './icons/social-contacts/x-logo.svg'
 import youtubeIcon from './icons/social-contacts/youtube-logo.png'
+=======
+import facebookIcon from './icons/social-contacts/facebook-logo.png';
+import instagramIcon from './icons/social-contacts/instagram-logo.svg';
+import telegramIcon from './icons/social-contacts/telegram-logo.svg';
+import tiktokIcon from './icons/social-contacts/tiktok-logo.svg';
+import xIcon from './icons/social-contacts/x-logo.svg';
+import youtubeIcon from './icons/social-contacts/youtube-logo.png';
+// Free Shipping
+import free_delivery_black_1 from "./icons/free-shipping/free_delivery_black_1.png";
+import free_delivery_black_2_with_parcel from "./icons/free-shipping/free_delivery_black_2_with_parcel.png";
+import free_delivery_green_1 from "./icons/free-shipping/free_delivery_green_1.png";
+import free_delivery_green_2 from "./icons/free-shipping/free_delivery_green_2.png";
+import free_shipping_text_green from "./icons/free-shipping/free_shipping_text_green.png";
+import free_shipping_text_red from "./icons/free-shipping/free_shipping_text_red.png";
+>>>>>>> 4b237b7 (Your commit message)
 
 // Icons form libraries
 import { 
@@ -61,6 +77,16 @@ export {
     tiktokIcon,
     xIcon,
     youtubeIcon,
+<<<<<<< HEAD
+=======
+    free_delivery_black_1,
+    free_delivery_black_2_with_parcel,
+    free_delivery_green_1,
+    free_delivery_green_2,
+    free_shipping_text_green,
+    free_shipping_text_red,
+
+>>>>>>> 4b237b7 (Your commit message)
     handHoldingDollar,
     chalkboardUser,
     certificate,

@@ -1,1 +1,12 @@
+<<<<<<< HEAD
 .RecordedCourses {}
+=======
+.RecordedCourses {}
+
+.search-form-background {
+    background-image: url('/src/assets/imgs/bookstore/book-bg.jpg');
+    background-size: cover;        /* Makes the image cover the entire container */
+    background-position: center;   /* Centers the image within the container */
+    background-repeat: no-repeat;  /* Prevents the image from repeating */
+}
+>>>>>>> 4b237b7 (Your commit message)

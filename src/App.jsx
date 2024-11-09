@@ -1,6 +1,28 @@
 import { useContext, useState } from 'react'
 import './App.css'
+<<<<<<< HEAD
 import {Layout,Home,Login,Register,NotFound,TrainingAndEducation,RecordedCourses,OpportunitiesAndRecommendations,FinanceAndBusinessLibrary,PartnerApplication,TryTradingForFree,VIPInvestorServices,User,Admin,Employee,Article,Blog,Course
+=======
+import {
+    Layout,
+    Home,
+    Login,
+    Register,
+    NotFound,
+    TrainingAndEducation,
+    RecordedCourses,
+    OpportunitiesAndRecommendations,
+    FinanceAndBusinessLibrary,
+    PartnerApplication,
+    TryTradingForFree,
+    VIPInvestorServices,
+    User,
+    Admin,
+    Employee,
+    Article,
+    Blog,
+    Course
+>>>>>>> 4b237b7 (Your commit message)
 } from './pages';
 import { ROUTES } from './routes';
 import Footer from './components/general-layout-context/Footer/Footer';

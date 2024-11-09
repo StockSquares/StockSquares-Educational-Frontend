@@ -20,7 +20,11 @@ function Home() {
 
 
     useEffect(() => {
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 4b237b7 (Your commit message)
     }, []);
 
     return <>
@@ -34,12 +38,19 @@ function Home() {
             <section className='mb-10'>
                 <PracticalTrainingSection />
             </section>
+<<<<<<< HEAD
+=======
+            <section className='mb-10'>
+                <VIPInvestorServicesSection />
+            </section>
+>>>>>>> 4b237b7 (Your commit message)
             {/* <section className='mb-10'>
                 <EducationalBlogSection />
             </section> */}
             <section id='test' className='mb-10'>
                 <FinanceBusinessLibrary />
             </section>
+<<<<<<< HEAD
 
 
             <div className=' row justify-between  mb-10'>
@@ -55,6 +66,16 @@ function Home() {
             <section className='mb-10'>
                 <AboutSection />
             </section>
+=======
+            <div className='flex-stretch-parent justify-between mb-10'>
+                <section className='w-full lg:w-1/2 lg:pe-3 mb-10 lg:mb-0'>
+                    <TestimonialsSection />
+                </section>
+                <section className='w-full lg:w-1/2 lg:ps-3'>
+                    <AboutSection />
+                </section>
+            </div>
+>>>>>>> 4b237b7 (Your commit message)
         </div>
     </>
 }
