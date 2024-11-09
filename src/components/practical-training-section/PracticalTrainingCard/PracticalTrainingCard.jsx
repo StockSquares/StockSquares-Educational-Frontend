@@ -30,10 +30,10 @@ function PracticalTrainingCard() {
                         <FontAwesomeIcon className='p-1.5' icon={chalkboardUser} />
                         <span>دورة البوصة المصرية-مبتدئ</span>
                     </li>
-                    <li className='flex-y-center'>
+                    {/* <li className='flex-y-center'>
                         <FontAwesomeIcon className='p-1.5' icon={circleUser} />
                         <span>اسم المدرب</span>
-                    </li>
+                    </li> */}
                     <li className='flex-y-center'>
                         <FontAwesomeIcon className='p-1.5' icon={clock} />
                         <span>21 ساعة</span>
@@ -44,6 +44,7 @@ function PracticalTrainingCard() {
                     </li>
                 </ul>
                 <Button btnText={t('sections.PracticalTraining.trainingCard.btn')} btnClassName='absolute end-4 bottom-5' textColor='black' bgColor='accent' px='px-2' />
+                
             </div>
         </div>
     </>

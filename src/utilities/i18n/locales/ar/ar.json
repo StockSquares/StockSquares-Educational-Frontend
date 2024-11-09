@@ -16,7 +16,7 @@
     },
     "navbar": {
         "home": "الرئيسية",
-        "trainingAndEducation": "التدريب والتعليم",
+        "trainingAndEducation": "التدريب الشخصي",
         "recordedCourses": "الدورات المسجلة",
         "opportunitiesAndRecommendations": "الفرص والتوصيات",
         "financeAndBusinessLibrary": "مكتبة المال والأعمال",
@@ -158,6 +158,10 @@
         },
         "reset": {
             "label": "إعادة ضبط"
+        },
+        "terms":{
+            "label":"اوافق علي الشروط والاحكام",
+            "error":"مطلوب الموافقه علي الشروط والاحكام"
         }
     },
     "general": {

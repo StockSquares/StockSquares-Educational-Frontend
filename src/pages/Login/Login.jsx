@@ -63,7 +63,7 @@ function Login() {
                 </div>
 
                 <div>
-                    <button type="submit" className="w-full bg-green-500 text-white p-3 rounded-lg mt-4 hover:bg-green-600 disabled:bg-gray-400" disabled={!formik.isValid || formik.isSubmitting}
+                    <button type="submit" className="w-full bg-[var(--primary-color)] text-white p-3 rounded-lg mt-4 hover:bg-green-600 disabled:bg-gray-400" disabled={!formik.isValid || formik.isSubmitting}
                     >
                         {t('buttons.login')}
                     </button>
