@@ -75,7 +75,9 @@ function Blog() {
         
 =======
                     </div>
-                    <div className='hidden md:block md:w-2/5 lg:w-1/4 px-4 py-8'>
+                    <div className='hidden md:block md:w-2/5 lg:w-1/4 px-4 py-8console.log('Blog component rendered');
+console.log('Aisle context.log('Aisle context:', handleAisle);
+console.log('Aisle context:', handleAisle);'>
                         <Sidebar popularTitle='Popular Articles' recentTitle='Recent Articles' />
                     </div>
                 </div>
