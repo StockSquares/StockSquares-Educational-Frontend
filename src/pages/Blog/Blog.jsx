@@ -64,6 +64,7 @@ function Blog() {
                             </Tabs.Item>
                         </Tabs>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     
                 </div>
                 <div className="hidden md:block md:w-2/5 lg:w-1/4 px-4 py-8">
@@ -80,10 +81,21 @@ console.log('Aisle context.log('Aisle context:', handleAisle);
 console.log('Aisle context:', handleAisle);'>
                         <Sidebar popularTitle='Popular Articles' recentTitle='Recent Articles' />
                     </div>
+=======
+                    
+>>>>>>> 1497039 (Initial commit)
                 </div>
+                <div className="hidden md:block md:w-2/5 lg:w-1/4 px-4 py-8">
+                                 <Sidebar popularTitle="Popular Articles" recentTitle="Recent Articles" />
+                           </div>
             </div>
         </div>
+<<<<<<< HEAD
 >>>>>>> 4b237b7 (Your commit message)
+=======
+        </div>
+        
+>>>>>>> 1497039 (Initial commit)
     </>
 }
 

@@ -85,7 +85,7 @@ function FinanceAndBusinessLibrary() {
                             </Tabs>
                         </div>
                         <div className="hidden md:block md:w-2/5 lg:w-1/4 px-4 py-8">
-                                 <Sidebar popularTitle="Popular Courses" recentTitle="Recent Courses" />
+                                 <Sidebar popularTitle="Popular Books" recentTitle="Recent Books" />
                            </div>
     
                     </div>
