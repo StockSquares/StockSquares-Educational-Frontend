@@ -22,25 +22,33 @@ function RecordedCourses() {
     return <>
         {/* <div className="min-h-screen"> */}
         <div className=''>
-            <div className='bg-lightgray h-[60vh] flex-center'>
-                <form className='w-full md:w-2/3 lg:w-1/2'>
-                    <div className='flex justify-between'>
-                        <TextInput id="emailToSubscibe" type="email" icon={search} className='input-parent grow me-4' placeholder="Search" />
-                        <Button btnText='Search'bgColor='primary' px='px-8' />
+            <div className=' bg-lightgray h-[30vh] flex-center'>
+            <form className="w-full md:w-2/3 lg:w-1/2">
+                    <div className="flex flex-col md:flex-row justify-between gap-2">
+                        <TextInput
+                            id="emailToSubscibe"
+                            type="email"
+                            icon={search}
+                            className="input-parent grow mb-2 md:mb-0 me-0 md:me-4"
+                            placeholder="Search"
+                        />
+                        <Button btnText="Search" bgColor="primary" px="px-8" />
                     </div>
                 </form>
+
             </div>
             <div className="container">
                 <div className='flex justify-between items-start'>
                     <div className='md:w-3/5 lg:w-3/4 p-4'>
                         <Tabs aria-label="Pills" variant="pills" className='flex-center' onActiveTabChange={handleAisle}>
                             <Tabs.Item active title="Popular">
-                            <div className='rounded-lg bg-whitegrid flex-y-center justify-between'>
-                                <div className='w-full md:w-1/2'><FlexibleCard isHorizontal={false} btnLinkTo={ROUTES.COURSE} /></div>
-                                <div className='w-full md:w-1/2'><FlexibleCard isHorizontal={false} btnLinkTo={ROUTES.COURSE} /></div>
-                                <div className='w-full md:w-1/2'><FlexibleCard isHorizontal={false} btnLinkTo={ROUTES.COURSE} /></div>
-                                <div className='w-full md:w-1/2'><FlexibleCard isHorizontal={false} btnLinkTo={ROUTES.COURSE} /></div>
-                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 rounded-lg bg-white p-4">
+                                     <div className="w-full"><FlexibleCard isHorizontal={false} btnLinkTo={ROUTES.COURSE} /></div>
+                                        <div className="w-full"><FlexibleCard isHorizontal={false} btnLinkTo={ROUTES.COURSE} /></div>
+                                         <div className="w-full"><FlexibleCard isHorizontal={false} btnLinkTo={ROUTES.COURSE} /></div>
+                                        <div className="w-full"><FlexibleCard isHorizontal={false} btnLinkTo={ROUTES.COURSE} /></div>
+                                     </div>
+
                             </Tabs.Item>
                             <Tabs.Item title="Recent">
                                 <p className="text-sm text-gray-500 dark:text-gray-400">Content 2</p>
@@ -56,9 +64,10 @@ function RecordedCourses() {
                             </Tabs.Item>
                         </Tabs>
                     </div>
-                    <div className='md:w-2/5 lg:w-1/4 px-4 py-8'>
-                        <Sidebar popularTitle='Popular Courses' recentTitle='Recent Courses' />
-                    </div>
+                    <div className="hidden md:block md:w-2/5 lg:w-1/4 px-4 py-8">
+                             <Sidebar popularTitle="Popular Courses" recentTitle="Recent Courses" />
+                       </div>
+
                 </div>
             </div>
         </div>
