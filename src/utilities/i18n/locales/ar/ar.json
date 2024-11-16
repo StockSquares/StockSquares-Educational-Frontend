@@ -1,0 +1,192 @@
+{
+    "logo": "ميدان البورصة",
+    "auth": {
+        "login": "تسجيل الدخول",
+        "signup": "إنشاء حساب",
+        "signout": "تسجيل الخروج",
+        "loginError":""
+    },
+    "notifications": {
+        "label": "الإشعارات",
+        "newMessage": "لديك رسالة جديدة",
+        "updateAvailable": "تحديث جديد متاح",
+        "courseCompleted": "تهانينا! لقد أكملت الدورة"
+    },    
+    "topbar": {
+    },
+    "navbar": {
+        "home": "الرئيسية",
+        "trainingAndEducation": "التدريب الشخصي",
+        "recordedCourses": "الدورات المسجلة",
+        "opportunitiesAndRecommendations": "الفرص والتوصيات",
+        "financeAndBusinessLibrary": "مكتبة المال والأعمال",
+        "educationalBlog": "المدونة التعليمية",
+        "partnerApplication": "طلب العمل كشريك",
+        "aboutUs": "من نحن",
+        "ourTeam": "فريقنا",
+        "successPartners": "شركاء النجاح",
+        "careers": "وظائف",
+        "investorPersonalitySurvey": "إستبيان شخصية المستثمر",
+        "tryTradingForFree": "جرب التداول مجاناً",
+        "tryTradingForFree-sm": "تداول مجاناً",
+        "chatAI": "توصيات بصير AI",
+        "chatAI-sm": "بصير AI"
+    },
+    "footer": {
+        "siteMap": "خريطة الموقع",
+        "ourServices": "خدماتنا",
+        "contactUs": {
+            "title": "تواصل معنا",
+            "phone-1": "010 0000 0000",
+            "address-1": "عنوان مقر الشركة",
+            "email": "company's/hr's email"
+        },
+        "subscribe": {
+            "title": "أحصل على أحدث الأخبار والدورات المجانية",
+            "btn": "اشترك الآن"
+        },
+        "followUs": "تابعنا",
+        "socialLinks": {
+            "facebook": "فيسبوك",
+            "instagram": "إنستغرام",
+            "telegram": "تيليجرام",
+            "tiktok": "تيك توك",
+            "x": "إكس (تويتر سابقًا)",
+            "youtube": "يوتيوب"
+        }
+    },
+    "sections": {
+        "about": {
+            "title": "لماذا ستوك سكويرز؟",
+            "feature_1": "خبراء إستثمار معتمدين",
+            "feature_2": "التدريب العملي بالمحاكاة",
+            "feature_3": "الحصول على شهادة تدريبية"
+        },
+        "bookstore": {
+            "title": "مكتبة المال والأعمال",
+            "bookCard": {
+                "btn": "اطلب الآن"
+            }
+        },
+        "blog": {
+            "title": "المدونة المجانية التعليمية"
+        },
+        "PracticalTraining": {
+            "title": "التدريب الشخصي",
+            "btn": "إنضم كخبير",
+            "trainingCard": {
+                "btn": "احجز مقعدك"
+            }
+        },
+        "recordedCourses": {
+            "title": "الدورات المسجلة",
+            "courseSection": {
+                "courseCard": {
+                    "btn": "ابدأ مجانا"
+                }
+            },
+            "stockOffers": {
+                "title": "عروض شركات التداول"
+            }
+        },
+        "testimonials": {
+            "title": "آراء عملائنا",
+            "note": "رأيك يهمنا"
+        },
+        "vipServices": {
+            "title": "خدمات كبار المستثمرين",
+            "content_1": "أنت تعرف قيمة المال",
+            "content_2": "ونحن نعرف أسرار استثماره بذكاء",
+            "btn": "طلب إستشارة",
+            "note": "حد أدنى لخطة الإستثمار: {{minInvestment}} $"
+        }
+    },
+    "form": {
+        "name": {
+            "label": "الاسم",
+            "placeholder": "أدخل اسمك",
+            "error": "الاسم مطلوب"
+        },
+        "firstName": {
+            "label": "الاسم الأول",
+            "placeholder": "أدخل اسمك الأول",
+            "error": "الاسم الأول مطلوب"
+        },
+        "lastName": {
+            "label": "اسم العائلة",
+            "placeholder": "أدخل اسم العائلة",
+            "error": "اسم العائلة مطلوب"
+        },
+        "email": {
+            "label": "البريد الإلكتروني",
+            "placeholder": "أدخل بريدك الإلكتروني",
+            "error": "بريد إلكتروني صالح مطلوب"
+        },
+        "password": {
+            "label": "كلمة المرور",
+            "placeholder": "أدخل كلمة المرور",
+            "error": "كلمة المرور مطلوبة",
+            "incorrectPassword": "كلمه المرور غير صحيحه"
+        },
+        "confirmPassword": {
+            "label": "تأكيد كلمة المرور",
+            "placeholder": "أعد إدخال كلمة المرور",
+            "error": "كلمات المرور غير متطابقة"
+        },
+        "phone": {
+            "label": "رقم الهاتف",
+            "placeholder": "أدخل رقم هاتفك",
+            "error": "رقم هاتف صالح مطلوب"
+        },
+        "address": {
+            "label": "العنوان",
+            "placeholder": "أدخل عنوانك",
+            "error": "العنوان مطلوب"
+        },
+        "city": {
+            "label": "المدينة",
+            "placeholder": "أدخل مدينتك",
+            "error": "المدينة مطلوبة"
+        },
+        "zipCode": {
+            "label": "الرمز البريدي",
+            "placeholder": "أدخل الرمز البريدي",
+            "error": "رمز بريدي صالح مطلوب"
+        },
+        "submit": {
+            "label": "إرسال"
+        },
+        "reset": {
+            "label": "إعادة ضبط"
+        },
+        "terms":{
+            "label":"اوافق علي الشروط والاحكام",
+            "error":"مطلوب الموافقه علي الشروط والاحكام"
+        }
+    },
+    "general": {
+        "loading": "جارٍ التحميل...",
+        "save": "حفظ",
+        "cancel": "إلغاء",
+        "back": "رجوع",
+        "next": "التالي",
+        "yes": "نعم",
+        "no": "لا",
+        "submit": "إرسال",
+        "viewMore": "عرض المزيد",
+        "edit": "تعديل",
+        "delete": "حذف",
+        "update": "تحديث",
+        "moreInfo": "معلومات إضافية"    
+    },
+    "buttons": {
+        "login": "تسجيل الدخول",
+        "signup": "إنشاء حساب",
+        "logout": "تسجيل الخروج",
+        "contactUs": "اتصل بنا",
+        "tryForFree": "جرّب مجانًا",
+        "subscribe": "اشترك الآن",
+        "readMore": "اقرأ المزيد"
+    }
+   
+}
