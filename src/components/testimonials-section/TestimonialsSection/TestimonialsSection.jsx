@@ -44,8 +44,11 @@ function TestimonialsSection() {
             sliderRef.current.slickPrev();
         }
     };
+<<<<<<< HEAD
 
     // Slider settings with responsive options
+=======
+>>>>>>> e7a6e37efe506aed563c657e6842d7b197940692
     const settings = {
         dots: false,
         fade: true,
@@ -55,6 +58,7 @@ function TestimonialsSection() {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
+<<<<<<< HEAD
         cssEase: "linear",
         responsive: [
             {
@@ -106,3 +110,30 @@ function TestimonialsSection() {
 }
 
 export default TestimonialsSection;
+=======
+        cssEase: "linear"
+    };
+
+
+    useEffect(() => {
+        
+    }, []);
+
+    return <>
+        <SectionCard heading={t('sections.testimonials.title')} wrapperClass='wrapperClass-sectionCard' headingSpan={t('sections.testimonials.note')}>
+                <div className='rounded-xl w-full px-6 relative after:content-[""] after:absolute after:border after:border-primary after:border-4 after:rounded-xl after:top-0 after:start-6 after:end-6 after:bottom-8 after:z-3'>
+                    {/* Slider */}
+                    <Slider ref={sliderRef} {...settings}>
+                        {images.map((img) => <div key={img.id} className=''><img className='w-full' src={img.src} alt={img.title} /></div>)}
+                    </Slider>
+                    <div className='flex justify-center items-center gap-4 mt-4'>
+                        <button className="w-4 h-2 bg-slate-300 rounded hover:bg-slate-400" onClick={previous}></button>
+                        <button className="w-4 h-2 bg-slate-300 rounded hover:bg-slate-400" onClick={next}></button>
+                    </div>
+                </div>
+        </SectionCard>
+    </>
+}
+
+export default TestimonialsSection
+>>>>>>> e7a6e37efe506aed563c657e6842d7b197940692

@@ -18,5 +18,8 @@ export const ROUTES = {
     ADMIN: '/admin',
     EMPLOYEE: '/employee',
     NOT_FOUND: '*',
+<<<<<<< HEAD
     RESERVATION:'/reservation'
+=======
+>>>>>>> e7a6e37efe506aed563c657e6842d7b197940692
 };

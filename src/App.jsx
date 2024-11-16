@@ -1,6 +1,11 @@
 import { useContext, useState } from 'react'
 import './App.css'
+<<<<<<< HEAD
 import {Layout,Home,Login,Register,NotFound,TrainingAndEducation,RecordedCourses,OpportunitiesAndRecommendations,FinanceAndBusinessLibrary,PartnerApplication,TryTradingForFree,VIPInvestorServices,User,Admin,Employee,Article,Blog,Course,Reservation} from './pages';
+=======
+import {Layout,Home,Login,Register,NotFound,TrainingAndEducation,RecordedCourses,OpportunitiesAndRecommendations,FinanceAndBusinessLibrary,PartnerApplication,TryTradingForFree,VIPInvestorServices,User,Admin,Employee,Article,Blog,Course
+} from './pages';
+>>>>>>> e7a6e37efe506aed563c657e6842d7b197940692
 import { ROUTES } from './routes';
 import Footer from './components/general-layout-context/Footer/Footer';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -23,11 +28,17 @@ const router = createBrowserRouter([
             { path: ROUTES.BOOKSTORE, element: <FinanceAndBusinessLibrary /> }, // Accessible without authentication
             { path: ROUTES.BLOG, element: <Blog /> }, // Accessible without authentication
             { path: ROUTES.ARTICLE, element: <Article /> }, // Accessible without authentication
+<<<<<<< HEAD
             // { path: ROUTES.TRAINING_AND_EDUCATION, element: <ProtectedRoute element={<TrainingAndEducation />} /> },
             { path: ROUTES.TRAINING_AND_EDUCATION, element:<TrainingAndEducation /> },
             { path: ROUTES.RECORDED_COURSES, element: <RecordedCourses /> },
             { path: ROUTES.COURSE, element: <Course /> },
             { path: ROUTES.RESERVATION, element: <Reservation /> },
+=======
+            { path: ROUTES.TRAINING_AND_EDUCATION, element: <ProtectedRoute element={<TrainingAndEducation />} /> },
+            { path: ROUTES.RECORDED_COURSES, element: <RecordedCourses /> },
+            { path: ROUTES.COURSE, element: <Course /> },
+>>>>>>> e7a6e37efe506aed563c657e6842d7b197940692
             { path: ROUTES.OPPORTUNITIES_AND_RECOMMENDATIONS, element: <ProtectedRoute element={<OpportunitiesAndRecommendations />} /> },
             { path: ROUTES.PARTNER_APPLICATION, element: <ProtectedRoute element={<PartnerApplication />} /> },
             { path: ROUTES.TRY_TRADING_FOR_FREE, element: <ProtectedRoute element={<TryTradingForFree />} /> },

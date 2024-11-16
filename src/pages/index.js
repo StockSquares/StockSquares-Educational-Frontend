@@ -18,6 +18,9 @@ export { default as VIPInvestorServices } from './VIPInvestorServices/VIPInvesto
 export { default as User } from './User/User.jsx';
 export { default as Admin } from './Admin/Admin.jsx';
 export { default as Employee } from './Employee/Employee.jsx';
+<<<<<<< HEAD
 export { default as Reservation } from './Reservation/Reservation.jsx';
+=======
+>>>>>>> e7a6e37efe506aed563c657e6842d7b197940692
 
 

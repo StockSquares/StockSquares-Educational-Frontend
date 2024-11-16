@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -130,3 +131,24 @@ function TrainingAndEducation() {
 }
 
 export default TrainingAndEducation;
+=======
+import React, { useEffect, useState } from 'react';
+import Style from './TrainingAndEducation.module.css';
+
+function TrainingAndEducation() {
+    const [counter, setCounter] = useState(0);
+
+
+
+    useEffect(() => {
+        
+    }, []);
+
+    return <>
+        <h2>TrainingAndEducation</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quidem distinctio dicta tenetur impedit aspernatur!</p>
+    </>
+}
+
+export default TrainingAndEducation
+>>>>>>> e7a6e37efe506aed563c657e6842d7b197940692
