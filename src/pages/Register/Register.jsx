@@ -49,7 +49,6 @@ function Register() {
             <h1 className="text-center mb-4 text-2xl font-bold">{t('auth.signup')}</h1>
             
             <form className="space-y-2 container" onSubmit={formik.handleSubmit}>
-
                 <div>
                     <label htmlFor='name' className="block text-sm font-medium p-2">{t('form.name.label')}</label>
                     <input onChange={formik.handleChange} onBlur={formik.handleBlur} className="w-full p-3 border border-gray-300 rounded-lg" type="text" name="name" id="name" placeholder={t('form.name.placeholder')}
@@ -58,7 +57,6 @@ function Register() {
                         <div className="text-sm text-red-500 mt-1">{formik.errors.name}</div>
                     )}
                 </div>
-
                 <div>
                     <label htmlFor='email' className="block text-sm font-medium p-2">{t('form.email.label')}</label>
                     <input onChange={formik.handleChange} onBlur={formik.handleBlur} className="w-full p-3 border border-gray-300 rounded-lg" type="email" name="email" id="email" placeholder={t('form.email.placeholder')}
@@ -67,7 +65,6 @@ function Register() {
                         <div className="text-sm text-red-500 mt-1">{formik.errors.email}</div>
                     )}
                 </div>
-
                 <div>
                     <label htmlFor='phone' className="block text-sm font-medium p-2">{t('form.phone.label')}</label>
                     <input onChange={formik.handleChange} onBlur={formik.handleBlur} className="w-full p-3 border border-gray-300 rounded-lg" type="tel" name="phone" id="phone" placeholder={t('form.phone.placeholder')}
