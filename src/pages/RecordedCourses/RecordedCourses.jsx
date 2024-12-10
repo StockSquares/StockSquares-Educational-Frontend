@@ -22,6 +22,10 @@ function RecordedCourses() {
     return <>
         {/* <div className="min-h-screen"> */}
         <div className=''>
+<<<<<<< HEAD
+=======
+
+>>>>>>> b5a70da58cd6df67927d6f2467ce93c18ea77d0d
             <div className=' bg-lightgray h-[30vh] flex-center'>
             <form className="w-full md:w-2/3 lg:w-1/2">
                     <div className="flex flex-col md:flex-row justify-between gap-2">
@@ -36,12 +40,20 @@ function RecordedCourses() {
                     </div>
                 </form>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b5a70da58cd6df67927d6f2467ce93c18ea77d0d
             </div>
             <div className="container">
                 <div className='flex justify-between items-start'>
                     <div className='md:w-3/5 lg:w-3/4 p-4'>
                         <Tabs aria-label="Pills" variant="pills" className='flex-center' onActiveTabChange={handleAisle}>
                             <Tabs.Item active title="Popular">
+<<<<<<< HEAD
+=======
+
+>>>>>>> b5a70da58cd6df67927d6f2467ce93c18ea77d0d
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 rounded-lg bg-white p-4">
                                      <div className="w-full"><FlexibleCard isHorizontal={false} btnLinkTo={ROUTES.COURSE} /></div>
                                         <div className="w-full"><FlexibleCard isHorizontal={false} btnLinkTo={ROUTES.COURSE} /></div>
@@ -49,6 +61,10 @@ function RecordedCourses() {
                                         <div className="w-full"><FlexibleCard isHorizontal={false} btnLinkTo={ROUTES.COURSE} /></div>
                                      </div>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b5a70da58cd6df67927d6f2467ce93c18ea77d0d
                             </Tabs.Item>
                             <Tabs.Item title="Recent">
                                 <p className="text-sm text-gray-500 dark:text-gray-400">Content 2</p>
@@ -64,6 +80,10 @@ function RecordedCourses() {
                             </Tabs.Item>
                         </Tabs>
                     </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> b5a70da58cd6df67927d6f2467ce93c18ea77d0d
                     <div className="hidden md:block md:w-2/5 lg:w-1/4 px-4 py-8">
                              <Sidebar popularTitle="Popular Courses" recentTitle="Recent Courses" />
                        </div>

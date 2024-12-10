@@ -46,6 +46,7 @@ function Login() {
 
             <form className="space-y-6 " onSubmit={formik.handleSubmit}>
                 <div>
+
                     <label htmlFor="email" className="block text-sm font-medium p-2">{t('form.email.label')}</label>
                     <input type="email" id="email" className="w-full p-3 border border-gray-300 rounded-lg" placeholder={t('form.email.placeholder')} value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur}
                     />

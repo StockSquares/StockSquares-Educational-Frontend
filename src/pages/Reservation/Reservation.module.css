@@ -1,0 +1,110 @@
+/* Container for the reservation */
+.reservationContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.login, .signup {
+    background-color: var(--primary-color, #C62E2E);
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login:hover, .signup:hover {
+    background-color: var(--stocksquares-color, #A8C256);
+}
+
+.sessionType, .sessionDuration, .calendar {
+    margin-bottom: 2rem;
+    text-align: right;
+}
+
+label {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+input[type="radio"] {
+    margin-right: 0.5rem;
+}
+
+.time {
+    background-color: var(--stocksquares-color, #A8C256);
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.time:hover {
+    background-color: var(--primary-color, #C62E2E);
+}
+
+.selected {
+    background-color: var(--stocksquares-color, #A8C256);
+    color: #ffffff;
+}
+
+.noTimes {
+    color: #999;
+}
+
+.footer {
+    margin-top: 2rem;
+}
+
+.confirmButton {
+    background-color: var(--primary-color, #C62E2E);
+    color: #ffffff;
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.confirmButton:hover {
+    background-color: var(--stocksquares-color, #A8C256);
+}
+
+@media (max-width: 480px) {
+    .reservationContainer {
+        padding: 1rem;
+    }
+
+    .login, .signup, .confirmButton {
+        font-size: 1rem;
+    }
+
+    .time {
+        font-size: 0.95rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .sessionType, .sessionDuration, .calendar {
+        text-align: center;
+    }
+}
