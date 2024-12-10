@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 // Internal Imports (components, Assets and Styles)
 import Style from "./Topbar.module.css";
@@ -36,6 +36,99 @@ function ThemeToggleButton() {
   );
 }
 
+function SideNavigation({ isOpen, onClose, isLoggedIn }) {
+  const { t } = useTranslation();
+  const { isDarkMode } = useContext(ThemeContext);
+
+  return (
+    <>
+      {/* Overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black opacity-50 z-40"
+          onClick={onClose}
+        />
+      )}
+
+      {/* Side Navigation */}
+      <div 
+        className={`
+          fixed top-0 left-0 h-full w-64 
+          ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'}
+          transform transition-transform duration-300 z-50
+          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+          shadow-lg
+        `}
+      >
+        <div className="p-4 flex justify-between items-center border-b">
+          <div className="w-24">
+            <Link to="/" onClick={onClose}>
+              <img
+                className="w-full"
+                src={companyLogo}
+                alt="logo-stock-squares"
+              />
+            </Link>
+          </div>
+          <button 
+            onClick={onClose} 
+            className="text-gray-600 hover:text-gray-900"
+            aria-label="Close menu"
+          >
+            <FontAwesomeIcon icon={xMark} className="text-xl" />
+          </button>
+        </div>
+        
+        {/* Navigation Links */}
+        <nav className="p-4 space-y-4">
+          {/* REPEATED CONTENT: Identical to mobile menu links */}
+          {!isLoggedIn && (
+            <>
+              <Link 
+                to="/login" 
+                className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+                onClick={onClose}
+              >
+                {t("auth.login")}
+              </Link>
+              <Link 
+                to="/survey" 
+                className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+                onClick={onClose}
+              >
+                {t("navbar.investorPersonalitySurvey")}
+              </Link>
+            </>
+          )}
+          
+          <div className="border-t pt-4">
+            {/* REPEATED CONTENT: Identical to desktop menu buttons */}
+            <Button
+              linkTo=""
+              btnText={t("navbar.chatAI")}
+              btnClassName="w-full rounded-full px-3 py-2 mb-2"
+              bgColor="primary"
+              onClick={onClose}
+            />
+            <Button
+              linkTo="try-trading-for-free"
+              btnText={t("navbar.tryTradingForFree")}
+              btnClassName="w-full rounded-full px-3 py-2"
+              textColor="black"
+              bgColor="accent"
+              onClick={onClose}
+            />
+          </div>
+          
+          <div className="mt-4">
+            <ThemeToggleButton />
+          </div>
+        </nav>
+      </div>
+    </>
+  );
+}
+
 function Topbar({
   userLogin,
   logoutFn,
@@ -45,7 +138,7 @@ function Topbar({
   isAboveMdBreakpoint,
 }) {
   const { t } = useTranslation();
-  
+  const [isSideNavOpen, setIsSideNavOpen] = useState(false);
 
   const renderMobileMenu = (isLoggedIn = false) => (
     <div
@@ -54,6 +147,7 @@ function Topbar({
       }`}
     >
       <div className="flex-y-center dark:text-dark justify-between py-4">
+        {/* REPEATED CONTENT: Logo section is identical in both mobile renders */}
         <div className="w-24 me-6">
           <Link to="/">
             <img
@@ -64,27 +158,19 @@ function Topbar({
           </Link>
         </div>
         
-        <div className="me-auto flex">
-          {!isLoggedIn && (
-            <>
-              <Link className="px-2">
-                <p>{t("auth.login")}</p>
-              </Link>
-              <Link className="px-2">
-                <p>{t("navbar.investorPersonalitySurvey")}</p>
-              </Link>
-            </>
-          )}
-        </div>
+        {/* REDUNDANT navigation links - should be consolidated */}
+        
         
         <div className="ms-auto flex items-center">
           <div className="mr-2">
             <ThemeToggleButton />
           </div>
           
+          {/* Mobile menu toggle button */}
           <button
             type="button"
             aria-label="Open Main Menu"
+            onClick={() => setIsSideNavOpen(true)}
             className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100"
           >
             <FontAwesomeIcon
@@ -94,12 +180,19 @@ function Topbar({
           </button>
         </div>
       </div>
+
+      {/* Side navigation component */}
+      <SideNavigation 
+        isOpen={isSideNavOpen} 
+        onClose={() => setIsSideNavOpen(false)}
+        isLoggedIn={false}
+      />
     </div>
   );
 
   return (
     <>
-      {isBelowMdBreakpoint && renderMobileMenu()}
+      {/* REDUNDANT mobile menu renders - can be simplified */}
       {isBelowMdBreakpoint && renderMobileMenu(true)}
 
       {isAboveMdBreakpoint && (
@@ -120,6 +213,7 @@ function Topbar({
               </Link>
             </div>
             
+            {/* Desktop navigation links */}
             <div className="me-auto  flex-center">
               <Link to="/login" className="px-2">
                 <p>{t("auth.login")}</p>
@@ -130,6 +224,7 @@ function Topbar({
               </Link>
             </div>
             
+            {/* Desktop action buttons */}
             <div className="ms-auto flex items-center">
               <ThemeToggleButton />
               <Button
