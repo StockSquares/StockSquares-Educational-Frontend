@@ -11,7 +11,25 @@ import i18n from "../../../../utilities/i18n";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ThemeContext } from "../../../../Context/ThemeContext";
-
+function LanguageToggleButton() {
+    const { i18n } = useTranslation();
+    const currentLang = i18n.language;
+  
+    const toggleLanguage = () => {
+      const newLang = currentLang === "en" ? "ar" : "en";
+      i18n.changeLanguage(newLang);
+    };
+  
+    return (
+      <button
+        onClick={toggleLanguage}
+        className="flex items-center justify-center px-4 mx-2 py-2 rounded-lg border-2 border-primary-800 bg-primary-800 text-white hover:bg-primary-700 transition-all duration-300"
+        aria-label="Toggle Language"
+      >
+        {currentLang === "en" ? "AR" : "EN"}
+      </button>
+    );
+  }
 function ThemeToggleButton() {
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
   
@@ -120,7 +138,8 @@ function SideNavigation({ isOpen, onClose, isLoggedIn }) {
             />
           </div>
           
-          <div className="mt-4">
+          <div className=" flex gap-3 mt-4 ">
+          <LanguageToggleButton />
             <ThemeToggleButton />
           </div>
         </nav>
@@ -162,7 +181,8 @@ function Topbar({
         
         
         <div className="ms-auto flex items-center">
-          <div className="mr-2">
+          <div className=" flex  mr-2 ">
+          <LanguageToggleButton />
             <ThemeToggleButton />
           </div>
           
@@ -226,6 +246,7 @@ function Topbar({
             
             {/* Desktop action buttons */}
             <div className="ms-auto flex items-center">
+            <LanguageToggleButton />
               <ThemeToggleButton />
               <Button
                 linkTo=""
