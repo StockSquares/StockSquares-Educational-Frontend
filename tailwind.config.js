@@ -8,6 +8,7 @@ export default {
 		'./node_modules/flowbite/**/*.js',
 		flowbite.content(),
 	],
+darkMode:"class",
 	theme: {
 		container: {
             center: true,
@@ -22,7 +23,14 @@ export default {
 		extend: {
 			fontFamily: {
 				'Cairo': 'var(--font-Cairo)',
+			},// Add any custom dark mode colors or extensions here
+			backgroundColor: {
+			  'dark-primary': '#121212',
+			  'dark-secondary': '#1E1E1E',
 			},
+			textColor: {
+			  'dark-primary': '#E0E0E0',
+			  'dark-secondary': '#A0A0A0',},
 			colors: {
                 'primary': 'var(--primary-color)',
                 'primary-dark': 'var(--primary-color-dark)',

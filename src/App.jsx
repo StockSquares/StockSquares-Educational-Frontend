@@ -30,6 +30,7 @@ import UserContextProvider from "./Context/UserContext";
 import AisleContextProvider from "./Context/AisleContext";
 import { Helmet } from "react-helmet";
 import "flowbite";
+import { ThemeProvider } from "./Context/ThemeContext";
 
 // Create router instance
 const router = createBrowserRouter([
@@ -87,13 +88,15 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <ConfigProvider>
-      <UserContextProvider>
-        <AisleContextProvider>
-          <RouterProvider router={router} />
-        </AisleContextProvider>
-      </UserContextProvider>
-    </ConfigProvider>
+    <ThemeProvider>
+      <ConfigProvider>
+        <UserContextProvider>
+          <AisleContextProvider>
+            <RouterProvider router={router} />
+          </AisleContextProvider>
+        </UserContextProvider>
+      </ConfigProvider>
+    </ThemeProvider>
   );
 }
 
