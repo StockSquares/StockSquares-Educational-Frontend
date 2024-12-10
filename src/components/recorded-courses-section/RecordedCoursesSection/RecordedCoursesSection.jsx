@@ -11,7 +11,6 @@ const CourseViewer = () => {
         <div className="flex items-center space-x-6">
           <span className="text-sm">Digital Strategy 4.0</span>
           <button className="text-sm underline">Rate Course</button>
-          <button className="text-sm underline">العربية</button>
           <button className="bg-red-500 px-4 py-2 rounded text-sm">Exit Course</button>
         </div>
       </header>
