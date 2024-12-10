@@ -10,22 +10,6 @@ import { HiAdjustments, HiClipboardList, HiMail, HiSearch, HiUserCircle } from "
 import { MdDashboard } from "react-icons/md";
 import { AisleContext } from '../../Context/AisleContext';
 import { useTranslation } from 'react-i18next';
-<<<<<<< HEAD
-
-function FinanceAndBusinessLibrary() {
-    const { t } = useTranslation();
-    const {handleAisle} = useContext(AisleContext);
-
-    useEffect(() => {
-
-    }, []);
-
-    return <>
-        <h1>Bookstore - buy educational books</h1>
-    </>
-}
-
-=======
 import { ROUTES } from '../../routes';
 import { search } from '../../assets';
 
@@ -93,5 +77,4 @@ function FinanceAndBusinessLibrary() {
             </div>
         </>
     }
->>>>>>> 4b237b7 (Your commit message)
 export default FinanceAndBusinessLibrary

@@ -26,7 +26,7 @@ function Blog() {
             <form className="w-full md:w-2/3 lg:w-1/2">
                 <div className="flex flex-col md:flex-row justify-between gap-2">
                    <TextInput
-                            id="emailToSubscibe"
+                            id="emailToSubscribe"
                             type="email"
                             icon={search}
                             className="input-parent grow mb-2 md:mb-0 me-0 md:me-4"
