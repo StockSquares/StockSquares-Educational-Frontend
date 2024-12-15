@@ -3,28 +3,19 @@
     "auth": {
         "login": "تسجيل الدخول",
         "signup": "إنشاء حساب",
-<<<<<<< HEAD
         "signout": "تسجيل الخروج",
-        "loginError":""
-=======
-        "signout": "تسجيل الخروج"
->>>>>>> 4b237b7 (Your commit message)
+        "loginError": ""
     },
     "notifications": {
         "label": "الإشعارات",
         "newMessage": "لديك رسالة جديدة",
         "updateAvailable": "تحديث جديد متاح",
         "courseCompleted": "تهانينا! لقد أكملت الدورة"
-    },    
-    "topbar": {
     },
+    "topbar": {},
     "navbar": {
         "home": "الرئيسية",
         "trainingAndEducation": "التدريب الشخصي",
-<<<<<<< HEAD
-=======
-        "trainingAndEducation-1": "التدريب والتعليم",
->>>>>>> 4b237b7 (Your commit message)
         "recordedCourses": "الدورات المسجلة",
         "opportunitiesAndRecommendations": "الفرص والتوصيات",
         "financeAndBusinessLibrary": "مكتبة المال والأعمال",
@@ -80,11 +71,7 @@
             "title": "المدونة المجانية التعليمية"
         },
         "PracticalTraining": {
-<<<<<<< HEAD
             "title": "التدريب الشخصي",
-=======
-            "title": "التدريب العملي الشخصي",
->>>>>>> 4b237b7 (Your commit message)
             "btn": "إنضم كخبير",
             "trainingCard": {
                 "btn": "احجز مقعدك"
@@ -110,11 +97,7 @@
             "content_1": "أنت تعرف قيمة المال",
             "content_2": "ونحن نعرف أسرار استثماره بذكاء",
             "btn": "طلب إستشارة",
-<<<<<<< HEAD
             "note": "حد أدنى لخطة الإستثمار: {{minInvestment}} $"
-=======
-            "note": "حد أدنى لخطة الإستثمار: {{minInvestment}} جنيه"
->>>>>>> 4b237b7 (Your commit message)
         }
     },
     "form": {
@@ -141,12 +124,8 @@
         "password": {
             "label": "كلمة المرور",
             "placeholder": "أدخل كلمة المرور",
-<<<<<<< HEAD
             "error": "كلمة المرور مطلوبة",
             "incorrectPassword": "كلمه المرور غير صحيحه"
-=======
-            "error": "كلمة المرور مطلوبة"
->>>>>>> 4b237b7 (Your commit message)
         },
         "confirmPassword": {
             "label": "تأكيد كلمة المرور",
@@ -173,18 +152,15 @@
             "placeholder": "أدخل الرمز البريدي",
             "error": "رمز بريدي صالح مطلوب"
         },
+        "terms": {
+            "label": "اوافق علي الشروط والاحكام",
+            "error": "مطلوب الموافقه علي الشروط والاحكام"
+        },
         "submit": {
             "label": "إرسال"
         },
         "reset": {
             "label": "إعادة ضبط"
-<<<<<<< HEAD
-        },
-        "terms":{
-            "label":"اوافق علي الشروط والاحكام",
-            "error":"مطلوب الموافقه علي الشروط والاحكام"
-=======
->>>>>>> 4b237b7 (Your commit message)
         }
     },
     "general": {
@@ -200,7 +176,7 @@
         "edit": "تعديل",
         "delete": "حذف",
         "update": "تحديث",
-        "moreInfo": "معلومات إضافية"    
+        "moreInfo": "معلومات إضافية"
     },
     "buttons": {
         "login": "تسجيل الدخول",
@@ -211,8 +187,4 @@
         "subscribe": "اشترك الآن",
         "readMore": "اقرأ المزيد"
     }
-<<<<<<< HEAD
-   
-=======
->>>>>>> 4b237b7 (Your commit message)
 }

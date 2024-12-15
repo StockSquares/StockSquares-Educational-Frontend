@@ -100,11 +100,9 @@
             "title": "Educational Blog"
         },
         "PracticalTraining": {
-<<<<<<< HEAD
-            "title": "Practical Training",
-=======
+
             "title": "Practical personal Training",
->>>>>>> 4b237b7 (Your commit message)
+
             "btn": "Join as an Expert",
             "trainingCard": {
                 "btn": "Book Your Seat"

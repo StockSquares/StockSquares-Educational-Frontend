@@ -18,12 +18,4 @@ export { default as VIPInvestorServices } from './VIPInvestorServices/VIPInvesto
 export { default as User } from './User/User.jsx';
 export { default as Admin } from './Admin/Admin.jsx';
 export { default as Employee } from './Employee/Employee.jsx';
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 4b237b7 (Your commit message)
-=======
 export { default as Reservation } from './Reservation/Reservation.jsx';
->>>>>>> b5a70da58cd6df67927d6f2467ce93c18ea77d0d

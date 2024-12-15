@@ -8,46 +8,38 @@ import imgReview1 from './imgs/reviews/Review+1.jpg';
 import imgReview2 from './imgs/reviews/Review+2.jpg';
 import imgReview3 from './imgs/reviews/Review+3.jpg';
 
-// Icons as images
-<<<<<<< HEAD
-import facebookIcon from './icons/social-contacts/facebook-logo.png'
-import instagramIcon from './icons/social-contacts/instagram-logo.svg'
-import telegramIcon from './icons/social-contacts/telegram-logo.svg'
-import tiktokIcon from './icons/social-contacts/tiktok-logo.svg'
-import xIcon from './icons/social-contacts/x-logo.svg'
-import youtubeIcon from './icons/social-contacts/youtube-logo.png'
-=======
+// Social Media Icons
 import facebookIcon from './icons/social-contacts/facebook-logo.png';
 import instagramIcon from './icons/social-contacts/instagram-logo.svg';
 import telegramIcon from './icons/social-contacts/telegram-logo.svg';
 import tiktokIcon from './icons/social-contacts/tiktok-logo.svg';
 import xIcon from './icons/social-contacts/x-logo.svg';
 import youtubeIcon from './icons/social-contacts/youtube-logo.png';
-// Free Shipping
+
+// Free Shipping Icons
 import free_delivery_black_1 from "./icons/free-shipping/free_delivery_black_1.png";
 import free_delivery_black_2_with_parcel from "./icons/free-shipping/free_delivery_black_2_with_parcel.png";
 import free_delivery_green_1 from "./icons/free-shipping/free_delivery_green_1.png";
 import free_delivery_green_2 from "./icons/free-shipping/free_delivery_green_2.png";
 import free_shipping_text_green from "./icons/free-shipping/free_shipping_text_green.png";
 import free_shipping_text_red from "./icons/free-shipping/free_shipping_text_red.png";
->>>>>>> 4b237b7 (Your commit message)
 
-// Icons form libraries
+// Icons from libraries
 import { 
-        faHandHoldingDollar as handHoldingDollar,
-        faChalkboardUser as chalkboardUser, 
-        faCertificate as certificate,
-        faArrowRight as arrowRight,
-        faChartBar as chartBar,
-        faEllipsis as ellipsis,
-        faAngleDown as angleDown, 
-        faBars as bars, 
-        faXmark as xMark,
+    faHandHoldingDollar as handHoldingDollar,
+    faChalkboardUser as chalkboardUser, 
+    faCertificate as certificate,
+    faArrowRight as arrowRight,
+    faChartBar as chartBar,
+    faEllipsis as ellipsis,
+    faAngleDown as angleDown, 
+    faBars as bars, 
+    faXmark as xMark,
 } from '@fortawesome/free-solid-svg-icons';
 import { 
-        faCircleUser as circleUser,
-        faEye as eye,
-        faClock as clock,
+    faCircleUser as circleUser,
+    faEye as eye,
+    faClock as clock,
 } from '@fortawesome/free-regular-svg-icons';
 import { 
     HiMail as mail,
@@ -62,6 +54,7 @@ import {
 } from "react-icons/md";
 
 export {
+    // Images
     companyLogo,
     instructorPhoto,
     bookBG,
@@ -71,14 +64,15 @@ export {
     imgReview2,
     imgReview3,
 
+    // Social Media Icons
     facebookIcon,
     instagramIcon,
     telegramIcon,
     tiktokIcon,
     xIcon,
     youtubeIcon,
-<<<<<<< HEAD
-=======
+
+    // Free Shipping Icons
     free_delivery_black_1,
     free_delivery_black_2_with_parcel,
     free_delivery_green_1,
@@ -86,7 +80,7 @@ export {
     free_shipping_text_green,
     free_shipping_text_red,
 
->>>>>>> 4b237b7 (Your commit message)
+    // Library Icons
     handHoldingDollar,
     chalkboardUser,
     certificate,

@@ -1,20 +1,3 @@
-
-import {Layout,Home,Login,Register,NotFound,TrainingAndEducation,RecordedCourses,OpportunitiesAndRecommendations,FinanceAndBusinessLibrary,PartnerApplication,TryTradingForFree,VIPInvestorServices,User,Admin,Employee,Article,Blog,Course
-} from './pages';
-import { ROUTES } from './routes';
-import Footer from './components/general-layout-context/Footer/Footer';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ProtectedRoute from './components/auth/ProtectedRoute/ProtectedRoute';
-import ConfigProvider from './Context/ConfigContext';
-import UserContextProvider from './Context/UserContext';
-import { Helmet } from 'react-helmet';
-import 'flowbite';
-import AisleContextProvider from './Context/AisleContext';
-
-
-
-import { useContext, useState } from "react";
-import "./App.css";
 import {
   Layout,
   Home,
@@ -35,23 +18,23 @@ import {
   Blog,
   Course,
   Reservation,
-} from "./pages";
-import { ROUTES } from "./routes";
-import Footer from "./components/general-layout-context/Footer/Footer";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ProtectedRoute from "./components/auth/ProtectedRoute/ProtectedRoute";
-import ConfigProvider from "./Context/ConfigContext";
-import UserContextProvider from "./Context/UserContext";
-import AisleContextProvider from "./Context/AisleContext";
-import { Helmet } from "react-helmet";
-import "flowbite";
-import { ThemeProvider } from "./Context/ThemeContext";
-
+} from './pages';
+import { ROUTES } from './routes';
+import Footer from './components/general-layout-context/Footer/Footer';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ProtectedRoute from './components/auth/ProtectedRoute/ProtectedRoute';
+import ConfigProvider from './Context/ConfigContext';
+import UserContextProvider from './Context/UserContext';
+import AisleContextProvider from './Context/AisleContext';
+import { ThemeProvider } from './Context/ThemeContext';
+import { Helmet } from 'react-helmet';
+import 'flowbite';
+import './App.css';
 
 // Create router instance
 const router = createBrowserRouter([
   {
-    path: "",
+    path: '',
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
