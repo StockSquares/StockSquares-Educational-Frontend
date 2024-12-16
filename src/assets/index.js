@@ -1,5 +1,5 @@
 // Images
-import companyLogo from './imgs/logo-SS.png';
+import companyLogo from './imgs/logo-SS.svg';
 import instructorPhoto from './imgs/personal-img.png';
 import bookBG from './imgs/bookstore/book-bg.jpg';
 import bookFront from './imgs/bookstore/book-front.jpg';
