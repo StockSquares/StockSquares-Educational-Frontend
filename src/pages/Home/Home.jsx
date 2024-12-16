@@ -22,13 +22,7 @@ function Home() {
             </section>
 
             {/* Recorded Courses Section */}
-<<<<<<< HEAD
-            <section className='mb-10'>
-                <RecordedCoursesSection />
-            </section>
-=======
           
->>>>>>> 7f2b094 (MA)
 
             {/* Practical Training Section */}
             <section className='mb-10'>

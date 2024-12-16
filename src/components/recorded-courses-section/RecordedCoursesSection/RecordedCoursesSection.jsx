@@ -1,82 +1,160 @@
-import React from "react";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle, faClock, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 
-const CourseViewer = () => {
-  return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      {/* Header */}
-      <header className="flex justify-between items-center px-6 py-4 bg-gray-800">
-        <div className="text-xl font-semibold">
-          <span className="text-red-500">al</span>mentor
-        </div>
-        <div className="flex items-center space-x-6">
-          <span className="text-sm">Digital Strategy 4.0</span>
-          <button className="text-sm underline">Rate Course</button>
-          <button className="bg-red-500 px-4 py-2 rounded text-sm">Exit Course</button>
-        </div>
-      </header>
-
-      {/* Progress Bar */}
-      <div className="w-full bg-gray-700 h-2">
-        <div className="bg-red-500 h-2" style={{ width: "10%" }}></div>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex">
-        {/* Sidebar */}
-        <aside className="w-1/4 bg-gray-800 p-4">
-          <div className="mb-4">
-            <h2 className="text-lg font-semibold">Course Outline</h2>
-          </div>
-          <ul className="space-y-4">
-            <li>
-              <h3 className="text-sm font-medium">Course Introduction</h3>
-            </li>
-            <li>
-              <h3 className="text-sm font-medium">1. Digital Briefing Methodology</h3>
-              <ul className="mt-2 space-y-2 pl-4">
-                <li className="flex justify-between items-center text-sm">
-                  <span>1.1 Introduction</span>
-                  <span>✓</span>
-                </li>
-                <li className="flex justify-between items-center text-sm">
-                  <span>1.2 Where The Briefing...</span>
-                  <span className="loader w-3 h-3 border-2 border-t-2 border-gray-300 rounded-full animate-spin"></span>
-                </li>
-                <li className="flex justify-between items-center text-sm">
-                  <span>1.3 Who Should Be Involved...</span>
-                  <button>☆</button>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </aside>
-
-        {/* Main Video Section */}
-        <main className="flex-1 p-6">
-          <div className="mb-6">
-            <h1 className="text-xl font-bold">Introduction</h1>
-          </div>
-          <div className="relative">
-            <div className="aspect-w-16 aspect-h-9 bg-black">
-              <iframe
-                title="Video Player"
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                allowFullScreen
-              ></iframe>
+function VideoCard({ videoTitle, instructor, duration, imageUrl, instructorImage }) {
+    return (
+        <div className="bg-white shadow-md rounded-lg p-2 flex flex-col gap-2 md:gap-4">
+            {/* Thumbnail Section */}
+            <div className="relative rounded-lg overflow-hidden h-36 md:h-48">
+                <img src={imageUrl} alt="Video Thumbnail" className="w-full h-full object-cover" />
+                {/* Play Button Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                    <button className="text-white text-3xl md:text-4xl">&#9658;</button>
+                </div>
             </div>
-            <button className="absolute top-2 right-2 bg-red-500 px-3 py-1 text-sm rounded">
-              Download this video
-            </button>
-          </div>
-          <div className="mt-4 flex justify-between">
-            <button className="px-4 py-2 bg-gray-700 rounded">◀ Course Introduction</button>
-            <button className="px-4 py-2 bg-gray-700 rounded">Lesson 1.2 ▶</button>
-          </div>
-        </main>
-      </div>
-    </div>
-  );
-};
+            
+            {/* Details Section */}
+            <div className="flex-1 flex flex-col justify-between">
+                <div>
+                    <h2 className="text-sm md:text-lg font-bold mb-1 text-gray-800">{videoTitle}</h2>
+                    <p className="text-xs md:text-sm text-gray-600 mb-1">{instructor}</p>
+                    <div className="flex items-center gap-2 md:gap-3 text-xs md:text-sm text-gray-500">
+                        <FontAwesomeIcon icon={faUserCircle} />
+                        <span>By {instructor}</span>
+                        <FontAwesomeIcon icon={faClock} />
+                        <span>{duration} minutes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
 
-export default CourseViewer;
+function VideoSlider({ videos }) {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const videosPerPage = 5;
+
+    const nextSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % Math.ceil(videos.length / videosPerPage));
+    };
+
+    const prevSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + Math.ceil(videos.length / videosPerPage)) % Math.ceil(videos.length / videosPerPage));
+    };
+
+    const startIndex = currentIndex * videosPerPage;
+    const visibleVideos = videos.slice(startIndex, startIndex + videosPerPage);
+
+    return (
+        <div className="relative w-full">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 md:gap-4">
+                {visibleVideos.map((video, index) => (
+                    <VideoCard key={index} {...video} />
+                ))}
+            </div>
+            {/* Navigation Buttons */}
+            <button onClick={prevSlide} className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
+                <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
+            <button onClick={nextSlide} className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
+                <FontAwesomeIcon icon={faChevronRight} />
+            </button>
+        </div>
+    );
+}
+
+function VideoGrid() {
+    // Replace with actual video data
+    const videoData = [
+        {
+            videoTitle: 'Business Development',
+            instructor: 'Dr. Tarek',
+            duration: 60,
+            imageUrl: 'https://via.placeholder.com/400x200',
+            instructorImage: 'https://via.placeholder.com/100',
+        },
+        {
+            videoTitle: 'Business Development Essentials',
+            instructor: 'Dr. Tarek',
+            duration: 45,
+            imageUrl: 'https://via.placeholder.com/400x200',
+            instructorImage: 'https://via.placeholder.com/100',
+        },
+        {
+            videoTitle: 'Digital Strategy 4.0',
+            instructor: 'Dr. Tarek',
+            duration: 30,
+            imageUrl: 'https://via.placeholder.com/400x200',
+            instructorImage: 'https://via.placeholder.com/100',
+        },
+        {
+            videoTitle: 'Essential Sales Skills',
+            instructor: 'Dr. Tarek',
+            duration: 50,
+            imageUrl: 'https://via.placeholder.com/400x200',
+            instructorImage: 'https://via.placeholder.com/100',
+        },
+        {
+            videoTitle: 'Leadership in Practice',
+            instructor: 'Dr. Tarek',
+            duration: 40,
+            imageUrl: 'https://via.placeholder.com/400x200',
+            instructorImage: 'https://via.placeholder.com/100',
+        },
+        {
+            videoTitle: 'Project Management Simplified',
+            instructor: 'Tom White',
+            duration: 35,
+            imageUrl: 'https://via.placeholder.com/400x200',
+            instructorImage: 'https://via.placeholder.com/100',
+        },
+        {
+            videoTitle: 'Marketing Fundamentals',
+            instructor: 'Dr. Tarek',
+            duration: 55,
+            imageUrl: 'https://via.placeholder.com/400x200',
+            instructorImage: 'https://via.placeholder.com/100',
+        },
+    ];
+
+    return (
+        <div className="max-w-screen-xl mx-auto py-10 px-4">
+            {/* Header Section */}
+            <h1 className="text-3xl font-bold text-gray-800 mb-8">Business Development Essentials</h1>
+            
+            {/* Featured Video Section */}
+            <VideoCard
+                videoTitle="Business Development"
+                instructor="Dr. Tarek"
+                duration={60}
+                imageUrl="https://via.placeholder.com/400x200"
+                instructorImage="https://via.placeholder.com/100"
+            />
+
+            {/* Slider Section */}
+            <h2 className="text-2xl font-bold text-gray-800 mt-8 mb-4">Explore More Videos</h2>
+            <VideoSlider videos={videoData} />
+
+            {/* Continue Section */}
+            <h2 className="text-2xl font-bold text-gray-800 mt-8 mb-4">Continue where you left off</h2>
+            
+            {/* Video Grid Section */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {videoData.map((video, index) => (
+                    <VideoCard
+                        key={index}
+                        videoTitle={video.videoTitle}
+                        instructor={video.instructor}
+                        duration={video.duration}
+                        imageUrl={video.imageUrl}
+                        instructorImage={video.instructorImage}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+}
+
+export default VideoGrid;
