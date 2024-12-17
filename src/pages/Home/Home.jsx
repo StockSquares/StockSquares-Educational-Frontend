@@ -3,13 +3,12 @@ import React from 'react';
 // Internal Imports (components, Assets and Styles)
 import Style from './Home.module.css';
 import {
-    EducationalBlogSection,
+   
     AboutSection,
     FinanceBusinessLibrary,
     TestimonialsSection,
     VIPInvestorServicesSection,
     PracticalTrainingSection,
-    RecordedCoursesSection,
     Ad
 } from '../../components';
 
