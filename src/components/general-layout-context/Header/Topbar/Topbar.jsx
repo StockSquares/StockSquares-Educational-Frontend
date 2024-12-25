@@ -249,13 +249,13 @@ function Topbar({
             <LanguageToggleButton />
               <ThemeToggleButton />
               <Button
-                linkTo=""
+                linkTo="/"
                 btnText={t("navbar.chatAI")}
                 btnClassName="rounded-full px-3 py-2 mx-3"
                 bgColor="primary"
               />
               <Button
-                linkTo="try-trading-for-free"
+                linkTo="/try-trading-for-free"
                 btnText={t("navbar.tryTradingForFree")}
                 btnClassName="rounded-full px-3 py-2 mx-1"
                 textColor="black"

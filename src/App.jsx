@@ -62,7 +62,7 @@ const router = createBrowserRouter([
       },
       {
         path: ROUTES.TRY_TRADING_FOR_FREE,
-        element: <ProtectedRoute element={<TryTradingForFree />} />,
+         element:<TryTradingForFree />,
       },
       {
         path: ROUTES.VIP_INVESTOR_SERVICES,

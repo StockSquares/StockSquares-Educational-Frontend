@@ -1,8 +1,7 @@
-<<<<<<< HEAD
+
 const flowbite = require("flowbite-react/tailwind");
-=======
-import flowbite from "flowbite-react/tailwind";
->>>>>>> 7f2b094 (MA)
+// import flowbite from "flowbite-react/tailwind";
+
 
 /** @type {import('tailwindcss').Config} */
 export default {
