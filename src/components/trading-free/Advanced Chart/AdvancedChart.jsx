@@ -32,7 +32,7 @@ export const AdvancedChart = () => {
     const chartData = generateData(100, 41000, 500);
     
     return (
-      <div className="bg-white rounded-lg shadow-sm h-[500px] p-4">
+      <div className="bg-white rounded-lg shadow-sm h-[500px] dark:bg-black p-4">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-2">
             <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors">
@@ -80,7 +80,7 @@ export const AdvancedChart = () => {
               content={({ active, payload }) => {
                 if (active && payload?.length) {
                   return (
-                    <div className="bg-white border shadow-lg rounded-lg p-3">
+                    <div className="bg-white border shadow-lg rounded-lg p-3 dark:bg-black">
                       <div className="text-sm font-medium">
                         ${formatNumber(payload[0].value)}
                       </div>
@@ -105,7 +105,7 @@ export const AdvancedChart = () => {
         
         {showVolume && (
           <div className="h-[20%]">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="70%" height="70%">
               <BarChart data={chartData}>
                 <Bar dataKey="volume" fill="#e2e8f0" />
               </BarChart>
@@ -119,16 +119,16 @@ export const AdvancedChart = () => {
     const chartData = generateData(20, 41000, 500);
     
     return (
-      <div className="bg-white rounded-lg shadow-sm p-4 h-[500px]">
+      <div className="bg-white  dark:bg-black rounded-lg shadow-sm p-4 h-[500px]">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="font-medium">Order Book</h3>
-          <div className="flex items-center space-x-1 bg-gray-50 p-1 rounded-lg">
+          <h3 className="font-medium">كتاب الطلبات</h3>
+          <div className="flex items-center space-x-1  dark:bg-dark p-1 rounded-lg">
             {['0.1', '0.01', '0.001'].map((value) => (
               <button 
                 key={value}
                 className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
                   value === '0.1' 
-                    ? 'bg-white text-blue-600 shadow-sm' 
+                    ? 'bg-white dark:bg-black  text-green-600 shadow-sm' 
                     : 'hover:bg-white'
                 }`}
               >
@@ -150,7 +150,7 @@ export const AdvancedChart = () => {
             </div>
           ))}
           
-          <div className="py-3 text-center font-medium text-lg border-y my-2">
+          <div className="py-3 text-center font-small text-lg border-y my-2">
             ${formatNumber(chartData[chartData.length - 1].price)}
           </div>
           

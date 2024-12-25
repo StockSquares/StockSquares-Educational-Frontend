@@ -173,8 +173,8 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
     };
   
     const TableHeader = () => (
-      <div className="grid grid-cols-7 gap-4 text-sm font-medium text-gray-600 border-b pb-2">
-        <div className="col-span-1">نوع</div>
+      <div className="grid grid-cols-7 gap-4 text-sm font-medium text-gray-60 dark:text-white dark:bg-black  border-b pb-2">
+        <div className="col-span-1  ">نوع</div>
         <div className="col-span-1 text-left">السعر USDT</div>
         <div className="col-span-1 text-left">الكمية</div>
         <div className="col-span-1 text-left">المجموع USDT</div>
@@ -184,7 +184,7 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
     );
   
     return (
-      <div className="w-full space-y-4">
+      <div className="w-full dark:bg-black space-y-4">
         <div className="flex justify-start gap-2 mb-4">
           {markets.map(market => (
             <button
@@ -192,7 +192,7 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
               onClick={() => setSelectedMarket(market)}
               className={`px-4 py-2 rounded-md text-sm transition-colors ${
                 selectedMarket === market
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-green-700 text-white'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
@@ -201,7 +201,7 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
           ))}
         </div>
   
-        <div className="bg-white p-4 rounded-lg shadow-sm">
+        <div className="bg-white dark:bg-black p-4 rounded-lg shadow-sm">
           <TableHeader />
           <div className="space-y-1 mt-2">
             {filteredOrders.map((order, index) => {
@@ -210,7 +210,7 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
               return (
                 <div
                   key={index}
-                  className="grid grid-cols-7 gap-4 text-sm items-center py-2 hover:bg-gray-50 transition-colors rounded"
+                  className="grid grid-cols-7 gap-4 text-sm items-center py-2 dark:bg-black hover:bg-gray-50 transition-colors rounded"
                 >
                   <div className="col-span-1">
                     {order.type === 'buy' ? (
@@ -231,10 +231,10 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
                   <div className="text-left">
                     {order.amount.toFixed(4)}
                   </div>
-                  <div className="text-left text-gray-600">
+                  <div className="text-left text-gray-600 dark:text-white">
                     {total.toFixed(2)}
                   </div>
-                  <div className="text-left text-gray-600 capitalize">
+                  <div className="text-left text-gray-600 capitalize dark:text-white">
                     {order.typec}
                   </div>
                   <div className="col-span-2 flex justify-center gap-2">

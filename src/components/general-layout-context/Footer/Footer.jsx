@@ -30,7 +30,7 @@ function Footer() {
     const isBelowMdBreakpoint = size.width < breakpoints.md.minWidth;
 
     return (
-        <footer className='bg-darkgray text-white/90'>
+        <footer className='bg-darkgray dark:bg-black text-white/90'>
             <div className='px-4'>
                 <div className="flex-x-center py-10">
                     <div className='w-full md:w-1/3 flex-x-between px-4'>
