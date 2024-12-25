@@ -108,3 +108,6 @@ input[type="radio"] {
         text-align: center;
     }
 }
+.rtl {
+    direction: rtl;
+  }

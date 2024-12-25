@@ -36,7 +36,7 @@ function TrainingAndEducation() {
   const trainingPlans = [
     {
       title: "المبتدئ",
-      EgpPrice: "2000 ج.م",
+      EgpPrice: "3000 ج.م",
       usdPrice: "500$",
       duration: "8 ساعات - 4 محاضرات",
       features: [
@@ -49,7 +49,7 @@ function TrainingAndEducation() {
     },
     {
       title: "المتقدم",
-      EgpPrice: "3000 ج.م",
+      EgpPrice: "5000 ج.م",
       usdPrice: "1000$",
       duration: "16 ساعة - 6 محاضرات",
       features: [
@@ -62,7 +62,7 @@ function TrainingAndEducation() {
     },
     {
       title: "الاحترافي",
-      EgpPrice: "5000 ج.م",
+      EgpPrice: "7000 ج.م",
       usdPrice: "1500$",
       duration: "18 ساعة - 9 محاضرات",
       features: [
