@@ -158,7 +158,7 @@ const Reservation = () => {
         {/* Buttons */}
         <div className="flex justify-between items-center">
           <button className="text-red-500 underline">مسح جميع الحقول</button>
-          <button className="bg-green-600 text-white px-6 py-2 rounded-md"   onClick={() => navigate('./Payment')}>التالي</button>
+          <button className="bg-green-600 text-white px-6 py-2 rounded-md"   onClick={() => navigate('/Payment')}>التالي</button>
         </div>
       </div>
     </div>

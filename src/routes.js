@@ -19,5 +19,8 @@ export const ROUTES = {
   EMPLOYEE: "/employee",
   NOT_FOUND: "*",
 
+  //  COURSES RESERVATION: '/RESERVATION/',
+
   RESERVATION: "/reservation",
+  PAYMENT: "/Payment",
 };
