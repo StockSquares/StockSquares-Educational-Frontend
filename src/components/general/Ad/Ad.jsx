@@ -13,7 +13,7 @@ function Ad() {
 
     return <>
         <div className='bg-lightgray h-48 flex-center'>
-            <h2>Ad</h2>
+            <img></img>
         </div>
     </>
 }
