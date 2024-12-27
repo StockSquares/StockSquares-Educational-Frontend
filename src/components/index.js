@@ -55,3 +55,4 @@ export { default as SectionCard } from './general-layout-context/SectionCard/Sec
 export { default as SectionHeader } from './general-layout-context/SectionHeader/SectionHeader.jsx';
 export { default as Sidebar } from './general-layout-context/Sidebar/Sidebar.jsx';
 export { default as ProfileSummary } from './general-user-related/ProfileSummary/ProfileSummary.jsx';
+export { default as Payment } from '../pages/Reservation/Payment.jsx'

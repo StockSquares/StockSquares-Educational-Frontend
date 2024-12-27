@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 const Reservation = () => {
   const [selectedGender, setSelectedGender] = useState("all");
@@ -33,6 +35,8 @@ const Reservation = () => {
       setSelectedMarket([...selectedMarket, market]);
     }
   };
+  const navigate = useNavigate();
+
 
   return (
     <div className="bg-gray-100 p-6 md:p-12 rtl" dir="rtl">
@@ -154,7 +158,7 @@ const Reservation = () => {
         {/* Buttons */}
         <div className="flex justify-between items-center">
           <button className="text-red-500 underline">مسح جميع الحقول</button>
-          <button className="bg-green-600 text-white px-6 py-2 rounded-md">التالي</button>
+          <button className="bg-green-600 text-white px-6 py-2 rounded-md"   onClick={() => navigate('./Payment')}>التالي</button>
         </div>
       </div>
     </div>

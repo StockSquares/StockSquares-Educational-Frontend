@@ -19,3 +19,4 @@ export { default as User } from './User/User.jsx';
 export { default as Admin } from './Admin/Admin.jsx';
 export { default as Employee } from './Employee/Employee.jsx';
 export { default as Reservation } from './Reservation/Reservation.jsx';
+export {default as Payment } from './Reservation/Payment.jsx'
