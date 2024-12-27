@@ -26,6 +26,7 @@
     "dayjs": "^1.11.13",
     "flowbite-react": "^0.10.1",
     "formik": "^2.4.6",
+    "framer-motion": "^11.15.0",
     "generate-react-cli": "^8.4.8",
     "i18next-browser-languagedetector": "^8.0.0",
     "i18next-http-backend": "^2.6.1",

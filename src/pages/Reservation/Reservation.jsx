@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import  Payment  from "./Payment"
 
 
 const Reservation = () => {
@@ -158,7 +160,9 @@ const Reservation = () => {
         {/* Buttons */}
         <div className="flex justify-between items-center">
           <button className="text-red-500 underline">مسح جميع الحقول</button>
+          <Link to={Payment}>
           <button className="bg-green-600 text-white px-6 py-2 rounded-md"   onClick={() => navigate('/Payment')}>التالي</button>
+          </Link>
         </div>
       </div>
     </div>

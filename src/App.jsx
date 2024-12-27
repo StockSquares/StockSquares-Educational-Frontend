@@ -51,7 +51,7 @@ const router = createBrowserRouter([
       { path: ROUTES.RECORDED_COURSES, element: <RecordedCourses /> },
       { path: ROUTES.COURSE, element: <Course /> },
       { path: ROUTES.RESERVATION, element: <Reservation /> },
-      { path: ROUTES.Payment, element: <Payment />},
+      { path: ROUTES.PAYMENT, element: <Payment />},
       {
         path: ROUTES.OPPORTUNITIES_AND_RECOMMENDATIONS,
         element: (
