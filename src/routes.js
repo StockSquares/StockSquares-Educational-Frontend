@@ -22,5 +22,5 @@ export const ROUTES = {
   //  COURSES RESERVATION: '/RESERVATION/',
 
   RESERVATION: "/reservation",
-  PAYMENT: "/Payment",
+  PAYMENT: "./pages/Reservation/Payment.jsx",
 };
