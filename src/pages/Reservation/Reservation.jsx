@@ -40,10 +40,8 @@ const Reservation = () => {
         {/* Header */}
         <h2 className="text-center text-2xl font-semibold mb-6" >احجز مدربك الشخصي</h2>
         <div className="flex justify-between items-center mb-8">
-          <span className="text-gray-500">3 الدفع</span>
-          <span className="text-gray-500">2 نوع التدريب</span>
           <span className="text-green-600 border-b-2 border-green-600 pb-1">
-            1 خصائص التدريب
+             خصائص التدريب
           </span>
         </div>
 
