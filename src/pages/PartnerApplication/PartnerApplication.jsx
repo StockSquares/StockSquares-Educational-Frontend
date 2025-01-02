@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Style from './PartnerApplication.module.css'
-import { ChevronRight, BookOpen, Play, Clock, Award, Beaker, ClipboardCheck, Heart, Bell, Search, Menu } from 'lucide-react';
+import {  BookOpen, Play,Bot, Award, Beaker, ClipboardCheck, Heart, Bell, Search, Menu } from 'lucide-react';
 
 
 
@@ -9,11 +9,11 @@ function PartnerApplication() {
     const [counter, setCounter] = useState(0);
     const menuItems = [
       { icon: BookOpen, text: 'رحلة التأهيل والتعلم' },
-      { icon: Play, text: 'التدريب الشخصي ' },
-      { icon: Clock, text: 'الدورات المسجلة ' },
-      { icon: Award, text: ' AI توصيات بصير ' },
+      { icon: ClipboardCheck, text: 'التدريب الشخصي ' },
+      { icon: Play, text: 'الدورات المسجلة ' },
+      { icon:Bot , text: ' AI توصيات بصير ' },
       { icon: Beaker, text: 'التداول التجريبي' },
-      { icon: ClipboardCheck, text: 'شهادات التقدير ' },
+      { icon: Award, text: 'شهادات التقدير ' },
       { icon: Heart, text: 'تواصل مع الخبير' }
     ];
   
