@@ -13,7 +13,7 @@ function TryTradingForFree() {
   }, []);
 
   return (
-    <div className="h-screen bg-gray-50 dark:bg-black flex flex-col">
+    <div className="h-full bg-gray-50 dark:bg-black flex flex-col">
       <div className="flex flex-1 overflow-hidden">
         <div className="flex-1 p-6 overflow-auto">
           <div className="w-auto">
@@ -30,7 +30,7 @@ function TryTradingForFree() {
               }`}
             >
               <CandlestickChart className="h-4 w-4" />
-              Candlestick
+              الشموع اليابانية
             </button>
             <button
               onClick={() => setActiveChart('chart')}
@@ -41,7 +41,7 @@ function TryTradingForFree() {
               }`}
             >
               <BarChart3 className="h-4 w-4" />
-              Chart
+              المخططات الرسومية 
             </button>
           </div>
 

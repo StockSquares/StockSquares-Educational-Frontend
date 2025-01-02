@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Style from './PartnerApplication.module.css'
-import {  BookOpen, Play,Bot, Award, Beaker, ClipboardCheck, Heart, Bell, Search, Menu } from 'lucide-react';
+import {  BookOpen, Play,Bot, Award, Beaker, ClipboardCheck, UserRound, Search, Menu ,Bell } from 'lucide-react';
 
 
 
@@ -11,10 +11,10 @@ function PartnerApplication() {
       { icon: BookOpen, text: 'رحلة التأهيل والتعلم' },
       { icon: ClipboardCheck, text: 'التدريب الشخصي ' },
       { icon: Play, text: 'الدورات المسجلة ' },
-      { icon:Bot , text: ' AI توصيات بصير ' },
+      { icon:Bot , text: '  توصيات بصير AI' },
       { icon: Beaker, text: 'التداول التجريبي' },
       { icon: Award, text: 'شهادات التقدير ' },
-      { icon: Heart, text: 'تواصل مع الخبير' }
+      { icon: UserRound, text: 'تواصل مع الخبير' }
     ];
   
 

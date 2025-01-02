@@ -136,11 +136,11 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
   
  export  const TradingTable = () => {
     const [orders, setOrders] = useState([
+      { type: 'buy', price: 43650.00, amount: 0.5731, typec: 'etc', market: 'البورصة المصرية', active: false },
         { type: 'sell', price: 43645.75, amount: 0.2891, typec: 'bitcoin', market: 'البورصة السعودية', active: false },
-        { type: 'sell', price: 43635.25, amount: 0.4123, typec: 'usdd', market: 'البورصة الامريكية', active: false },
-        { type: 'buy', price: 43650.00, amount: 0.5731, typec: 'etc', market: 'البورصة المصرية', active: false },
         { type: 'buy', price: 43640.50, amount: 0.3456, typec: 'usdd', market: 'السوق الاماراتية', active: false },
-        { type: 'buy', price: 43633.00, amount: 0.1234, typec: 'bitcoin', market: 'العملات المستقرة', active: false },
+        { type: 'sell', price: 43635.25, amount: 0.4123, typec: 'usdd', market: 'البورصة الامريكية', active: false },
+        { type: 'buy', price: 43633.00, amount: 0.1234, typec: 'bitcoin', market: 'العملات المشفرة', active: false },
       // { type: 'sell', price: 43630.50, amount: 0.5678, typec: 'etc', market: 'ETC/USDT', active: false }
     ]);
   
@@ -196,7 +196,7 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
-              {market === 'all' ? 'البورصة الدولية' : market}
+              {market === 'all' ? 'البورصة العالمية' : market}
             </button>
           ))}
         </div>
