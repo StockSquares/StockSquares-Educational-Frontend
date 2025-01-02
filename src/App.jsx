@@ -60,7 +60,7 @@ const router = createBrowserRouter([
       },
       {
         path: ROUTES.PARTNER_APPLICATION,
-        element: <ProtectedRoute element={<PartnerApplication />} />,
+        element:<PartnerApplication /> ,
       },
       {
         path: ROUTES.TRY_TRADING_FOR_FREE,
