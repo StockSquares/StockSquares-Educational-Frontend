@@ -19,6 +19,7 @@ import {
   Course,
   Reservation,
   Payment,
+  InvestorSurvey,
 } from './pages';
 import { ROUTES } from './routes';
 import Footer from './components/general-layout-context/Footer/Footer';
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: ROUTES.LOGIN, element: <Login /> },
+      { path: ROUTES.INVESTORSURVEY, element: <InvestorSurvey /> },
       { path: ROUTES.REGISTER, element: <Register /> },
       { path: ROUTES.BOOKSTORE, element: <FinanceAndBusinessLibrary /> },
       { path: ROUTES.BLOG, element: <Blog /> },

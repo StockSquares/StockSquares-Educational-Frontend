@@ -12,8 +12,8 @@ function Layout() {
     const noContainerPaths = ['/home'];
     const shouldApplyContainer = !noContainerPaths.includes(location.pathname);
 
-
-
+    const hideFooterPaths = ['/investorSurvey'];
+    const hideFooter = hideFooterPaths.includes(location.pathname);
     return <>
         <Header />
         {/* <div className='py-12 my-12'>
@@ -28,7 +28,8 @@ function Layout() {
         <div className='min-h-96'>
             <Outlet />
         </div>
-        <Footer />
+        {!hideFooter && <Footer />}
+        
     </>
 }
 

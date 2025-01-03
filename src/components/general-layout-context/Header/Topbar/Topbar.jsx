@@ -239,7 +239,7 @@ function Topbar({
                 <p>{t("auth.login")}</p>
               </Link>
 
-              <Link className="border-2 rounded border-primary-800  px-3 py-2 hover:bg-primary-800 hover:text-white transDuration-300">
+              <Link to="/investorSurvey" className="border-2 rounded border-primary-800  px-3 py-2 hover:bg-primary-800 hover:text-white transDuration-300">
                 <p>{t("navbar.investorPersonalitySurvey")}</p>
               </Link>
             </div>
