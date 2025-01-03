@@ -5,34 +5,30 @@ import {
  ArrowUpRight, ArrowDownRight ,X
 } from 'lucide-react';
 
-
 const SideNav = ({ isOpen, onClose, type, initialData }) => {
-    return (
-      <div
-        className={`fixed -top-1 left-0 w-80 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-      >
-        <div className="p-3 border-b flex justify-between items-center">
-          <h2 className="text-base font-semibold">
-            {type === 'buy' ? 'شراء جديد' : 'بيع جديد'}
-          </h2>
-          <button
-            onClick={onClose}
-            className="p-1 hover:bg-gray-100 rounded-full"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        </div>
-  
-        <OrderForm
-          type={type}
-          initialData={initialData}
-          onClose={onClose}
-        />
+  return (
+    <div
+      className={`fixed top-0 left-0 w-80 h-full bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
+        isOpen ? 'translate-x-0' : '-translate-x-full'
+      }`}
+    >
+      <div className="p-4 border-b flex justify-between items-center">
+        <h2 className="text-lg font-semibold">
+          {type === 'buy' ? 'شراء جديد' : 'بيع جديد'}
+        </h2>
+        <button
+          onClick={onClose}
+          className="p-2 hover:bg-gray-100 rounded-full"
+        >
+          <X className="w-6 h-6" />
+        </button>
       </div>
-    );
-  };
+
+      <OrderForm type={type} initialData={initialData} onClose={onClose} />
+    </div>
+  );
+};
+
   
   // Order Form Component
   const OrderForm = ({ type, initialData, onClose }) => {
@@ -136,11 +132,11 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
   
  export  const TradingTable = () => {
     const [orders, setOrders] = useState([
-      { type: 'buy', price: 43650.00, amount: 0.5731, typec: 'etc', market: 'البورصة المصرية', active: false },
-        { type: 'sell', price: 43645.75, amount: 0.2891, typec: 'bitcoin', market: 'البورصة السعودية', active: false },
-        { type: 'buy', price: 43640.50, amount: 0.3456, typec: 'usdd', market: 'السوق الاماراتية', active: false },
-        { type: 'sell', price: 43635.25, amount: 0.4123, typec: 'usdd', market: 'البورصة الامريكية', active: false },
-        { type: 'buy', price: 43633.00, amount: 0.1234, typec: 'bitcoin', market: 'العملات المشفرة', active: false },
+      { type: 'buy', price: 43650.00, amount: 0.5731, typec: 'الدولار', market: 'البورصة المصرية', active: false },
+        { type: 'sell', price: 43645.75, amount: 0.2891, typec: 'الدولار', market: 'البورصة السعودية', active: false },
+        { type: 'buy', price: 43640.50, amount: 0.3456, typec: 'الذهب', market: 'السوق الاماراتية', active: false },
+        { type: 'sell', price: 43635.25, amount: 0.4123, typec: 'الفضة', market: 'البورصة الامريكية', active: false },
+        { type: 'buy', price: 43633.00, amount: 0.1234, typec: 'البترول', market: 'العملات المشفرة', active: false },
       // { type: 'sell', price: 43630.50, amount: 0.5678, typec: 'etc', market: 'ETC/USDT', active: false }
     ]);
   
@@ -174,11 +170,12 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
   
     const TableHeader = () => (
       <div className="grid grid-cols-7 gap-4 text-sm font-medium text-gray-60 dark:text-white dark:bg-black  border-b pb-2">
-        <div className="col-span-1  ">نوع</div>
-        <div className="col-span-1 text-left">السعر USDT</div>
-        <div className="col-span-1 text-left">الكمية</div>
-        <div className="col-span-1 text-left">المجموع USDT</div>
-        <div className="col-span-1 text-left">الصنف</div>
+        <div className="col-span-1 text-right ">الاداة المالية</div>
+        <div className="col-span-1 text-right">الصنف</div>
+        <div className="col-span-1 text-right">السعر</div>
+        <div className="col-span-1 text-right">الكمية</div>
+        <div className="col-span-1 text-right">المجموع USDT</div>
+        
         <div className="col-span-2 text-center">الإجراءات</div>
       </div>
     );
@@ -212,6 +209,18 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
                   key={index}
                   className="grid grid-cols-7 gap-4 text-sm items-center py-2 dark:bg-black hover:bg-gray-50 transition-colors rounded"
                 >
+                  <div className="text-right text-gray-600 capitalize dark:text-white">
+                    {order.typec}
+                  </div>
+                  <div className={`text-right ${order.type === 'buy' ? 'text-green-600' : 'text-red-600'}`}>
+                    {order.price.toFixed(2)}
+                  </div>
+                  <div className="text-right">
+                    {order.amount.toFixed(4)}
+                  </div>
+                  <div className="text-right text-gray-600 dark:text-white">
+                    {total.toFixed(2)}
+                  </div>
                   <div className="col-span-1">
                     {order.type === 'buy' ? (
                       <span className="flex items-center text-green-600">
@@ -224,18 +233,6 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
                         بيع
                       </span>
                     )}
-                  </div>
-                  <div className={`text-left ${order.type === 'buy' ? 'text-green-600' : 'text-red-600'}`}>
-                    {order.price.toFixed(2)}
-                  </div>
-                  <div className="text-left">
-                    {order.amount.toFixed(4)}
-                  </div>
-                  <div className="text-left text-gray-600 dark:text-white">
-                    {total.toFixed(2)}
-                  </div>
-                  <div className="text-left text-gray-600 capitalize dark:text-white">
-                    {order.typec}
                   </div>
                   <div className="col-span-2 flex justify-center gap-2">
                     <button
