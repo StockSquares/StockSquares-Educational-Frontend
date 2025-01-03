@@ -1,18 +1,37 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-import  Payment  from "./Payment"
-
+import { useNavigate } from "react-router-dom";
+import { ChevronLeft, ChevronRight, Calendar, Users, Building2, Clock, AlertCircle } from 'lucide-react';
 
 const Reservation = () => {
-  const [selectedGender, setSelectedGender] = useState("all");
-  const [selectedSession, setSelectedSession] = useState("all");
-  const [selectedDuration, setSelectedDuration] = useState([]);
-  const [selectedMarket, setSelectedMarket] = useState([]); // Fixed: Renamed state
-  const [description, setDescription] = useState("");
-  const [birthdate, setBirthdate] = useState("");
+  const navigate = useNavigate();
+  
+  // Corrected state initialization
+  const [formData, setFormData] = useState({
+    gender: '',
+    birthdate: '',
+    market: [],
+    selectedDay: 0,
+    selectedTime: null
+  });
 
-  const DurationOptions = ["30 دقيقة", "60 دقيقة"];
+  const [errors, setErrors] = useState({});
+
+  // Steps for progress tracking
+  const steps = ['خصائص التدريب',  'الدفع'];
+  const currentStep = 1;
+
+  const days = ['اليوم', 'غداً', 'بعد غد'];
+  const times = [
+    '3:30 م',
+    '4:15 م',
+    '5:00 م',
+    '5:45 م',
+    '6:30 م',
+    '7:15 م',
+    '8:00 م',
+    'المزيد'
+  ];
+
   const MarketOptions = [
     "البورصة المصرية",
     "البورصة السعودية",
@@ -22,147 +41,261 @@ const Reservation = () => {
     "بورصة العملات المشفرة",
   ];
 
-  const handleDurationSelection = (duration) => {
-    if (selectedDuration.includes(duration)) {
-      setSelectedDuration(selectedDuration.filter((item) => item !== duration));
-    } else if (selectedDuration.length < 1) {
-      setSelectedDuration([...selectedDuration, duration]);
+  // Handler functions
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+    // Clear error when field is updated
+    if (errors[field]) {
+      setErrors(prev => ({
+        ...prev,
+        [field]: undefined
+      }));
     }
   };
 
   const handleMarketSelection = (market) => {
-    if (selectedMarket.includes(market)) {
-      setSelectedMarket(selectedMarket.filter((item) => item !== market));
-    } else if (selectedMarket.length < 1) {
-      setSelectedMarket([...selectedMarket, market]);
+    setFormData(prev => {
+      const currentMarkets = prev.market;
+      if (currentMarkets.includes(market)) {
+        return {
+          ...prev,
+          market: currentMarkets.filter(m => m !== market)
+        };
+      } else if (currentMarkets.length < 1) {
+        return {
+          ...prev,
+          market: [...currentMarkets, market]
+        };
+      }
+      return prev;
+    });
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.gender) newErrors.gender = 'يرجى اختيار الجنس';
+    if (!formData.birthdate) newErrors.birthdate = 'يرجى إدخال تاريخ الميلاد';
+    if (formData.market.length === 0) newErrors.market = 'يرجى اختيار سوق مالي واحد على الأقل';
+    if (formData.selectedTime === null) newErrors.time = 'يرجى اختيار موعد';
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = () => {
+    if (validateForm()) {
+      navigate('/Payment');
     }
   };
-  const navigate = useNavigate();
 
+  const clearForm = () => {
+    setFormData({
+      gender: '',
+      birthdate: '',
+      market: [],
+      selectedDay: 0,
+      selectedTime: null
+    });
+    setErrors({});
+  };
 
   return (
-    <div className="bg-gray-100 p-6 md:p-12 rtl" dir="rtl">
-      <div className="max-w-4xl mx-auto bg-white p-8 shadow-md rounded-md" >
+    <div className="min-h-screen bg-gray-50 p-6 md:p-12 rtl" dir="rtl">
+      {/* Progress Bar */}
+      <div className="max-w-4xl mx-auto mb-8">
+        <div className="flex justify-between mb-4">
+          {steps.map((step, index) => (
+            <div key={index} className="flex items-center">
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                index + 1 === currentStep ? 'bg-green-600 text-white' : 
+                index + 1 < currentStep ? 'bg-green-200' : 'bg-gray-200'
+              }`}>
+                {index + 1}
+              </div>
+              <span className="mr-2 text-sm text-gray-600">{step}</span>
+              {index < steps.length - 1 && (
+                <div className="w-24 h-1 mx-4 bg-gray-200"></div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-xl">
         {/* Header */}
-        <h2 className="text-center text-2xl font-semibold mb-6" >احجز مدربك الشخصي</h2>
-        <div className="flex justify-between items-center mb-8">
-          <span className="text-green-600 border-b-2 border-green-600 pb-1">
-             خصائص التدريب
-          </span>
+        <div className="text-center mb-8">
+          <div className="inline-block p-3 bg-green-100 rounded-full mb-4">
+            <Calendar className="h-8 w-8 text-green-600" />
+          </div>
+          <h2 className="text-2xl font-bold text-gray-800">احجز مدربك الشخصي</h2>
+          <p className="text-gray-600 mt-2">اختر الخيارات المناسبة لجلستك التدريبية</p>
         </div>
 
         {/* Gender Selection */}
-        <div className="mb-6">
-          <label className="block text-gray-700 mb-2 font-medium">جنس المتدرب</label>
+        <div className="bg-gray-50 p-6 rounded-xl mb-6">
+          <div className="flex items-center mb-4">
+            <Users className="h-5 w-5 text-green-600 ml-2" />
+            <label className="text-lg font-medium text-gray-800">جنس المتدرب</label>
+          </div>
           <div className="flex gap-4">
             {["male", "female"].map((gender) => (
               <button
                 key={gender}
-                onClick={() => setSelectedGender(gender)}
-                className={`px-6 py-2 rounded-full border ${
-                  selectedGender === gender
-                    ? "bg-green-600 text-white"
-                    : "border-gray-300 text-gray-600"
+                onClick={() => handleInputChange('gender', gender)}
+                className={`flex-1 px-6 py-3 rounded-xl border transition-all duration-200 ${
+                  formData.gender === gender
+                    ? "bg-green-600 text-white border-transparent shadow-lg"
+                    : "border-gray-300 text-gray-600 hover:bg-gray-100"
                 }`}
               >
                 {gender === "male" ? "ذكر" : "أنثى"}
               </button>
             ))}
           </div>
+          {errors.gender && (
+            <p className="text-red-500 text-sm mt-2 flex items-center">
+              <AlertCircle className="h-4 w-4 ml-1" />
+              {errors.gender}
+            </p>
+          )}
         </div>
 
         {/* Birthdate Input */}
-        <div className="mb-6">
-          <label className="block text-gray-700 mb-2 font-medium">أدخل تاريخ ميلادك</label>
+        <div className="bg-gray-50 p-6 rounded-xl mb-6">
+          <div className="flex items-center mb-4">
+            <Calendar className="h-5 w-5 text-green-600 ml-2" />
+            <label className="text-lg font-medium text-gray-800">تاريخ الميلاد</label>
+          </div>
           <input
             type="date"
-            value={birthdate}
-            onChange={(e) => setBirthdate(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+            value={formData.birthdate}
+            onChange={(e) => handleInputChange('birthdate', e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-600"
           />
-        </div>
-
-        {/* Session Selection */}
-        <div className="mb-6">
-          <label className="block text-gray-700 mb-2 font-medium">اختر حجز جلسة أو باقة:</label>
-          <div className="flex gap-4">
-            {["package", "session"].map((choice) => (
-              <button
-                key={choice}
-                onClick={() => setSelectedSession(choice)}
-                className={`px-6 py-2 rounded-full border ${
-                  selectedSession === choice
-                    ? "bg-green-600 text-white"
-                    : "border-gray-300 text-gray-600"
-                }`}
-              >
-                {choice === "session" ? "جلسة" : "باقة واحصل على خصم"}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Duration Selection */}
-        <div className="mb-6">
-          <label className="block text-gray-700 mb-2 font-medium">اختر مدة الجلسة</label>
-          <div className="flex flex-wrap gap-3">
-            {DurationOptions.map((duration) => (
-              <button
-                key={duration}
-                onClick={() => handleDurationSelection(duration)}
-                className={`px-4 py-2 text-sm rounded-full border ${
-                  selectedDuration.includes(duration)
-                    ? "bg-green-600 text-white"
-                    : "border-gray-300 text-gray-600"
-                }`}
-              >
-                {duration}
-              </button>
-            ))}
-          </div>
+          {errors.birthdate && (
+            <p className="text-red-500 text-sm mt-2 flex items-center">
+              <AlertCircle className="h-4 w-4 ml-1" />
+              {errors.birthdate}
+            </p>
+          )}
         </div>
 
         {/* Market Selection */}
-        <div className="mb-6">
-          <label className="block text-gray-700 mb-2 font-medium">اختر السوق المالي</label>
+        <div className="bg-gray-50 p-6 rounded-xl mb-6">
+          <div className="flex items-center mb-4">
+            <Building2 className="h-5 w-5 text-green-600 ml-2" />
+            <label className="text-lg font-medium text-gray-800">السوق المالي</label>
+          </div>
           <div className="flex flex-wrap gap-3">
             {MarketOptions.map((market) => (
               <button
                 key={market}
                 onClick={() => handleMarketSelection(market)}
-                className={`px-4 py-2 text-sm rounded-full border ${
-                  selectedMarket.includes(market)
-                    ? "bg-green-600 text-white"
-                    : "border-gray-300 text-gray-600"
+                className={`px-4 py-2 rounded-xl border transition-all duration-200 ${
+                  formData.market.includes(market)
+                    ? "bg-green-600 text-white border-transparent shadow-lg"
+                    : "border-gray-300 text-gray-600 hover:bg-gray-100"
                 }`}
               >
                 {market}
               </button>
             ))}
           </div>
+          {errors.market && (
+            <p className="text-red-500 text-sm mt-2 flex items-center">
+              <AlertCircle className="h-4 w-4 ml-1" />
+              {errors.market}
+            </p>
+          )}
         </div>
 
-        {/* Text Area */}
-        <div className="mb-6">
-          <label className="block text-gray-700 mb-2 font-medium">عبّر عن إستفسارك بشكل مختصر</label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="ما هي إستفساراتك؟"
-            className="w-full h-32 p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600"
-            maxLength={300}
-          ></textarea>
-          <span className="block text-right text-gray-500 text-sm mt-1">
-            {description.length} / 300
-          </span>
+        {/* Time Selection */}
+        <div className="bg-gray-50 p-6 rounded-xl mb-6">
+          <div className="flex items-center mb-4">
+            <Clock className="h-5 w-5 text-green-600 ml-2" />
+            <label className="text-lg font-medium text-gray-800">الموعد</label>
+          </div>
+          
+          {/* Days Selection */}
+          <div className="bg-white rounded-xl p-4 shadow-sm mb-4">
+            <div className="flex justify-between items-center">
+              <button 
+                className="text-gray-500 hover:text-gray-700"
+                onClick={() => handleInputChange('selectedDay', Math.max(0, formData.selectedDay - 1))}
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
+              
+              <div className="grid grid-cols-3 gap-4 flex-1 mx-4">
+                {days.map((day, index) => (
+                  <div 
+                    key={index}
+                    onClick={() => handleInputChange('selectedDay', index)}
+                    className={`text-center ${
+                      index === formData.selectedDay 
+                        ? 'bg-green-600 text-white' 
+                        : 'bg-gray-100'
+                    } rounded-xl p-3 cursor-pointer transition-all duration-200`}
+                  >
+                    <div className="font-bold">{day}</div>
+                    <div className="text-sm">2024/1/20</div>
+                  </div>
+                ))}
+              </div>
+
+              <button 
+                className="text-gray-500 hover:text-gray-700"
+                onClick={() => handleInputChange('selectedDay', Math.min(2, formData.selectedDay + 1))}
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+            </div>
+          </div>
+
+          {/* Times Grid */}
+          <div className="grid grid-cols-4 gap-3">
+            {times.map((time, index) => (
+              <div 
+                key={index}
+                onClick={() => handleInputChange('selectedTime', index)}
+                className={`
+                  ${formData.selectedTime === index 
+                    ? 'bg-green-600 text-white shadow-lg transform scale-105' 
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }
+                  rounded-xl p-3 text-center cursor-pointer transition-all duration-200
+                `}
+              >
+                {time}
+              </div>
+            ))}
+          </div>
+          {errors.time && (
+            <p className="text-red-500 text-sm mt-2 flex items-center">
+              <AlertCircle className="h-4 w-4 ml-1" />
+              {errors.time}
+            </p>
+          )}
         </div>
 
-        {/* Buttons */}
-        <div className="flex justify-between items-center">
-          <button className="text-red-500 underline">مسح جميع الحقول</button>
-          <Link to={Payment}>
-          <button className="bg-green-600 text-white px-6 py-2 rounded-md"   onClick={() => navigate('/Payment')}>التالي</button>
-          </Link>
+        {/* Action Buttons */}
+        <div className="flex justify-between items-center mt-8 pt-6 border-t">
+          <button 
+            onClick={clearForm}
+            className="flex items-center text-red-500 hover:text-red-600 transition-colors"
+          >
+            <span className="ml-2">مسح جميع الحقول</span>
+          </button>
+          <button 
+            onClick={handleSubmit}
+            className="bg-green-600 text-white px-8 py-3 rounded-xl hover:bg-green-700 transition-colors shadow-lg flex items-center"
+          >
+            <span>متابعة للدفع</span>
+            <ChevronLeft className="h-5 w-5 mr-2" />
+          </button>
         </div>
       </div>
     </div>
