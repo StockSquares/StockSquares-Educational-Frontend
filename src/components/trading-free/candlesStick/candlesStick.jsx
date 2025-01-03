@@ -257,7 +257,7 @@ export const ApexChart = () => {
             type: 'candlestick',
           },
           title: {
-            text: 'CandleStick Chart - Category X-axis',
+            text: '',
             align: 'left'
           },
           annotations: {
