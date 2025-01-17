@@ -20,6 +20,7 @@ import {
   Reservation,
   Payment,
   InvestorSurvey,
+  RequestConsultation,
 } from './pages';
 import { ROUTES } from './routes';
 import Footer from './components/general-layout-context/Footer/Footer';
@@ -32,6 +33,7 @@ import { ThemeProvider } from './Context/ThemeContext';
 import { Helmet } from 'react-helmet';
 import 'flowbite';
 import './App.css';
+// import RequestConsultation from './pages/RequestConsultation/RequestConsultation';
 
 // Create router instance
 const router = createBrowserRouter([
@@ -85,6 +87,7 @@ const router = createBrowserRouter([
         element: <ProtectedRoute element={<Employee />} />,
       },
       { path: ROUTES.NOT_FOUND, element: <NotFound /> },
+      { path: ROUTES.REQUESTCONSULTATION, element: <RequestConsultation/> },
     ],
   },
 ]);
