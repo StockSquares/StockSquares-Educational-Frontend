@@ -1,0 +1,15 @@
+@media (max-width:650px) {
+    .important-note{
+        font-size: 10px ;
+    }
+
+
+    
+}
+
+.send{
+    background-color: var(--accent-color) !important;
+    color:black !important;
+    height: 50px !important;
+    width: 100% !important;
+}

@@ -1,5 +1,5 @@
 {
-    "logo": "ميدان البورصة",
+    "logo": "ستوك سكويرز ",
     "auth": {
         "login": "تسجيل الدخول",
         "signup": "إنشاء حساب",
@@ -34,11 +34,13 @@
     "footer": {
         "siteMap": "خريطة الموقع",
         "ourServices": "خدماتنا",
+        "activities": "الانشطه والفعاليات",
+        "askAsPartner": "طلب العمل كشريك",
         "contactUs": {
             "title": "تواصل معنا",
-            "phone-1": "010 0000 0000",
-            "address-1": "عنوان مقر الشركة",
-            "email": "company's/hr's email"
+            "phone-1": " 0443 065 100 (+20) ",
+            "address-1": "برج دلتا-سيتي سنتر- القاهره  ",
+            "email": "Help@stocksqueres.com"
         },
         "subscribe": {
             "title": "أحصل على أحدث الأخبار والدورات المجانية",
