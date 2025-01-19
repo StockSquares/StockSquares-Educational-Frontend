@@ -9,7 +9,7 @@ import { consultationDates } from "../../assets/cosultationDates";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import styles from "./RequestConsultation.module.css";
+import decor from "./RequestConsultation.module.css";
 config.autoAddCss = false;
 
 function RequestConsultationQuestions() {
@@ -51,12 +51,10 @@ function RequestConsultationQuestions() {
   };
 
   const handleSelectedTime = (time, bookedValue) => {
-    // console.log("kk", bookedValue);
     if (bookedValue === false) setSelectedTime(time);
   };
 
   const handleBooking = () => {
-    // console.log(selectedTime);
     
     if (!selectedTime) alert("يرجي اختيار موعد ");
     else showToast();
@@ -81,13 +79,13 @@ function RequestConsultationQuestions() {
   return (
     <>
       {!(index === consultQuestions.length - 1) ? (
-        <div className="flex flex-col w-[50%]">
+        <div className="flex flex-col w-[50%] gap-3 mt-4">
           <div className="p-1 rounded-2xl border shadow-md bg-green-100 mb-5">
             <FontAwesomeIcon
               icon={faCircle}
-              className="text-white border border-green-600 rounded-full"
+              className="text-white border bg-[#25863f] rounded-full"
             />
-            <h4 className="sm:text-sm md:text-xl lg:text-xl p-4 text-green-600 font-bold leading-none">
+            <h4 className="sm:text-sm md:text-xl lg:text-xl p-4 text-green-600 font-semibold leading-none">
               قبل البدء في طلب جلسة مجانيه أون لاين لمدة 15 دقيقة مع مستشار
               استثمار محترف يرجى الأجابة على الأسئلة التالية لكي نتمكن من تقيم
               طلبك بشكل أفضل نود أن نوضح أننا نبحث عن مستثمرين يتناسبون مع
@@ -107,17 +105,17 @@ function RequestConsultationQuestions() {
               {index + 1} / {consultQuestions.length}
             </p>
           </div>
-          <h2>
+          <h2 className="text-xl font-bold">
             {index + 1}.{" "}
-            {consultQuestions[index]?.question || "Loading question..."}
+            {consultQuestions[index]?.question || "Loading question..."}؟
           </h2>
-          <ul>
+          <ul >
             {Object.keys(consultQuestions[index])
               .filter((key) => key.startsWith("option"))
               .map((key, i) => (
                 <li
                   key={i}
-                  className={selectedOption === i + 1 ? "selected" : ""}
+                  className={selectedOption === i + 1 ? decor.selected : decor.questionLi}
                   onClick={() => handleOptionClick(i + 1)}
                 >
                   {consultQuestions[index][key]}
@@ -129,13 +127,13 @@ function RequestConsultationQuestions() {
           </p>
           <div className="pop">
             <button
-              className="previous hover:bg-gray-100 hover:text-green-600 hover: border-2 border-green-600"
+              className={decor.send}
               onClick={previous}
             >
               السابق
             </button>
             <button
-              className="next hover:bg-gray-100 hover:text-green-600 hover: border-2 border-green-600"
+              className={decor.send}
               onClick={next}
             >
               التالي
@@ -144,25 +142,25 @@ function RequestConsultationQuestions() {
         </div>
       ) : (
         <>
-          <h1 className="mb-[5rem]">اختر الموعد المناسب لك</h1>
-          <div className="grid lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-2  gap-8">
+          <h1 className="mb-[5rem] text-2xl mt-8 font-bold">اختر الموعد المناسب لك</h1>
+          <div className="grid lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-2 gap-8 mb-10">
             {consultationDates.map((el, cardIndex) => (
               <div
                 key={index}
-                className="conCard flex flex-col justify-between items-center border-1 rounded-2xl overflow-hidden shadow-md"
+                className="conCard flex flex-col justify-between items-center border-1 rounded-2xl overflow-hidden shadow-md  "
               >
                 <h4 className="border border-b-2 border-b-green-600 w-full bg-[#25863f] p-3 text-xl text-center text-white">
-                  {el.day}
+                  {el.day} 22/5
                 </h4>
-                <ul className="p-2 w-full flex-grow">
+                <ul className="p-4 w-full flex-grow text-center">
                   {el.times.map((times, idx) => (
                     <li
-                      className={`cursor-pointer p-2 ${
+                      className={`cursor-pointer p-2 rounded-md mb-1 ${
                         times.booked
                           ? "line-through text-gray-400 cursor-not-allowed"
                           : selectedTime === `${cardIndex}-${idx}`
-                          ? "bg-green-600 text-white"
-                          : "hover:bg-gray-100"
+                          ? "bg-[#25863f] text-white "
+                          : "hover:bg-gray-100 "
                       }`}
                       key={idx}
                       onClick={() =>
@@ -174,7 +172,7 @@ function RequestConsultationQuestions() {
                   ))}
                 </ul>
                 <button
-                  className={styles.send}
+                  className={`${decor.send} mb-2 bg-accent text-black`}
                   onClick={handleBooking}
                 >
                   حجز

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-
 import RequestConsultationQuestions from "./RequestConsultationQuestions";
+import decor from "./RequestConsultation.module.css";
 
 function RequestConsultation() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [formError, setFormError] = useState(false);
 
   const [name, setName] = useState("");
@@ -13,6 +13,8 @@ function RequestConsultation() {
   const [country, setCountry] = useState("");
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -41,88 +43,97 @@ function RequestConsultation() {
   };
 
   return (
-    <>
-    <div className="contain w-full h-full flex flex-col items-center">
-  {!isLoggedIn ? (
-      <div className="w-[50%]">
-        <h1>طلب الاستشاره</h1>
-        <hr />
-        <div className="cosultationQuestions flex flex-col gap-3 full">
-          <div>
-            <label className="text-right mb-2">الاسم ثلاثي :</label>
-            <input
-              type="text"
-              placeholder="الاسم ثلاثي"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="text-right mb-2">رقم الهاتف:</label>
-            <input
-              type="text"
-              placeholder="رقم الهاتف"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="text-right mb-2">بلد الاقامة:</label>
-            {loading ? (
-              <p>جارٍ تحميل قائمة الدول...</p>
-            ) : (
-              <select
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                className="w-full p-6 border-2 border-green-600 rounded-lg"
-              >
-                <option value="">اختر بلد الاقامة</option>
-                {countries.map((country, index) => (
-                  <option key={index} value={country}>
-                    {country}
-                  </option>
-                ))}
-              </select>
-            )}
-          </div>
-          <div>
-            <label className="text-right mb-2">تاريخ الميلاد:</label>
-            <input
-              type="date"
-              value={birthDate}
-              onChange={(e) => setBirthDate(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="text-right mb-2">البريد الالكتروني:</label>
-            <input
-              type="email"
-              placeholder="البريد الالكتروني"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          {formError && (
-            <p className="error self-start">
-              يرجي ملئ جميع الحقول بطريقه صحيحه قبل المتابعه
-            </p>
-          )}
-          <button
-            onClick={handleStart}
-            className="hover:bg-gray-100 hover:text-green-600 hover: border-2 border-green-600"
-          >
-            ابدأ
-          </button>
-        </div>
-      </div>
+    <div className="w-full h-full flex flex-col items-center p-6">
+      {!isLoggedIn ? (
+        <div className="w-full max-w-lg">
+          <h1 className="text-2xl font-semibold mb-4">طلب الاستشارة</h1>
+          <hr className="w-full h-0.5 mb-2" />
+          <div className="flex flex-col gap-4">
+            <div>
+              <label className="text-right mb-2 block">الاسم ثلاثي:</label>
+              <input
+                type="text"
+                placeholder="الاسم ثلاثي"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+              />
+            </div>
+            <div>
+              <label className="text-right mb-2 block">رقم الهاتف:</label>
+              <input
+                type="text"
+                placeholder="رقم الهاتف"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+              />
+            </div>
+            <div>
+              <label className="text-right mb-2 block">بلد الإقامة:</label>
+              {loading ? (
+                <p>جارٍ تحميل قائمة الدول...</p>
+              ) : (
+                <select
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                >
+                  <option value="">اختر بلد الإقامة</option>
+                  {countries.map((country, index) => (
+                    <option key={index} value={country}>
+                      {country}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </div>
+            <div>
+              <label className="text-right mb-2 block">تاريخ الميلاد:</label>
+              <input
+                type="date"
+                value={birthDate}
+                onChange={(e) => setBirthDate(e.target.value)}
+                className={`w-full px-4 py-2 rounded-lg border transition duration-300 
+                  ${isFocused ? "border-green-500 shadow-lg" : "border-gray-300"} 
+                  ${isHovered ? "border-gray-400" : ""} 
+                  focus:outline-none focus:ring-2 focus:ring-green-500`}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              />
+            </div>
+            <div>
+              <label className="text-right mb-2 block">البريد الإلكتروني:</label>
+              <input
+                type="email"
+                placeholder="البريد الإلكتروني"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
 
+                />
+            </div>
+
+            {formError && (
+              <p className="text-red-600 text-sm self-start">
+                يرجى ملء جميع الحقول بشكل صحيح قبل المتابعة.
+              </p>
+            )}
+
+            <button
+              onClick={handleStart}
+              className="self-center mt-4 w-[30%] py-3 rounded-lg bg-green-600 text-white text-xl hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+            >
+              ابدأ
+            </button>
+          </div>
+        </div>
       ) : (
-  
         <RequestConsultationQuestions />
       )}
-</div>
-
-    </>
+    </div>
   );
 }
 
