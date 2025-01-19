@@ -29,8 +29,9 @@ function Home() {
             </section>
 
             {/* VIP Investor Services Section */}
-            <section className='mb-10'>
+            <section className="grid grid-cols-1 gap-2  md:grid-cols-2 lg:grid-cols-2 mb-10">
                 <VIPInvestorServicesSection />
+                <TestimonialsSection />
             </section>
 
             {/* Finance Business Library Section */}
@@ -39,14 +40,9 @@ function Home() {
             </section>
 
             {/* Testimonials and About Sections */}
-            <div className='flex flex-col lg:flex-row justify-between mb-10'>
-                <section className='w-full lg:w-1/2 lg:pe-3 mb-10 lg:mb-0'>
-                    <TestimonialsSection />
-                </section>
-                <section className='w-full lg:w-1/2 lg:ps-3'>
+                <section className='w-full mb-10'>
                     <AboutSection />
                 </section>
-            </div>
 
             {/* Optional: Uncomment if you want to include Educational Blog Section */}
             {/* <section className='mb-10'>

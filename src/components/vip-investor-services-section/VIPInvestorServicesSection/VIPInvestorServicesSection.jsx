@@ -14,7 +14,6 @@ function VipInvestorServicesSection() {
   const minInvestment = "50.000";
 
   return (
-    <div className="grid grid-cols-1 gap-2  md:grid-cols-2 lg:grid-cols-2">
       <SectionCard heading={t("sections.vipServices.title")}>
         <div className="flex justify-between items-center">
           <div className="flex flex-col gap-8">
@@ -47,9 +46,6 @@ function VipInvestorServicesSection() {
           </div>
         </div>
       </SectionCard>
-
-      <TestimonialsSection />
-    </div>
   );
 }
 

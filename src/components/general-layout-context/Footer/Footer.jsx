@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 // Internal Imports (components, Assets and Styles)
 import Style from "./Footer.module.css";
@@ -31,109 +32,77 @@ function Footer() {
 
   return (
     <footer className="bg-darkgray dark:bg-black text-white/90">
-      <div className="px-4 py-2">
-        <div className="flex-x-center py-10">
-
-        <div className="flex flex-col justify-between">
-        
-              <div className="w-full flex-x-between px-4">
-            <div className="lg:w-2/5 md:text-start pe-2 md:mb-6 lg:mb-0">
-              <h3 className="text-base font-bold mb-1">{t("logo")}</h3>
-              <ul className="text-sm">
-                <li className="pt-2">
-                  <NavLink
-                    className="hover:text-primary-300"
-                    to="training-and-education"
-                  >
-                    {t("navbar.aboutUs")}
-                  </NavLink>
-                </li>
-                <li className="pt-2">
-                  <NavLink
-                    className="hover:text-primary-300"
-                    to="recorded-courses"
-                  >
-                    {t("footer.activities")}
-                  </NavLink>
-                </li>
-                <li className="pt-2">
-                  <NavLink
-                    className="hover:text-primary-300"
-                    to="opportunities-and-recommendations"
-                  >
-                    {t("footer.askAsPartner")}
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
-            <div className="lg:w-3/5 md:text-start">
-              <h3 className="text-base font-bold mb-1">
-                {t("footer.ourServices")}
-              </h3>
-              <ul className="text-sm">
-                
-                <li className="pt-2">
-                  <NavLink
-                    className="hover:text-primary-300"
-                    to="training-and-education"
-                  >
-                    {t("navbar.trainingAndEducation")}
-                  </NavLink>
-                </li>
-                <li className="pt-2">
-                  <NavLink
-                    className="hover:text-primary-300"
-                    to="recorded-courses"
-                  >
-                    {t("navbar.recordedCourses")}
-                  </NavLink>
-                </li>
-                <li className="pt-2">
-                  <NavLink
-                    className="hover:text-primary-300"
-                    to="opportunities-and-recommendations"
-                  >
-                    {t("navbar.chatAI")}
-                  </NavLink>
-                </li>
-                
-              </ul>
-            </div>
-          </div>
-
-          <div className="flex-center gap-6 border-t border-gray-600">
-          <span>{t("footer.followUs")}</span>
-          <div className="flex-center gap-3 my-6">
-            {[
-              { icon: facebookIcon, alt: "footer.socialLinks.facebook" },
-              { icon: instagramIcon, alt: "footer.socialLinks.instagram" },
-              { icon: telegramIcon, alt: "footer.socialLinks.telegram" },
-              { icon: tiktokIcon, alt: "footer.socialLinks.tiktok" },
-              { icon: xIcon, alt: "footer.socialLinks.x" },
-              { icon: youtubeIcon, alt: "footer.socialLinks.youtube" },
-            ].map((social, index) => (
-              <Link key={index}>
-                <img
-                  src={social.icon}
-                  alt={t(social.alt)}
-                  className="img-icon"
-                />
-              </Link>
-            ))}
-          </div>
+      <div className="px-4 py-2 ">
+        <div className="grid grid-cols-2 py-10 gap-10 ">
+          <div className="flex flex-col justify-between px-3 ">
+            <div className="w-full flex-x-between px-2">
+              <div className="">
+                <h3 className="text-base font-bold mb-3">{t("logo")}</h3>
+                <ul className="text-sm">
+                  <li className="pt-2 mb-3">
+                    <NavLink
+                      className="hover:text-primary-300"
+                      to="training-and-education"
+                    >
+                      {t("navbar.aboutUs")}
+                    </NavLink>
+                  </li>
+                  <li className="pt-2 mb-3">
+                    <NavLink
+                      className="hover:text-primary-300"
+                      to="recorded-courses"
+                    >
+                      {t("footer.activities")}
+                    </NavLink>
+                  </li>
+                  <li className="pt-2 mb-3">
+                    <NavLink
+                      className="hover:text-primary-300"
+                      to="opportunities-and-recommendations"
+                    >
+                      {t("footer.askAsPartner")}
+                    </NavLink>
+                  </li>
+                </ul>
               </div>
-        </div>
+              <div className="">
+                <h3 className="text-base font-bold mb-3">
+                  {t("footer.ourServices")}
+                </h3>
+                <ul className="text-sm">
+                  <li className="pt-2 mb-3">
+                    <NavLink
+                      className="hover:text-primary-300"
+                      to="training-and-education"
+                    >
+                      {t("navbar.trainingAndEducation")}
+                    </NavLink>
+                  </li>
+                  <li className="pt-2 mb-3">
+                    <NavLink
+                      className="hover:text-primary-300"
+                      to="recorded-courses"
+                    >
+                      {t("navbar.recordedCourses")}
+                    </NavLink>
+                  </li>
+                  <li className="pt-2 mb-3">
+                    <NavLink
+                      className="hover:text-primary-300"
+                      to="opportunities-and-recommendations"
+                    >
+                      {t("navbar.chatAI")}
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
 
-          
-
-          <div className="w-full md:w-2/3 px-4 flex-col-between">
-            <div className="mb-6 md:text-start flex-x-between grow">
-              <div className="my-6 md:my-0">
-                <h3 className="text-base font-bold mb-1">
+              <div className="">
+                <h3 className="text-base font-bold mb-3">
                   {t("footer.contactUs.title")}
                 </h3>
                 <ul className="text-sm">
-                  <li className="pt-2">
+                  <li className="pt-2 mb-3">
                     <NavLink
                       className="hover:text-primary-300"
                       to="recorded-courses"
@@ -141,7 +110,7 @@ function Footer() {
                       {t("footer.contactUs.phone-1")}
                     </NavLink>
                   </li>
-                  <li className="pt-2">
+                  <li className="pt-2 mb-3">
                     <NavLink
                       className="hover:text-primary-300"
                       to="opportunities-and-recommendations"
@@ -149,7 +118,7 @@ function Footer() {
                       {t("footer.contactUs.email")}
                     </NavLink>
                   </li>
-                  <li className="pt-2">
+                  <li className="pt-2 mb-3">
                     <NavLink
                       className="hover:text-primary-300"
                       to="training-and-education"
@@ -159,35 +128,69 @@ function Footer() {
                   </li>
                 </ul>
               </div>
-              <div className="w-2/3 min-w-72 min-h-48 mx-auto">
+            </div>
+
+            <div className="flex-center  border-t border-gray-600 w-full ">
+              <span>{t("footer.followUs")}</span>
+              <div className="flex  w-full justify-around ">
+                {[
+                  { icon: facebookIcon, alt: "footer.socialLinks.facebook" },
+                  { icon: instagramIcon, alt: "footer.socialLinks.instagram" },
+                  { icon: telegramIcon, alt: "footer.socialLinks.telegram" },
+                  { icon: tiktokIcon, alt: "footer.socialLinks.tiktok" },
+                  { icon: xIcon, alt: "footer.socialLinks.x" },
+                  { icon: youtubeIcon, alt: "footer.socialLinks.youtube" },
+                ].map((social, index) => (
+                  <Link key={index}>
+                    <img
+                      src={social.icon}
+                      alt={t(social.alt)}
+                      className="img-icon"
+                    />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="">
+            <div className="">
+              <div className=" mb-5 p-2 flex justify-center">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9051.862230160345!2d31.348574207638173!3d30.068020383718068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583f50339ed26f%3A0x62296d6fcc1dc44!2z2LPZitiq2Yog2LPZhtiq2LE!5e0!3m2!1sar!2seg!4v1729089034108!5m2!1sar!2seg"
-                  width="100%"
+                  width="85%"
                   height="100%"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-md"
                 />
               </div>
             </div>
             <div className="flex flex-col justify-center text-center">
-              <p className="mb-3">{t("footer.subscribe.title")}</p>
-              
-              <form >
-                <div className="flex items-center justify-center flex-wrap w-full">
-                  <TextInput
+              <p className="mb-3 ">{t("footer.subscribe.title")}</p>
+
+              <form className="w-[85%] h-[10vh]">
+                <div className=" flex justify-center gap-2">
+                  {/* <TextInput
                     id="emailToSubscibe"
                     type="email"
                     icon={mail}
-                    className="input-parent flex-grow mt-7 me-3 "
+                    className="input-field  "
                     placeholder="name@example.com"
-                  />
+                  /> */}
+
+                  <div className="flex w-[60%]">
+                  <FontAwesomeIcon icon={faEnvelope} size="0.5" color="gray" className="mt-2 p-2" />
+                    <input placeholder="name@example.com" className="p-2 w-full"></input>
+                  </div>
+
                   <Button
                     btnText={!isBelowMdBreakpoint && t("footer.subscribe.btn")}
                     textColor="black"
                     bgColor="accent"
-                    px={isBelowMdBreakpoint ? "px-4" : "px-8"}
-                    btnClassName="rounded-full px-3 py-2"
-
+                    px={isBelowMdBreakpoint ? "px-2" : "px-5"}
+                  
+                    btnClassName=" h-[6vh] "
                   >
                     {isBelowMdBreakpoint && (
                       <FontAwesomeIcon
@@ -202,13 +205,17 @@ function Footer() {
             </div>
           </div>
         </div>
-       <div className="flex justify-center mb-5 ">
-        <p>جميع الحقوق محفوظه لموقع و منصه ستوك سكويرز2018-2025</p>
-        <div className="ms-5">
-        <a className="bg-accent me-2 text-black p-1 rounded-md">سياسه الخصوصيه </a>
-        <a className="bg-green-600 text-white p-1 rounded-md">تحذير المخاطره</a>
+        <div className="flex justify-center mb-5 ">
+          <p>جميع الحقوق محفوظه لموقع و منصه ستوك سكويرز2018-2025</p>
+          <div className="ms-5 flex gap-1 flex-wrap">
+            <a className="bg-accent me-1 text-black p-1 rounded-md">
+              سياسه الخصوصيه{" "}
+            </a>
+            <a className="bg-red-600 text-white px-3 py-1 rounded-md">
+              تحذير المخاطره
+            </a>
+          </div>
         </div>
-       </div>
       </div>
     </footer>
   );
