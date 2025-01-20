@@ -27,7 +27,7 @@ function AboutSection() {
       heading={t("sections.about.title")}
       wrapperClass="wrapperClass-sectionCard"
     >
-      <div className="grid grid-cols-1 md:grid-cols-5 mb-5  gap-6 text-sm font-semibold text-center">
+      <div className="grid grid-cols-1 md:grid-cols-5 mb-5  gap-6 text-sm font-semibold text-center w-full">
         {/* Feature 1 */}
         <div className="w-full px-1 mb-6 md:mb-0 hover:scale-105 transDuration-300">
           <FontAwesomeIcon
