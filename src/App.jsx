@@ -21,24 +21,26 @@ import {
   Payment,
   InvestorSurvey,
   RequestConsultation,
-} from './pages';
-import { ROUTES } from './routes';
-import Footer from './components/general-layout-context/Footer/Footer';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ProtectedRoute from './components/auth/ProtectedRoute/ProtectedRoute';
-import ConfigProvider from './Context/ConfigContext';
-import UserContextProvider from './Context/UserContext';
-import AisleContextProvider from './Context/AisleContext';
-import { ThemeProvider } from './Context/ThemeContext';
-import { Helmet } from 'react-helmet';
-import 'flowbite';
-import './App.css';
+  InlineBlog,
+} from "./pages";
+import { ROUTES } from "./routes";
+import Footer from "./components/general-layout-context/Footer/Footer";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ProtectedRoute from "./components/auth/ProtectedRoute/ProtectedRoute";
+import ConfigProvider from "./Context/ConfigContext";
+import UserContextProvider from "./Context/UserContext";
+import AisleContextProvider from "./Context/AisleContext";
+import { ThemeProvider } from "./Context/ThemeContext";
+import { Helmet } from "react-helmet";
+import "flowbite";
+import "./App.css";
 // import RequestConsultation from './pages/RequestConsultation/RequestConsultation';
+// import inlineBlog from './pages/Blog/inlineBlog';
 
 // Create router instance
 const router = createBrowserRouter([
   {
-    path: '',
+    path: "",
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
@@ -55,7 +57,7 @@ const router = createBrowserRouter([
       { path: ROUTES.RECORDED_COURSES, element: <RecordedCourses /> },
       { path: ROUTES.COURSE, element: <Course /> },
       { path: ROUTES.RESERVATION, element: <Reservation /> },
-      { path: ROUTES.PAYMENT, element: <Payment />},
+      { path: ROUTES.PAYMENT, element: <Payment /> },
       {
         path: ROUTES.OPPORTUNITIES_AND_RECOMMENDATIONS,
         element: (
@@ -64,11 +66,11 @@ const router = createBrowserRouter([
       },
       {
         path: ROUTES.PARTNER_APPLICATION,
-        element:<PartnerApplication /> ,
+        element: <PartnerApplication />,
       },
       {
         path: ROUTES.TRY_TRADING_FOR_FREE,
-         element:<TryTradingForFree />,
+        element: <TryTradingForFree />,
       },
       {
         path: ROUTES.VIP_INVESTOR_SERVICES,
@@ -87,7 +89,8 @@ const router = createBrowserRouter([
         element: <ProtectedRoute element={<Employee />} />,
       },
       { path: ROUTES.NOT_FOUND, element: <NotFound /> },
-      { path: ROUTES.REQUESTCONSULTATION, element: <RequestConsultation/> },
+      { path: ROUTES.REQUESTCONSULTATION, element: <RequestConsultation /> },
+      { path: ROUTES.INLINEBlog, element: <InlineBlog /> },
     ],
   },
 ]);

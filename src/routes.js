@@ -24,4 +24,5 @@ export const ROUTES = {
   RESERVATION: "/reservation",
   PAYMENT: "/Payment",
   REQUESTCONSULTATION: "/RequestConsultation",
+  INLINEBlog: "/inlineBlog/:title",
 };

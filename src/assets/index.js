@@ -7,6 +7,11 @@ import bookBack from './imgs/bookstore/book-back.jpg';
 import imgReview1 from './imgs/reviews/Review+1.jpg';
 import imgReview2 from './imgs/reviews/Review+2.jpg';
 import imgReview3 from './imgs/reviews/Review+3.jpg';
+import EgyptFlag from './imgs/flag.png';
+import globalEconomy from './imgs/global-economy.png';
+import entryLevel from './imgs/Consulting-bro.png';
+import advancedLevel from './imgs/Consulting-broUp.png';
+
 
 // Social Media Icons
 import facebookIcon from './icons/social-contacts/facebook-logo.png';
@@ -63,6 +68,10 @@ export {
     imgReview1,
     imgReview2,
     imgReview3,
+    EgyptFlag,
+    globalEconomy,
+    entryLevel,
+    advancedLevel,
 
     // Social Media Icons
     facebookIcon,

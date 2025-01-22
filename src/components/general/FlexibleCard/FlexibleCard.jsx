@@ -1,54 +1,57 @@
-import React, { useEffect, useState } from 'react';
+import React from "react";
 
-// Internal Imports (components, Assets and Styles)
-import Style from './FlexibleCard.module.css';
-import { Button, SecondaryInfo } from '../..';
-import { arrowRight, bookBG, chartBar, circleUser, clock, eye } from './../../../assets';
+// Internal Imports (components, Assets, and Styles)
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faUser } from "@fortawesome/free-regular-svg-icons";
+import { Link } from "react-router-dom";
 
-// External libraries
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+function FlexibleCard({
+  category = "",
+  title = "",
+  LinkTo = "",
+  blogImg = "",
+}) {
+  return (
+    <div className="flex flex-col p-5 bg-gray-100">
+      <div className="grid grid-cols-2 gap-10 mt-5 max-w-screen-lg ms-[6%]">
+        <div className="flex flex-col items-start">
+          <div className="relative w-full h-64 overflow-hidden rounded-lg shadow-lg">
+            <Link to={LinkTo}>
+            {console.log("ok")}
+              <img
+                src={blogImg}
+                alt="Investment"
+                className="object-cover w-full h-full transform transition-transform duration-300 hover:scale-110"
+              />
+            </Link>
+            <h5 className="absolute top-0 right-0 py-2 px-3 text-white  font-bold bg-darkgray">
+              {category}{" "}
+            </h5>
 
-function FlexibleCard({isHorizontal=true, isCourse=false, btnLinkTo=''}) {
-    const [counter, setCounter] = useState(0);
-
-
-
-    useEffect(() => {
-        
-    }, []);
-
-    return <>
-        <div className={`${isHorizontal ? 'mb-4' : 'p-3'}`}>
-            <div className={`${isHorizontal ? 'flex-center' : 'flex flex-col'} bg-white rounded-lg overflow-hidden shadow-md transDuration-500 hover:shadow-primary-400 hover:scale-105 dark:bg-gray-800 group`}>
-                <Link to='' className={`${isHorizontal ? 'w-full md:w-1/3' : ''} self-stretch md:flex`}>
-                    <div className='w-full overflow-hidden'><img className='img-cover transDuration-500 group-hover:scale-110' src={bookBG} alt="" /></div>
-                </Link>
-                <div className={`${isHorizontal ? 'w-full md:w-2/3' : ''} p-4 flex flex-col justify-between`}>
-                    <div className='flex-y-center justify-between text-sm text-gray-400'>
-                        <SecondaryInfo infoText='Category' icon={chartBar} flip='vertical' />
-                        <SecondaryInfo infoText='Date' />
-                    </div>
-                    <div>
-                        <Link to=''><h5 className='hover:text-primary-800'>article-title</h5></Link>
-                        <p className='mb-2'>popular Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo quae consequatur error.</p>
-                    </div>
-                    <div className='flex-y-center justify-between'>
-                        <div className='text-sm text-gray-400 grow'>
-                            <SecondaryInfo infoText='Writer' icon={circleUser} />
-                            <div className='flex-y-center justify-between pe-10'>
-                                <SecondaryInfo infoText={isCourse ? 'duration' : 'views'} icon={isCourse ? eye : clock} />
-                                <SecondaryInfo infoText='Date' />
-                            </div>
-                        </div>
-                        <Button btnText={isCourse ? 'Join' : 'Read more'} linkTo={btnLinkTo}>
-                            <FontAwesomeIcon className='ms-2 font-bolder' icon={arrowRight} flip="horizontal" />
-                        </Button>
-                    </div>
-                </div>
+            <h5 className="absolute bottom-0 left-0 w-full py-2 text-white bg-gradient-to-t from-primary-800 to-transparent text-center font-bold">
+              {title}
+            </h5>
+          </div>
+          <div className="mt-4 flex justify-between items-center w-full">
+            <div className="flex items-center text-sm text-gray-500 gap-3">
+              <div className="flex items-center gap-2">
+                <FontAwesomeIcon icon={faUser} className="text-primary-700" />
+                <span>طارق الليثي</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FontAwesomeIcon icon={faEye} className="text-primary-700" />
+                <span>1000</span>
+              </div>
             </div>
+          </div>
         </div>
-    </>
+
+        <div className="flex justify-center items-center bg-gray-200 rounded-lg shadow-lg h-64">
+          <h1 className="text-xl font-bold text-gray-600">AD</h1>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default FlexibleCard
+export default FlexibleCard;
