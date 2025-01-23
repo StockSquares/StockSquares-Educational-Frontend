@@ -11,6 +11,10 @@ import EgyptFlag from './imgs/flag.png';
 import globalEconomy from './imgs/global-economy.png';
 import entryLevel from './imgs/Consulting-bro.png';
 import advancedLevel from './imgs/Consulting-broUp.png';
+import saudi from './imgs/sudia.png';
+import professionalLevel from './imgs/professional.png';
+import bitcoin from "./imgs/Bitcoin-amico.png";
+import bitcoinicon from "./imgs/bitcoinicon.png";
 
 
 // Social Media Icons
@@ -72,6 +76,11 @@ export {
     globalEconomy,
     entryLevel,
     advancedLevel,
+    saudi,
+    professionalLevel,
+    bitcoin,
+    bitcoinicon,
+
 
     // Social Media Icons
     facebookIcon,

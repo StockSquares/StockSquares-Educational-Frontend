@@ -130,8 +130,9 @@ function Footer() {
               </div>
             </div>
 
-            <div className="flex-center  border-t border-gray-600 w-full p-1 ">
+            <div className="flex-center  w-full p-1 ">
               <span>{t("footer.followUs")}</span>
+              <hr className="bg-gray-600 h-0.5 w-full mb-4 mt-3"/>
               <div className="flex  w-full justify-around ">
                 {[
                   { icon: facebookIcon, alt: "footer.socialLinks.facebook" },
@@ -202,14 +203,7 @@ function Footer() {
                   </Button>
                 </div>
               </form>
-              <div className="ms-5 flex gap-1 flex-wrap justify-center mt-5">
-            <a className="bg-accent me-1 text-black p-1 rounded-md">
-              سياسه الخصوصيه{" "}
-            </a>
-            <a className="bg-red-600 text-white px-3 py-1 rounded-md">
-              تحذير المخاطره
-            </a>
-          </div>
+        
         
          
             </div>
@@ -220,7 +214,17 @@ function Footer() {
         <div className="flex items-center mb-5 flex-col">
         
           <hr className="w-full h-[1px] bg-gray-600 mt-3 mb-3"/>
+          <div className="flex justify-center items-end">
           <small className="tracking-wider text-gray-400">جميع الحقوق محفوظه لموقع و منصه ستوك سكويرز  2018 - 2025 </small>
+          <div className="ms-5 flex gap-1 flex-wrap justify-center mt-5">
+            <a className="bg-accent me-1 text-black p-1 rounded-md text-sm">
+              سياسه الخصوصيه{" "}
+            </a>
+            <a className="bg-red-600 text-white px-3 py-1 rounded-md text-sm">
+              تحذير المخاطره
+            </a>
+          </div>
+          </div>
 
         </div>
       </div>
