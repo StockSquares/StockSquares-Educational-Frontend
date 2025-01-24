@@ -11,19 +11,22 @@ import { chalkboardUser, clock, handHoldingDollar } from "../../../assets";
 import { ROUTES } from "../../../routes";
 
 function PracticalTrainingCard({
-  cardImg='',
+  cardImg = "",
   title = "",
   hours = "",
   price = "",
-  img='',
+  img = "",
 }) {
   const { t } = useTranslation();
+
+ 
+  
 
   return (
     <div className="h-full p-2">
       {/* Top Section */}
       <div className="h-48 bg-primary-100 m-2 flex-center">
-      <img src={cardImg} />
+        <img src={cardImg} />
       </div>
 
       {/* Details Section */}
@@ -35,12 +38,14 @@ function PracticalTrainingCard({
           </li>
           <li className="flex-y-center">
             <FontAwesomeIcon className="p-1.5 me-1" icon={clock} />
-            <span>{hours} ساعات</span>
+            <span>
+              {hours} 
+            </span>
           </li>
           <li className="flex-y-center">
-          <FontAwesomeIcon icon={faSackDollar} className="p-1.5 me-1"/>
-            <span >
-              {price} 
+            <FontAwesomeIcon icon={faSackDollar} className="p-1.5 me-1" />
+            <span>
+              {price}
               &nbsp; جنيه
             </span>
           </li>

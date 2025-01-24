@@ -27,7 +27,7 @@ function PracticalTrainingSection() {
           <PracticalTrainingCard
             cardImg={entryLevel}
             title={<> دورة البورصة المصرية - <span className="text-green-400 font-bold shadow-xl">مبتدئ</span></>}
-            hours="٨ "
+            hours="٨ ساعات "
             price="٣٥٠٠"
             img={EgyptFlag}
 
@@ -39,7 +39,7 @@ function PracticalTrainingSection() {
           <PracticalTrainingCard
             cardImg={advancedLevel}
             title={<> دورة البورصة السعوديه - <span className="text-amber-400 font-bold shadow-xl">متقدم</span></>}
-            hours="١٦"
+            hours="١٢ ساعه"
             price="٥٥٠٠"
             img={saudi}
           />
@@ -51,8 +51,8 @@ function PracticalTrainingSection() {
           <PracticalTrainingCard
             cardImg={professionalLevel}
             title={<> دورة البورصة العالميه - <span className="text-red-600 font-bold shadow-xl">محترف</span></>}
-            hours="١٨"
-            price="٧٠٠٠"
+            hours="١٦ ساعه"
+            price="٧٥٠٠"
             img={globalEconomy}
           />
         </div>
@@ -62,7 +62,7 @@ function PracticalTrainingSection() {
           <PracticalTrainingCard
             cardImg={entryLevel}
             title={<> دورة العملات المشفرة - <span className="text-green-400 font-bold shadow-xl">مبتدئ</span></>}
-            hours="٨ "
+            hours="٨ ساعات  "
             price="٣٥٠٠"
             img={bitcoinicon}
           />
