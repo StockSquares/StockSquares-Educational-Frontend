@@ -81,9 +81,13 @@ const router = createBrowserRouter([
         path: ROUTES.USER,
         element: <ProtectedRoute element={<User />} />,
       },
+      // {
+      //   path: ROUTES.ADMIN,
+      //   element: <ProtectedRoute element={<Admin />} />,
+      // },
       {
-        path: ROUTES.ADMIN,
-        element: <ProtectedRoute element={<Admin />} />,
+        path: "/admin/*",
+        element: <Admin />
       },
       {
         path: ROUTES.EMPLOYEE,

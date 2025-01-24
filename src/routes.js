@@ -20,7 +20,6 @@ export const ROUTES = {
   NOT_FOUND: "*",
   INVESTORSURVEY:"/investorSurvey",
   //  COURSES RESERVATION: '/RESERVATION/',
-
   RESERVATION: "/reservation",
   PAYMENT: "/Payment",
   REQUESTCONSULTATION: "/RequestConsultation",
