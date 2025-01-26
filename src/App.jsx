@@ -22,6 +22,7 @@ import {
   InvestorSurvey,
   RequestConsultation,
   InlineBlog,
+  CourseContent,
 } from "./pages";
 import { ROUTES } from "./routes";
 import Footer from "./components/general-layout-context/Footer/Footer";
@@ -91,6 +92,7 @@ const router = createBrowserRouter([
       { path: ROUTES.NOT_FOUND, element: <NotFound /> },
       { path: ROUTES.REQUESTCONSULTATION, element: <RequestConsultation /> },
       { path: ROUTES.INLINEBlog, element: <InlineBlog /> },
+      {path: ROUTES.COURSECONTENT, element: <CourseContent/>}
     ],
   },
 ]);

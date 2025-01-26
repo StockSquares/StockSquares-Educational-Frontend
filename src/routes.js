@@ -25,4 +25,5 @@ export const ROUTES = {
   PAYMENT: "/Payment",
   REQUESTCONSULTATION: "/RequestConsultation",
   INLINEBlog: "/inlineBlog/:title",
+  COURSECONTENT:"/CourseContent",
 };

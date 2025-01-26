@@ -23,4 +23,5 @@ export { default as Reservation } from './Reservation/Reservation.jsx';
 export {default as Payment } from './Reservation/Payment.jsx';
 export { default as InvestorSurvey } from './investorSurvey/investorSurvey.jsx';
 export { default as RequestConsultation} from './RequestConsultation/RequestConsultation.jsx'
+export {default as CourseContent} from "./CourseContent/CourseContent.jsx";
 
