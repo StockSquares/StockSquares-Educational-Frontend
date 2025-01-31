@@ -7,6 +7,7 @@ export const ROUTES = {
   // ARTICLE: '/educational-blog/educational-article',
   ARTICLE: "/educational-article",
   TRAINING_AND_EDUCATION: "/training-and-education",
+  BOOK_YOUR_TRAINER: "/book-your-trainer",
   RECORDED_COURSES: "/recorded-courses",
   // COURSE: '/recorded-courses/recorded-course',
   COURSE: "/recorded-course",

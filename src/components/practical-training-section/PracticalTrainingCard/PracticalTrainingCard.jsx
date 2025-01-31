@@ -53,7 +53,7 @@ function PracticalTrainingCard({
 
         {/* Button or Link */}
         <Link
-          to={ROUTES.TRAINING_AND_EDUCATION}
+          to={ROUTES.BOOK_YOUR_TRAINER}
           className="absolute end-4 bottom-5 px-2 py-1 rounded-md bg-accent text-black hover:scale-105 transition-all"
         >
           {t("sections.PracticalTraining.trainingCard.btn")}

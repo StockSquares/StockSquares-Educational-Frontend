@@ -17,7 +17,6 @@ export { default as EducationalBlogSection } from './free-educational-blog-secti
 
 export { default as PracticalTrainingCard } from './practical-training-section/PracticalTrainingCard/PracticalTrainingCard.jsx';
 export { default as PracticalTrainingSection } from './practical-training-section/PracticalTrainingSection/PracticalTrainingSection.jsx';
-
 export { default as RecommendationCard } from './recommendations-section/RecommendationCard/RecommendationCard.jsx';
 export { default as RecommendationsSection } from './recommendations-section/RecommendationsSection/RecommendationsSection.jsx';
 export { default as RecordedCourseCard } from './recorded-courses-section/RecordedCourseCard/RecordedCourseCard.jsx';

@@ -15,6 +15,7 @@ import {
   Admin,
   Employee,
   Article,
+  BookYourTrainer,
   Blog,
   Course,
   Reservation,
@@ -49,6 +50,7 @@ const router = createBrowserRouter([
       { path: ROUTES.INVESTORSURVEY, element: <InvestorSurvey /> },
       { path: ROUTES.REGISTER, element: <Register /> },
       { path: ROUTES.BOOKSTORE, element: <FinanceAndBusinessLibrary /> },
+      { path: ROUTES.BOOK_YOUR_TRAINER, element: <BookYourTrainer /> },
       { path: ROUTES.BLOG, element: <Blog /> },
       { path: ROUTES.ARTICLE, element: <Article /> },
       {
