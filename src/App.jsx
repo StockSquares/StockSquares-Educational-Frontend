@@ -23,7 +23,7 @@ import {
   InvestorSurvey,
   RequestConsultation,
   InlineBlog,
-  CourseContent,
+  CourseContent
 } from "./pages";
 import { ROUTES } from "./routes";
 import Footer from "./components/general-layout-context/Footer/Footer";
