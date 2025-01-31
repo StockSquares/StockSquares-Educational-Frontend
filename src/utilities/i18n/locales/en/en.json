@@ -94,6 +94,9 @@
             "title": "Finance and Business Library",
             "bookCard": {
                 "btn": "Order Now"
+            },
+            "tabs":{
+                "popular":"Most Popular"
             }
         },
         "blog": {

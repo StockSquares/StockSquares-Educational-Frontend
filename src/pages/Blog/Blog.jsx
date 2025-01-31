@@ -56,22 +56,45 @@ function Blog() {
                     </>
                   }
                 >
-                  <FlexibleCard
-                    category="أسواق المال"
-                    title= "كيف تستثمر اموالك في أوقات الحرب"
-                    blogImg="/src/assets/imgs/investImg.jpg"
-                    LinkTo={`${ROUTES.INLINEBlog.replace(':title', "كيف تستثمر اموالك في أوقات الحرب")}`}
-                    />
+                  <div className="flex flex-col p-5 bg-gray-100">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-5 max-w-screen-lg ms-[6%]">
+                      <div className=" md:col-span-2 flex flex-col items-start">
+                        <FlexibleCard
+                          category="أسواق المال"
+                          title="كيف تستثمر اموالك في أوقات الحرب"
+                          blogImg="/src/assets/imgs/investImg.jpg"
+                          LinkTo={`${ROUTES.INLINEBlog.replace(
+                            ":title",
+                            "كيف تستثمر اموالك في أوقات الحرب"
+                          )}`}
+                        />
+                      </div>
+                      <div className=" md:col-span-1 flex justify-center items-center bg-gray-200 rounded-lg  shadow-lg h-64">
+                        <h1 className="text-xl font-bold text-gray-600">AD</h1>
+                      </div>
+                    </div>
+                  </div>
                 </Tabs.Item>
 
-
                 <Tabs.Item title="أسواق المال" icon={dashboard}>
-                   <FlexibleCard
-                    category="أسواق المال"
-                    title= "كيف تستثمر اموالك في أوقات الحرب"
-                    blogImg="/src/assets/imgs/investImg.jpg"
-                    LinkTo={`${ROUTES.INLINEBlog.replace(':title', "كيف تستثمر اموالك في أوقات الحرب")}`}
-                    />
+                  <div className="flex flex-col p-5 bg-gray-100">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-5 max-w-screen-lg ms-[6%]">
+                      <div className=" md:col-span-2 flex flex-col items-start">
+                        <FlexibleCard
+                          category="أسواق المال"
+                          title="كيف تستثمر اموالك في أوقات الحرب"
+                          blogImg="/src/assets/imgs/investImg.jpg"
+                          LinkTo={`${ROUTES.INLINEBlog.replace(
+                            ":title",
+                            "كيف تستثمر اموالك في أوقات الحرب"
+                          )}`}
+                        />
+                      </div>
+                      <div className=" md:col-span-1 flex justify-center items-center bg-gray-200 rounded-lg  shadow-lg h-64">
+                        <h1 className="text-xl font-bold text-gray-600">AD</h1>
+                      </div>
+                    </div>
+                  </div>
                 </Tabs.Item>
                 <Tabs.Item title={"ريادة الأعمال"} icon={adjustments}>
                   This is{" "}

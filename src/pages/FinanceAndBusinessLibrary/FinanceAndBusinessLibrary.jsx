@@ -2,13 +2,10 @@ import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Tabs, TextInput } from "flowbite-react";
 import { search } from "../../assets";
-import { 
-  FlexibleCard, 
-  Button, 
-  Sidebar 
-} from "../../components";
+import { FlexibleCard, Button, Sidebar } from "../../components";
 import { AisleContext } from "../../Context/AisleContext";
 import { ROUTES } from "../../routes";
+import EcommerceCard from "../../components/general-layout-context/ecommerceCard/EcommerceCard";
 
 function FinanceAndBusinessLibrary() {
   const { t } = useTranslation();
@@ -26,11 +23,7 @@ function FinanceAndBusinessLibrary() {
               className="input-parent grow mb-2 md:mb-0 me-0 md:me-4"
               placeholder={t("common.search")}
             />
-            <Button 
-              btnText={t("common.search")} 
-              bgColor="primary" 
-              px="px-8" 
-            />
+            <Button btnText={t("common.search")} bgColor="primary" px="px-8" />
           </div>
         </form>
       </div>
@@ -46,35 +39,37 @@ function FinanceAndBusinessLibrary() {
             >
               <Tabs.Item active title={t("bookstore.tabs.popular")}>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 rounded-lg bg-white p-4">
-                  {[1, 2, 3, 4].map((item) => (
+                  {[1, 2, 3, 4, 5, 6].map((item) => (
                     <div key={item} className="w-full">
-                      <FlexibleCard
-                        isHorizontal={false}
-                        btnLinkTo={ROUTES.BOOKSTORE}
+                      <EcommerceCard
+                        productImg="src/assets/imgs/bookstore/book-bg.jpg"
+                        productName="الاسثتمار والاعمال"
+                        price="500 EGP"
+                        rating="3.5"
                       />
                     </div>
                   ))}
                 </div>
               </Tabs.Item>
-              
+
               <Tabs.Item title={t("bookstore.tabs.recent")}>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   {t("bookstore.content.recent")}
                 </p>
               </Tabs.Item>
-              
+
               <Tabs.Item title={t("bookstore.tabs.economy")}>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   {t("bookstore.content.economy")}
                 </p>
               </Tabs.Item>
-              
+
               <Tabs.Item title={t("bookstore.tabs.stockMarket")}>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   {t("bookstore.content.stockMarket")}
                 </p>
               </Tabs.Item>
-              
+
               <Tabs.Item title={t("bookstore.tabs.finance")}>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   {t("bookstore.content.finance")}
