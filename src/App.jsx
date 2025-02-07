@@ -36,6 +36,8 @@ import { ThemeProvider } from "./Context/ThemeContext";
 import { Helmet } from "react-helmet";
 import "flowbite";
 import "./App.css";
+import { element } from "prop-types";
+import Admin1 from "./pages/Admin/Admin1";
 // import RequestConsultation from './pages/RequestConsultation/RequestConsultation';
 // import inlineBlog from './pages/Blog/inlineBlog';
 
@@ -87,6 +89,10 @@ const router = createBrowserRouter([
       //   path: ROUTES.ADMIN,
       //   element: <ProtectedRoute element={<Admin />} />,
       // },
+      {
+        path:ROUTES.ADMIN1,
+        element:<Admin1/>
+      },
       {
         path: "/admin/*",
         element: <Admin />

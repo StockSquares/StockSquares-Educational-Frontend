@@ -17,6 +17,7 @@ export const ROUTES = {
   VIP_INVESTOR_SERVICES: "/vip-investor-services",
   USER: "/user/:type",
   ADMIN: "/admin",
+  ADMIN1:"/admin1",
   EMPLOYEE: "/employee",
   NOT_FOUND: "*",
   INVESTORSURVEY:"/investorSurvey",
