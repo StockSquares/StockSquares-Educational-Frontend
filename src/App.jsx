@@ -12,7 +12,7 @@ import {
   TryTradingForFree,
   VIPInvestorServices,
   User,
-  Admin,
+  Client,
   Employee,
   Article,
   BookYourTrainer,
@@ -94,8 +94,8 @@ const router = createBrowserRouter([
         element:<Admin1/>
       },
       {
-        path: "/admin/*",
-        element: <Admin />
+        path: "/client/*",
+        element: <Client />
       },
       {
         path: ROUTES.EMPLOYEE,
