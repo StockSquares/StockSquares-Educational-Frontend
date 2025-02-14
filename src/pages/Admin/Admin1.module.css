@@ -1,0 +1,42 @@
+.btn{
+    border: 2px solid green;
+    padding: 6px ;
+    background-color: rgb(245, 254, 250);
+    border-radius: 10px;
+}
+.btn:hover{
+    color: white;
+    background-color: green;
+}
+.bottom{
+    border-bottom: 2px solid gray;
+}
+.bottom:hover{
+    border: 2px solid yellow;
+    background-color: white;
+    
+}
+.clicked{
+    transform: scale(1.1);
+transition: 0.5s;
+}
+.span{
+    width: 15px;
+    height: 15px;
+    border-radius: 30px;
+}
+.link{
+padding:3px ;
+padding-bottom: 5px;
+
+
+transition: 0.3s;
+/* box-shadow: 1px 1px 2px gray; */
+border-bottom: 2px solid gray;
+}
+/* .link:hover{
+outline: 2px solid green;
+background-color: green;
+color: white;
+transform: scale(1.1);
+} */
