@@ -1,0 +1,45 @@
+.btn{
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 10px;
+    transition: 0.1s;
+}
+.btnn{
+    background-color: white;
+    border: 2px green solid;
+    color: green;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 10px;
+    
+
+}
+.btn:hover{
+    background-color: white;
+    outline: 2px green solid;
+    color: green;
+    font-weight: bold;
+    border-radius: 20px;
+}
+.performanceBtn{
+background-color: rgb(255, 224, 50);
+color: black;
+padding: 10px;
+border-radius: 20px;
+}
+.performanceBtn:hover{
+    background-color: rgb(255, 255, 255);
+    outline: 3px solid rgb(234, 234, 129);
+
+}
+.performancBtnActivated{
+    background-color: rgb(255, 255, 255);
+    outline: 3px solid rgb(234, 234, 129);
+    padding: 10px;
+border-radius: 20px;
+}
+.jj{
+    background-color: #8bd680;
+}

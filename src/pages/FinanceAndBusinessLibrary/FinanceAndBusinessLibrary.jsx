@@ -45,7 +45,6 @@ function FinanceAndBusinessLibrary() {
                         productImg="src/assets/imgs/bookstore/book-bg.jpg"
                         productName="الاسثتمار والاعمال"
                         price="500 EGP"
-                        rating="3.5"
                       />
                     </div>
                   ))}

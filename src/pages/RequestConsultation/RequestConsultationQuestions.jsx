@@ -1,10 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { consultQuestions } from "../../assets/requestConsultationData";
 import { consultationDates } from "../../assets/cosultationDates";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,8 +16,8 @@ function RequestConsultationQuestions() {
   const [consultAnswers, setConsultAnswers] = useState([]);
   const [index, setIndex] = useState(0);
   const [error, setError] = useState(false);
-
   const [selectedTime, setSelectedTime] = useState(null);
+  const [questions, setQuestions] = useState([]);
 
   const handleOptionClick = (optionIndex) => {
     setSelectedOption(optionIndex);
@@ -35,7 +34,7 @@ function RequestConsultationQuestions() {
     UpdatedConsultAnswers[index] = selectedOption;
     setConsultAnswers(UpdatedConsultAnswers);
 
-    if (index === consultQuestions.length - 1) {
+    if (index === questions.length - 1) {
       alert("Survey completed! Thank you for your participation.");
       return;
     }
@@ -55,7 +54,6 @@ function RequestConsultationQuestions() {
   };
 
   const handleBooking = () => {
-    
     if (!selectedTime) alert("يرجي اختيار موعد ");
     else showToast();
   };
@@ -76,9 +74,18 @@ function RequestConsultationQuestions() {
     );
   };
 
+  useEffect(() => {
+    fetch("https://stocksquare.runasp.net/api/Consultations") 
+      .then((response) => response.json())
+      .then((data) => {   console.log("Received data:", data); 
+
+         setQuestions(data);}) 
+      .catch((error) => console.error("Error fetching questions:", error));
+  }, []);
+
   return (
     <>
-      {!(index === consultQuestions.length - 1) ? (
+      {!(index === questions.length - 1) ? (
         <div className="flex flex-col w-[50%] gap-3 mt-4">
           <div className="p-1 rounded-2xl border shadow-md bg-green-100 mb-5">
             <FontAwesomeIcon
@@ -97,52 +104,45 @@ function RequestConsultationQuestions() {
               <div
                 className="bg-green-600 h-2.5 rounded-full transition-all duration-300"
                 style={{
-                  width: `${((index + 1) / consultQuestions.length) * 100}%`,
+                  width: `${((index + 1) / questions.length) * 100}%`,
                 }}
               ></div>
             </div>
             <p className="text-sm text-gray-700 mt-2 text-center">
-              {index + 1} / {consultQuestions.length}
+              {index + 1} / {questions.length}
             </p>
           </div>
-          <h2 className="text-xl font-bold">
-            {index + 1}.{" "}
-            {consultQuestions[index]?.question || "Loading question..."}؟
-          </h2>
-          <ul >
-            {Object.keys(consultQuestions[index])
-              .filter((key) => key.startsWith("option"))
-              .map((key, i) => (
-                <li
-                  key={i}
-                  className={selectedOption === i + 1 ? decor.selected : decor.questionLi}
-                  onClick={() => handleOptionClick(i + 1)}
-                >
-                  {consultQuestions[index][key]}
-                </li>
-              ))}
-          </ul>
+
+          { questions.length>0?( 
+            <div >
+              <h2  className="text-xl font-bold">{questions[index].question}</h2>
+              <ul>
+                {questions[index].answers.map((answer)=>(
+                  <li key={answer.id} onClick={()=>handleOptionClick(answer.id)} className={`${selectedOption=== answer.id? decor.selected : decor.questionLi}`}>
+                    {answer.answer}
+                  </li>
+                ))}
+              </ul>
+            </div>)
+         :""}
+
           <p className={error ? "error" : ""}>
             {error ? "يرجى اختيار إجابة قبل المتابعة!" : ""}
           </p>
           <div className="pop">
-            <button
-              className={decor.send}
-              onClick={previous}
-            >
+            <button className={decor.send} onClick={previous}>
               السابق
             </button>
-            <button
-              className={decor.send}
-              onClick={next}
-            >
+            <button className={decor.send} onClick={next}>
               التالي
             </button>
           </div>
         </div>
       ) : (
         <>
-          <h1 className="mb-[5rem] text-2xl mt-8 font-bold">اختر الموعد المناسب لك</h1>
+          <h1 className="mb-[5rem] text-2xl mt-8 font-bold">
+            اختر الموعد المناسب لك
+          </h1>
           <div className="grid lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-2 gap-8 mb-10">
             {consultationDates.map((el, cardIndex) => (
               <div

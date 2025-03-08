@@ -1,4 +1,6 @@
 import React from "react";
+import { ROUTES } from "../../../routes";
+import { Link } from "react-router-dom";
 
 function EcommerceCard({ productImg, productName, price, rating }) {
   return (
@@ -14,13 +16,16 @@ function EcommerceCard({ productImg, productName, price, rating }) {
       <div className=" p-4 flex flex-col justify-between">
         <div>
           <h3 className="text-lg font-semibold text-gray-800">{productName}</h3>
-          <p className="text-gray-500">⭐⭐⭐⭐⭐ {rating} / 5</p>
           <p className="text-xl font-bold text-primary-700">${price}</p>
         </div>
 
-        <button className="mt-4 w-full bg-primary-900 text-white py-2 rounded-md hover:bg-primary-700 transition">
-          إضافة إلى السلة 🛍️
+        <Link to={ROUTES.BOOKDETAILS}>
+
+        <button className="mt-4 w-full bg-primary-900 text-white py-2 rounded-md hover:bg-primary-700 transition" >
+
+        المزيد من التفاصيل 
         </button>
+        </Link>
       </div>
     </div>
   );

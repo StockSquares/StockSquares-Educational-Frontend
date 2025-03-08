@@ -38,6 +38,7 @@ import "flowbite";
 import "./App.css";
 import { element } from "prop-types";
 import Admin1 from "./pages/Admin/Admin1";
+import BookDetails from "./components/bookDetails/BookDetails";
 // import RequestConsultation from './pages/RequestConsultation/RequestConsultation';
 // import inlineBlog from './pages/Blog/inlineBlog';
 
@@ -104,7 +105,9 @@ const router = createBrowserRouter([
       { path: ROUTES.NOT_FOUND, element: <NotFound /> },
       { path: ROUTES.REQUESTCONSULTATION, element: <RequestConsultation /> },
       { path: ROUTES.INLINEBlog, element: <InlineBlog /> },
-      {path: ROUTES.COURSECONTENT, element: <CourseContent/>}
+      {path: ROUTES.COURSECONTENT, element: <CourseContent/>},
+      {path: ROUTES.BOOKDETAILS, element: <BookDetails/>}
+
     ],
   },
 ]);

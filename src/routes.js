@@ -27,4 +27,5 @@ export const ROUTES = {
   REQUESTCONSULTATION: "/RequestConsultation",
   INLINEBlog: "/inlineBlog/:title",
   COURSECONTENT:"/CourseContent",
+  BOOKDETAILS:"/bookDetails"
 };
