@@ -3,6 +3,7 @@ export const ROUTES = {
   LOGIN: "/login",
   REGISTER: "/register",
   BOOKSTORE: "/bookstore",
+  BOOK_DETAILS: "/bookstore/bookdetails/:id",
   BLOG: "/educational-blog",
   // ARTICLE: '/educational-blog/educational-article',
   ARTICLE: "/educational-article",
@@ -27,4 +28,5 @@ export const ROUTES = {
   REQUESTCONSULTATION: "/RequestConsultation",
   INLINEBlog: "/inlineBlog/:title",
   COURSECONTENT:"/CourseContent",
+
 };
