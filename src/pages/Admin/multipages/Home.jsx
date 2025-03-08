@@ -23,14 +23,9 @@ function Home() {
                 <button className={Style.userCount}>الباقة السنوية / الشهرية</button>
             </div>
 
-            {/* إضافة عنصر 3D من Spline */}
-            <div className={Style.splineContainer}>
-               <div className={Style.overlayText}>
-                   <h2>مرحبًا بك في منصة التداول</h2>
-                   <p>تحليل الأسواق المالية في الوقت الفعلي</p> 
+               <div>
+                   <h2>الصفحة الرئيسية</h2>
                </div>
-                <Spline scene="https://prod.spline.design/lu38la-6lQ-oKNld/scene.splinecode" />
-            </div>
         </div> 
     );
 }

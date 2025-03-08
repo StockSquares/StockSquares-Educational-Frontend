@@ -26,6 +26,7 @@ import {
   CourseContent
 } from "./pages";
 import { ROUTES } from "./routes";
+import BookDetails from "./pages/FinanceAndBusinessLibrary/multipages/bookdetails"
 import Footer from "./components/general-layout-context/Footer/Footer";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProtectedRoute from "./components/auth/ProtectedRoute/ProtectedRoute";
@@ -56,6 +57,11 @@ const router = createBrowserRouter([
       { path: ROUTES.BOOK_YOUR_TRAINER, element: <BookYourTrainer /> },
       { path: ROUTES.BLOG, element: <Blog /> },
       { path: ROUTES.ARTICLE, element: <Article /> },
+      // { path: ROUTES.BOOK_DETAILS, element: <BookDetails /> },
+      {
+        path: "/bookdetails/:id",
+        element: <BookDetails />,
+      },
       {
         path: ROUTES.TRAINING_AND_EDUCATION,
         element: <TrainingAndEducation />,
