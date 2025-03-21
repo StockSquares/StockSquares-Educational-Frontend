@@ -1,14 +1,14 @@
-.slider{
+/* .slider{
     overflow: hidden;
     
 }
 .slider::-webkit-scrollbar {
-    display: none; /* إخفاء الـ scrollbar في Chrome و Safari */
+    display: none; 
 }
 
 .slider {
-    -ms-overflow-style: none;  /* إخفاء الـ scrollbar في Internet Explorer */
-    scrollbar-width: none;     /* إخفاء الـ scrollbar في Firefox */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;    
 }
 
 .card{
@@ -23,16 +23,16 @@
         
     }
     15% {
-        transform: translateX(210%);
+        transform: translateX(60vw);
     }
     30% {
-        transform: translateX(210%);
+        transform: translateX(60vw);
     }
     45% {
-        transform: translateX(210%);
+        transform: translateX(60vw);
     }
     60% {
-        transform: translateX(210%);
+        transform: translateX(60vw);
     }
     75% {
         transform: translateX(0);
@@ -43,4 +43,4 @@
     100% {
         transform: translateX(0);
     }
-}
+} */
