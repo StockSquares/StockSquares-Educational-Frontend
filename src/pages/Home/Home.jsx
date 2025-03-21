@@ -16,11 +16,11 @@ function Home() {
   return (
     <div className="container mx-auto px-4">
       {/* Advertisement Section */}
-      <section className="mb-10 mt-4">
+      <section className="mb-5 mt-4">
         <Ad />
       </section>
 
-      <section className="grid grid-cols-1 gap-2 lg:grid-cols-2 mb-10 md:grid-cols-2"></section>
+      <section className="grid grid-cols-1 gap-2 lg:grid-cols-2 mb-5 md:grid-cols-2"></section>
 
       <section className="grid grid-cols-1 gap-4 md:grid-cols-2 ">
     
@@ -34,15 +34,17 @@ function Home() {
         </section>
       </section>
 
-      {/* VIP Investor Services Section */}
-      <section className="grid grid-cols-1 gap-2 lg:grid-cols-2 mb-10 md:grid-cols-2">
-        <VIPInvestorServicesSection />
-        <TestimonialsSection />
-      </section>
+ 
 
       {/* Finance Business Library Section */}
       <section id="finance-library" className="mb-10">
         <FinanceBusinessLibrary />
+      </section>
+
+           {/* VIP Investor Services Section */}
+           <section className="grid grid-cols-1 gap-2 lg:grid-cols-2 mb-10 md:grid-cols-2">
+        <VIPInvestorServicesSection />
+        <TestimonialsSection />
       </section>
 
       {/* Testimonials and About Sections */}
