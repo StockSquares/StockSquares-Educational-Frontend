@@ -23,8 +23,9 @@ import {
   InvestorSurvey,
   RequestConsultation,
   InlineBlog,
-  CourseContent
+  CourseContent,
 } from "./pages";
+import  JoinAsTrainer from "./pages/JoinAsTrainer/Joinastrainer";
 import { ROUTES } from "./routes";
 import BookDetails from "./pages/FinanceAndBusinessLibrary/multipages/bookdetails"
 import Footer from "./components/general-layout-context/Footer/Footer";
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
       {
         path:ROUTES.ADMIN1,
         element:<Admin1/>
+      },
+      {
+        path: ROUTES.JOIN_AS_TRAINER,
+        element:<JoinAsTrainer/>
       },
       {
         path: "/client/*",

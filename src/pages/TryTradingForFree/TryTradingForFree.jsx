@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import Style from './TryTradingForFree.module.css';
 import { AdvancedChart, OrderBook } from '../../components/trading-free/Advanced Chart/AdvancedChart';
+import {NewTradeModal} from '../../components/trading-free/startDeal/NewTradeModal';
 import { ApexChart } from '../../components/trading-free/candlesStick/candlesStick';
 import { TradingTable } from '../../components/trading-free/table/table';
 import { BarChart3, CandlestickChart } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
 
 function TryTradingForFree() {
-  const [counter, setCounter] = useState(0);
   const [activeChart, setActiveChart] = useState('candle');
-
-  useEffect(() => {
-  }, []);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {}, []);
 
   return (
-    <div className="h-full bg-gray-50 dark:bg-black flex flex-col">
+  <div className="h-full bg-gray-50 dark:bg-black flex flex-col z-1">
+     {isModalOpen && (  
+        <NewTradeModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+     )}
+
+      
       <div className="flex flex-1 overflow-hidden">
         <div className="flex-1 p-6 overflow-auto">
+          <div className={Style.align}>
+            <button className={Style.button} onClick={() => navigate("/training-and-education")}>تعلم مع مدرب شخصي</button>
+            <button className={Style.button1} onClick={() => setIsModalOpen(true)}>ابدأ صفقة</button>
+          </div>
           <div className="w-auto">
             <TradingTable />
           </div>
@@ -68,3 +78,4 @@ function TryTradingForFree() {
 }
 
 export default TryTradingForFree;
+
