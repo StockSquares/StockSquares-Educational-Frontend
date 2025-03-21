@@ -23,8 +23,9 @@ import {
   InvestorSurvey,
   RequestConsultation,
   InlineBlog,
-  CourseContent
+  CourseContent,
 } from "./pages";
+import  JoinAsTrainer from "./pages/JoinAsTrainer/Joinastrainer";
 import { ROUTES } from "./routes";
 import BookDetails from "./pages/FinanceAndBusinessLibrary/multipages/bookdetails"
 import Footer from "./components/general-layout-context/Footer/Footer";

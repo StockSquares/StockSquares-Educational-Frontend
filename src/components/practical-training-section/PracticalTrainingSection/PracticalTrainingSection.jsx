@@ -24,7 +24,7 @@ function PracticalTrainingSection() {
     <SectionCard
       heading={t("sections.PracticalTraining.title")}
       headingBtn={
-        <Link to={ROUTES.TRAINING_AND_EDUCATION}>
+        <Link to={ROUTES.JOIN_AS_TRAINER}>
           {t("sections.PracticalTraining.btn")}
         </Link>
       }

@@ -8,6 +8,7 @@ export const ROUTES = {
   // ARTICLE: '/educational-blog/educational-article',
   ARTICLE: "/educational-article",
   TRAINING_AND_EDUCATION: "/training-and-education",
+  JOIN_AS_TRAINER : "/JoinAsTrainer",
   BOOK_YOUR_TRAINER: "/book-your-trainer",
   RECORDED_COURSES: "/recorded-courses",
   // COURSE: '/recorded-courses/recorded-course',
