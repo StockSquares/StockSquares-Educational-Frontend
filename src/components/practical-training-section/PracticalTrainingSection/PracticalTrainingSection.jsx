@@ -31,17 +31,19 @@ function PracticalTrainingSection() {
     dots: true,
     infinite: true,
     speed: 800,
-    slidesToShow: 2,     
-    slidesToScroll: 2,    
+    slidesToShow: 2,
+    slidesToScroll: 2,
     autoplay: true,
     autoplaySpeed: 3000,
     cssEase: "linear",
+    rtl: false,
     responsive: [
       {
-        breakpoint: 768, 
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          rtl: false,
         },
       },
     ],
@@ -57,16 +59,18 @@ function PracticalTrainingSection() {
       }
       p6={true}
     >
-      <div className={` h-[50vh] `}>
-        <Slider ref={sliderRef} {...settings}>
+      <div className= {`h-[50vh] `} >
+        <Slider ref={sliderRef} {...settings} dir="rtl">
           {/* Card 1 */}
-          <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
+          <div className={`flex-none ${style.card} w-[100%] lg:w-[50%]`}>
             <PracticalTrainingCard
               cardImg={entryLevel}
               title={
                 <>
                   دورة البورصة المصرية -{" "}
-                  <span className="shadow-xl text-green-400 font-bold">مبتدئ</span>
+                  <span className="shadow-xl text-green-400 font-bold">
+                    مبتدئ
+                  </span>
                 </>
               }
               hours="٨ ساعات"
@@ -82,7 +86,9 @@ function PracticalTrainingSection() {
               title={
                 <>
                   دورة البورصة السعودية -{" "}
-                  <span className="shadow-xl text-amber-400 font-bold">متقدم</span>
+                  <span className="shadow-xl text-amber-400 font-bold">
+                    متقدم
+                  </span>
                 </>
               }
               hours="١٢ ساعة"
@@ -98,7 +104,9 @@ function PracticalTrainingSection() {
               title={
                 <>
                   دورة البورصة العالمية -{" "}
-                  <span className="shadow-xl text-red-600 font-bold">محترف</span>
+                  <span className="shadow-xl text-red-600 font-bold">
+                    محترف
+                  </span>
                 </>
               }
               hours="١٦ ساعة"
@@ -114,7 +122,9 @@ function PracticalTrainingSection() {
               title={
                 <>
                   دورة العملات المشفرة -{" "}
-                  <span className="shadow-xl text-green-400 font-bold">مبتدئ</span>
+                  <span className="shadow-xl text-green-400 font-bold">
+                    مبتدئ
+                  </span>
                 </>
               }
               hours="٨ ساعات"

@@ -27,35 +27,38 @@ function PracticalTrainingCard({
       </div>
 
       {/* Details Section */}
-      <div className="bg-darkgray text-white p-2 relative  ">
+      <div className="bg-darkgray text-white p-2 relative mb-[-2%]  ">
         <div className="font-semibold flex flex-col">
-          <div className="flex-y-center">
-            <img src={img} className="w-[13%] me-1 p-1.5" />
-            <span>{title}</span>
+          <div className="flex justify-between ">
+          <span>{title}</span>
+            <img src={img} className="w-[13%] me-1 p-1.5" />        
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between">
-          <div>
-            <div className="flex-y-center">
-              <FontAwesomeIcon className="p-1.5 me-1" icon={clock} />
-              <span>{hours}</span>
-            </div>
-            <div className="flex-y-center">
-              <FontAwesomeIcon icon={faSackDollar} className="p-1.5 me-1" />
-              <span>
-                {price}
-                &nbsp; جنيه
-              </span>
-            </div>
-          </div>
-
-          {/* Button or Link */}
+          <div className="flex flex-col-revere md:flex-row justify-between">
           <Link
             to={ROUTES.BOOK_YOUR_TRAINER}
             className=" px-2 py-1 self-center me-2  rounded-md bg-accent text-black hover:scale-105 transition-all"
           >
             {t("sections.PracticalTraining.trainingCard.btn")}
           </Link>
+          <div>
+            <div className="flex-y-center ms-2">
+            <span>{hours}</span>
+              <FontAwesomeIcon className="p-1.5 me-1" icon={clock} />
+              
+            </div>
+            <div className="flex-y-center">
+            <span>
+                {price}
+                &nbsp; جنيه
+              </span>
+              <FontAwesomeIcon icon={faSackDollar} className="p-1.5 me-1" />
+             
+            </div>
+          </div>
+
+          {/* Button or Link */}
+         
           </div>
         </div>
       </div>
