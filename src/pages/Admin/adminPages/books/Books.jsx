@@ -15,7 +15,7 @@ function Books() {
   }
 
   return (
-    <div className="container w-full flex justify-center mt-5">
+    <div className="container  w-full flex justify-center mt-5">
       <div className="grid  grid-cols-1 gap-2 ">
 
       <PageHeader Buttons={buttons} Clicked={isClicked} HandleClicked={handleClicked} />

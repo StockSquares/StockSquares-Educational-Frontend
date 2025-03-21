@@ -18,7 +18,7 @@ export { default as PartnerApplication } from './PartnerApplication/PartnerAppli
 export { default as TryTradingForFree } from './TryTradingForFree/TryTradingForFree.jsx';
 export { default as VIPInvestorServices } from './VIPInvestorServices/VIPInvestorServices.jsx';
 export { default as User } from './User/User.jsx';
-export { default as Client } from './Admin/Client.jsx';
+export { default as Client } from './Admin/Employees.jsx';
 export { default as Employee } from './Employee/Employee.jsx';
 export { default as Reservation } from './Reservation/Reservation.jsx';
 export {default as Payment } from './Reservation/Payment.jsx';

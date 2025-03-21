@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styles from './Register.module.css';
 import logo from '../../assets/imgs/logo-SS.svg';
+import { ROUTES } from '../../routes';
+import { Link } from 'react-router-dom';
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -127,7 +129,7 @@ function Register() {
                 <div className={styles.terms}>
                     <input type="checkbox" id="termsAccepted" name="termsAccepted" onChange={handleChange} />
                     <label htmlFor="termsAccepted">
-                        قرأت وأوافق على اتفاقية الشروط والأحكام وسياسة الخصوصية
+                        قرأت وأوافق على <Link to={ROUTES.CONDITIONS} className='text-blue-500 underline'> اتفاقية الشروط والأحكام</Link> و <Link className='text-blue-500 underline' to={ROUTES.PRIVACYPOLICY}>سياسة الخصوصية</Link> 
                     </label>
                 </div>
 

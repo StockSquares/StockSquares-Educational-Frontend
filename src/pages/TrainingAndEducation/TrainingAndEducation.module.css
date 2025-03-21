@@ -83,16 +83,11 @@
 .rotatingLogo {
     display: inline-block;
     margin: auto;
-    width: 50%;
+    /* width: 90%; */
     height: auto;
-    transform-origin: center;
-    transition: transform 0.5s ease-in-out; /* Optional smooth transition */
 }
 
 /* Apply the spinning animation to the logo when the entire card is hovered */
-.card:hover .rotatingLogo {
-    animation: spin 1s 5 linear;
-}
 
 /* Keyframes for the spinning animation */
 @keyframes spin {
@@ -249,7 +244,7 @@
 .planCard .button {
     background-color:var(--stocksquares-color);
     color: #ffffff;
-    padding: 0.75rem 1.5rem;
+    padding: 0.25rem 1.5rem;
     border-radius: 0.5rem;
     width: 100%;
     font-size: 1rem;
@@ -281,3 +276,11 @@
 }
 
 
+@keyframes increase {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 50%;
+    }
+}

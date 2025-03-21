@@ -1,55 +1,61 @@
-import React from 'react';
+import React from "react";
 
 // Internal Imports (components, Assets and Styles)
-import Style from './Home.module.css';
+import Style from "./Home.module.css";
 import {
-   
-    AboutSection,
-    FinanceBusinessLibrary,
-    TestimonialsSection,
-    VIPInvestorServicesSection,
-    PracticalTrainingSection,
-    Ad
-} from '../../components';
+  AboutSection,
+  FinanceBusinessLibrary,
+  TestimonialsSection,
+  VIPInvestorServicesSection,
+  PracticalTrainingSection,
+  Ad,
+  RecordedCourseCard,
+} from "../../components";
 
 function Home() {
-    return (
-        <div className='container mx-auto px-4'>
-            {/* Advertisement Section */}
-            <section className='mb-10 mt-4'>
-                <Ad />
-            </section>
+  return (
+    <div className="container mx-auto px-4">
+      {/* Advertisement Section */}
+      <section className="mb-10 mt-4">
+        <Ad />
+      </section>
 
-            {/* Recorded Courses Section */}
-          
+      <section className="grid grid-cols-1 gap-2 lg:grid-cols-2 mb-10 md:grid-cols-2"></section>
 
-            {/* Practical Training Section */}
-            <section className='mb-10'>
-                <PracticalTrainingSection />
-            </section>
+      <section className="grid grid-cols-1 gap-4 md:grid-cols-2 ">
+    
+        {/* Practical Training Section */}
+        <section className="mb-10">
+          <PracticalTrainingSection />
+        </section>
+          {/* Recorded Courses Section */}
+          <section className="mb-10">
+          <RecordedCourseCard />
+        </section>
+      </section>
 
-            {/* VIP Investor Services Section */}
-            <section className="grid grid-cols-1 gap-2  md:grid-cols-2 lg:grid-cols-2 mb-10">
-                <VIPInvestorServicesSection />
-                <TestimonialsSection />
-            </section>
+      {/* VIP Investor Services Section */}
+      <section className="grid grid-cols-1 gap-2 lg:grid-cols-2 mb-10 md:grid-cols-2">
+        <VIPInvestorServicesSection />
+        <TestimonialsSection />
+      </section>
 
-            {/* Finance Business Library Section */}
-            <section id='finance-library' className='mb-10'>
-                <FinanceBusinessLibrary />
-            </section>
+      {/* Finance Business Library Section */}
+      <section id="finance-library" className="mb-10">
+        <FinanceBusinessLibrary />
+      </section>
 
-            {/* Testimonials and About Sections */}
-                <section className='w-full mb-10'>
-                    <AboutSection />
-                </section>
+      {/* Testimonials and About Sections */}
+      <section className="w-full mb-10">
+        <AboutSection />
+      </section>
 
-            {/* Optional: Uncomment if you want to include Educational Blog Section */}
-            {/* <section className='mb-10'>
+      {/* Optional: Uncomment if you want to include Educational Blog Section */}
+      {/* <section className='mb-10'>
                 <EducationalBlogSection />
             </section> */}
-        </div>
-    );
+    </div>
+  );
 }
 
 export default Home;

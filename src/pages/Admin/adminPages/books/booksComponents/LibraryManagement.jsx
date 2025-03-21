@@ -16,7 +16,7 @@ function LibraryManagement() {
     return(
         <div className="flex justify-center mt-5">
         <div className="grid w-full grid-cols-1 gap-2">
-          <div className="controlButtons grid grid-cols-3 gap-5  ">
+          <div className="controlButtons grid grid-cols-3 gap-12  ">
             {buttons.map((btn, idx) => (
               <button
                 key={idx}

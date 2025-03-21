@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import styles from "./TrainingAndEducation.module.css";
-import logoSS from "../../assets/imgs/logo-SS - Copy.png";
+import entryLevel from "/src/assets/imgs/ConsultingBro.png";
 import { ROUTES } from "../../routes";
 
 const TrainingPlanCard = ({ plan }) => (
@@ -77,50 +77,73 @@ function TrainingAndEducation() {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row items-center px-4 md:px-8 py-8 md:py-16">
-        <div className="w-full lg:w-2/3 flex flex-col items-start space-y-6 lg:pr-8">
+      <div className="flex flex-col lg:flex-row items-center px-4 md:px-8 py-8 md:py-10">
+        <div className="w-full lg:w-2/3 flex flex-col items-start space-y-6 lg:pr-6">
           <p className="text-2xl lg:text-3xl font-bold text-center lg:text-left">
-            اكتسب مهارة التداول وانضم إلى المستثمرين الناجحين
+            اكتسب مهارة التداول وانضم إلى المستثمرين{" "}
+            <div className="inline-block items-end">
+              {" "}
+              <span className="text-green-500 text-4xl"> الناجحين </span>{" "}
+              <img className="w-[110px] mt-2" src="/src/assets/imgs/line.png" />{" "}
+            </div>
           </p>
-          <ul className={`${styles.featuresList} space-y-2`}>
-            <li>
-              <FontAwesomeIcon icon={faCheck} className={styles.icon} />
-              تعلم التداول عبر الإنترنت مع
-              <span
-                style={{
-                  color: "var(--primary-color-light)",
-                  fontWeight: "bold",
-                  padding: "0 2px",
-                }}>
-                مدرب شخصي
-              </span>
-            </li>
-            <li>
-              <FontAwesomeIcon icon={faCheck} className={styles.icon} />
-              أفضل مدربين التداول المعتمدين في الوطن العربي
-            </li>
-            <li>
-              <FontAwesomeIcon icon={faCheck} className={styles.icon} />
-              تدريب تفاعلي متابعة دورية مستمرة في التداول
-            </li>
-          </ul>
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
-            <button
-              className={`${styles.buttonPersonal} font-semibold px-6 py-3 mx-2 rounded-lg shadow-lg`}>
-              احجز محاضرة تجريبية
-            </button>
-            <button
-              className={`${styles.buttonTrial} font-semibold px-6 py-3 mx-2 rounded-lg shadow-lg`}>
-              احجز مدرب شخصي
-            </button>
+
+          <div>
+            <ul className={`${styles.featuresList} space-y-2 `}>
+              <li>
+                <FontAwesomeIcon icon={faCheck} className={styles.icon} />
+                تعلم التداول عبر الإنترنت مع
+                <span
+                  style={{
+                    color: "var(--primary-color-light)",
+                    fontWeight: "bold",
+                    padding: "0 2px",
+                  }}
+                >
+                  مدرب شخصي
+                </span>
+              </li>
+              <li>
+                <FontAwesomeIcon icon={faCheck} className={styles.icon} />
+                أفضل مدربين التداول المعتمدين في الوطن العربي
+              </li>
+
+              <li>
+                <div className=" relative p-4">
+                  <div>
+                    <FontAwesomeIcon icon={faCheck} className={styles.icon} />
+                    تدريب تفاعلي متابعة دورية مستمرة في التداول
+                  </div>
+                  <div className=" space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
+                    <Link
+                      to={ROUTES.RESERVATION}
+                      className={`${styles.buttonTrial} font-semibold px-6 py-3 mx-2 rounded-lg shadow-lg m-2`}
+                    >
+                      احجز مدربك الشخصي
+                    </Link>
+                  </div>
+                  <img
+                    src="/src/assets/imgs/Arrow.png"
+                    className="absolute w-[210px] left-[-7%] top-0 rotate-[-5deg]"
+                  />
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
 
         <div
-          className={`${styles.card} w-full lg:w-1/3 flex justify-center items-center mt-8 lg:mt-0 card`}>
-          <img src={logoSS} alt="Logo" className={`${styles.rotatingLogo}`} />
+          className={`${styles.card} w-full lg:w-1/3 flex justify-center items-center mt-8 lg:mt-0 card`}
+        >
+          <img
+            src={entryLevel}
+            alt="Logo"
+            className={`${styles.rotatingLogo}  object-cover w-full`}
+          />
         </div>
       </div>
+
+      <hr className="h-[3px] w-[30%] bg-primary-950 mb-2 rounded-lg transition-all animate-bounce" />
 
       <div className={`${styles.pageContainer}`}>
         <div className={`${styles.row}`}>

@@ -11,6 +11,9 @@
 @tailwind utilities;
 
 /* ===== GENERAL OVERRIDE =====*/
+.preferFontSize{
+    font-size: clamp(10px, 5vw, 40px);
+}
 :root {
     /* Brand Colors */
     --stocksquares-color: rgb(24, 114, 0); /* Stocksquares Green */

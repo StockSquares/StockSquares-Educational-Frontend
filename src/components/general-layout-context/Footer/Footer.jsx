@@ -22,6 +22,7 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, NavLink } from "react-router-dom";
 import { TextInput } from "flowbite-react";
+import { ROUTES } from "../../../routes";
 
 function Footer() {
   const { t } = useTranslation();
@@ -42,7 +43,7 @@ function Footer() {
                   <li className="pt-2 mb-3">
                     <NavLink
                       className="hover:text-primary-300"
-                      to="training-and-education"
+                      to={ROUTES.ABOUTUS}
                     >
                       {t("navbar.aboutUs")}
                     </NavLink>
@@ -50,7 +51,7 @@ function Footer() {
                   <li className="pt-2 mb-3">
                     <NavLink
                       className="hover:text-primary-300"
-                      to="recorded-courses"
+                      to={ROUTES.ACTIVITIES}
                     >
                       {t("footer.activities")}
                     </NavLink>
@@ -217,12 +218,14 @@ function Footer() {
           <div className="flex justify-center items-end">
           <small className="tracking-wider text-gray-400">جميع الحقوق محفوظه لموقع و منصه ستوك سكويرز  2018 - 2025 </small>
           <div className="ms-5 flex gap-1 flex-wrap justify-center mt-5">
-            <a className="bg-accent me-1 text-black p-1 rounded-md text-sm">
+            <Link
+            to={ROUTES.PRIVACYPOLICY}
+             className="bg-accent me-1 text-black p-1 rounded-md text-sm">
               سياسه الخصوصيه{" "}
-            </a>
-            <a className="bg-red-600 text-white px-3 py-1 rounded-md text-sm">
+            </Link>
+            <Link className="bg-red-600 text-white px-3 py-1 rounded-md text-sm">
               تحذير المخاطره
-            </a>
+            </Link>
           </div>
           </div>
 

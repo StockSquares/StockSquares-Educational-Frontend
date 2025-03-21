@@ -28,4 +28,8 @@ export const ROUTES = {
   REQUESTCONSULTATION: "/RequestConsultation",
   INLINEBlog: "/inlineBlog/:title",
   COURSECONTENT:"/CourseContent",
+  PRIVACYPOLICY:"/privacyPolicy",
+  ABOUTUS:"/WhoWeAre",
+  CONDITIONS:"/TermsAndCondition",
+  ACTIVITIES:"/Activities",
 };

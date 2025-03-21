@@ -39,7 +39,12 @@ import "flowbite";
 import "./App.css";
 import { element } from "prop-types";
 import Admin1 from "./pages/Admin/Admin1";
-import BookDetails from "./components/bookDetails/BookDetails";
+import Employees from "./pages/Admin/Employees";
+import Trainer from "./pages/trainerPortal/Trainer";
+import PrivacyPolicy from "./pages/privacyPolicy/PrivacyPolicy";
+import WhoWeAre from "./pages/WhoWeAre/WhoWeAre";
+import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
+import Activities from "./pages/Activities/Activities";
 // import RequestConsultation from './pages/RequestConsultation/RequestConsultation';
 // import inlineBlog from './pages/Blog/inlineBlog';
 
@@ -101,8 +106,8 @@ const router = createBrowserRouter([
         element:<Admin1/>
       },
       {
-        path: "/client/*",
-        element: <Client />
+        path: "/Employees/*",
+        element: <Employees/>
       },
       {
         path: ROUTES.EMPLOYEE,
@@ -112,8 +117,24 @@ const router = createBrowserRouter([
       { path: ROUTES.REQUESTCONSULTATION, element: <RequestConsultation /> },
       { path: ROUTES.INLINEBlog, element: <InlineBlog /> },
       {path: ROUTES.COURSECONTENT, element: <CourseContent/>},
-      {path: ROUTES.BOOKDETAILS, element: <BookDetails/>}
+      {path: ROUTES.BOOKDETAILS, element: <BookDetails/>},
+        {
+        path: "/Trainer/*",
+        element: <Trainer/>
+      },
+      {path: ROUTES.PRIVACYPOLICY,
+        element:<PrivacyPolicy/>
+      },
+      {path: ROUTES.ABOUTUS,
+        element:<WhoWeAre/>
+      },
 
+      {path: ROUTES.CONDITIONS,
+        element:<TermsAndConditions/>
+      },
+      {path: ROUTES.ACTIVITIES,
+        element:<Activities/>
+      }
     ],
   },
 ]);

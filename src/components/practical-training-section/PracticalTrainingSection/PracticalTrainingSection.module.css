@@ -1,1 +1,46 @@
-.PracticalTrainingSection {}
+.slider{
+    overflow: hidden;
+    
+}
+.slider::-webkit-scrollbar {
+    display: none; /* إخفاء الـ scrollbar في Chrome و Safari */
+}
+
+.slider {
+    -ms-overflow-style: none;  /* إخفاء الـ scrollbar في Internet Explorer */
+    scrollbar-width: none;     /* إخفاء الـ scrollbar في Firefox */
+}
+
+.card{
+    transform: translateX(0%);
+    animation: move 8s linear infinite ;
+    animation-delay: 3s;
+    transition: 0.5s;
+}
+@keyframes move {
+    0% {
+        transform: translateX(0);
+        
+    }
+    15% {
+        transform: translateX(210%);
+    }
+    30% {
+        transform: translateX(210%);
+    }
+    45% {
+        transform: translateX(210%);
+    }
+    60% {
+        transform: translateX(210%);
+    }
+    75% {
+        transform: translateX(0);
+    }
+    90% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

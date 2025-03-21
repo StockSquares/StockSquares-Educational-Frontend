@@ -1,8 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { EgyptFlag, globalEconomy, entryLevel, advancedLevel,saudi,professionalLevel, bitcoin, bitcoinicon } from "../../../assets";
-
+import {
+  EgyptFlag,
+  globalEconomy,
+  entryLevel,
+  advancedLevel,
+  saudi,
+  professionalLevel,
+  bitcoin,
+  bitcoinicon,
+} from "../../../assets";
+import style from "./PracticalTrainingSection.module.css";
 // Internal Imports (components, Assets, and Styles)
 import Style from "./PracticalTrainingSection.module.css";
 import { SectionCard, PracticalTrainingCard } from "../..";
@@ -21,52 +30,71 @@ function PracticalTrainingSection() {
       }
       p6={false}
     >
-      <div className="row">
+      <div className={`${style.slider} flex gap-4 `}>
         {/* Card 1 */}
-        <div className="w-full md:w-1/2 lg:w-1/4 md:border-e-2 md:border-primary">
+        <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
           <PracticalTrainingCard
             cardImg={entryLevel}
-            title={<> دورة البورصة المصرية - <span className="text-green-400 font-bold shadow-xl">مبتدئ</span></>}
-            hours="٨ ساعات "
+            title={
+              <>
+                دورة البورصة المصرية -{" "}
+                <span className="shadow-xl text-green-400 font-bold">مبتدئ</span>
+              </>
+            }
+            hours="٨ ساعات"
             price="٣٥٠٠"
             img={EgyptFlag}
-
           />
         </div>
 
         {/* Card 2 */}
-        <div className="w-full md:w-1/2 lg:w-1/4 hidden lg:block lg:border-e-2 lg:border-primary">
+        <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
           <PracticalTrainingCard
             cardImg={advancedLevel}
-            title={<> دورة البورصة السعوديه - <span className="text-amber-400 font-bold shadow-xl">متقدم</span></>}
-            hours="١٢ ساعه"
+            title={
+              <>
+                دورة البورصة السعودية -{" "}
+                <span className="shadow-xl text-amber-400 font-bold">متقدم</span>
+              </>
+            }
+            hours="١٢ ساعة"
             price="٥٥٠٠"
             img={saudi}
           />
         </div>
 
         {/* Card 3 */}
-
-        <div className="w-full md:w-1/2 lg:w-1/4 hidden md:block lg:border-e-2 lg:border-primary">
+        <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
           <PracticalTrainingCard
             cardImg={professionalLevel}
-            title={<> دورة البورصة العالميه - <span className="text-red-600 font-bold shadow-xl">محترف</span></>}
-            hours="١٦ ساعه"
+            title={
+              <>
+                دورة البورصة العالمية -{" "}
+                <span className="shadow-xl text-red-600 font-bold">محترف</span>
+              </>
+            }
+            hours="١٦ ساعة"
             price="٧٥٠٠"
             img={globalEconomy}
           />
         </div>
 
         {/* Card 4 */}
-        <div className="w-full md:w-1/2 lg:w-1/4 hidden lg:block">
+        <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
           <PracticalTrainingCard
             cardImg={entryLevel}
-            title={<> دورة العملات المشفرة - <span className="text-green-400 font-bold shadow-xl">مبتدئ</span></>}
-            hours="٨ ساعات  "
+            title={
+              <>
+                دورة العملات المشفرة -{" "}
+                <span className="shadow-xl text-green-400 font-bold">مبتدئ</span>
+              </>
+            }
+            hours="٨ ساعات"
             price="٣٥٠٠"
             img={bitcoinicon}
           />
         </div>
+    
       </div>
     </SectionCard>
   );
