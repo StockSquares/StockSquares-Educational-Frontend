@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import styles from "../TrainingAndEducation/TrainingAndEducation.module.css";
+
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../routes";
 
 function LevelExamQuestions() {
   const [index, setIndex] = useState(0);
@@ -474,7 +478,7 @@ function LevelExamQuestions() {
                 style={{ width: `${(x / 36) * 100}%` }}
               ></span>
             </div>
-            <p> {x + 1}/36 </p>
+            <p className="m-auto"> {x + 1}/36 </p>
             <p className="text-lg font-semibold text-center">
               {questions[index].title}
             </p>
@@ -544,6 +548,13 @@ function LevelExamQuestions() {
           >
             {getLevel(c)}
           </p>
+
+          <Link
+            to={ROUTES.RESERVATION}
+            className={`${styles.buttonTrial} font-semibold   rounded-lg shadow-lg `}
+          >
+            احجز مدربك الشخصي
+          </Link>
         </div>
       )}
     </div>

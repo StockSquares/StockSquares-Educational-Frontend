@@ -22,14 +22,14 @@ function Home() {
 
       <section className="grid grid-cols-1 gap-2 lg:grid-cols-2 mb-5 md:grid-cols-2"></section>
 
-      <section className="grid grid-cols-1 gap-4 md:grid-cols-2 ">
+      <section className="grid grid-cols-1 overflow-hidden mb-10  gap-3 md:grid-cols-2 ">
     
         {/* Practical Training Section */}
-        <section className="mb-10">
+        <section className=" ">
           <PracticalTrainingSection />
         </section>
           {/* Recorded Courses Section */}
-          <section className="mb-10">
+          <section className="">
           <RecordedCourseCard />
         </section>
       </section>

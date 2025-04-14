@@ -112,10 +112,11 @@ function ChatAi() {
           <div className="flex gap-7 justify-center">
 
           <div className="relative flex  flex-col gap-4 w-[300px] rounded-2xl shadow-inner bg-white/30 backdrop-blur-sm p-6 border border-gray-300">
-                <div className="absolute inset-0 rounded-2xl z-10 flex items-center justify-center">
+                <div className="absolute inset-0 rounded-2xl z-10 flex flex-col gap-3 items-center justify-center">
                   <p className="text-red-600 font-bold text-center text-lg">
                     أنت لست مشترك في هذه الباقه
                   </p>
+                  <button className="py-2 px-5 bg-primary-800 text-white rounded-lg hover:bg-primary-900"> اشترك الأن </button>
                 </div>
                 <div className=" blur-sm pointer-events-none">
                   <div className="flex flex-col gap-3 items-center text-center border-b border-gray-200 pb-4">

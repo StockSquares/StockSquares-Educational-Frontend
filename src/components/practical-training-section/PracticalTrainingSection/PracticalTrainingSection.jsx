@@ -40,7 +40,7 @@ function PracticalTrainingSection() {
     rtl: false,
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 1030,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -59,9 +59,9 @@ function PracticalTrainingSection() {
           {t("sections.PracticalTraining.btn")}
         </Link>
       }
-      p6={true}
+      p6={false}
     >
-      <div className={`h-[50vh] `}>
+      <div className={` px-2 py-14 lg:p-8`}>
         <Slider ref={sliderRef} {...settings} dir="rtl">
           {/* Card 1 */}
           <div className={`flex-none ${style.card} w-[100%] lg:w-[50%]`}>

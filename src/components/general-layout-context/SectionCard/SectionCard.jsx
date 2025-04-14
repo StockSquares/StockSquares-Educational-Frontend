@@ -17,7 +17,7 @@ function SectionCard({children, heading = '', wrapperClass = '', headingSpan = '
     }, []);
 
     return <>
-        <div className={`shadow ${wrapperClass}`}>
+        <div className={`shadow ${wrapperClass} bg-lightgray`}>
             <header className='flex-y-center justify-between bg-primary p-3 mb-0'>
                 <h2 className='text-white'>{heading}</h2>
                 {headingSpan && (
@@ -29,7 +29,7 @@ function SectionCard({children, heading = '', wrapperClass = '', headingSpan = '
                     <Button btnText={headingBtn} textColor='black' bgColor='white' bgHoverColor='accent' />
                 )}
             </header>
-            <div className={`bg-lightgray ${p6 ? 'p-6' : ''}`}>
+            <div className={`bg-lightgray  ${p6 ? 'p-6' : ''}`}>
                 {children}
             </div>
         </div>
