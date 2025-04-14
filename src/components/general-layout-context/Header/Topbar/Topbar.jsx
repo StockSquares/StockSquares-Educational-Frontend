@@ -11,6 +11,7 @@ import i18n from "../../../../utilities/i18n";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ThemeContext } from "../../../../Context/ThemeContext";
+import { ROUTES } from "../../../../routes";
 function LanguageToggleButton() {
     const { i18n } = useTranslation();
     const currentLang = i18n.language;
@@ -249,7 +250,7 @@ function Topbar({
             <LanguageToggleButton />
               <ThemeToggleButton />
               <Button
-                linkTo="/"
+                linkTo={ROUTES.CHATAI}
                 btnText={t("navbar.chatAI")}
                 btnClassName="rounded-full px-3 py-2 mx-3"
                 bgColor="primary"

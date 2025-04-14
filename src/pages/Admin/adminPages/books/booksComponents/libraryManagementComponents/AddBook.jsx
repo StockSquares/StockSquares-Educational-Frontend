@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import SunEditor from "suneditor-react";
+import "suneditor/dist/css/suneditor.min.css";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -19,6 +21,7 @@ const schema = yup.object().shape({
     .integer("يجب أن يكون عددًا صحيحًا")
     .required("الكمية مطلوبة"),
   BookCategory: yup.string().required("التصنيف مطلوب"),
+  BookSummary: yup.string().required("الملخص مطلوب"),
   BookType: yup.string().required("نوع الكتاب مطلوب"),
 });
 
@@ -26,6 +29,7 @@ const AddBook = () => {
   const {
     register,
     handleSubmit,
+    watch,
     reset,
     formState: { errors },
   } = useForm({
@@ -35,21 +39,22 @@ const AddBook = () => {
   const [allBooks, setAllBooks] = useState([]);
   const [outOfStock, setOutOfStock] = useState([]);
   const [editBook, setEditBook] = useState(null);
+  const[categories, setCategories]=useState([]);
 
   const DeleteBook = async (bookId) => {
     try {
-      let response = await fetch(`https://stocksquare.runasp.net/api/Book?Id=${bookId}`, {
-        method: "DELETE",
-        headers: {
+      let response = await fetch(
+        `https://stocksquare.runasp.net/api/Book?Id=${bookId}`,
+        {
+          method: "DELETE",
+          headers: {
             Accept: "text/plain",
           },
-      
-      });
+        }
+      );
       console.log(response);
-      
     } catch (e) {
-        console.log(e.message);
-        
+      console.log(e.message);
     }
   };
 
@@ -123,6 +128,13 @@ const AddBook = () => {
       .catch((e) => console.log(e.message));
   }, []);
 
+  useEffect(() => {
+    fetch("https://stocksquare.runasp.net/api/Category/GetByType?type=string")
+      .then((response) => response.json())
+      .then((data) => setCategories(data))
+      .catch((error) => console.error("❌ حدث خطأ أثناء جلب البيانات:", error));
+  }, []);
+
   return (
     <div className="bg-white rounded-lg p-6 mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
       <form
@@ -154,13 +166,17 @@ const AddBook = () => {
         </div>
 
         {/* التصنيف ونوع الكتاب */}
-        <div className="flex gap-4 mt-4">
+        <div className="flex gap-4 mt-4 items-end">
           <div className="w-1/2">
-            <label className="block mb-2">التصنيف:</label>
-            <input
-              {...register("BookCategory")}
-              className="w-full p-2 border rounded"
-            />
+            <select {...register("BookCategory")}>
+              <option value="">اختر التصنيف</option>
+              <option value="mn">n m</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
             <p className="text-red-500">{errors.BookCategory?.message}</p>
           </div>
           <div className="w-1/2">
@@ -200,6 +216,18 @@ const AddBook = () => {
           ></textarea>
           <p className="text-red-500">{errors.BookDescription?.message}</p>
         </div>
+
+        <SunEditor
+          setContents={watch("BookSummary")}
+          onChange={(content) => setValue("BookSummary", content)}
+          setOptions={{
+            buttonList: [
+              ["bold", "italic", "underline", "strike"],
+              ["font", "fontColor", "hiliteColor", "fontSize"],
+              ["align", "list", "table"],
+            ],
+          }}
+        />
 
         {/* زر الإرسال */}
         <button

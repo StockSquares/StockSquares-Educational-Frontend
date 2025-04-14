@@ -19,6 +19,7 @@ import { ROUTES } from "../../../routes";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Clients from './../../../pages/Admin/adminPages/Clients/Clients';
 
 function PracticalTrainingSection() {
   const { t } = useTranslation();
@@ -53,13 +54,14 @@ function PracticalTrainingSection() {
     <SectionCard
       heading={t("sections.PracticalTraining.title")}
       headingBtn={
-        <Link to={ROUTES.JOIN_AS_TRAINER}>
+        <Link to={ROUTES.JOIN_AS_TRAINER} >
+        
           {t("sections.PracticalTraining.btn")}
         </Link>
       }
       p6={true}
     >
-      <div className= {`h-[50vh] `} >
+      <div className={`h-[50vh] `}>
         <Slider ref={sliderRef} {...settings} dir="rtl">
           {/* Card 1 */}
           <div className={`flex-none ${style.card} w-[100%] lg:w-[50%]`}>
@@ -67,14 +69,14 @@ function PracticalTrainingSection() {
               cardImg={entryLevel}
               title={
                 <>
-                  دورة البورصة المصرية -{" "}
+                  {t("practicalTraining.egyptianStock")}-{" "}
                   <span className="shadow-xl text-green-400 font-bold">
-                    مبتدئ
+                    {t("practicalTraining.beginner")}
                   </span>
                 </>
               }
-              hours="٨ ساعات"
-              price="٣٥٠٠"
+              hours={t("practicalTraining.hours")}
+              price={t("practicalTraining.juniorPrice")}
               img={EgyptFlag}
             />
           </div>
@@ -85,14 +87,14 @@ function PracticalTrainingSection() {
               cardImg={advancedLevel}
               title={
                 <>
-                  دورة البورصة السعودية -{" "}
+                  {t("practicalTraining.saudiStock")}-{" "}
                   <span className="shadow-xl text-amber-400 font-bold">
-                    متقدم
+                    {t("practicalTraining.advanced")}
                   </span>
                 </>
               }
-              hours="١٢ ساعة"
-              price="٥٥٠٠"
+              hours={t("practicalTraining.advancedHours")}
+              price={t("practicalTraining.advancedPrice")}
               img={saudi}
             />
           </div>
@@ -103,14 +105,14 @@ function PracticalTrainingSection() {
               cardImg={professionalLevel}
               title={
                 <>
-                  دورة البورصة العالمية -{" "}
+                  {t("practicalTraining.globalStock")} -{" "}
                   <span className="shadow-xl text-red-600 font-bold">
-                    محترف
+                    {t("practicalTraining.proLevel")}
                   </span>
                 </>
               }
-              hours="١٦ ساعة"
-              price="٧٥٠٠"
+              hours={t("practicalTraining.proHours")}
+              price={t("practicalTraining.proPrice")}
               img={globalEconomy}
             />
           </div>
@@ -121,14 +123,14 @@ function PracticalTrainingSection() {
               cardImg={entryLevel}
               title={
                 <>
-                  دورة العملات المشفرة -{" "}
+                  {t("practicalTraining.bitCoinStock")}-{" "}
                   <span className="shadow-xl text-green-400 font-bold">
-                    مبتدئ
+                    {t("practicalTraining.beginner")}
                   </span>
                 </>
               }
-              hours="٨ ساعات"
-              price="٣٥٠٠"
+              hours={t("practicalTraining.hours")}
+              price={t("practicalTraining.juniorPrice")}
               img={bitcoinicon}
             />
           </div>

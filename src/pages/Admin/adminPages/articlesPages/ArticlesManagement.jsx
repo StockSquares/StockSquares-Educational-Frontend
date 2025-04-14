@@ -54,6 +54,7 @@ function ArticlesManagement() {
           body: formData,
         }
       );
+      console.log(response.json());
 
       if (!response.ok) throw new Error("فشل في إرسال المقال");
 
@@ -81,6 +82,46 @@ function ArticlesManagement() {
       .catch((error) => console.error("❌ حدث خطأ أثناء جلب البيانات:", error));
   }, []);
 
+  // // دالة لتحميل صورة عبر API واسترجاع الرابط
+  // const uploadImageToAPI = async (file) => {
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+
+  //   try {
+  //     const response = await fetch(
+  //       "https://lawmaster.runasp.net/api/CourtSession/UploadCourtSessionAttachments?courtSessionId=5",
+  //       {
+  //         method: "POST",
+  //         body: formData,
+  //       }
+  //     );
+  //     if (!response.ok) throw new Error("فشل رفع الصورة");
+
+  //     const data = await response.json();
+  //     return data.url; // استرجاع رابط الصورة من API
+  //   } catch (error) {
+  //     toast.error("فشل رفع الصورة");
+  //     console.error("❌ خطأ في رفع الصورة:", error);
+  //     return null;
+  //   }
+  // };
+
+  // دالة لرفع الصورة داخل SunEditor واستخدام URL مخصص بدل Base64
+  const handleImageUpload = async (files) => {
+    const file = files[0];
+    if (!file) return;
+
+    // هنا يتم استبدال الـ Base64 بالـ URL المخصص
+    const imageUrl =
+      "https://lawmaster.runasp.net/Attachments/wp5485218-4k-laptop-wallpapers.jpg"; // ضع هنا الرابط المخصص للصورة
+    if (imageUrl) {
+      const updatedBody =
+        article.Body + `<img src="${imageUrl}" alt="Uploaded Image" />`;
+      setArticle((prev) => ({ ...prev, Body: updatedBody }));
+      toast.success("تم رفع الصورة بنجاح");
+    }
+  };
+
   return (
     <div className="flex flex-col gap-3 mt-4">
       <div className="flex gap-3">
@@ -99,6 +140,7 @@ function ArticlesManagement() {
           }
         >
           <option value="">اختر التصنيف</option>
+          <option value="mn">n m</option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
               {category.name}
@@ -127,7 +169,7 @@ function ArticlesManagement() {
               className="hidden"
               id="mainArticleImage"
               onChange={(e) => handleFileChange(e, "MainImageFile")}
-            />{" "}
+            />
             {article.MainImageFile && (
               <div className="flex items-center gap-2 ">
                 <span className="text-green-600">
@@ -154,7 +196,7 @@ function ArticlesManagement() {
               className="hidden"
               id="WriterImage"
               onChange={(e) => handleFileChange(e, "WriterImage")}
-            />{" "}
+            />
             {article.WriterImage && (
               <div className="flex items-center gap-2">
                 <span className="text-green-600">
@@ -181,6 +223,7 @@ function ArticlesManagement() {
                 ["align", "list", "table"],
                 ["link", "image"],
               ],
+              imageUploadHandler: handleImageUpload, // ربط دالة رفع الصورة
             }}
           />
           <div className="flex gap-5">

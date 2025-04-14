@@ -28,7 +28,7 @@ function CoursesManagement() {
   const [courseContent, setCourseContent] = useState({
     FileName: "",
     Pdfs: "",
-    CourseId: newCourse.id,
+    CourseId: "",
   });
 
   const [isShow, setIsShow] = useState(false);
@@ -44,13 +44,13 @@ function CoursesManagement() {
       formData.append("Image", newCourse.Image);
       formData.append("Description", newCourse.Description);
       formData.append("CategoryId", newCourse.CategoryId);
-      if (newCourse.id) {
-        formData.append("Id", newCourse.id);
-      }
+
+     
 
       try {
         setIsLoading(true);
         if (newCourse.id) {
+          localStorage.setItem('courseID', newCourse.id);
           let response = await fetch(
             "https://stocksquare.runasp.net/api/Course/UpdateCourse",
             {
@@ -72,6 +72,10 @@ function CoursesManagement() {
 
           let data = await response.json();
           console.log(data);
+          if (data && data.id) {
+            localStorage.setItem("courseID", data.id);
+            setCourseContent((prev) => ({ ...prev, CourseId: data.id })); // تحديث الحالة
+          }
 
           setShowModal(false);
         }
@@ -135,15 +139,12 @@ function CoursesManagement() {
       .catch((error) => alert("wrong data", error));
   }, []);
 
-  useEffect(() => {
-    if (newCourse.id) {
-      setCourseContent((prev) => ({ ...prev, CourseId: newCourse.id }));
-    }
-  }, [newCourse]);
+
   
 
   
   const handleCourseContent = async () => {
+
     console.log(courseContent);
     
     if (courseContent.FileName && courseContent.Pdfs) {
@@ -163,7 +164,6 @@ function CoursesManagement() {
         );
         if (response.ok) {
           console.log("finished");
-          setCourseContent({ FileName: "", Pdfs: "", CourseId: newCourse.id });
         }
       } catch (e) {
         console.log(e.message);
@@ -178,16 +178,13 @@ function CoursesManagement() {
   console.log(allCourses);
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold text-center mb-4">
-        📋 إدارة الكورسات والمدربين
-      </h2>
 
       <div className="flex justify-center gap-2 mb-3">
         <button
           onClick={() => setIsShow(false)}
-          className={style.performanceBtn}
+          className={`${style.performanceBtn}`}
         >
-          إضافة/إخفاء/تعديل الكورسات والمدربين
+          إضافة الكورسات 
         </button>
         <button
           onClick={() => setIsShow(true)}
@@ -199,17 +196,17 @@ function CoursesManagement() {
 
       {!isShow ? (
         <>
-          <div className="flex justify-start gap-4 mb-5 mt-5">
+          <div className="flex justify-start gap-4 mb-5 mt-7">
             <button
               onClick={() => setShowModal(true)}
-              className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
+              className="bg-green-500 text-white px-2 py-2 rounded-lg hover:bg-green-700 transition"
             >
               ➕ إضافة بيانات الكورس
             </button>
 
             <button
               onClick={() => setShowCourseContent(true)}
-              className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
+              className="bg-green-500 text-white px-2 py-2 rounded-lg hover:bg-green-700 transition"
             >
               ➕ إضافة محتوي الكورس
             </button>
@@ -312,6 +309,7 @@ function CoursesManagement() {
                     className="h-[42px] rounded-lg"
                   >
                     <option> اختر التصنيف </option>
+                    <option> mn </option>
                     {categories.map((category) => (
                       <option key={category.id} value={category.id}>
                         {category.name}

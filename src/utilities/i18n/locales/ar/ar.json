@@ -196,5 +196,26 @@
         "tryForFree": "جرّب مجانًا",
         "subscribe": "اشترك الآن",
         "readMore": "اقرأ المزيد"
-    }
+    },
+    
+        "practicalTraining":{
+            "egyptianStock":"دورة البورصه المصريه",
+            "hours":"٨ ساعات",
+            "beginner":"مبتدئ",
+            "juniorPrice":"٣٥٠٠",
+            "pound":"جنيه",
+            "saudiStock":"دورة البورصه السعوديه",
+            "advanced":"متقدم",
+            "advancedHours":"١٢ ساعة",
+            "advancedPrice":"٥٥٠٠",
+            "globalStock":"دورة البورصه العالميه",
+            "proLevel":"محترف",
+            "proHours":"١٦ ساعة",
+            "proPrice":"٧٥٠٠",
+            "bitCoinStock":"دورة العملات المشفرة"
+            
+
+
+        }
+    
 }

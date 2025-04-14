@@ -18,6 +18,7 @@ import ClientsComponent from "./adminPages/Clients/Clients";
 import PartnersComponent from "./adminPages/partners/Partners";
 import BooksComponent from "./adminPages/books/Books";
 import ArticlesComponent from "./adminPages/articlesPages/Articles";
+import Activities from "./adminPages/activities/Activities";
 
 function Admin1() {
   const [isopened, setisopened] = useState(true);
@@ -77,6 +78,12 @@ function Admin1() {
       icon: faBook,
       label: "الكتب",
       component: <BooksComponent />,
+    },
+    {
+      id: "activities",
+      icon: faBook,
+      label: "الأنشطه",
+      component: <Activities />,
     },
   ];
 

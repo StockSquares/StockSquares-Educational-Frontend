@@ -50,7 +50,7 @@ function PracticalTrainingCard({
             <div className="flex-y-center">
             <span>
                 {price}
-                &nbsp; جنيه
+                &nbsp; {t("practicalTraining.pound")}
               </span>
               <FontAwesomeIcon icon={faSackDollar} className="p-1.5 me-1" />
              

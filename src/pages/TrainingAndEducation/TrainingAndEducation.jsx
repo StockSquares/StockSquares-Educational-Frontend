@@ -109,22 +109,30 @@ function TrainingAndEducation() {
               </li>
 
               <li>
-                <div className=" relative p-4">
+                <div className=" relative py-4">
                   <div>
                     <FontAwesomeIcon icon={faCheck} className={styles.icon} />
                     تدريب تفاعلي متابعة دورية مستمرة في التداول
                   </div>
-                  <div className=" space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
+                  <div className=" space-y-4 w-full  flex gap-3   sm:space-y-0 sm:space-x-4 mt-10">
                     <Link
                       to={ROUTES.RESERVATION}
-                      className={`${styles.buttonTrial} font-semibold px-6 py-3 mx-2 rounded-lg shadow-lg m-2`}
+                      className={`${styles.buttonTrial} font-semibold   rounded-lg shadow-lg `}
                     >
                       احجز مدربك الشخصي
                     </Link>
+                    <Link
+                    to={ROUTES.LEVELEXAM}
+                      
+                      className={`${styles.buttonTrial} font-semibold  bg-green-500 text-white  rounded-lg shadow-lg hover:bg-green-400 `}
+                    >
+                      اختبار تحديد المستوي  
+                    </Link>
+
                   </div>
                   <img
                     src="/src/assets/imgs/Arrow.png"
-                    className="absolute w-[210px] left-[-7%] top-0 rotate-[-5deg]"
+                    className="absolute w-[210px] left-[-42%] top-0 rotate-[-5deg]"
                   />
                 </div>
               </li>
