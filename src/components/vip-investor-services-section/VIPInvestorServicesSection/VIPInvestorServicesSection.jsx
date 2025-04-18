@@ -11,7 +11,7 @@ function VipInvestorServicesSection() {
   const { t } = useTranslation();
 
   // Dynamic investment amount (retrieved from API or admin settings)
-  const minInvestment = "50.000";
+  const minInvestment = "100.000";
 
   return (
       <SectionCard heading={t("sections.vipServices.title")} >

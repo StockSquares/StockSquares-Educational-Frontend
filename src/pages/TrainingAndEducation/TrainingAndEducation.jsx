@@ -121,18 +121,19 @@ function TrainingAndEducation() {
                   </div>
 
                   <div className=" space-y-4 w-full  flex gap-3   sm:space-y-0 sm:space-x-4 mt-10">
+                  <Link
+                      to={ROUTES.LEVELEXAM}
+                      className={`${styles.buttonTrial} font-semibold  bg-green-500 text-white  rounded-lg shadow-lg hover:bg-green-400 `}
+                    >
+                      اختبار تحديد المستوي
+                    </Link>
                     <Link
                       to={ROUTES.RESERVATION}
                       className={`${styles.buttonTrial} font-semibold   rounded-lg shadow-lg `}
                     >
                       احجز مدربك الشخصي
                     </Link>
-                    <Link
-                      to={ROUTES.LEVELEXAM}
-                      className={`${styles.buttonTrial} font-semibold  bg-green-500 text-white  rounded-lg shadow-lg hover:bg-green-400 `}
-                    >
-                      اختبار تحديد المستوي
-                    </Link>
+                   
                   </div>
                   <img
                     src="/src/assets/imgs/Arrow.png"

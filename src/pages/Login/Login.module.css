@@ -6,7 +6,7 @@
 
 .contain2 {
     width: 640px;
-    margin: 80px auto;
+    margin: 20px auto;
     background-color: white;
     color: #262626;
     display: flex;
@@ -16,7 +16,7 @@
     text-align: right;
 }
 .contain2 h1{
-    font-size: 25px;
+    font-size: 24px;
     font-weight: bold;
     color: #1b602d;
 }
@@ -35,8 +35,8 @@
 }
 
 .logo {
-    width: 100vh;
-    height: 110px;
+    width: 70% !important;
+    height: 60% !important;
     display: block;
     margin: 0 auto 20px;
 }
@@ -48,7 +48,7 @@
 }
 
 .contain3 input{
-    height: 60px;
+    height: 45px;
     border: 2px solid #25863f;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -57,6 +57,7 @@
     text-align: start;
     box-sizing: border-box;
     font-weight: 500; 
+    padding: 5px;
 }
 
 .contain3 label{
@@ -157,10 +158,10 @@
 .bu1{
     margin: 20px 150px ;
     width: 220px;
-    height: 65px;
+    height: 50px;
     background-color: #25863f;
     color: #fff;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 500;
     border-radius: 8px;
     cursor: pointer;

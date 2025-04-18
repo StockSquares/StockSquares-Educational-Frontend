@@ -80,9 +80,63 @@ function PracticalTrainingSection() {
               img={EgyptFlag}
             />
           </div>
+           {/* Card 2 */}
+           <div className={`flex-none ${style.card} w-[100%] lg:w-[50%]`}>
+            <PracticalTrainingCard
+              cardImg={entryLevel}
+              title={
+                <>
+                  {t("practicalTraining.egyptianStock")}-{" "}
+                  <span className="shadow-xl text-amber-400 font-bold">
+                    {t("practicalTraining.advanced")}
+                  </span>
+                </>
+              }
+              hours={t("practicalTraining.advancedHours")}
+              price={t("practicalTraining.advancedPrice")}
+              img={EgyptFlag}
+            />
+          </div>
+           {/* Card 3 */}
+           <div className={`flex-none ${style.card} w-[100%] lg:w-[50%]`}>
+            <PracticalTrainingCard
+              cardImg={entryLevel}
+              title={
+                <>
+                  {t("practicalTraining.egyptianStock")}-{" "}
+                  <span className="shadow-xl text-red-600 font-bold">
+                    {t("practicalTraining.proLevel")}
+                  </span>
+                </>
+              }
+              hours={t("practicalTraining.proHours")}
+              price={t("practicalTraining.proPrice")}
+              img={EgyptFlag}
+            />
+          </div>
 
-          {/* Card 2 */}
+          {/* ------------------- saudia ---------------------------- */}
+
+          {/* Card 1 */}
+       
           <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
+            <PracticalTrainingCard
+              cardImg={advancedLevel}
+              title={
+                <>
+                  {t("practicalTraining.saudiStock")}-{" "}
+                  <span className="shadow-xl text-green-400 font-bold">
+                    {t("practicalTraining.beginner")}
+                  </span>
+                </>
+              }
+              hours={t("practicalTraining.hours")}
+              price={t("practicalTraining.juniorPrice")}
+              img={saudi}
+            />
+          </div>
+           {/* Card 2 */}
+           <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
             <PracticalTrainingCard
               cardImg={advancedLevel}
               title={
@@ -98,8 +152,62 @@ function PracticalTrainingSection() {
               img={saudi}
             />
           </div>
+        
+           {/* Card 3 */}
+           <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
+            <PracticalTrainingCard
+              cardImg={advancedLevel}
+              title={
+                <>
+                  {t("practicalTraining.saudiStock")}-{" "}
+                  <span className="shadow-xl text-red-600 font-bold">
+                    {t("practicalTraining.proLevel")}
+                  </span>
+                </>
+              }
+              hours={t("practicalTraining.proHours")}
+              price={t("practicalTraining.proPrice")}
+              img={saudi}
+            />
+          </div>
+          {/* --------------- global ---------- */}
 
-          {/* Card 3 */}
+          {/* Card 1 */}
+          <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
+            <PracticalTrainingCard
+              cardImg={professionalLevel}
+              title={
+                <>
+                  {t("practicalTraining.globalStock")} -{" "}
+                  <span className="shadow-xl text-green-400 font-bold">
+                    {t("practicalTraining.beginner")}
+                  </span>
+                </>
+              }
+              hours={t("practicalTraining.hours")}
+              price={t("practicalTraining.juniorPrice")}
+              img={globalEconomy}
+            />
+          </div>
+          {/* card 2 */}
+          <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
+            <PracticalTrainingCard
+              cardImg={professionalLevel}
+              title={
+                <>
+                  {t("practicalTraining.globalStock")} -{" "}
+                  <span className="shadow-xl text-amber-400 font-bold">
+                    {t("practicalTraining.advanced")}
+                  </span>
+                </>
+              }
+              hours={t("practicalTraining.advancedHours")}
+              price={t("practicalTraining.advancedPrice")}
+              img={globalEconomy}
+            />
+          </div>
+          {/* card 3 */}
+
           <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
             <PracticalTrainingCard
               cardImg={professionalLevel}
@@ -116,8 +224,9 @@ function PracticalTrainingSection() {
               img={globalEconomy}
             />
           </div>
+          {/* --------------- bitcoin --------------------- */}
 
-          {/* Card 4 */}
+          {/* Card 1 */}
           <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
             <PracticalTrainingCard
               cardImg={entryLevel}
@@ -131,6 +240,38 @@ function PracticalTrainingSection() {
               }
               hours={t("practicalTraining.hours")}
               price={t("practicalTraining.juniorPrice")}
+              img={bitcoinicon}
+            />
+          </div>
+          <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
+            <PracticalTrainingCard
+              cardImg={entryLevel}
+              title={
+                <>
+                  {t("practicalTraining.bitCoinStock")}-{" "}
+                  <span className="shadow-xl text-amber-400 font-bold">
+                    {t("practicalTraining.advanced")}
+                  </span>
+                </>
+              }
+              hours={t("practicalTraining.advancedHours")}
+              price={t("practicalTraining.advancedPrice")}
+              img={bitcoinicon}
+            />
+          </div>
+          <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
+            <PracticalTrainingCard
+              cardImg={entryLevel}
+              title={
+                <>
+                  {t("practicalTraining.bitCoinStock")}-{" "}
+                  <span className="shadow-xl text-red-600 font-bold">
+                    {t("practicalTraining.proLevel")}
+                  </span>
+                </>
+              }
+              hours={t("practicalTraining.proHours")}
+              price={t("practicalTraining.proPrice")}
               img={bitcoinicon}
             />
           </div>

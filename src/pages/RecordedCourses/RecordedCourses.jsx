@@ -26,8 +26,8 @@ function RecordedCourses() {
 
   return (
     <div className="">
-      <div className="bg-lightgray h-[30vh] flex-center">
-        <form className="w-full md:w-2/3 lg:w-1/2">
+      {/* <div className="bg-lightgray h-[30vh] flex-center">
+        {/* <form className="w-full md:w-2/3 lg:w-1/2">
           <div className="flex flex-col md:flex-row justify-between gap-2">
             <TextInput
               id="emailToSubscibe"
@@ -38,8 +38,8 @@ function RecordedCourses() {
             />
             <Button btnText="Search" bgColor="primary" px="px-8" />
           </div>
-        </form>
-      </div>
+        </form> 
+      </div> */}
  
       <section className='mb-10'>
          <RecordedCoursesSection />

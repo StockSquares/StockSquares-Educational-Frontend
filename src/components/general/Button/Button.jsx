@@ -19,8 +19,8 @@ function Button({
     bgHoverDarkColor = bgColor, 
     ringFocusColor = bgColor, 
     ringFocusDarkColor = bgColor, 
-    px = 'px-4', 
-    py = 'py-1.5', 
+    px = 'px-3', 
+    py = 'py-0.5', 
     me = '', 
     btnType = 'button' 
 }) {

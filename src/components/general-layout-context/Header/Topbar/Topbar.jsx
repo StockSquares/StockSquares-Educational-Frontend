@@ -24,7 +24,7 @@ function LanguageToggleButton() {
     return (
       <button
         onClick={toggleLanguage}
-        className="flex items-center justify-center px-3 mx-2 py-2 rounded-full border-2 border-primary-800 bg-primary-800 text-white hover:bg-primary-700 transition-all duration-300"
+        className="flex items-center justify-center px-1 mx-2 py-1 rounded-full border-2 border-primary-800 bg-primary-800 text-white hover:bg-primary-700 transition-all duration-300"
         aria-label="Toggle Language"
       >
         {currentLang === "en" ? "AR" : "EN"}
