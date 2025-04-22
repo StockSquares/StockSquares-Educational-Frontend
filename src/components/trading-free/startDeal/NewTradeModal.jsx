@@ -1,4 +1,4 @@
-import {useState } from 'react';
+import { useState } from 'react';
 import Style from '../../../pages/TryTradingForFree/TryTradingForFree.module.css';
 import logo from '../../../assets/imgs/logo-SS.svg';
 import styled from 'styled-components';
@@ -6,115 +6,120 @@ import styled from 'styled-components';
 export const NewTradeModal = ({ isModalOpen, setIsModalOpen }) => {
   const [tradeType, setTradeType] = useState('buy');
   const [profitTarget, setProfitTarget] = useState(1.502);
-  if (!isModalOpen) return null; 
+
+  if (!isModalOpen) return null;
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center mt-20 bg-black bg-opacity-50 backdrop-blur-md z-50">
-    <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-xl max-w-md text-center">
-      <img src={logo} alt="logo"/>
-      <h2 className="font-bold text-xl mt-2">بدء صفقة جديدة</h2>
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md z-50">
+      <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-xl w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-4 overflow-y-auto">
+        <img src={logo} alt="logo" className="w-full h-20 object-contain" />
+        <h2 className="font-bold text-lg mt-2 text-center">بدء صفقة جديدة</h2>
 
-      <select name="typeofmoney" id="typeofmoney" className='w-full mt-2 rounded-xl dark:text-black' >
-        <option value="op1">الدولار</option>
-        <option value="op2">الذهب</option>
-        <option value="op3">الفضة</option>
-        <option value="op4">البترول</option>
-      </select>
+        <select className="w-full mt-4 rounded-xl dark:text-black p-2">
+          <option value="op1">الدولار</option>
+          <option value="op2">الذهب</option>
+          <option value="op3">الفضة</option>
+          <option value="op4">البترول</option>
+        </select>
 
-      <div className='font-bold text-xl mt-6 flex items-center justify-between'>
-        <p className='mt-5'>نوع الصفقة</p>
-        <div className="flex justify-center gap-6 mt-6">
-          <label className="cursor-pointer">
-          <input
-              type="radio"
-              name="tradeType"
-              value="sell"
-              className="hidden"
-              checked={tradeType === 'sell'}
-              onChange={() => setTradeType('sell')}
-            />
-            <span className={`px-5 py-2 rounded-full text-white font-bold transition ${
-              tradeType === 'sell' ? 'bg-red-600' : 'bg-gray-400 hover:bg-gray-500'
-            }`}>
-               بيع
-            </span>
-          </label>
-
-          <label className="cursor-pointer">
-          <input
-              type="radio"
-              name="tradeType"
-              value="buy"
-              className="hidden"
-              checked={tradeType === 'buy'}
-              onChange={() => setTradeType('buy')}
-            />
-            <span className={`px-5 py-2 rounded-full text-white font-bold transition ${
-              tradeType === 'buy' ? 'bg-green-600' : 'bg-gray-400 hover:bg-gray-500'
-            }`}>
-              شراء
-            </span>
-          </label>
+        <div className="mt-6">
+          <p className="font-bold text-lg">نوع الصفقة</p>
+          <div className="flex justify-center gap-4 mt-3 flex-wrap">
+            {['sell', 'buy'].map((type) => (
+              <label key={type} className="cursor-pointer">
+                <input
+                  type="radio"
+                  name="tradeType"
+                  value={type}
+                  className="hidden"
+                  checked={tradeType === type}
+                  onChange={() => setTradeType(type)}
+                />
+                <span
+                  className={`px-5 py-2 rounded-full text-white font-bold text-base transition-all duration-300 ${
+                    tradeType === type
+                      ? type === 'buy'
+                        ? 'bg-green-600'
+                        : 'bg-red-600'
+                      : 'bg-gray-400 hover:bg-gray-500'
+                  }`}
+                >
+                  {type === 'buy' ? 'شراء' : 'بيع'}
+                </span>
+              </label>
+            ))}
+          </div>
         </div>
-      </div>
-      <h2 className="font-bold text-xl mt-10">وقت الصفقة</h2>
-      <select name="typeofmoney" id="typeofmoney" className='w-full mt-2 rounded-xl dark:text-black' >
-        <option value="op1">تنفيذ لحظي </option>
-        <option value="op2">شراء معلق </option>
-        <option value="op3">بيع معلق </option>
-      </select>
-      <div className='flex mt-2'>
-      <h2 className="font-bold text-lg mt-4 ml-2">حجم الصفقة</h2>
-      <input type="number" value={profitTarget} onChange={e => setProfitTarget(e.target.value)}
-        className="w-24 p-2 mt-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white"/>
-     <button className='mr-auto ml-5 font-bold bg-slate-200 rounded-xl h-10 w-10 mt-2 dark:text-black'>0.10</button>
-     <button className='font-bold bg-slate-200 rounded-xl h-10 w-10 mt-2 dark:text-black'>1.00</button>
-     </div>
-     <div className='flex items-center mt-2'>
-      <h2 className="font-bold text-lg  ml-2">جني الأرباح</h2>
-      <input type="number" value={profitTarget} onChange={e => setProfitTarget(e.target.value)}
-      className="w-24 p-2 mr-5 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white"/>
-      <button className='mr-auto ml-5 font-bold bg-slate-200 rounded-xl h-10 w-10 mt-2 dark:text-black'>0.10</button>
-      <button className='font-bold bg-slate-200 rounded-xl h-10 w-10 mt-2 dark:text-black'>1.00</button>
-     </div>
-     <div className='flex items-center mt-3 mb-5 justify-between'>
-    <StyledWrapper2>
-      <div className="switch2">
-        <input defaultChecked name="check" id="switchBox2" defaultValue type="checkbox" />
-        <label className="slider2" htmlFor="switchBox2" />
-      </div>
-   </StyledWrapper2>
-   <p>الربح المتوقع : ...</p>
-    </div>
 
-     <div className='flex items-center mt-2 '>
-      <h2 className="font-bold text-lg  ml-2">وقف الخسارة</h2>
-      <input type="number" value={profitTarget} onChange={e => setProfitTarget(e.target.value)}
-        className="w-24 p-2  rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white"/>
-      <button className='mr-auto ml-5 font-bold bg-slate-200 rounded-xl h-10 w-10 mt-2 dark:text-black'>0.10</button>
-      <button className='font-bold bg-slate-200 rounded-xl h-10 w-10 mt-2 dark:text-black'>1.00</button>
-    </div>
-    <div className='flex items-center mt-3 mb-5 justify-between'>
-    <StyledWrapper>
-      <div className="switch">
-        <input defaultChecked name="check" id="switchBox" defaultValue type="checkbox" />
-        <label className="slider" htmlFor="switchBox" />
-      </div>
-   </StyledWrapper>
-    <p>الخسارة المتوقعة : ...</p>
-    </div>
-      <div className={Style.endl}>
-       <hr />
-      <p>الهامش المطلوب : </p>
-      <p>الهامش الحر : </p>
-      </div>
+        <div className="mt-6">
+          <h2 className="font-bold text-lg">وقت الصفقة</h2>
+          <select className="w-full mt-2 rounded-xl dark:text-black p-2">
+            <option value="op1">تنفيذ لحظي</option>
+            <option value="op2">شراء معلق</option>
+            <option value="op3">بيع معلق</option>
+          </select>
+        </div>
 
-
-      <div className="mt-4 flex justify-center gap-4">
-        <button onClick={() => setIsModalOpen(false)} className="px-4 py-2 bg-red-600 text-white rounded-lg">إلغاء</button>
-        <button className="px-4 py-2 bg-green-600 text-white rounded-lg">شراء</button>
+        {['حجم الصفقة', 'جني الأرباح', 'وقف الخسارة'].map((label, index) => (
+  <div className="flex flex-col sm:flex-row sm:items-center mt-4 gap-2" key={index}>
+    <h2 className="font-bold text-lg">{label}</h2>
+    <div className="flex items-center gap-2 flex-wrap">
+      <input
+        type="number"
+        value={profitTarget}
+        onChange={(e) => setProfitTarget(e.target.value)}
+        className="w-full sm:w-20 p-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+      />
+      <div className="flex gap-2">
+        <button className="font-bold bg-slate-200 rounded-xl h-10 w-14 dark:text-black">0.10</button>
+        <button className="font-bold bg-slate-200 rounded-xl h-10 w-14 dark:text-black">1.00</button>
       </div>
+      {label === 'جني الأرباح' && (
+        <StyledWrapper2>
+          <div className="switch2">
+            <input defaultChecked name="check" id="switchBox2" type="checkbox" />
+            <label className="slider2" htmlFor="switchBox2" />
+          </div>
+        </StyledWrapper2>
+      )}
+      {label === 'وقف الخسارة' && (
+        <StyledWrapper>
+          <div className="switch">
+            <input defaultChecked name="check" id="switchBox" type="checkbox" />
+            <label className="slider" htmlFor="switchBox" />
+          </div>
+        </StyledWrapper>
+      )}
     </div>
   </div>
+))}
+
+
+        <div className="flex items-center mt-4 justify-between flex-wrap gap-4 ">
+          <p className="font-bold text-right">الربح المتوقع : ...</p>
+        </div>
+
+        <div className="flex items-center mt-4 justify-between flex-wrap gap-4">  
+          <p className="font-bold text-right">الخسارة المتوقعة : ...</p>
+        </div>
+
+        <div className={`${Style.endl} mt-6 text-center`}>
+          <hr className="my-2" />
+          <p className="font-bold">الهامش المطلوب :</p>
+          <p className="font-bold">الهامش الحر :</p>
+        </div>
+
+        <div className="mt-6 flex justify-center gap-4 flex-wrap">
+          <button
+            onClick={() => setIsModalOpen(false)}
+            className="px-4 py-2 bg-red-600 text-white rounded-lg w-32"
+          >
+            إلغاء
+          </button>
+          <button className="px-4 py-2 bg-green-600 text-white rounded-lg w-32">شراء</button>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -244,6 +249,7 @@ const StyledWrapper = styled.div`
       0px var(--shadow-sz) var(--shadow-sz) rgba(255, 255, 255, 0.2),
       0 2px 5px rgba(0, 0, 0, 0.25);
   }
+
   .switch2::before,
   .switch2::after {
     --sh-i: calc(var(--w-switch) * (0.8 / 100));
@@ -325,4 +331,3 @@ const StyledWrapper = styled.div`
   .switch2 input[type="checkbox"]:checked + .slider2::after {
     background: var(--clr-on);
   }`;
-

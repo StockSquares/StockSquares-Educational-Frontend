@@ -15,7 +15,7 @@ function VipInvestorServicesSection() {
 
   return (
       <SectionCard heading={t("sections.vipServices.title")}>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center dark:text-black">
           <div className="flex flex-col gap-8">
             <p className="text-2xl font-semibold  leading-[1.5]">
               {t("sections.vipServices.content_1")}
@@ -37,7 +37,7 @@ function VipInvestorServicesSection() {
               </div>
             </div>
           </div>
-          <div className="imgContainer w-[40%] hidden sm:hidden md:flex lg:flex">
+          <div className="imgContainer w-[40%]   md:flex lg:flex">
             <img
               src="/src/assets/imgs/Course app-bro.png"
               className="w-full h-full object-cover"

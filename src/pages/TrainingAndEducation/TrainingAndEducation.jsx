@@ -77,20 +77,20 @@ function TrainingAndEducation() {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row items-center px-4 md:px-8 py-8 md:py-10">
-        <div className="w-full lg:w-2/3 flex flex-col items-start space-y-6 lg:pr-6">
-          <p className="text-2xl lg:text-3xl font-bold text-center lg:text-left">
+      <div className="flex flex-col lg:flex-row items-center px-4 md:px-8 py-8 md:py-1">
+        <div className="w-full lg:w-2/3 flex flex-col items-start space-y-6 lg:pr-6 ">
+          <p className="text-2xl lg:text-3xl font-bold text-center lg:text-left ">
             اكتسب مهارة التداول وانضم إلى المستثمرين{" "}
             <div className="inline-block items-end">
               {" "}
-              <span className="text-green-500 text-4xl"> الناجحين </span>{" "}
+              <span className="text-green-500 text-4xl "> الناجحين </span>{" "}
               <img className="w-[110px] mt-2" src="/src/assets/imgs/line.png" />{" "}
             </div>
           </p>
 
-          <div>
+          <div> 
             <ul className={`${styles.featuresList} space-y-2 `}>
-              <li>
+              <li className="dark:text-white">
                 <FontAwesomeIcon icon={faCheck} className={styles.icon} />
                 تعلم التداول عبر الإنترنت مع
                 <span
@@ -103,12 +103,12 @@ function TrainingAndEducation() {
                   مدرب شخصي
                 </span>
               </li>
-              <li>
+              <li className="dark:text-white">
                 <FontAwesomeIcon icon={faCheck} className={styles.icon} />
                 أفضل مدربين التداول المعتمدين في الوطن العربي
               </li>
 
-              <li>
+              <li className="dark:text-white">
                 <div className=" relative p-4">
                   <div>
                     <FontAwesomeIcon icon={faCheck} className={styles.icon} />
@@ -117,7 +117,7 @@ function TrainingAndEducation() {
                   <div className=" space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
                     <Link
                       to={ROUTES.RESERVATION}
-                      className={`${styles.buttonTrial} font-semibold px-6 py-3 mx-2 rounded-lg shadow-lg m-2`}
+                      className={`${styles.buttonTrial} font-semibold px-6 py-3 mx-2 rounded-lg shadow-lg m-2 `}
                     >
                       احجز مدربك الشخصي
                     </Link>

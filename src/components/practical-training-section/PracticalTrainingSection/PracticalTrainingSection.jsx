@@ -30,16 +30,16 @@ function PracticalTrainingSection() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 800,
+    speed: 1000,
     slidesToShow: 2,
     slidesToScroll: 2,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     cssEase: "linear",
     rtl: false,
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 1300,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -59,7 +59,7 @@ function PracticalTrainingSection() {
       }
       p6={true}
     >
-      <div className= {`h-[50vh] `} >
+      <div className= {`h-[42vh] mt-7`} >
         <Slider ref={sliderRef} {...settings} dir="rtl">
           {/* Card 1 */}
           <div className={`flex-none ${style.card} w-[100%] lg:w-[50%]`}>

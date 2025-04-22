@@ -16,11 +16,12 @@ function RecordedCourseCard() {
 
   return (
     <SectionCard heading={" الدورات المسجله "} >
-      <div className="bg-neutral-200   text-xs font-semibold rounded-sm px-6 py-2 row justify-between">
+    <div className="bg-neutral-200 text-xs font-semibold rounded-sm px-6 py-2 flex flex-col md:flex-row justify-between gap-4">
+
         {/* المعلومات الأساسية */}
         <div className="w-full md:w-1/2">
           <div className="mb-5">
-            <div className="w-16">
+            <div className="w-26">
               <img
                 className="w-full"
                 src={companyLogo}
@@ -28,12 +29,12 @@ function RecordedCourseCard() {
               />
             </div>
           </div>
-          <span className="bg-primary text-white px-2 py-1 rounded ">
+          <span className="bg-primary text-white px-2 py-1 rounded  text-sm font-bold ">
             ابدأ بناء مستقبل مالي قوي
           </span>
-          <p className="pt-1 text-sm mt-3">تعلم تداول الأسهم والعملات والذهب</p>
+          <p className="pt-1 text-sm mt-5 dark:text-black">تعلم تداول الأسهم والعملات والذهب</p>
 
-          <div className="mt-8">
+          <div className="mt-5 dark:text-black">
             <h4 className="text-sm font-bold">أ/طارق الليثي</h4>
             <div className="flex flex-col w-fit py-1 border-b-2 border-primary">
               <span className="text-xs">مستشار استثمار ومدرب معتمد</span>
@@ -45,9 +46,10 @@ function RecordedCourseCard() {
         </div>
 
         {/* صورة المدرب */}
-        <div className="w-full  md:w-1/2 flex-center md:translate-y-4 md:relative">
+        <div className="w-full md:w-1/2 flex justify-center md:translate-y-4 md:relative">
+
           <div className="md:absolute bottom-0 ">
-            <div className=' relative overflow-hidden before:content[""] before:absolute before:bg-primary-light before:opacity-20 before:w-[100%] before:h-[95%] before:rounded-full before:-z-10 before:end-0 before:-bottom-4 '>
+            <div className=' relative overflow-hidden before:content[""] before:absolute before:bg-primary-light before:opacity-20 before:w-[100%] before:h-[98%] before:rounded-full before:-z-10 before:end-0 before:-bottom-4 '>
               <img
                 className="h-auto w-auto object-contain "
                 src={instructorPhoto}
@@ -60,7 +62,7 @@ function RecordedCourseCard() {
       </div>
 
       {/* تفاصيل الدورة */}
-      <div className="flex-y-center justify-between mt-4">
+      <div className="flex-y-center justify-between mt-4 dark:text-black">
         <div>
           <h3 className="mb-2 text-base font-semibold">
             أساسيات الاستثمار والتداول في الأسواق المالية

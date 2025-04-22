@@ -22,19 +22,19 @@ function PracticalTrainingCard({
   return (
     <div className="h-full p-2">
       {/* Top Section */}
-      <div className="h-48 bg-primary-100 m-2 flex-center">
-        <img src={cardImg} />
+      <div className="h-52 bg-primary-100 m-2 flex-center">
+        <img src={cardImg}  className="h-auto"/>
       </div>
 
       {/* Details Section */}
-      <div className="bg-darkgray text-white p-2 relative mb-[-2%]  ">
+      <div className="bg-darkgray text-white p-2 relative mb-[-2%] h-36 ">
         <div className="font-semibold flex flex-col">
           <div className="flex justify-between ">
           <span>{title}</span>
-            <img src={img} className="w-[13%] me-1 p-1.5" />        
+            <img src={img} className="w-[13%] me-1 p-1.5"/>        
           </div>
 
-          <div className="flex flex-col-revere md:flex-row justify-between">
+          <div className="flex flex-col-revere md:flex-row justify-between lg:mt-5 md:mt-0 sm:mt-0 ">
           <Link
             to={ROUTES.BOOK_YOUR_TRAINER}
             className=" px-2 py-1 self-center me-2  rounded-md bg-accent text-black hover:scale-105 transition-all"

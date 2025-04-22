@@ -35,7 +35,7 @@ function BookCard() {
             </div>
 
             {/* Book Details */}
-            <div className="text-center">
+            <div className="text-center dark:text-black">
                 <p>علم المال</p>
                 <p className="mb-2">200 جنيه</p>
 

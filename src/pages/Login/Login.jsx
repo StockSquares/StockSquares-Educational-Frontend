@@ -35,50 +35,39 @@ function Login() {
     };
     
 
-    const handleGoogleLogin = async () => {
-        try {
-            const response = await fetch('https://stocksquare.runasp.net/api/Account/login-External?provider=google', {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-    
-            const data = await response.json();
-            console.log('Response:', data);
-    
-            if (response.ok) {
-                alert('تم تسجيل الدخول بنجاح عبر Google!');
-            } else {
-                throw new Error(data?.message || 'حدث خطأ أثناء تسجيل الدخول عبر Google.');
-            }
-        } catch (error) {
-            console.error('Google Login Error:', error);
-            setErrorMessage('حدث خطأ أثناء تسجيل الدخول عبر Google.');
-        }
+    const handleGoogleLogin = () => {
+        window.location.href = 'https://stocksquare.runasp.net/api/Account/login-External?provider=Google';
     };
-    const handleFacebookLogin = async () => {
-        try {
-            const response = await fetch('https://stocksquare.runasp.net/api/Account/login-External?provider=facebook', {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
     
-            const data = await response.json();
-            console.log('Response:', data);
+    // const handleGoogleLogin = () => {
+    //     window.location.href = 'https://stocksquare.runasp.net/api/Account/login-External?provider=Google';
+    // };
     
-            if (response.ok) {
-                alert('تم تسجيل الدخول بنجاح عبر Facebook!');
-            } else {
-                throw new Error(data?.message || 'حدث خطأ أثناء تسجيل الدخول عبر Facebook.');
-            }
-        } catch (error) {
-            console.error('Facebook Login Error:', error);
-            setErrorMessage('حدث خطأ أثناء تسجيل الدخول عبر Facebook.');
-        }
-    };
+    // const handleFacebookLogin = async () => {
+    //     try {
+    //         const response = await fetch('https://stocksquare.runasp.net/api/Account/login-External?provider=facebook', {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Accept': 'application/json'
+    //             }
+    //         });
+    
+    //         const data = await response.json();
+    //         console.log('Response:', data);
+    
+    //         if (response.ok) {
+    //             alert('تم تسجيل الدخول بنجاح عبر Facebook!');
+    //         } else {
+    //             throw new Error(data?.message || 'حدث خطأ أثناء تسجيل الدخول عبر Facebook.');
+    //         }
+    //     } catch (error) {
+    //         console.error('Facebook Login Error:', error);
+    //         setErrorMessage('حدث خطأ أثناء تسجيل الدخول عبر Facebook.');
+    //     }
+    // };
+    const handleFacebookLogin = ()=>{
+        window.location.href='https://stocksquare.runasp.net/api/Account/login-External?provider=Facebook';
+    }
     
 
     return (
