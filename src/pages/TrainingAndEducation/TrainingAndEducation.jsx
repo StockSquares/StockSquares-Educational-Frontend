@@ -90,9 +90,14 @@ function TrainingAndEducation() {
 
           <div> 
             <ul className={`${styles.featuresList} space-y-2 `}>
-              <li className="dark:text-white">
-                <FontAwesomeIcon icon={faCheck} className={styles.icon} />
-                تعلم التداول عبر الإنترنت مع
+           
+
+              <li>
+                <div className=" relative py-4 flex flex-col gap-1">
+                  <div className="flex flex-col gap-3">
+                  <p style={{letterSpacing:"1.5px"}}>
+                  <FontAwesomeIcon icon={faCheck} className={styles.icon} />
+                  تعلم التداول عبر الإنترنت مع 
                 <span
                   style={{
                     color: "var(--primary-color-light)",
@@ -100,31 +105,39 @@ function TrainingAndEducation() {
                     padding: "0 2px",
                   }}
                 >
-                  مدرب شخصي
+                   {" "} مدرب شخصي 
                 </span>
-              </li>
-              <li className="dark:text-white">
-                <FontAwesomeIcon icon={faCheck} className={styles.icon} />
-                أفضل مدربين التداول المعتمدين في الوطن العربي
-              </li>
+                  </p>
+                    <p>
+                      {" "}
+                      <FontAwesomeIcon icon={faCheck} className={styles.icon} />
+                      تدريب تفاعلي متابعة دورية مستمرة في التداول
+                    </p>
 
-              <li className="dark:text-white">
-                <div className=" relative p-4">
-                  <div>
-                    <FontAwesomeIcon icon={faCheck} className={styles.icon} />
-                    تدريب تفاعلي متابعة دورية مستمرة في التداول
+                    <p>
+                      <FontAwesomeIcon icon={faCheck} className={styles.icon} />
+                      أفضل مدربين التداول المعتمدين في الوطن العربي
+                    </p>
                   </div>
-                  <div className=" space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
+
+                  <div className=" space-y-4 w-full  flex gap-3   sm:space-y-0 sm:space-x-4 mt-10">
+                  <Link
+                      to={ROUTES.LEVELEXAM}
+                      className={`${styles.buttonTrial} font-semibold  bg-green-500 text-white  rounded-lg shadow-lg hover:bg-green-400 `}
+                    >
+                      اختبار تحديد المستوي
+                    </Link>
                     <Link
                       to={ROUTES.RESERVATION}
-                      className={`${styles.buttonTrial} font-semibold px-6 py-3 mx-2 rounded-lg shadow-lg m-2 `}
+                      className={`${styles.buttonTrial} font-semibold   rounded-lg shadow-lg `}
                     >
                       احجز مدربك الشخصي
                     </Link>
+                   
                   </div>
                   <img
                     src="/src/assets/imgs/Arrow.png"
-                    className="absolute w-[210px] left-[-7%] top-0 rotate-[-5deg]"
+                    className="absolute w-[210px] left-[-110px] top-[10px] rotate-[30deg]"
                   />
                 </div>
               </li>

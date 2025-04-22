@@ -72,7 +72,7 @@ function Login() {
 
     return (
         <div className={styles.contain2}>
-            <img src={logo} alt="Logo" className={styles.logo} />
+            <img src={logo} alt="Logo" className={styles.logo}  />
             <h2>أول منصة عربية ذكية لدعم المستثمرين ورواد الأعمال</h2>
             <h1>تسجيل الدخول</h1>
             <hr />
@@ -101,6 +101,8 @@ function Login() {
                         onClick={togglePasswordVisibility}
                     />
                 </div>
+                <p className="text-blue-600">هل نسيت كلمه المرور ؟ </p>
+
 
                 {errorMessage && <p className={styles.error}>{errorMessage}</p>}
 

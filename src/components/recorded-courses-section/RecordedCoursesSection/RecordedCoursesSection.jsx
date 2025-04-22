@@ -48,13 +48,14 @@ export function VideoCard({
             isHovered ? "bg-opacity-60" : "bg-opacity-40"
           }`}
         >
-        <Link to={ROUTES.COURSECONTENT}>
+        <h1 className="text-2xl "> جاري اكمال الدورة ...</h1>
+        {/* <Link to={ROUTES.COURSECONTENT}>
           <motion.button
             className="text-white p-4 rounded-full bg-green-600 hover:bg-green-700"
             whileHover={{ scale: 1.1 }}
           >
             <FontAwesomeIcon icon={faPlay} className="text-xl" />
-          </motion.button></Link>
+          </motion.button></Link> */}
         </div>
         {progress > 0 && (
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200">
@@ -205,7 +206,8 @@ function VideoGrid() {
     >
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl font-bold text-gray-800">
-          أساسيات تطوير الأعمال
+        أساسيات الاستثمار والتداول في الأسواق المالية
+
         </h1>
         <div className="flex gap-4">
           <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">

@@ -11,11 +11,11 @@ function VipInvestorServicesSection() {
   const { t } = useTranslation();
 
   // Dynamic investment amount (retrieved from API or admin settings)
-  const minInvestment = "50.000";
+  const minInvestment = "100.000";
 
   return (
-      <SectionCard heading={t("sections.vipServices.title")}>
-        <div className="flex justify-between items-center dark:text-black">
+      <SectionCard heading={t("sections.vipServices.title")} >
+        <div className="flex justify-between items-center  bg-lightgray ">
           <div className="flex flex-col gap-8">
             <p className="text-2xl font-semibold  leading-[1.5]">
               {t("sections.vipServices.content_1")}

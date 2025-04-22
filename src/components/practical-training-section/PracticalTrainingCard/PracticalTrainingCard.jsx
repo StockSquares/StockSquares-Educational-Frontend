@@ -31,7 +31,7 @@ function PracticalTrainingCard({
         <div className="font-semibold flex flex-col">
           <div className="flex justify-between ">
           <span>{title}</span>
-            <img src={img} className="w-[13%] me-1 p-1.5"/>        
+            <img src={img} className="w-[13%] me-[0.2] p-1.5 h-[30px]" />        
           </div>
 
           <div className="flex flex-col-revere md:flex-row justify-between lg:mt-5 md:mt-0 sm:mt-0 ">
@@ -50,7 +50,7 @@ function PracticalTrainingCard({
             <div className="flex-y-center">
             <span>
                 {price}
-                &nbsp; جنيه
+                &nbsp; {t("practicalTraining.pound")}
               </span>
               <FontAwesomeIcon icon={faSackDollar} className="p-1.5 me-1" />
              

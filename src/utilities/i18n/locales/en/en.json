@@ -88,7 +88,11 @@
             "title": "Why Stock Squares?",
             "feature_1": "Certified Investment Experts",
             "feature_2": "Hands-on Simulation Training",
-            "feature_3": "Receive a Training Certificate"
+            "feature_3": "Receive a Training Certificate",
+            "feature_4": "Innovation and Development",
+            "feature_5": "Satisfaction Rate: 96%"
+
+            
         },
         "bookstore": {
             "title": "Finance and Business Library",
@@ -108,7 +112,7 @@
 
             "btn": "Join As A Personal Trainer",
             "trainingCard": {
-                "btn": "Book Your trainer"
+                "btn": "Book trainer"
             }
         },
         "recordedCourses": {
@@ -191,5 +195,24 @@
         "reset": {
             "label": "Reset"
         }
-    }
+    },
+
+   "practicalTraining": {
+    "egyptianStock": "Egyptian Stock Market Course",
+    "hours": "8 hours",
+    "beginner": "Beginner",
+    "juniorPrice": "3500",
+    "pound":" pound",
+    "saudiStock": "Saudi Stock Market Course",
+    "advanced": "Advanced",
+    "advancedHours": "12 hours",
+    "advancedPrice": "5500",
+    "globalStock": "Global Stock Market Course",
+    "proLevel": "Professional",
+    "proHours": "16 hours",
+    "proPrice": "7500",
+    "bitCoinStock": "Cryptocurrency Course"
+
+}
+
 }

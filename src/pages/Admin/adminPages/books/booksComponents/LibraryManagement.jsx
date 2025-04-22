@@ -1,13 +1,11 @@
 import { useState } from "react";
 import style from "/src/pages/Admin/adminPages/adminPages.module.css";
 import AddBook from "./libraryManagementComponents/AddBook";
-import WriteSummary from "./libraryManagementComponents/WriteSummary";
 import LoadBook from "./libraryManagementComponents/LoadBook";
 
 function LibraryManagement() {
     const buttons=[
         " نفاذ/ اضافه كتاب",
-        " كتابه ملخص كتاب",
         " تحميل كتب الكترونيه"
 
     ];
@@ -15,8 +13,8 @@ function LibraryManagement() {
     
     return(
         <div className="flex justify-center mt-5">
-        <div className="grid w-full grid-cols-1 gap-2">
-          <div className="controlButtons grid grid-cols-3 gap-12  ">
+        <div className="grid w-full grid-cols-1 gap-2 ">
+          <div className="controlButtons flex justify-center gap-3  ">
             {buttons.map((btn, idx) => (
               <button
                 key={idx}
@@ -30,9 +28,7 @@ function LibraryManagement() {
           <div className="show w-full">
             {isClicked === 0 ? (
               <AddBook />
-            ) : isClicked === 1 ? (
-              <WriteSummary/>
-            ) 
+            )
              : (
                 <LoadBook/>
             )}

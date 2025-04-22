@@ -46,6 +46,9 @@ import PrivacyPolicy from "./pages/privacyPolicy/PrivacyPolicy";
 import WhoWeAre from "./pages/WhoWeAre/WhoWeAre";
 import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
 import Activities from "./pages/Activities/Activities";
+import ChatAi from "./pages/chatAi/ChatAi";
+import LevelExam from "./pages/levelexam/LevelExam";
+import LevelExamQuestions from "./pages/levelexam/LevelExamQuestions";
 // import RequestConsultation from './pages/RequestConsultation/RequestConsultation';
 // import inlineBlog from './pages/Blog/inlineBlog';
 
@@ -136,6 +139,17 @@ const router = createBrowserRouter([
       },
       {path: ROUTES.ACTIVITIES,
         element:<Activities/>
+      },
+      {path: ROUTES.CHATAI,
+        element:<ChatAi/>
+      },
+      {
+        path:ROUTES.LEVELEXAM,
+        element:<LevelExam/>
+      },
+      {
+        path:ROUTES.LEVELEXAMQUESTIONS,
+        element:<LevelExamQuestions/>
       }
     ],
   },

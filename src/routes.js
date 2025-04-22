@@ -33,4 +33,7 @@ export const ROUTES = {
   ABOUTUS:"/WhoWeAre",
   CONDITIONS:"/TermsAndCondition",
   ACTIVITIES:"/Activities",
+  CHATAI:"/chatAi",
+  LEVELEXAM:"/levelexam",
+  LEVELEXAMQUESTIONS:"/levelexamquestions"
 };
