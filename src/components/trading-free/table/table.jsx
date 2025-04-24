@@ -33,7 +33,7 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
   // Order Form Component
   const OrderForm = ({ type, initialData, onClose }) => {
     const [orderType, setOrderType] = useState('limit');
-    const orderTypes = ['limit', 'market', 'stop'];
+    const orderTypes = ['الحد', 'السوق', 'وقف'];
   
     return (
       <div className="p-4">

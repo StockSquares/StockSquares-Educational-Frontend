@@ -54,7 +54,6 @@ export default function BookSlider() {
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={50}
         slidesPerView={1}
-        navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop
@@ -63,18 +62,19 @@ export default function BookSlider() {
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div
-              className="relative h-[500px] flex justify-center items-center bg-cover bg-center"
-              style={{ backgroundImage: `url(${slide})` }}
-            >
+              className="relative h-[350px] flex justify-center items-center bg-cover bg-center w-9/12 ml-auto mr-auto mt-14"
+              style={{ backgroundImage: `url(${slide})` }}>
               <div className="absolute inset-0 bg-black/30"></div>
-              <div className="text-white text-center z-10">
-                <h2 className={styles.slideh1}>مرحبا بك في مكتبة المال والأعمال</h2>
-              </div>
+
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
+      <div className={styles.sec2}>
+        <h2>سارع بالشراء الان</h2>
+        <p>خصومات تصل الي  <span>%90</span></p>
+      </div>
 
 
       <div className={styles.featuredSection}>
