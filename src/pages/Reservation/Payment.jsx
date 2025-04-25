@@ -426,6 +426,11 @@ export default function Payment() {
               <p> ---- </p>
               <p className="text-gray-400"> Wallet Address </p>
             </div>
+            <p className="text-gray-500 w-[50%] text-end text-sm"> 
+            .Don't send NFTs to this address<br/>
+            Smart contract deposits are not supported with the exception of ETH via ERC20,
+            BSC via BEP20, Arbitrum and Optimism networks
+             </p>
           </div>
         )}
 
