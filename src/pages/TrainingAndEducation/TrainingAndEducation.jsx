@@ -77,18 +77,18 @@ function TrainingAndEducation() {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row items-center px-4 md:px-8 py-8 md:py-10">
-        <div className="w-full lg:w-2/3 flex flex-col items-start space-y-6 lg:pr-6">
-          <p className="text-2xl lg:text-3xl font-bold text-center lg:text-left">
+      <div className="flex flex-col lg:flex-row items-center px-4 md:px-8 py-8 md:py-1">
+        <div className="w-full lg:w-2/3 flex flex-col items-start space-y-6 lg:pr-6 ">
+          <p className="text-2xl lg:text-3xl font-bold text-center lg:text-left ">
             اكتسب مهارة التداول وانضم إلى المستثمرين{" "}
             <div className="inline-block items-end">
               {" "}
-              <span className="text-green-500 text-4xl"> الناجحين </span>{" "}
+              <span className="text-green-500 text-4xl "> الناجحين </span>{" "}
               <img className="w-[110px] mt-2" src="/src/assets/imgs/line.png" />{" "}
             </div>
           </p>
 
-          <div>
+          <div> 
             <ul className={`${styles.featuresList} space-y-2 `}>
            
 

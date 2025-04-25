@@ -25,7 +25,7 @@ import {
   InlineBlog,
   CourseContent,
 } from "./pages";
-import  JoinAsTrainer from "./pages/JoinAsTrainer/Joinastrainer";
+import  JoinAsTrainer from "./pages/JoinAsTrainer/Joincomp";
 import { ROUTES } from "./routes";
 import BookDetails from "./pages/FinanceAndBusinessLibrary/multipages/bookdetails"
 import Footer from "./components/general-layout-context/Footer/Footer";
@@ -67,6 +67,7 @@ const router = createBrowserRouter([
       { path: ROUTES.BOOK_YOUR_TRAINER, element: <BookYourTrainer /> },
       { path: ROUTES.BLOG, element: <Blog /> },
       { path: ROUTES.ARTICLE, element: <Article /> },
+      { path: ROUTES.JOIN_AS_TRAINER, element: < JoinAsTrainer/> },
       // { path: ROUTES.BOOK_DETAILS, element: <BookDetails /> },
       {
         path: "/bookdetails/:id",

@@ -1,4 +1,5 @@
-import React, { useState } from "react"; // ✅ استيراد useState بشكل صحيح
+import React, { useState , useEffect } from "react"; 
+import * as signalR from "@microsoft/signalr"; // استيراد SignalR
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -12,44 +13,47 @@ import slide1 from "../../assets/imgs/bgwhite.jpg";
 import slide2 from "../../assets/imgs/bgwhite.jpg";
 import slide3 from "../../assets/imgs/bgwhite.jpg";
 import book from "../../assets/imgs/book1.jpg";
-import book2 from "../../assets/imgs/book2.jpeg";
 import bgphoto from "../../assets/imgs/bookstore/2797560.jpg";
 import BookDetails from './multipages/BookDetails';
 
 export default function BookSlider() {
   const [filter, setFilter] = useState("all"); 
+  const [books, setBooks] = useState([]);
+  const filteredBooks =
+  filter === "all" ? books : books.filter((book) => book.type === filter);
 
-  const books = [
-    {img: book},
-    {img: book},
-    {img: book},
-    {img: book},
-    {img: book},
-  ];
-
-  const books2 = [
-    { title: "كتاب إلكتروني 1", price: "150 EGP", img: book2, type: "ebook" },
-    { title: "كتاب مطبوع 1", price: "200 EGP", img: book2,  type: "local" },
-    { title: "كتاب إلكتروني 2", price: "180 EGP", img: book2, type: "ebook" },
-    { title: "كتاب مطبوع 2", price: "220 EGP", img: book2,  type: "local" },
-    { title: "كتاب إلكتروني 3", price: "220 EGP", img: book2, type: "ebook" }
-  ];
-
-  const filteredBooks = filter === "all" ? books2 : books2.filter(book => book.type === filter);
 
   const slides = [slide1, slide2, slide3];
+ 
+
+  useEffect(() => {
+    const query = new URLSearchParams({}).toString();
+  
+    fetch(`https://stocksquare.runasp.net/api/Book/GetAllBooks?${query}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("بيانات الكتب:", data);
+        if (data && Array.isArray(data.data)) {
+          setBooks(data.data);
+        } else {
+          console.error("البيانات غير متوافقة:", data);
+        }
+      })
+      .catch((error) => console.error("خطأ في جلب البيانات:", error));
+  }, []);
+  
+
 
   return (
     <div className="relative w-full mx-auto">
       <Routes>
-        <Route path="/bookdetails/:id" element={<BookDetails />} />
+      <Route path="/bookdetails/:id" element={<BookDetails />} />
       </Routes>
 
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={50}
         slidesPerView={1}
-        navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop
@@ -58,33 +62,20 @@ export default function BookSlider() {
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div
-              className="relative h-[500px] flex justify-center items-center bg-cover bg-center"
-              style={{ backgroundImage: `url(${slide})` }}
-            >
+              className="relative h-[350px] flex justify-center items-center bg-cover bg-center w-9/12 ml-auto mr-auto mt-14"
+              style={{ backgroundImage: `url(${slide})` }}>
               <div className="absolute inset-0 bg-black/30"></div>
-              <div className="text-white text-center z-10">
-                <h2 className={styles.slideh1}>مرحبا بك في مكتبة المال والأعمال</h2>
-              </div>
+
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      <div
-        className={styles.bookshelfContainer}
-        style={{
-          backgroundImage: `url(${bgphoto})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <h2 className={styles.sectionTitle}>افضل الكتب مبيعا </h2>
-        <div className={styles.shelf}>
-          {books.map((book, index) => (
-            <AnimatedBook key={index} book={book.img} index={index} />
-          ))}
-        </div>
+      <div className={styles.sec2}>
+        <h2>سارع بالشراء الان</h2>
+        <p>خصومات تصل الي  <span>%90</span></p>
       </div>
+
 
       <div className={styles.featuredSection}>
         <h2 className={styles.sectionTitle}>منتجات مميزة</h2>
@@ -98,41 +89,49 @@ export default function BookSlider() {
            </select>
       </div>
 
-
+      {filteredBooks.length === 0 ? (
+          <p className="text-center text-gray-500">لا توجد كتب متاحة حاليا</p>
+        ) : (
         <div className={styles.featuredGrid}>
-          {filteredBooks.map((book, index) => (
-            <div key={index} className={styles.featuredItem}>
-              <img src={book.img} alt={book.title} className={styles.featuredImage} />
-              <hr className={styles.separator} />
-              <h3 className={styles.featuredTitle}>{book.title}</h3>
-              <p className={styles.featuredPrice}>{book.price}</p>
-              <button className={styles.buyButton}>
-                <Link to={`/bookdetails/${index}`} style={{ textDecoration: "none", color: "white" }}>
-                  شراء الآن
-                </Link>
-              </button>
-            </div>
-          ))}
+        {filteredBooks.map((book, index) => (
+          <div key={index} className={styles.featuredItem}>
+            <img
+              src={`data:image/jpeg;base64,${book.bookPhoto}`}
+              alt={book.bookName}
+              className={styles.featuredImage}
+            />
+            <hr className={styles.separator} />
+            <h3 className={styles.featuredTitle}>{book.bookName}</h3>
+            <p className={styles.featuredPrice}>{book.bookPrice} EGP</p>
+            <button className={styles.buyButton}>
+              <Link to={`/bookdetails/${book.id}`} style={{ textDecoration: "none", color: "white" }}>
+                شراء الآن
+              </Link>
+            </button>
+          </div>
+        ))}
+
         </div>
+          )}
       </div>
     </div>
   );
 }
-const AnimatedBook = ({ book, index }) => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
-  return (
-    <motion.div
-      ref={ref}
-      className={styles.bookItem}
-      initial={{ opacity: 0, y: 100, rotateY: 90 }}
-      animate={inView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
-      transition={{
-        duration: 0.8,
-        delay: index * 0.2,
-        ease: "easeOut",
-      }}
-    >
-     <img src={book} alt={`Book ${index + 1}`} className={styles[`bookImage${index + 1}`]} />
-    </motion.div>
-  );
-};  
+// const AnimatedBook = ({ book, index }) => {
+//   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
+//   return (
+//     <motion.div
+//       ref={ref}
+//       className={styles.bookItem}
+//       initial={{ opacity: 0, y: 100, rotateY: 90 }}
+//       animate={inView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
+//       transition={{
+//         duration: 0.8,
+//         delay: index * 0.2,
+//         ease: "easeOut",
+//       }}
+//     >
+//      <img src={book} alt={`Book ${index + 1}`} className={styles[`bookImage${index + 1}`]} />
+//     </motion.div>
+//   );
+// };  

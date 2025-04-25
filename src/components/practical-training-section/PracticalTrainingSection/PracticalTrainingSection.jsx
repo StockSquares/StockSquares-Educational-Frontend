@@ -31,11 +31,11 @@ function PracticalTrainingSection() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 800,
+    speed: 1000,
     slidesToShow: 2,
     slidesToScroll: 2,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     cssEase: "linear",
     rtl: false,
     responsive: [

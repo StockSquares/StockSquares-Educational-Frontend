@@ -3,7 +3,8 @@ import "./investorSurvey.css";
 import { questions } from "../../assets/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 const InvestorSurvey = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [index, setIndex] = useState(0);
@@ -11,9 +12,8 @@ const InvestorSurvey = () => {
   const [error, setError] = useState(false);
   const [answers, setAnswers] = useState([]);
   const [formError, setFormError] = useState(false);
-
+  const [birthDate, setBirthDate] = useState(null);
   const [fullName, setFullName] = useState("");
-  const [birthDate, setBirthDate] = useState("");
   const [email, setEmail] = useState("");
 
   const handleOptionClick = (optionIndex) => {
@@ -78,13 +78,18 @@ const InvestorSurvey = () => {
               />
             </div>
             <div>
-              <label>تاريخ الميلاد :</label>
-              <input
-                type="date"
-                value={birthDate}
-                onChange={(e) => setBirthDate(e.target.value)}
+                <label className="block mb-1 ">تاريخ الميلاد:</label>
+              <DatePicker
+                selected={birthDate}
+                onChange={(date) => setBirthDate(date)}
+                dateFormat="yyyy-MM-dd"
+                placeholderText="اختر تاريخ الميلاد"
+                className="w-full p-2 rounded border"
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
               />
-            </div>
+              </div>
             <div>
               <label>البريد الإلكتروني :</label>
               <input

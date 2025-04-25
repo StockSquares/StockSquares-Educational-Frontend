@@ -37,7 +37,7 @@ function VipInvestorServicesSection() {
               </div>
             </div>
           </div>
-          <div className="imgContainer w-[40%] hidden sm:hidden md:flex lg:flex">
+          <div className="imgContainer w-[40%]   md:flex lg:flex">
             <img
               src="/src/assets/imgs/Course app-bro.png"
               className="w-full h-full object-cover"

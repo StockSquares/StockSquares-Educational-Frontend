@@ -176,7 +176,26 @@ input {
     text-align: center;
     margin-top: 20px;
 }
-
+.react-datepicker__navigation {
+    background: none !important;
+    border: none !important;
+    width: 50px !important;
+    height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .react-datepicker__navigation-icon {
+    display: none;
+  }
+  .react-datepicker-wrapper {
+    width: 100% !important;
+  }
+  
+  .react-datepicker__input-container input {
+    width: 100% !important;
+  }
+  
 @media (max-width: 768px) {
     .contain {
         width: 90%;

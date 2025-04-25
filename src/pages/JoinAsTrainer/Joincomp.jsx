@@ -1,76 +1,84 @@
 import { React, useState } from 'react';
-import { questions } from "../../assets/data2";
+import './JoinAsTrainer.css'
+import {questions} from '../../assets/data3';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-const PartnerApplication = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [index, setIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [error, setError] = useState(false);
-  const [answers, setAnswers] = useState([]);
-  const [formError, setFormError] = useState(false);
-
-  const [fullName, setFullName] = useState("");
-  const [birthDate, setBirthDate] = useState(null);
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [country, setCountry] = useState("");
-
-  const handleOptionClick = (optionIndex) => {
-    setSelectedOption(optionIndex);
-    setError(false);
-  };
-
-  const handleStart = () => {
-    if (!fullName || !birthDate || !email || !phoneNumber || !country) {
-      setFormError(true);
-      return;
-    }
-    setFormError(false);
-    setIsLoggedIn(true);
-  };
-
-  const next = () => {
-    if (selectedOption === null) {
-      setError(true);
-      return;
-    }
-
-    const updatedAnswers = [...answers];
-    updatedAnswers[index] = selectedOption;
-    setAnswers(updatedAnswers);
-
-    if (index === questions.length - 1) {
-      alert("Survey completed! Thank you for your participation.");
-      return;
-    }
-
-    setIndex(index + 1);
-    setSelectedOption(updatedAnswers[index + 1] || null);
-  };
-
-  const previous = () => {
-    if (index === 0) return;
-    setIndex(index - 1);
-    setSelectedOption(answers[index - 1] || null);
-  };
-
-  return (
+function Joincomp (){
+      const [isLoggedIn, setIsLoggedIn] = useState(false);
+      const [index, setIndex] = useState(0);
+      const [selectedOption, setSelectedOption] = useState([]);
+      const [error, setError] = useState(false);
+      const [answers, setAnswers] = useState([]);
+      const [formError, setFormError] = useState(false);
+    
+      const [fullName, setFullName] = useState("");
+      const [birthDate, setBirthDate] = useState(null);
+      const [email, setEmail] = useState("");
+      const [phoneNumber, setPhoneNumber] = useState("");
+      const [country, setCountry] = useState("");
+    
+      const handleOptionClick = (optionIndex) => {
+        if (index === 3) {
+          // Toggle selection (question 4 - multiple choices)
+          if (selectedOption.includes(optionIndex)) {
+            setSelectedOption(selectedOption.filter((item) => item !== optionIndex));
+          } else {
+            setSelectedOption([...selectedOption, optionIndex]);
+          }
+        } else {
+          setSelectedOption(optionIndex);
+        }
+        setError(false);
+      };
+      
+      const handleStart = () => {
+        if (!fullName || !birthDate || !email || !phoneNumber || !country) {
+          setFormError(true);
+          return;
+        }
+        setFormError(false);
+        setIsLoggedIn(true);
+      };
+    
+      const next = () => {
+        if ((index === 3 && selectedOption.length === 0) || (index !== 3 && selectedOption === null)) {
+          setError(true);
+          return;
+        }
+      
+        const updatedAnswers = [...answers];
+        updatedAnswers[index] = selectedOption;
+        setAnswers(updatedAnswers);
+      
+        if (index === questions.length - 1) {
+          alert("Survey completed! Thank you for your participation.");
+          return;
+        }
+      
+        setIndex(index + 1);
+        setSelectedOption(updatedAnswers[index + 1] || (index + 1 === 3 ? [] : null));
+      };
+      
+    
+      const previous = () => {
+        if (index === 0) return;
+        setIndex(index - 1);
+        setSelectedOption(answers[index - 1] || null);
+      };
+return(
     <>
       <div className="contain">
         {!isLoggedIn ? (
           <div className="login">
             <h1>
-            <FontAwesomeIcon icon={faHandshake} /> طلب العمل كشريك 
+            <FontAwesomeIcon icon={faHandshake} /> طلب الانضمام كمدرب شخصي
             </h1>
             <div className="full">
-              <p className="important-info">
-                يسعدنا طلبك في الأنضمام الى شبكة شركاء ستوك سكويرز<br />
-                يرجى الأجابة على الأسئلة التالية لكي نتمكن من تقيم طلبك بشكل أفضل نود أن نوضح أننا نبحث عن شركاء يتناسبون مع قيمنا ورؤيتنا وأهدافنا ولهذا السبب قد لايتم قبول جميع الطلبات ونشكر تفهمك.
-              </p>
+              <p className="important-info text-lg">نشكرك على اهتمامك بالانضمام إلى فريقنا كمدرب شخصي حر . <br />
+              قبل البدء في ملء طلب التقديم، نود أن نوجهكم إلى صراحة الإجابات حتى نستطيع تقيم طلبكم بطريقة فعالة وبناء علاقة عملية موثوقة
+</p>
               <div>
                 <label>الاسم ثلاثي :</label>
                 <input
@@ -131,7 +139,7 @@ const PartnerApplication = () => {
         ) : (
           <>
             <h1>
-            <FontAwesomeIcon icon={faHandshake} /> طلب العمل كشريك 
+            <FontAwesomeIcon icon={faHandshake} /> طلب الانضمام كمدرب شخصي
             </h1>
             <hr />
             <h2>
@@ -141,13 +149,18 @@ const PartnerApplication = () => {
               {Object.keys(questions[index])
                 .filter((key) => key.startsWith("option"))
                 .map((key, i) => (
-                  <li
-                    key={i}
-                    className={selectedOption === i + 1 ? "selected" : ""}
-                    onClick={() => handleOptionClick(i + 1)}
-                  >
-                    {questions[index][key]}
-                  </li>
+                <li
+                key={i}
+                className={
+                    (index === 3 && selectedOption.includes(i + 1)) || (index !== 3 && selectedOption === i + 1)
+                    ? "selected"
+                    : ""
+                }
+                onClick={() => handleOptionClick(i + 1)}
+                >
+                {questions[index][key]}
+                </li>
+
                 ))}
             </ul>
             <p className={error ? "error" : ""}>
@@ -167,8 +180,7 @@ const PartnerApplication = () => {
         )}
       </div>
     </>
-  );
-  
-};
+)
+}
 
-export default PartnerApplication;
+export default Joincomp;
