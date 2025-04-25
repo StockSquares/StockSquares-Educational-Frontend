@@ -1,11 +1,15 @@
 
-.send{
+ .send{
+    margin: auto;
+    width: 150px;
+    height: 50px;
     background-color: #25863f;
-    padding: 10px 30px;
-    border-radius: 10px;
-    color: white;
-    font-size: larger;
-}
+    color: #fff;
+    font-size: 25px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+} 
 .send:hover{
     background-color: rgb(242, 240, 240);
     outline: 2px solid #25863f;
@@ -14,11 +18,19 @@
 
 
 .questionLi{
-    padding: 15px;
-    border: 2px solid #25863f;
-    border-radius: 7px;
-    margin-bottom: 2%;
-    margin-top: 2%;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding:  11px;
+    border: 1px solid #25863f;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: start;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    font-weight: 500; 
 }
 .questionLi:hover{
     background-color: rgb(242, 240, 240);
@@ -28,10 +40,11 @@
 .selected{
    background-color: #25863f;
    color: white;
-   padding: 15px;
+   padding: 11px;
    border: 2px solid #25863f;
    border-radius: 7px;
    margin-bottom: 2%;
    margin-top: 2%;
+   font-size: 22px;
 
-}
+} 
