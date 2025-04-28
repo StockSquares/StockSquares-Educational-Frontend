@@ -1,0 +1,232 @@
+.container {
+    display: flex;
+    font-family: Arial, sans-serif;
+    direction: rtl;
+    height: 100vh;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    flex: 1;
+}
+
+.sidebarWrapper {
+    position: relative;
+    z-index: 1000;
+}
+
+.sidebar {
+    position: fixed;
+    top: 50; 
+    right: 0; 
+    height: 100vh; 
+    background: rgb(0, 0, 0);
+    padding: 20px;
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 0; 
+    overflow: hidden;
+    transition: width 0.3s ease; 
+}
+
+.sidebar.open {
+    width: 220px; 
+}
+
+.sidebar.closed {
+    width: 0;
+    visibility: hidden;
+}
+
+.toggleButton {
+    position: fixed;
+    top: 70px; 
+    right: 20px; 
+    background-color: #007a20;
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1001; 
+    margin-top: 5px;
+}
+
+.toggleButton:hover {
+    background-color: #008824;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 220px;
+    text-align: center;
+    margin-top: 60px; 
+}
+
+.sidebar li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar li:hover {
+    background-color: #008824;
+}
+
+.sidebar li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar li.activeItem {
+    background-color: #008824ab;
+}
+
+.icon {
+    font-size: 20px;
+}
+
+/* Rest of your CSS remains the same */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(81, 81, 81, 0.135);
+    height: 120px;
+    border-bottom: 1px solid #ddd;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.logo {
+    width: 350px;
+    height: 110px;
+    display: block;
+    margin: 10px 10px;
+}
+
+.userCount strong {
+    font-size: 22px;
+    color: #02c235;
+}
+
+.userCount {
+    font-size: 24px;
+    color: #ffffff;
+    margin-left: 25px;
+}
+
+.userDetails {
+    display: inline;
+}
+
+.userInfo {
+    align-items: center;
+    margin-right: 20px;
+}
+
+.useralign {
+    align-items: center;
+    gap: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.userIcon {
+    font-size: 40px;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.userText {
+    font-size: 23px;
+    font-weight: bold;
+    color: #ffffff;
+}
+.userText span {
+    color: #01a22c;
+    margin-left: 30px;
+}
+
+.userEmail {
+    font-size: 17px;
+    color: #b4b4b4;
+    margin-right: 10px;
+}
+
+.activate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.activate span {
+    width: 17px;
+    height: 17px;
+    background-color: #00c334;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: 30px;
+    left: 25px;
+    z-index: 1;
+}
+
+.mainContent button {
+    background-color: white;
+    border-radius: 10px;
+    color: rgba(81, 81, 81, 0.929);
+    width: 180px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.splineContainer {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+}
+
+.overlayText {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+.overlayText h2 {
+    font-size: 40px;
+    width: 520px;
+}
+.overlayText p {
+    margin-top: 15px;
+    opacity: 0.5;
+}

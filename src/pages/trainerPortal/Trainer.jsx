@@ -56,7 +56,7 @@ function Trainer(){
    
      return (
        <div className={Style.container}>
-         <div
+         {/* <div
            className={`${Style.sidebar} ${isHovered ? Style.expanded : ""}`}
            onMouseEnter={() => setIsHovered(true)}
            onMouseLeave={() => setIsHovered(false)}
@@ -79,7 +79,7 @@ function Trainer(){
                ))}
              </ul>
            )}
-         </div>
+         </div> */}
    
          <div className="flex flex-col w-full min-h-[100vh] py-[5px] px-[30px]">
            <Routes>

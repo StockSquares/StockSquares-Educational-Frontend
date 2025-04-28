@@ -18,7 +18,7 @@ export const ROUTES = {
   TRY_TRADING_FOR_FREE: "/try-trading-for-free",
   VIP_INVESTOR_SERVICES: "/vip-investor-services",
   USER: "/user/:type",
-  ADMIN: "/client",
+  CLIENT: "/client/*",
   ADMIN1:"/admin1",
   EMPLOYEE: "/employee",
   NOT_FOUND: "*",
