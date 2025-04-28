@@ -61,7 +61,7 @@ function PracticalTrainingSection() {
       }
       p6={false}
     >
-      <div className={` px-2 py-14 lg:p-8`}>
+      <div className={``}>
         <Slider ref={sliderRef} {...settings} dir="rtl">
           {/* Card 1 */}
           <div className={`flex-none ${style.card} w-[100%] lg:w-[50%]`}>

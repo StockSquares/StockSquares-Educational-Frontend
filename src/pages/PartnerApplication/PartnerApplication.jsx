@@ -124,7 +124,7 @@ const PartnerApplication = () => {
             {formError && (
               <p className="error">يرجى ملء جميع الحقول بشكل صحيح قبل المتابعة !</p>
             )}
-            <button type="button" onClick={handleStart}>
+            <button type="button" className='px-4 py-3' onClick={handleStart}>
               ابدا طلب الانضمام
             </button>
           </div>

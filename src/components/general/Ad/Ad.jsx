@@ -12,7 +12,7 @@ function Ad() {
     }, []);
 
     return <>
-        <div className='bg-lightgray h-48 flex-center'>
+        <div className='bg-lightgray h-48 flex-center rounded-xl'>
             <img></img>
         </div>
     </>

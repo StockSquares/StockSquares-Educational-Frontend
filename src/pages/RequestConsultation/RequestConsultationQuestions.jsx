@@ -86,7 +86,7 @@ function RequestConsultationQuestions() {
   return (
     <>
       {!(index === questions.length - 1) ? (
-        <div className="flex flex-col w-[100%] md:w-[50%] gap-3 mt-4">
+        <div className="mt-1 contain">
           <div className="p-1 rounded-2xl border shadow-md bg-green-100 mb-5">
             <FontAwesomeIcon
               icon={faCircle}
@@ -118,7 +118,7 @@ function RequestConsultationQuestions() {
               <h2  className=" m-auto text-lg md:text-2xl mb-5 mt-3 font-bold text-start ">{questions[index].question}</h2>
               <ul className="m-auto">
                 {questions[index].answers.map((answer)=>(
-                  <li key={answer.id} onClick={()=>handleOptionClick(answer.id)} className={`${selectedOption=== answer.id? decor.selected : decor.questionLi}  md:w[300px] lg:w-[550px]`}>
+                  <li key={answer.id} onClick={()=>handleOptionClick(answer.id)} className={`${selectedOption=== answer.id? "selected" : ""}  `}>
                     {answer.answer}
                   </li>
                 ))}
@@ -172,7 +172,7 @@ function RequestConsultationQuestions() {
                   ))}
                 </ul>
                 <button
-                  className={`${decor.send} mb-2 bg-accent text-black`}
+                  className={`${decor.send} mb-2 px-3 py-2 bg-accent text-black`}
                   onClick={handleBooking}
                 >
                   حجز

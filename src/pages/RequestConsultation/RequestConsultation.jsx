@@ -63,7 +63,7 @@ function RequestConsultation() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(submissionData),
+          body: JSON.stoutlineify(submissionData),
         }
       );
   
@@ -83,38 +83,38 @@ function RequestConsultation() {
     <div className="w-full h-full flex flex-col items-center p-6">
       {!isLoggedIn ? (
         <div className="w-full max-w-lg">
-          <h1 className="text-2xl font-semibold mb-4">طلب الاستشارة</h1>
-          <hr className="w-full h-0.5 mb-2" />
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full bg-white shadow-none border-none">
+          <h1 className="text-2xl font-bold mb-4">طلب الاستشارة</h1>
+          <hr className="w-full h-0.5 mb-5" />
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3 p-[0px] w-full bg-white shadow-none border-none">
             <div>
-              <label className="text-right mb-2 block">الاسم ثلاثي:</label>
+              <label className="text-right mb-2 block text-[19px]">الاسم ثلاثي:</label>
               <input
                 type="text"
                 placeholder="الاسم ثلاثي"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full p-[12px] rounded-lg border border-primary-900 border-2 "
               />
             </div>
             <div>
-              <label className="text-right mb-2 block">رقم الهاتف:</label>
+              <label className="text-right mb-2 block text-[19px]">رقم الهاتف:</label>
               <input
                 type="text"
                 placeholder="رقم الهاتف"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full p-[12px] text-[18px] font-[500px] rounded-lg border border-primary-900 border-2 "
               />
             </div>
             <div>
-              <label className="text-right mb-2 block">بلد الإقامة:</label>
+              <label className="text-right mb-2 block text-[19px]">بلد الإقامة:</label>
               {loading ? (
                 <p>جارٍ تحميل قائمة الدول...</p>
               ) : (
                 <select
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full p-[12px] text-[18px] font-[500px] rounded-lg border border-primary-900 border-2 "
                 >
                   <option value="">اختر بلد الإقامة</option>
                   {countries.map((country, index) => (
@@ -126,17 +126,17 @@ function RequestConsultation() {
               )}
             </div>
             <div>
-              <label className="text-right mb-2 block">تاريخ الميلاد:</label>
+              <label className="text-right mb-2 block text-[19px]">تاريخ الميلاد:</label>
               <input
                 type="date"
                 value={birthDate}
                 onChange={(e) => setBirthDate(e.target.value)}
-                className={`w-full px-4 py-2 rounded-lg border transition duration-300 
+                className={`w-full p-[12px] text-[18px] font-[500px] rounded-lg border transition duration-300 
                   ${
-                    isFocused ? "border-green-500 shadow-lg" : "border-gray-300"
+                    isFocused ? "border-green-500 shadow-lg" : "border-primary-900 border-2"
                   } 
-                  ${isHovered ? "border-gray-400" : ""} 
-                  focus:outline-none focus:ring-2 focus:ring-green-500`}
+                  ${isHovered ? "border-primary-900 border-2" : ""} 
+                  `}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 onMouseEnter={() => setIsHovered(true)}
@@ -144,7 +144,7 @@ function RequestConsultation() {
               />
             </div>
             <div>
-              <label className="text-right mb-2 block">
+              <label className="text-right mb-2 block text-[19px]">
                 البريد الإلكتروني:
               </label>
               <input
@@ -152,19 +152,19 @@ function RequestConsultation() {
                 placeholder="البريد الإلكتروني"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full p-[12px] text-[18px] font-[500px] rounded-lg  border-primary-900 border-2   "
               />
             </div>
 
             {formError && (
-              <p className="text-red-600 text-sm self-start">
+              <p className="text-red-600 font-semibold text-lg self-start">
                 يرجى ملء جميع الحقول بشكل صحيح قبل المتابعة.
               </p>
             )}
 
             <button
               type="submit"
-              className="self-center mt-4 w-[30%] py-3 rounded-lg bg-green-600 text-white text-xl hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="self-center mt-4 w-[30%] py-3 rounded-lg bg-green-600 text-white text-xl hover:bg-green-700 "
             >
               ابدأ
             </button>

@@ -16,7 +16,7 @@ function Home() {
   return (
     <div className="container mx-auto px-4">
       {/* Advertisement Section */}
-      <section className="mb-5 mt-4">
+      <section className="mb-2 mt-4">
         <Ad />
       </section>
 

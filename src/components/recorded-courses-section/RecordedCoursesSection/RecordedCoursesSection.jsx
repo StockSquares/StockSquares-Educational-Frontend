@@ -13,7 +13,7 @@ import {
 import { motion } from "framer-motion";
 import { RecordedCourseCard } from "../..";
 import CourseView from "../CoursePage/CoursePage";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import { ROUTES } from "../../../routes";
 
 export function VideoCard({
@@ -37,25 +37,26 @@ export function VideoCard({
       onHoverEnd={() => setIsHovered(false)}
     >
       <div className="relative rounded-lg overflow-hidden h-36 md:h-48">
-      
         <img
           src={imageUrl}
           alt="Video Thumbnail"
           className="w-full h-full object-cover"
         />
         <div
-          className={`absolute inset-0 flex items-center justify-center bg-black transition-opacity duration-300 ${
+          className={`absolute inset-0 flex flex-col items-center justify-center bg-black transition-opacity duration-300 ${
             isHovered ? "bg-opacity-60" : "bg-opacity-40"
           }`}
         >
-        <h1 className="text-2xl "> جاري اكمال الدورة ...</h1>
-        {/* <Link to={ROUTES.COURSECONTENT}>
-          <motion.button
-            className="text-white p-4 rounded-full bg-green-600 hover:bg-green-700"
-            whileHover={{ scale: 1.1 }}
-          >
-            <FontAwesomeIcon icon={faPlay} className="text-xl" />
-          </motion.button></Link> */}
+          <Link to={ROUTES.COURSECONTENT}>
+            <motion.button
+              className="text-white px-[1rem] py-3 pl-4 flex justify-center rounded-full bg-green-600 hover:bg-green-700"
+              whileHover={{ scale: 1.1 }}
+            >
+              <FontAwesomeIcon icon={faPlay} className="text-xl m-auto text-center" />
+            </motion.button>
+          </Link>
+          <h1 className="text-2xl "> جاري اكمال الدورة ...</h1>
+
         </div>
         {progress > 0 && (
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200">
@@ -204,10 +205,9 @@ function VideoGrid() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-wrap gap-2 items-center justify-between mb-8">
         <h1 className="text-3xl font-bold text-gray-800">
-        أساسيات الاستثمار والتداول في الأسواق المالية
-
+          أساسيات الاستثمار والتداول في الأسواق المالية
         </h1>
         <div className="flex gap-4">
           <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
@@ -216,7 +216,6 @@ function VideoGrid() {
           <button className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors">
             ترتيب حسب
           </button>
-       
         </div>
       </div>
 
