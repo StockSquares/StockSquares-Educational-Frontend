@@ -12,7 +12,6 @@ import {
   TryTradingForFree,
   VIPInvestorServices,
   User,
-  Client,
   Employee,
   Article,
   BookYourTrainer,
@@ -41,6 +40,7 @@ import "./App.css";
 import { element } from "prop-types";
 import Admin1 from "./pages/Admin/Admin1";
 import Employees from "./pages/Admin/Employees";
+import Client from "./pages/Admin/Client";
 import Trainer from "./pages/trainerPortal/Trainer";
 import PrivacyPolicy from "./pages/privacyPolicy/PrivacyPolicy";
 import WhoWeAre from "./pages/WhoWeAre/WhoWeAre";
@@ -50,6 +50,7 @@ import ChatAi from "./pages/chatAi/ChatAi";
 import LevelExam from "./pages/levelexam/LevelExam";
 import LevelExamQuestions from "./pages/levelexam/LevelExamQuestions";
 import Date from "./pages/Reservation/Date";
+
 // import RequestConsultation from './pages/RequestConsultation/RequestConsultation';
 // import inlineBlog from './pages/Blog/inlineBlog';
 
@@ -118,6 +119,9 @@ const router = createBrowserRouter([
       {
         path: ROUTES.EMPLOYEE,
         element: <ProtectedRoute element={<Employee />} />,
+      },
+      {
+        path: ROUTES.CLIENT, element :<Client/>
       },
       { path: ROUTES.NOT_FOUND, element: <NotFound /> },
       { path: ROUTES.REQUESTCONSULTATION, element: <RequestConsultation /> },
