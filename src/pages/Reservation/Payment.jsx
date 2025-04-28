@@ -195,6 +195,8 @@ export default function Payment() {
               { id: "credit", label: "بطاقة ائتمان" },
               { id: "wallet", label: " محفظه الكترونيه" },
               { id: "bitcoin", label: "  العملات المشفره" },
+              { id: "debit", label: "   التقسيط" },
+
             ].map((method) => (
               <button
                 key={method.id}

@@ -35,7 +35,7 @@ function PracticalTrainingSection() {
     slidesToShow: 2,
     slidesToScroll: 2,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 5000,
     cssEase: "linear",
     rtl: false,
     responsive: [
