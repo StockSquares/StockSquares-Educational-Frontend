@@ -1,12 +1,12 @@
 .contain {
     width: 640px;
-    margin: 80px auto;
+    margin: 10px auto;
     background-color: white;
     color: #262626;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    padding: 40px 50px;
+    padding: 10px 50px;
 }
 
 .contain hr{
@@ -32,7 +32,7 @@
     display: flex;
     align-items: center;
     height: 70px;
-    padding: 10px 15px;
+    padding:  11px;
     border: 1px solid #25863f;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -56,8 +56,8 @@
 
 .contain button{
     margin: auto;
-    width: 250px;
-    height: 65px;
+    width: 150px;
+    height: 50px;
     background-color: #25863f;
     color: #fff;
     font-size: 25px;

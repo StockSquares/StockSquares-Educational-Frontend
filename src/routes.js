@@ -35,5 +35,6 @@ export const ROUTES = {
   ACTIVITIES:"/Activities",
   CHATAI:"/chatAi",
   LEVELEXAM:"/levelexam",
-  LEVELEXAMQUESTIONS:"/levelexamquestions"
+  LEVELEXAMQUESTIONS:"/levelexamquestions",
+  DATE:"/date"
 };

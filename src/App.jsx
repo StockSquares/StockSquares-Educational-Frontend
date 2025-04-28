@@ -49,6 +49,7 @@ import Activities from "./pages/Activities/Activities";
 import ChatAi from "./pages/chatAi/ChatAi";
 import LevelExam from "./pages/levelexam/LevelExam";
 import LevelExamQuestions from "./pages/levelexam/LevelExamQuestions";
+import Date from "./pages/Reservation/Date";
 
 // import RequestConsultation from './pages/RequestConsultation/RequestConsultation';
 // import inlineBlog from './pages/Blog/inlineBlog';
@@ -154,7 +155,12 @@ const router = createBrowserRouter([
       {
         path:ROUTES.LEVELEXAMQUESTIONS,
         element:<LevelExamQuestions/>
-      }
+      },
+      {
+        path:ROUTES.DATE,
+        element:<Date/>
+      },
+
     ],
   },
 ]);

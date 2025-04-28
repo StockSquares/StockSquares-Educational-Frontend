@@ -86,13 +86,13 @@ function RequestConsultationQuestions() {
   return (
     <>
       {!(index === questions.length - 1) ? (
-        <div className="flex flex-col w-[50%] gap-3 mt-4">
+        <div className="flex flex-col w-[100%] md:w-[50%] gap-3 mt-4">
           <div className="p-1 rounded-2xl border shadow-md bg-green-100 mb-5">
             <FontAwesomeIcon
               icon={faCircle}
               className="text-white border bg-[#25863f] rounded-full"
             />
-            <h4 className="sm:text-sm md:text-xl lg:text-xl p-4 text-green-600 font-semibold leading-none">
+            <h4 className="text-[12px] md:text-xl lg:text-xl p-1 text-green-600 font-semibold leading-5">
               قبل البدء في طلب جلسة مجانيه أون لاين لمدة 15 دقيقة مع مستشار
               استثمار محترف يرجى الأجابة على الأسئلة التالية لكي نتمكن من تقيم
               طلبك بشكل أفضل نود أن نوضح أننا نبحث عن مستثمرين يتناسبون مع
@@ -114,11 +114,11 @@ function RequestConsultationQuestions() {
           </div>
 
           { questions.length>0?( 
-            <div >
-              <h2  className="text-xl font-bold">{questions[index].question}</h2>
-              <ul>
+            <div className="m-auto w-[85%]">
+              <h2  className=" m-auto text-lg md:text-2xl mb-5 mt-3 font-bold text-start ">{questions[index].question}</h2>
+              <ul className="m-auto">
                 {questions[index].answers.map((answer)=>(
-                  <li key={answer.id} onClick={()=>handleOptionClick(answer.id)} className={`${selectedOption=== answer.id? decor.selected : decor.questionLi}`}>
+                  <li key={answer.id} onClick={()=>handleOptionClick(answer.id)} className={`${selectedOption=== answer.id? decor.selected : decor.questionLi}  md:w[300px] lg:w-[550px]`}>
                     {answer.answer}
                   </li>
                 ))}
