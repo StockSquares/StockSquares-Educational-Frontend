@@ -19,7 +19,7 @@ import { ROUTES } from "../../../routes";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Clients from './../../../pages/Admin/adminPages/Clients/Clients';
+import Clients from "./../../../pages/Admin/adminPages/Clients/Clients";
 
 function PracticalTrainingSection() {
   const { t } = useTranslation();
@@ -54,8 +54,7 @@ function PracticalTrainingSection() {
     <SectionCard
       heading={t("sections.PracticalTraining.title")}
       headingBtn={
-        <Link to={ROUTES.JOIN_AS_TRAINER} >
-        
+        <Link to={ROUTES.JOIN_AS_TRAINER}>
           {t("sections.PracticalTraining.btn")}
         </Link>
       }
@@ -80,10 +79,10 @@ function PracticalTrainingSection() {
               img={EgyptFlag}
             />
           </div>
-           {/* Card 2 */}
-           <div className={`flex-none ${style.card} w-[100%] lg:w-[50%]`}>
+          {/* Card 2 */}
+          <div className={`flex-none ${style.card} w-[100%] lg:w-[50%]`}>
             <PracticalTrainingCard
-              cardImg={entryLevel}
+              cardImg={advancedLevel}
               title={
                 <>
                   {t("practicalTraining.egyptianStock")}-{" "}
@@ -97,10 +96,10 @@ function PracticalTrainingSection() {
               img={EgyptFlag}
             />
           </div>
-           {/* Card 3 */}
-           <div className={`flex-none ${style.card} w-[100%] lg:w-[50%]`}>
+          {/* Card 3 */}
+          <div className={`flex-none ${style.card} w-[100%] lg:w-[50%]`}>
             <PracticalTrainingCard
-              cardImg={entryLevel}
+              cardImg={professionalLevel}
               title={
                 <>
                   {t("practicalTraining.egyptianStock")}-{" "}
@@ -118,10 +117,10 @@ function PracticalTrainingSection() {
           {/* ------------------- saudia ---------------------------- */}
 
           {/* Card 1 */}
-       
+
           <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
             <PracticalTrainingCard
-              cardImg={advancedLevel}
+              cardImg={entryLevel}
               title={
                 <>
                   {t("practicalTraining.saudiStock")}-{" "}
@@ -135,8 +134,8 @@ function PracticalTrainingSection() {
               img={saudi}
             />
           </div>
-           {/* Card 2 */}
-           <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
+          {/* Card 2 */}
+          <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
             <PracticalTrainingCard
               cardImg={advancedLevel}
               title={
@@ -152,11 +151,11 @@ function PracticalTrainingSection() {
               img={saudi}
             />
           </div>
-        
-           {/* Card 3 */}
-           <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
+
+          {/* Card 3 */}
+          <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
             <PracticalTrainingCard
-              cardImg={advancedLevel}
+              cardImg={professionalLevel}
               title={
                 <>
                   {t("practicalTraining.saudiStock")}-{" "}
@@ -175,7 +174,7 @@ function PracticalTrainingSection() {
           {/* Card 1 */}
           <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
             <PracticalTrainingCard
-              cardImg={professionalLevel}
+              cardImg={entryLevel}
               title={
                 <>
                   {t("practicalTraining.globalStock")} -{" "}
@@ -192,7 +191,7 @@ function PracticalTrainingSection() {
           {/* card 2 */}
           <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
             <PracticalTrainingCard
-              cardImg={professionalLevel}
+              cardImg={advancedLevel}
               title={
                 <>
                   {t("practicalTraining.globalStock")} -{" "}
@@ -243,9 +242,10 @@ function PracticalTrainingSection() {
               img={bitcoinicon}
             />
           </div>
+          {/* Card 2 */}
           <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
             <PracticalTrainingCard
-              cardImg={entryLevel}
+              cardImg={advancedLevel}
               title={
                 <>
                   {t("practicalTraining.bitCoinStock")}-{" "}
@@ -259,9 +259,10 @@ function PracticalTrainingSection() {
               img={bitcoinicon}
             />
           </div>
+          {/* Card 3 */}
           <div className={`flex-none ${style.card} w-[45%] lg:w-[50%]`}>
             <PracticalTrainingCard
-              cardImg={entryLevel}
+              cardImg={professionalLevel}
               title={
                 <>
                   {t("practicalTraining.bitCoinStock")}-{" "}
