@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Register.module.css';
 import logo from '../../assets/imgs/logo-SS.svg';
 import { ROUTES } from '../../routes';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -23,21 +23,85 @@ function Register() {
 
     const [errorMessage, setErrorMessage] = useState('');
 
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
     };
 
-    const handleSubmit = () => {
-        const { firstName, middleName, lastName, phone, countryCode, email, password, year, month, day, gender, jobStatus, termsAccepted } = formData;
+    const handleSubmit = async () => {
+        const {
+            firstName,
+            middleName,
+            lastName,
+            phone,
+            countryCode,
+            email,
+            password,
+            year,
+            month,
+            day,
+            gender,
+            jobStatus,
+            termsAccepted,
+        } = formData;
 
         if (!firstName || !middleName || !lastName || !phone || !countryCode || !email || !password || !year || !month || !day || !gender || !jobStatus) {
             setErrorMessage('من فضلك، تأكد من ملء جميع الحقول المطلوبة.');
-        } else if (!termsAccepted) {
+            return;
+        }
+
+        if (!termsAccepted) {
             setErrorMessage('يجب الموافقة على اتفاقية الشروط والأحكام وسياسة الخصوصية.');
-        } else {
-            setErrorMessage('');
-            alert('تم تسجيل الحساب بنجاح!');
+            return;
+        }
+
+        // إنشاء birthday بصيغة ISO
+        const birthday = new Date(`${year}-${month}-${day}`).toISOString();
+
+        const payload = {
+            firstName,
+            parentName: middleName,
+            familyName: lastName,
+            email,
+            phoneNumber: `${countryCode}${phone}`,
+            password,
+            confirmPassword: password,
+            gender,
+            scientificStatus: jobStatus,
+            birthday,
+            referralCode: ""
+        };
+
+        try {
+            const response = await fetch("https://stocksquare.runasp.net/api/Account/user-register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "text/plain"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+            if (result.isSuccess) {
+                console.log('API Response:', result);
+                alert('🎉 تم تسجيل الحساب بنجاح!');
+                setErrorMessage('');
+                navigate('/login');
+            } 
+            else {
+                if (result.error.statusCode === 409) {
+                    setErrorMessage('الإيميل أو رقم الهاتف مستخدم بالفعل. جرب إيميل أو رقم آخر.');
+                } else {
+                    setErrorMessage(result.error?.description || 'حدث خطأ أثناء التسجيل.');
+                }
+            }
+        }    
+         catch (error) {
+            console.error("Registration Error:", error);
+            setErrorMessage("❌ فشل الاتصال بالخادم.");
         }
     };
 
@@ -61,6 +125,7 @@ function Register() {
                 <div className={styles.phoneInput}>
                     <input type="tel" id="phone" name="phone" placeholder="أدخل رقم الهاتف" onChange={handleChange} />
                     <select name="countryCode" id="countryCode" className={styles.countryCode} onChange={handleChange}>
+                        <option value="">اختر رمز الدولة</option>
                         <option value="+20">+20 مصر</option>
                         <option value="+966">+966 السعودية</option>
                         <option value="+971">+971 الإمارات</option>
@@ -87,25 +152,19 @@ function Register() {
                     <select name="year" id="year" className={styles.dateInput} onChange={handleChange}>
                         <option value="">السنة</option>
                         {[...Array(80).keys()].map((i) => (
-                            <option value={2025 - i} key={i}>
-                                {2025 - i}
-                            </option>
+                            <option value={2025 - i} key={i}>{2025 - i}</option>
                         ))}
                     </select>
                     <select name="month" id="month" className={styles.dateInput} onChange={handleChange}>
                         <option value="">الشهر</option>
                         {[...Array(12).keys()].map((i) => (
-                            <option value={i + 1} key={i}>
-                                {i + 1}
-                            </option>
+                            <option value={i + 1} key={i}>{i + 1}</option>
                         ))}
                     </select>
                     <select name="day" id="day" className={styles.dateInput} onChange={handleChange}>
                         <option value="">اليوم</option>
                         {[...Array(31).keys()].map((i) => (
-                            <option value={i + 1} key={i}>
-                                {i + 1}
-                            </option>
+                            <option value={i + 1} key={i}>{i + 1}</option>
                         ))}
                     </select>
                 </div>
@@ -139,7 +198,6 @@ function Register() {
                 <p className={styles.redirectText}>
                    هل لديك حساب؟ <a href="/login" className={styles.redirectLink}>تسجيل الدخول</a>
                 </p>
-
             </div>
         </div>
     );

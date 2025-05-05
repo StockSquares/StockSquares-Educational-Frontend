@@ -79,4 +79,3 @@ darkMode:"class",
 		require('flowbite/plugin'),
 	],
 }
-

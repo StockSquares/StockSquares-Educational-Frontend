@@ -2,47 +2,34 @@
     display: flex;
     font-family: Arial, sans-serif;
     direction: rtl;
-    height: 100vh;
+    height: 100%;
 }
 
 .mainContent {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
+    height: auto;
     flex: 1;
 }
 
 .sidebarWrapper {
-    position: relative;
-    z-index: 1000;
-}
+    position: relative; /* جيد */
+    z-index: auto;      /* ✅ بدل 1000 */
+  }
 
 .sidebar {
-    position: fixed;
-    top: 50; 
-    right: 0; 
-    height: 100vh; 
-    background: rgb(0, 0, 0);
+    width: 220px;
+    height: 100vh;
+    background: transparent;
     padding: 20px;
     backdrop-filter: blur(15px);
-    z-index: 1000;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 0; 
-    overflow: hidden;
-    transition: width 0.3s ease; 
-}
+  }
+  
 
-.sidebar.open {
-    width: 220px; 
-}
-
-.sidebar.closed {
-    width: 0;
-    visibility: hidden;
-}
 
 .toggleButton {
     position: fixed;
@@ -58,6 +45,7 @@
     transition: background-color 0.3s ease;
     z-index: 1001; 
     margin-top: 5px;
+    display: none;
 }
 
 .toggleButton:hover {
@@ -68,7 +56,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 220px;
+    width: 180px;
     text-align: center;
     margin-top: 60px; 
 }
@@ -77,18 +65,21 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    background-color: rgb(0, 0, 0);
-    color: white;
-    padding: 12px;
+    background-color: rgba(255, 255, 255);
+    color: rgb(0, 0, 0);
+    padding: 20px 15px;
     border-radius: 10px;
     margin-bottom: 40px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
     transition: background-color 0.3s ease;
 }
 
 .sidebar li:hover {
     background-color: #008824;
+}
+.sidebar li:hover a {
+    color: white;
 }
 
 .sidebar li a {
@@ -96,19 +87,22 @@
     align-items: center;
     gap: 10px;
     width: 100%;
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
+
 }
 
 .sidebar li.activeItem {
-    background-color: #008824ab;
-}
+    background-color: #00a92d;
 
+}
+.sidebar li.activeItem a{
+      color: white;
+
+}
 .icon {
     font-size: 20px;
 }
-
-/* Rest of your CSS remains the same */
 .header {
     display: flex;
     align-items: center;
@@ -229,4 +223,392 @@
 .overlayText p {
     margin-top: 15px;
     opacity: 0.5;
+}
+.mainContent {
+    padding: 20px;
+  }
+  .heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .journey {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-wrap: nowrap;
+    gap: 30px;
+  }
+  .lessonWrapper {
+    position: relative;
+    text-align: center;
+  }
+  .lesson {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 1000;
+  }
+  .unlocked {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .locked {
+    background-color: #999;
+    color: white;
+    cursor: not-allowed;
+  }
+  .advanced {
+    border: 3px solid gold;
+  }
+  .connector {
+    width: 70px;
+    height: 4px;
+    background-color: #ccc;
+    position: absolute;
+    top: 35px;
+    left: 55px;
+    z-index: -1; 
+  }
+  .connector:last-child{
+    left: 70px;
+  }
+  .title {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .sectionTitle {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 10px 0 40px 0px;
+    text-align: center;
+    color: #4caf50;
+  }
+  .progressBarWrapper {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .progressTitle {
+    font-size: 26px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #4caf50;
+  }
+  
+  .progressBar {
+    height: 15px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  @keyframes slideShine {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+  
+  .progress {
+    height: 100%;
+    width: 0%;
+    border-radius: 10px;
+    background: linear-gradient(270deg, #00e676, #00c853, #aeea00);
+    background-size: 400% 400%;
+    animation: slideShine 3s ease infinite;
+    transition: width 1s ease-in-out;
+    box-shadow: 0 0 10px #00c85388, 0 0 20px #00e67688;
+  }
+  
+  .celebrate {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #00e676;
+    animation: pulseGlow 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0% {
+      text-shadow: 0 0 5px #00e676, 0 0 10px #00e676;
+    }
+    50% {
+      text-shadow: 0 0 15px #00e676, 0 0 25px #00e676;
+    }
+    100% {
+      text-shadow: 0 0 5px #00e676, 0 0 10px #00e676;
+    }
+  }
+  .certTitle {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #4caf50;
+  }
+  
+  .certGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 10px;
+  }
+  
+  .certCard {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 10px #ddd;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .certCard:hover {
+    transform: scale(1.03);
+  }
+  
+  .certActive {
+    border-left: 6px solid #4caf50;
+  }
+  
+  .certLocked {
+    background-color: #f1f1f1;
+    color: #999;
+    border-left: 6px solid #ccc;
+  }
+  
+  .certActions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .certActions button {
+    background-color: #4caf50;
+    border: none;
+    padding: 8px 14px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .certActions button:hover {
+    background-color: #43a047;
+  }
+  
+  .lockedMsg {
+    margin-top: 10px;
+    font-style: italic;
+    color: #888;
+  }
+  
+  .congratsBox {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 18px;
+    background-color: #e8f5e9;
+    padding: 15px;
+    border-radius: 10px;
+    color: #2e7d32;
+    box-shadow: 0 0 10px #c8e6c9;
+  }
+  .emptyCertContainer {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 40px 30px;
+    background: linear-gradient(145deg, #ffffff, #f9f9f9);
+    border: 2px dashed #4caf50;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .emptyCertContainer:hover {
+    transform: scale(1.01);
+  }
+  
+  .emptyIcon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: #4caf50;
+    animation: popIn 0.6s ease forwards;
+  }
+  
+  @keyframes popIn {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .emptyTitle {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .emptyMessage {
+    font-size: 17px;
+    color: #1b1b1b;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  
+  .mainContent21 button{
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .startLearningBtn:hover {
+    background-color: #43a047;
+  }
+@media (max-width:770px) {
+    .performance{
+        margin-bottom: 50px;
+    }
+    .toggleButton {
+        position: fixed;
+        top: 10px; 
+        right: 130px; 
+        background-color: #02cd38;
+        color: white;
+        border: none;
+        padding: 5px 20px;
+        border-radius: 12px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        z-index: 1001; 
+        margin-top: 5px;
+        display: block;
+    }
+    .toggleButton:hover {
+        background-color: #008824;
+    }
+    .sidebar.open {
+        width: 200px; 
+    }
+    
+    .sidebar.closed {
+        width: 0;
+        visibility: hidden;
+    }
+    
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 180px;
+        text-align: center;
+        margin-top: 60px; 
+    }
+    
+    .sidebar li {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        background-color: rgb(102, 102, 102);
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 40px;
+        font-weight: bold;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+    .sidebar li a{
+        color: rgb(255, 255, 255);
+    }
+    .sidebar.open {
+        width: 220px; 
+    }
+    
+    .sidebar.closed {
+        width: 0;
+        visibility: hidden;
+    }
+    
+    .sidebar {
+        position: fixed;
+        top: 0; 
+        right: 0; 
+        height: 100%; 
+        background: rgba(139, 139, 139, 0.001);
+        padding: 20px;
+        backdrop-filter: blur(15px);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 0; 
+        overflow: hidden;
+        transition: width 0.3s ease; 
+    }    
+    .journey {
+        gap: 20px; 
+      }
+    
+      .lesson {
+        width: 50px;
+        height: 50px;
+        font-size: 14px;
+      }
+    
+      .connector {
+        width: 40px;
+        height: 3px;
+        top: 24px;
+        right: -30px;
+      }
+    
+      .title {
+        font-size: 12px;
+        margin-top: 6px;
+      }
+    
+      .sectionTitle {
+        font-size: 20px;
+        margin: 10px 0 25px;
+      }
+      .progressBar {
+        width: 90%;
+      }
+    
+      .progressTitle {
+        font-size: 16px;
+      }
+    
+      .celebrate {
+        font-size: 16px;
+      }
 }
