@@ -1,4 +1,4 @@
-
+/* 
  .send{
     margin: auto;
     width: 150px;
@@ -47,4 +47,12 @@
    margin-top: 2%;
    font-size: 22px;
 
-} 
+}  */
+
+form input:focus{
+    --tw-ring-color: green !important;
+    border:none !important;
+    outline:2px solid green !important;
+    outline-offset: 0px !important;
+    transform: scale(1);
+}

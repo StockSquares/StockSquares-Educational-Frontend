@@ -17,7 +17,7 @@ function RecordedCourseCard() {
 
   return (
     <SectionCard heading={" الدورات المسجله "} p6={false}>
-    <div className="p-2">
+    <div className="p-2 ">
       <div className="bg-neutral-200 text-xs font-semibold rounded-sm  py-[2px] flex">
         <div className="content  w-full text-[10px] px-1 py-8 ">
          
@@ -28,9 +28,9 @@ function RecordedCourseCard() {
             تعلم تداول الأسهم والعملات والذهب
           </p>
 
-          <div className="mt-6">
-            <h4 className="text-sm font-bold">أ/طارق الليثي</h4>
-            <div className="flex flex-col w-fit py-1 border-b-2 border-primary ">
+          <div className="mt-5">
+            <h4 className="text-sm font-bold mb-1">أ/طارق الليثي</h4>
+            <div className="flex flex-col w-fit py-1 gap-1 border-b-2 border-primary ">
               <span className="text-xs">مستشار استثمار ومدرب معتمد</span>
               <span className="text-xs">
                 استشاري تطوير الأعمال في عدة شركات مالية
@@ -52,7 +52,7 @@ function RecordedCourseCard() {
       {/* تفاصيل الدورة */}
       <div className="flex-y-center justify-between mt-4 ">
         <div>
-          <h3 className="mb-1 text-base font-semibold">
+          <h3 className="mb-2 text-base font-semibold">
             أساسيات الاستثمار والتداول في الأسواق المالية
           </h3>
           <ul className="row">
@@ -80,7 +80,7 @@ function RecordedCourseCard() {
         {/* عروض الشركات */}
         <div className="mt-2 flex flex-col justify-center items-center w-full p-1">
           <hr className="text-lg bg-gray-400 h-[0.2px] w-full mb-1" />
-          <h2 className="font-bold text-base mb-3">عروض شركات الاستثمار و التداول</h2>
+          <h2 className="font-bold text-base mb-5 mt-3">عروض شركات الاستثمار و التداول</h2>
           <div className="flex justify-between w-full gap-2 text-center font-bold">
             <div className="w-1/3 rounded-lg p-2 shadow-md bg-gray-100">
               إعلان
@@ -93,7 +93,8 @@ function RecordedCourseCard() {
             </div>
           </div>
         </div>
-      </div></div>
+      </div>
+      </div>
     </SectionCard>
   );
 }

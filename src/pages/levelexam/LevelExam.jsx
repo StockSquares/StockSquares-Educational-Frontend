@@ -37,20 +37,22 @@ const [formError, setFormError] = useState(false);
     };}
   return (
     <div className="w-full">
-      <div className="container mt-5 flex flex-col  justify-center items-center">
-        <div className="p-1 rounded-2xl border shadow-md bg-green-100 mb-5 w-[70%] ">
+      <div className="container  mt-5 flex flex-col  justify-center items-center">
+        <div className="p-2 rounded-2xl border shadow-md bg-green-100 mb-5 w-[100%] md:w-[70%] ">
           <FontAwesomeIcon
             icon={faCircle}
             className="text-white border bg-[#25863f]  rounded-full"
           />
-          <h4 className="sm:text-sm md:text-xl lg:text-xl p-4 text-green-600 font-semibold leading-none">
+          <h4 className="text-[12px] md:text-xl lg:text-xl px-1 md:px-3 mb-4 flex flex-col text-green-600 font-semibold leading-5 ">
             يساعدك اختبار تحديد المستوى على اختيار مستوى التدريب المناسب لخبرتك
             والحصول على تدريب تفاعلي فعال بناء على الاجابات المختارة ولذالك يجب
             ان تقوم بالاختبار للتأكد من تعلمك في المستوى المناسب ( متقدم – محترف
-            ) وذالك في حالة انك لن تبدا بالمستوى المبتدئ في التعلم
+            )   <br/>
+            <span className=" text-green-700 self-center mt-2 font-bold"> *لا تحتاج الي عمل الاختبار اذا كنت ستبدأ من المستوي المبتدئ </span>         
           </h4>
+          
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4  bg-white shadow-none border-none w-[70%]">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4  bg-white shadow-none border-none w-[100%] md:w-[70%]">
             <div>
               <label className="text-right mb-2 block">الاسم ثلاثي:</label>
               <input

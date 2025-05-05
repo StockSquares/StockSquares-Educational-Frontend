@@ -1,75 +1,154 @@
 import { useState } from "react";
-
 function PartnersOperations() {
-  const [partners, setPartners] = useState([
-    { id: 1, name: "شركة ABC" },
-    { id: 2, name: "شركة XYZ" }
+  const employees = [" احمد محمد ", " مروه محمد ", " خالد اشرف ", " مني جمال "];
+
+  const [data, setData] = useState([
+    { partner: " ab ", employee: " احمد محمد " },
+    { partner: " bc ", employee: " مروه محمد " },
+    { partner: " cd ", employee: " خالد اشرف " },
+    { partner: " xy", employee: " مني جمال " },
   ]);
-  const [newPartner, setNewPartner] = useState("");
-  const [selectedPartner, setSelectedPartner] = useState(null);
-  const [inviteCode, setInviteCode] = useState("");
-  
-  const addPartner = () => {
-    if (newPartner.trim() === "") return;
-    setPartners([...partners, { id: partners.length + 1, name: newPartner }]);
-    setNewPartner("");
+
+  const [selected, isSelected] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenForNew, setIsOpenForNew] = useState(false);
+  const [selectedPartner, setSelectedPartner] = useState("");
+  const [newPartner, addNewPartner] = useState("");
+  const [selectedEmployee, setSelectedEmployee] = useState("");
+
+  const handleChange = (partner) => {
+    setSelectedPartner(partner);
+    setIsOpen(true);
   };
-  
-  const deletePartner = (id) => {
-    setPartners(partners.filter(partner => partner.id !== id));
+
+  const handleSubmit = () => {
+    const filteredData = data.filter((d) => d.partner !== selectedPartner);
+    const updatedData = [
+      ...filteredData,
+      { partner: selectedPartner, employee: selected },
+    ];
+    setData(updatedData);
+    setIsOpen(false);
+    isSelected("");
   };
-  
-  const transferPartner = (id) => {
-    alert(`تم نقل الشريك ${id} بنجاح`);
+
+  const addNew = () => {
+    const newData=[ ...data, {partner: newPartner, employee: selectedEmployee}];
+    setData(newData);
+    setIsOpenForNew(false);
+    setSelectedEmployee("");
   };
-  
-  const generateInviteCode = () => {
-    setInviteCode(`INV-${Math.floor(1000 + Math.random() * 9000)}`);
-  };
-  
+
   return (
-    <div className="p-4 mb-3">
-      <h2 className="text-xl font-bold mb-4">-: اضافه شريك :-</h2>
-      
-      <div className="mb-4">
-        <input 
-          type="text" 
-          placeholder="اسم الشريك" 
-          className="border p-2 mr-2" 
-          value={newPartner} 
-          onChange={(e) => setNewPartner(e.target.value)}
-        />
-        <button className="bg-green-500 text-white px-4 py-2 mt-2 rounded-lg" onClick={addPartner}>إضافة شريك</button>
-      </div>
-      
-      <ul>
-        {partners.map(partner => (
-          <li key={partner.id} className="flex justify-between border p-2 mb-2">
-            {partner.name}
-            <button className="bg-red-500 text-white px-2" onClick={() => deletePartner(partner.id)}>❌</button>
-          </li>
-        ))}
-      </ul>
-      
-      <div className="mb-4">
-      <h2 className="text-xl font-bold mb-4 mt-5">-: نقل الشريك :-</h2>
+    <>
+      <div className="p-4 ">
+        {/* اضافه ونقل شريك */}
+        <div>
+          <table className="m-auto w-[700px] text-center border-2">
+            <thead>
+              <th className="p-2 bg-green-500 text-white font-semibold">
+                الشريك
+              </th>
+              <th className="p-2 bg-green-500 text-white font-semibold">
+                الموظف
+              </th>
+              <th className="p-2 bg-green-500 text-white font-semibold">
+                تغيير الموظف
+              </th>
+            </thead>
+            <tbody>
+              {data.map((item, idx) => (
+                <tr key={idx} className="p-2 border-2">
+                  <td className="p-2">{item.partner}</td>
+                  <td>
+                    <p className="">{item.employee}</p>
+                  </td>
+                  <td>
+                    <button
+                      className="ms-5 text-sm px-4 py-[3px] rounded-lg bg-accent-700  hover:bg-accent-950"
+                      onClick={() => handleChange(item.partner)}
+                    >
+                      تغيير
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td
+                  colSpan={3}
+                  className="bg-gray-100 cursor-pointer hover:bg-gray-200"
+                  onClick={()=> setIsOpenForNew(true)}
+                >
+                  +
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
 
-        <select className="border p-2" onChange={(e) => setSelectedPartner(e.target.value)}>
-          <option value="">اختر شريك</option>
-          {partners.map(partner => (
-            <option key={partner.id} value={partner.id}>{partner.name}</option>
-          ))}
-        </select>
-        <button className=" bg-accent-900 px-4 py-2 ml-2 " onClick={() => transferPartner(selectedPartner)}>نقل الشريك</button>
+        <h2 className="text-xl font-bold mb-4 mt-5">
+          -: انشاء كود دعوة/ خصم :-
+        </h2>
+        <button className="bg-green-500 text-white px-4 py-2 rounded-lg">
+          إنشاء كود دعوة
+        </button>
+        <p className="mt-2">
+          كود الدعوة: <strong></strong>
+        </p>
       </div>
-      
-      <div>
-      <h2 className="text-xl font-bold mb-4 mt-5">-: انشاء كود دعوة/ خصم  :-</h2>
 
-        <button className="bg-green-500 text-white px-4 py-2 rounded-lg" onClick={generateInviteCode}>إنشاء كود دعوة</button>
-        {inviteCode && <p className="mt-2">كود الدعوة: <strong>{inviteCode}</strong></p>}
-      </div>
-    </div>
+      {isOpen && (
+        <div className="fixed inset-0  flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <div className="absolute bg-white rounded-lg w-[500px] h-auto mt-5 p-4 flex flex-col shadow-md ">
+            <h2 className="text-xl text-center font-bold mb-2">
+              اختر الموظف المناسب
+            </h2>
+            {employees.map((employee, idx) => (
+              <p
+                key={idx}
+                className={`${
+                  selected === employee ? "bg-accent-700" : "hover:bg-gray-100 "
+                } text-lg p-1 font-semibold mb-2 rounded-lg cursor-pointer `}
+                onClick={() => isSelected(employee)}
+              >
+                {employee}
+              </p>
+            ))}
+            <button
+              className="px-5 py-1 rounded-lg bg-primary-900 text-white self-center hover:bg-primary-950"
+              onClick={() => handleSubmit()}
+            >
+              حفظ التغيير
+            </button>
+          </div>
+        </div>
+      )}
+
+      {isOpenForNew && (
+        <div className="fixed inset-0  flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <div className=" bg-white rounded-lg w-[500px] h-auto mt-5 p-4 flex flex-col shadow-md">
+            <h2 className="text-xl text-center font-bold mb-2">
+              اضافه شريك جديد
+            </h2>
+            <div> 
+            <label> اسم الشريك: </label>
+            <input type="text" className="rounded-lg focus:outline-none focus:border-0 mb-5 mt-1" value={newPartner} onChange={(e)=> addNewPartner(e.target.value)} />
+            <label>  الموظف المناسب :</label>
+            <select className="mt-1 w-full rounded-lg" onChange={(e)=>setSelectedEmployee(e.target.value)}>
+              <option> اختر </option>
+              {employees.map((employee, idx)=>(
+                <option key={idx} value={employee}> {employee} </option>
+              ))}
+            </select>  
+            </div>
+            <button className="px-4 py-1 rounded-lg bg-primary-900 text-white self-center mt-4 mb-2" onClick={()=>addNew()}> اضافه </button>         
+
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
