@@ -196,7 +196,6 @@ export default function Payment() {
               { id: "wallet", label: " محفظه الكترونيه" },
               { id: "bitcoin", label: "  العملات المشفره" },
               { id: "debit", label: "   التقسيط" },
-
             ].map((method) => (
               <button
                 key={method.id}
@@ -406,7 +405,7 @@ export default function Payment() {
               src="/src/assets/imgs/vodafone-cash.png"
               className="w-[70px] h-[40px] m-auto mb-4"
             />
-            <button className="w-full p-3 rounded-lg bg-accent-950">
+            <button className=" px-7 py-3 rounded-lg bg-accent-950">
               {" "}
               الدفع بواسطه المحفظه
             </button>
@@ -415,24 +414,34 @@ export default function Payment() {
 
         {selectedMethod === "bitcoin" && (
           <div className="w-full flex flex-col items-center gap-3 ">
-            <h2 className="mb-2 font-semibold"> Deposit USDT to Binance </h2>
+            <h2 className="mb-4 font-semibold"> Deposit USDT to Binance </h2>
             <img
-              src="/src/assets/imgs/QR_Code_Example.svg.png"
-              className="w-[180px] h-[170px] object-cover rounded-lg mb-3"
+              src="/src/assets/imgs/qrCode.jfif"
+              className="w-[180px] h-[170px] object-cover rounded-lg mb-4"
             />
-            <div className="flex  justify-between gap-5 w-[50%] ">
-              <p> ---- </p>
-              <p className="text-gray-400"> Network </p>
+            <div className="flex flex-col items-center text-start">
+              <div className="w-full max-w-md">
+                <div className="flex justify-between gap-5">
+                  <p className="text-start">Tron (TRC20)</p>
+                  <p className="text-end text-gray-400">Network</p>
+                </div>
+                <div className="flex justify-between gap-5 mt-2">
+                  <p className="text-start">
+                    TNbY6Rmz9CdEXJHhS5YoUSR8RwEKYpWLsq
+                  </p>
+                  <p className="text-end text-gray-400">Wallet Address</p>
+                </div>
+                <p className="text-gray-500 text-sm text-end mt-5">
+                  .Don't send NFTs to this address
+                  <br/>
+                 
+                  Smart contract deposits are not supported with the exception
+                  of ETH via ERC20,
+                  
+                  BSC via BEP20, Arbitrum and Optimism networks
+                </p>
+              </div>
             </div>
-            <div className="flex  justify-between gap-5 w-[50%] ">
-              <p> ---- </p>
-              <p className="text-gray-400"> Wallet Address </p>
-            </div>
-            <p className="text-gray-500 w-[50%] text-end text-sm"> 
-            .Don't send NFTs to this address<br/>
-            Smart contract deposits are not supported with the exception of ETH via ERC20,
-            BSC via BEP20, Arbitrum and Optimism networks
-             </p>
           </div>
         )}
 

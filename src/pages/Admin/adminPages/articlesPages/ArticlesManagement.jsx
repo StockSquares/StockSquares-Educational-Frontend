@@ -54,7 +54,8 @@ function ArticlesManagement() {
           body: formData,
         }
       );
-      console.log(response.json());
+      const data = await response.json();
+      console.log(data);
 
       if (!response.ok) throw new Error("فشل في إرسال المقال");
 
@@ -155,101 +156,87 @@ function ArticlesManagement() {
         onChange={(e) => setArticle({ ...article, Writer: e.target.value })}
       />
 
-      {addArticle ? (
-        <div className="article">
-          <div className="flex gap-3 items-center">
-            <label
-              htmlFor="mainArticleImage"
-              className="px-3 py-2 bg-accent-900 rounded-md cursor-pointer hover:bg-accent-400"
-            >
-              اضف صورة للمقال
-            </label>
-            <input
-              type="file"
-              className="hidden"
-              id="mainArticleImage"
-              onChange={(e) => handleFileChange(e, "MainImageFile")}
-            />
-            {article.MainImageFile && (
-              <div className="flex items-center gap-2 ">
-                <span className="text-green-600">
-                  {article.MainImageFile.name}
-                </span>
-                <img
-                  src={URL.createObjectURL(article.MainImageFile)}
-                  alt="معاينة المقال"
-                  className="w-[50px] h-[50px] rounded-md border"
-                />
-              </div>
-            )}
-          </div>
-
-          <div className="flex gap-3 items-center">
-            <label
-              htmlFor="WriterImage"
-              className="px-3 py-2 bg-green-500 rounded-md cursor-pointer hover:bg-green-700"
-            >
-              اضف صورة للكاتب
-            </label>
-            <input
-              type="file"
-              className="hidden"
-              id="WriterImage"
-              onChange={(e) => handleFileChange(e, "WriterImage")}
-            />
-            {article.WriterImage && (
-              <div className="flex items-center gap-2">
-                <span className="text-green-600">
-                  {article.WriterImage.name}
-                </span>
-                <img
-                  src={URL.createObjectURL(article.WriterImage)}
-                  alt="معاينة الكاتب"
-                  className="w-[50px] h-[50px] rounded-md border"
-                />
-              </div>
-            )}
-          </div>
-
-          <SunEditor
-            setContents={article.Body}
-            onChange={(content) =>
-              setArticle((prev) => ({ ...prev, Body: content }))
-            }
-            setOptions={{
-              buttonList: [
-                ["bold", "italic", "underline", "strike"],
-                ["font", "fontColor", "hiliteColor", "fontSize"],
-                ["align", "list", "table"],
-                ["link", "image"],
-              ],
-              imageUploadHandler: handleImageUpload, // ربط دالة رفع الصورة
-            }}
-          />
-          <div className="flex gap-5">
-            <button className="bg-accent-950 text-dark px-4 py-2 mt-3 rounded hover:bg-gray-600">
-              حفظ المقال
-            </button>
-
-            <button
-              className="bg-primary-950 text-white px-4 py-2 mt-3 rounded hover:bg-gray-600"
-              onClick={saveArticle}
-            >
-              نشر المقال
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div className="flex gap-3 text-white mt-4">
-          <button
-            className="px-3 py-2 bg-primary-dark rounded-lg"
-            onClick={() => setAddArticle(true)}
+      <div className="article">
+        <div className="flex gap-3 items-center">
+          <label
+            htmlFor="mainArticleImage"
+            className="px-3 py-2 bg-accent-900 font-semibold rounded-md cursor-pointer hover:bg-accent-400"
           >
-            إضافة مقال
-          </button>
-          <button className="px-3 py-2 bg-red-600 rounded-lg">حذف</button>
+            اضف صورة للمقال
+          </label>
+          <input
+            type="file"
+            className="hidden"
+            id="mainArticleImage"
+            onChange={(e) => handleFileChange(e, "MainImageFile")}
+          />
+          {article.MainImageFile && (
+            <div className="flex items-center gap-2 ">
+              <span className="text-green-600">
+                {article.MainImageFile.name}
+              </span>
+              <img
+                src={URL.createObjectURL(article.MainImageFile)}
+                alt="معاينة المقال"
+                className="w-[50px] h-[50px] rounded-md border"
+              />
+            </div>
+          )}
         </div>
-      )}
+
+        <div className="flex gap-3 items-center">
+          <label
+            htmlFor="WriterImage"
+            className="px-3 py-2 bg-primary-900 text-white rounded-md cursor-pointer  font-semibold hover:bg-green-700"
+          >
+            اضف صورة للكاتب
+          </label>
+          <input
+            type="file"
+            className="hidden"
+            id="WriterImage"
+            onChange={(e) => handleFileChange(e, "WriterImage")}
+          />
+          {article.WriterImage && (
+            <div className="flex items-center gap-2">
+              <span className="text-green-600">{article.WriterImage.name}</span>
+              <img
+                src={URL.createObjectURL(article.WriterImage)}
+                alt="معاينة الكاتب"
+                className="w-[50px] h-[50px] rounded-md border"
+              />
+            </div>
+          )}
+        </div>
+
+        <SunEditor
+          setContents={article.Body}
+          onChange={(content) =>
+            setArticle((prev) => ({ ...prev, Body: content }))
+          }
+          setOptions={{
+            buttonList: [
+              ["bold", "italic", "underline", "strike"],
+              ["font", "fontColor", "hiliteColor", "fontSize"],
+              ["align", "list", "table"],
+              ["link", "image"],
+            ],
+            imageUploadHandler: handleImageUpload, // ربط دالة رفع الصورة
+          }}
+        />
+        <div className="flex gap-5">
+          <button className="bg-accent-950 text-dark px-4 py-2 mt-3 rounded hover:bg-gray-600">
+            حفظ المقال
+          </button>
+
+          <button
+            className="bg-primary-950 text-white px-4 py-2 mt-3 rounded hover:bg-gray-600"
+            onClick={saveArticle}
+          >
+            نشر المقال
+          </button>
+        </div>
+      </div>
 
       <ToastContainer position="top-right" autoClose={5000} />
     </div>

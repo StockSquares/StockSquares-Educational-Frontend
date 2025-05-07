@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AdsManagement = () => {
   const [ads, setAds] = useState([]);
@@ -18,12 +19,18 @@ const AdsManagement = () => {
     setNewAd({ ...newAd, [name]: value });
   };
 
-  console.log(newAd);
+  const fetchAds = () => {
+    fetch(
+      "https://stocksquare.runasp.net/api/Advertisement/GetAll?ts=${Date.now()}"
+    )
+      .then((response) => response.json())
+      .then((data) => setAds(data))
+      .catch((e) => console.log(e.message));
+  };
 
   const addOrUpdateAd = async () => {
     if (newAd.Title && newAd.LocationId && newAd.Image && newAd.Link) {
       const formData = new FormData();
-
       formData.append("Title", newAd.Title);
       formData.append("Link", newAd.Link);
       formData.append("Image", newAd.Image);
@@ -31,7 +38,6 @@ const AdsManagement = () => {
 
       if (update) {
         formData.append("Id", newAd.Id);
-
         try {
           let response = await fetch(
             "https://stocksquare.runasp.net/api/Advertisement/Update",
@@ -40,11 +46,17 @@ const AdsManagement = () => {
               body: formData,
             }
           );
-
           if (response.ok) {
-            console.log("ended this update");
-
+            toast.success("تم التعديل بنجاح!");
             setUpdate(false);
+            setNewAd({
+              Id: "",
+              Title: "",
+              LocationId: "",
+              Image: "",
+              Link: "",
+            });
+            fetchAds();
             return;
           } else {
             let errorText = await response.text();
@@ -53,31 +65,32 @@ const AdsManagement = () => {
         } catch (e) {
           console.log(e.message);
         }
-      }
-
-      try {
-        let response = await fetch(
-          "https://stocksquare.runasp.net/api/Advertisement/create",
-          {
-            method: "POST",
-            body: formData,
+      } else {
+        try {
+          let response = await fetch(
+            "https://stocksquare.runasp.net/api/Advertisement/create",
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+          if (response.ok) {
+            toast.success("تمت إضافة الإعلان بنجاح!");
+            setNewAd({
+              Id: "",
+              Title: "",
+              LocationId: "",
+              Image: "",
+              Link: "",
+            });
+            fetchAds();
           }
-        );
-        console.log(response);
-      } catch (e) {
-        console.log(e.message);
+        } catch (e) {
+          console.log(e.message);
+        }
       }
     } else {
-      toast.error("يرجى ملء جميع الحقول قبل إضافة أو تحديث الإعلان.!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toast.error("يرجى ملء جميع الحقول قبل إضافة أو تحديث الإعلان.!");
     }
   };
 
@@ -92,7 +105,25 @@ const AdsManagement = () => {
     setUpdate(true);
   };
 
-  const updateAds = () => {};
+  const deleteAds = async (adId) => {
+    try {
+      const response = await fetch(
+        `https://stocksquare.runasp.net/api/Advertisement/Delete?id=${adId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Accept: "text/plain",
+          },
+        }
+      );
+      if (response.ok) {
+        toast.success("تم حذف الإعلان بنجاح!");
+        fetchAds();
+      }
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
 
   useEffect(() => {
     fetch(
@@ -104,30 +135,11 @@ const AdsManagement = () => {
   }, []);
 
   useEffect(() => {
-    fetch("https://stocksquare.runasp.net/api/Advertisement/GetAll")
-      .then((response) => response.json())
-      .then((data) => setAds(data))
-      .catch((e) => console.log(e.message));
+    fetchAds();
   }, []);
 
-  const deleteAds = (adId) => {
-    try {
-      fetch(
-        `https://stocksquare.runasp.net/api/Advertisement/Delete?id=${adId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Accept: "text/plain",
-          },
-        }
-      );
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
-
   return (
-    <div className="p-6  min-h-screen">
+    <div className="p-6 min-h-screen">
       <div className="bg-white p-4 rounded-xl shadow-md mb-6">
         <h2 className="text-xl font-semibold mb-2">➕ إضافة إعلان جديد</h2>
 
@@ -146,7 +158,7 @@ const AdsManagement = () => {
           value={newAd.LocationId}
           onChange={handleInputChange}
         >
-          <option> اختر موقع الاعلان </option>
+          <option>اختر موقع الإعلان</option>
           {locations.map((location) => (
             <option key={location.id} value={location.id}>
               {location.value}
@@ -156,22 +168,22 @@ const AdsManagement = () => {
 
         <label
           htmlFor="inputFile"
-          className="px-3 py-1 bg-darkgray w-[8rem] text-white font-normal rounded-lg text-center mb-2"
+          className="text-black font-semibold text-lg mt-2"
         >
-          اضافه صوره{" "}
+          اضافه صوره:
         </label>
         <input
           type="file"
           name="Image"
           accept="image/*"
           id="inputFile"
-          className="border p-2 rounded w-full mb-2 hidden"
-          onChange={(e) => {
+          className="p-2 rounded w-full mb-2"
+          onChange={(e) =>
             setNewAd((prev) => ({
               ...prev,
               Image: e.target.files[0],
-            }));
-          }}
+            }))
+          }
         />
 
         <input
@@ -184,10 +196,10 @@ const AdsManagement = () => {
         />
 
         <button
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="bg-blue-600 text-white px-4 py-2 mt-2 rounded hover:bg-blue-700"
           onClick={addOrUpdateAd}
         >
-          {update ? " حفظ التعديلات " : "✅ إضافة الإعلان"}
+          {update ? "حفظ التعديلات" : "✅ إضافة الإعلان"}
         </button>
       </div>
 
@@ -203,7 +215,6 @@ const AdsManagement = () => {
                 className="border p-4 rounded-lg shadow-sm cursor-pointer"
               >
                 <h3 className="font-semibold">{ad.title}</h3>
-                {/* <p className="text-gray-700">{ad.locationId}</p> */}
                 <img
                   src={ad.image}
                   alt={ad.title}
@@ -223,33 +234,20 @@ const AdsManagement = () => {
                     className="bg-blue-500 rounded-lg px-2 py-1"
                     onClick={() => handleUpdate(ad)}
                   >
-                    {" "}
-                    تعديل{" "}
+                    تعديل
                   </button>
                   <button
                     className="bg-red-600 rounded-lg px-2 py-1"
                     onClick={() => deleteAds(ad.id)}
                   >
-                    {" "}
-                    حذف{" "}
+                    حذف
                   </button>
                 </div>
               </div>
             ))}
           </div>
         )}
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
+        <ToastContainer />
       </div>
     </div>
   );

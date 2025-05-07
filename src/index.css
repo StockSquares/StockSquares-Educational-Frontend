@@ -246,3 +246,10 @@ nav.breadcrumb li button svg {
         background-color: #f9f9f9;
     }
 } */
+
+
+.slick-prev:before,
+.slick-next:before {
+  color: var(--primary-700); /* اختاري اللون اللي تحبيه */
+  font-size: 20px;
+}

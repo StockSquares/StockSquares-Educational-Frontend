@@ -19,6 +19,7 @@ import PartnersComponent from "./adminPages/partners/Partners";
 import BooksComponent from "./adminPages/books/Books";
 import ArticlesComponent from "./adminPages/articlesPages/Articles";
 import Activities from "./adminPages/activities/Activities";
+import TrainingOppointments from "./adminPages/trainingOppointments/TrainingOppointments";
 
 function Admin1() {
   const [isopened, setisopened] = useState(true);
@@ -84,6 +85,12 @@ function Admin1() {
       icon: faBook,
       label: "الأنشطه",
       component: <Activities />,
+    },
+    {
+      id: "trainingOppointments",
+      icon: faBook,
+      label: "المواعيد ",
+      component: <TrainingOppointments />,
     },
   ];
 

@@ -17,7 +17,7 @@ function Home() {
     <div className="container mx-auto px-4">
       {/* Advertisement Section */}
       <section className="mb-2 mt-4">
-        <Ad />
+        <Ad adLocation="main"/>
       </section>
 
       <section className="grid grid-cols-1 gap-2 lg:grid-cols-2 mb-5 md:grid-cols-2"></section>

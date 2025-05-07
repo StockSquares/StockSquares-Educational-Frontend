@@ -38,6 +38,7 @@ function PracticalTrainingSection() {
     autoplaySpeed: 5000,
     cssEase: "linear",
     rtl: false,
+    arrows:false,
     responsive: [
       {
         breakpoint: 1030,
