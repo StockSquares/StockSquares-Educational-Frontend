@@ -3,7 +3,6 @@ import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Style from './multipages/clientPages/Admin.module.css';
 import Home from './multipages/clientPages/Home';
 import EducationJourney from './multipages/clientPages/EducationJourney';
-import Recourses from './multipages/clientPages/Recourses';
 import Certificate from './multipages/clientPages/Certificate.jsx';
 import AskExpert from './multipages/clientPages/AskExpert';
 
@@ -16,7 +15,7 @@ function Client() {
     const menuItems = [
         { name: 'الرئيسية', path: '/client', icon: <FaHome /> },
         { name: 'رحلة التعليم', path: '/client/educationjourney', icon: <FaBook /> },
-        { name: 'الدورات المسجلة', path: '/client/recourses', icon: <FaPlayCircle /> },
+        { name: 'الدورات المسجلة', path: '/recorded-courses', icon: <FaPlayCircle /> },
         { name: 'التدريب الشخصي', path: '/training-and-education', icon: <FaUserGraduate /> },
         { name: 'الشهادات', path: '/client/certificate', icon: <FaChartLine /> },
         { name: 'التداول التجريبي', path: '/try-trading-for-free', icon: <FaChartLine /> },
@@ -52,7 +51,6 @@ function Client() {
                 <Routes>
                     <Route index element={<Home />} />
                     <Route path="educationjourney" element={<EducationJourney />} />
-                    <Route path="recourses" element={<Recourses />} />
                     <Route path="certificate" element={<Certificate />} />
                     <Route path="askexpert" element={<AskExpert />} />
                 </Routes>

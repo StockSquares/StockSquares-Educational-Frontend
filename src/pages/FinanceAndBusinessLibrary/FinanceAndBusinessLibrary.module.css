@@ -118,7 +118,11 @@
     margin-left: auto;
     margin-right: auto;
 }
-
+.featuredItem img{
+  height: 300px;
+  background-size: cover;
+  background-attachment: fixed;
+}
 @media (max-width: 1224px) {
   .featuredGrid {
     grid-template-columns: repeat(2, 1fr); 

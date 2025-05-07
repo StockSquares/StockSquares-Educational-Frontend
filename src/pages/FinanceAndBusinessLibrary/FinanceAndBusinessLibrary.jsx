@@ -12,9 +12,10 @@ import { Routes, Route, Link } from "react-router-dom";
 import slide1 from "../../assets/imgs/bgwhite.jpg";
 import slide2 from "../../assets/imgs/bgwhite.jpg";
 import slide3 from "../../assets/imgs/bgwhite.jpg";
-import book from "../../assets/imgs/book1.jpg";
+import booksss from "../../assets/imgs/book1.jpg";
 import bgphoto from "../../assets/imgs/bookstore/2797560.jpg";
 import BookDetails from './multipages/BookDetails';
+import { bookFront } from "../../assets";
 
 export default function BookSlider() {
   const [filter, setFilter] = useState("all"); 
@@ -96,7 +97,8 @@ export default function BookSlider() {
         {filteredBooks.map((book, index) => (
           <div key={index} className={styles.featuredItem}>
             <img
-              src={`data:image/jpeg;base64,${book.bookPhoto}`}
+              // src={`data:image/jpeg;base64,${book.bookPhoto}`}
+              src={booksss}
               alt={book.bookName}
               className={styles.featuredImage}
             />

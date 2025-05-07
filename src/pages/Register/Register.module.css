@@ -5,15 +5,18 @@
 }
 
 .contain2 {
-    width: 640px;
-    margin: 20px auto;
+    max-width: 640px;
+    width: 90%;
+    margin: 40px auto;
     background-color: white;
     color: #262626;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    padding: 5px 50px;
+    padding: 30px 25px;
     text-align: right;
+    border: 1px solid #ccc; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 .contain2 h1{
     font-size: 25px;
@@ -35,8 +38,9 @@
 }
 
 .logo {
-    width: 70%;
-    height: 60%;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
     display: block;
     margin: 0 auto 20px;
 }
@@ -154,17 +158,19 @@
     cursor: pointer;
     margin-bottom: 20px;
 }
-.bu1{
-    margin: 20px 150px ;
-    min-width: 180px;
+.bu1 {
+    width: 100%;
+    max-width: 220px;
     height: 55px;
     background-color: #25863f;
     color: #fff;
     font-size: 20px;
+    font-size: 20px;
     font-weight: 500;
     border-radius: 8px;
     cursor: pointer;
-    
+    margin: 20px auto;
+    display: block;
 }
 .error {
     color: red;
@@ -211,5 +217,47 @@
     color: #1b602d;
 }
 
+@media screen and (max-width: 600px) {
+    .contain2{
+        max-width: 540px;
+    }
+    .birthDate {
+        flex-direction: column;
+    }
 
+    .dateInput {
+        width: 100%;
+    }
+
+    .phoneInput {
+        flex-direction: column-reverse;
+    }
+
+    .phoneInput input,
+    .countryCode {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .contain3 input,
+    .jobStatus,
+    .countryCode {
+        font-size: 16px;
+        height: 50px;
+    }
+
+    .bu1 {
+        font-size: 18px;
+        height: 50px;
+    }
+
+    .contain2 {
+        padding: 20px;
+    }
+
+    .gender {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
 

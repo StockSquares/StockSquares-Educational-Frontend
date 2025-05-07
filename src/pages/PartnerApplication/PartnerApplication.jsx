@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Style from "./PartnerApplication.module.css";
 
 const PartnerApplication = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,13 +25,54 @@ const PartnerApplication = () => {
     setError(false);
   };
 
-  const handleStart = () => {
+  const handleStart = async () => {
     if (!fullName || !birthDate || !email || !phoneNumber || !country) {
       setFormError(true);
       return;
     }
-    setFormError(false);
-    setIsLoggedIn(true);
+
+    const nameParts = fullName.trim().split(" ");
+    const [firstName, parentName, familyName] = [
+      nameParts[0] || "",
+      nameParts[1] || "",
+      nameParts.slice(2).join(" ") || "",
+    ];
+
+    const payload = {
+      firstName,
+      parentName,
+      familyName,
+      email,
+      phoneNumber,
+      password: "Default@123",
+      confirmPassword: "Default@123",
+      gender: "غير محدد",
+      scientificStatus: "غير محدد",
+      birthday: birthDate.toISOString(),
+      referralCode: "none"
+    };
+
+    try {
+      const response = await fetch("https://stocksquare.runasp.net/api/Account/partner-register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "text/plain"
+        },
+        body: JSON.stringify(payload)
+      });
+     console.log(response)
+      const result = await response.json();
+      if (result.isSuccess) {
+        setFormError(false);
+        setIsLoggedIn(true);
+      } else {
+        alert("فشل في التسجيل: " + (result.error?.description || "حدث خطأ"));
+      }
+    } catch (err) {
+      alert("فشل في الاتصال بالخادم.");
+      console.error(err);
+    }
   };
 
   const next = () => {
@@ -44,7 +86,7 @@ const PartnerApplication = () => {
     setAnswers(updatedAnswers);
 
     if (index === questions.length - 1) {
-      alert("Survey completed! Thank you for your participation.");
+      alert("تم إكمال الاستبيان! شكراً لمشاركتك.");
       return;
     }
 
@@ -64,7 +106,7 @@ const PartnerApplication = () => {
         {!isLoggedIn ? (
           <div className="login">
             <h1>
-            <FontAwesomeIcon icon={faHandshake} /> طلب العمل كشريك 
+              <FontAwesomeIcon icon={faHandshake} /> طلب العمل كشريك 
             </h1>
             <div className="full">
               <p className="important-info">
@@ -100,16 +142,16 @@ const PartnerApplication = () => {
               </div>
               <div>
                 <label>تاريخ الميلاد :</label>
-              <DatePicker
-                selected={birthDate}
-                onChange={(date) => setBirthDate(date)}
-                dateFormat="yyyy-MM-dd"
-                placeholderText="اختر تاريخ الميلاد"
-                className="w-full p-2 rounded border"
-                showMonthDropdown
-                showYearDropdown
-                dropdownMode="select"
-              />
+                <DatePicker
+                  selected={birthDate}
+                  onChange={(date) => setBirthDate(date)}
+                  dateFormat="yyyy-MM-dd"
+                  placeholderText="اختر تاريخ الميلاد"
+                  className="w-full p-2 rounded border"
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                />
               </div>
               <div>
                 <label>البريد الإلكتروني :</label>
@@ -124,18 +166,18 @@ const PartnerApplication = () => {
             {formError && (
               <p className="error">يرجى ملء جميع الحقول بشكل صحيح قبل المتابعة !</p>
             )}
-            <button type="button" className='px-4 py-3' onClick={handleStart}>
-              ابدا طلب الانضمام
+            <button type="button" onClick={handleStart}>
+              ابدا 
             </button>
           </div>
         ) : (
           <>
             <h1>
-            <FontAwesomeIcon icon={faHandshake} /> طلب العمل كشريك 
+              <FontAwesomeIcon icon={faHandshake} /> طلب العمل كشريك 
             </h1>
             <hr />
             <h2>
-              {index + 1}. {questions[index]?.question || "Loading question..."}
+              {index + 1}. {questions[index]?.question || "جارٍ تحميل السؤال..."}
             </h2>
             <ul>
               {Object.keys(questions[index])
@@ -168,7 +210,6 @@ const PartnerApplication = () => {
       </div>
     </>
   );
-  
 };
 
 export default PartnerApplication;

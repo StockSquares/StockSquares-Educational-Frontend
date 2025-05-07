@@ -1,10 +1,14 @@
-.head {
-    font-size: 40px;
-    text-align: center;
-    color: #333;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
 }
 .contain2 {
-    width: 640px;
+    max-width: 640px;
     margin: 20px auto;
     background-color: white;
     color: #262626;
@@ -13,159 +17,86 @@
     border-radius: 10px;
     padding: 5px 50px;
     text-align: right;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: padding 0.3s ease;
 }
-.contain2 h1{
-    font-size: 22px;
+
+.contain2 h1 {
+    font-size: 24px;
     font-weight: bold;
     color: #1b602d;
+    margin-bottom: 20px;
 }
-.contain2 h2{
+
+.contain2 h2 {
     background-color: #f0f8ff;
-    border: 2px solid #25863f; 
-    border-radius: 8px; 
-    padding: 20px; 
-    margin: 20px 0; 
-    font-size: 18px; 
-    font-weight: bold; 
-    color: #262626; 
-    line-height: 1.8; 
+    border: 2px solid #25863f;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #262626;
+    line-height: 1.8;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
-    width: 70% !important;
-    height: 60% !important;
+    width: 70%;
     display: block;
     margin: 0 auto 20px;
 }
-.contain2 hr{
+
+
+.contain2 hr {
     height: 2px;
     border: none;
     background-color: #262626;
     margin-top: 7px;
 }
 
-.contain3 input{
-    height: 55px;
+
+.contain3 input {
+    height: 45px;
     border: 2px solid #25863f;
     border-radius: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-size: 18px;
-    cursor: pointer;
-    text-align: start;
+    font-weight: 500;
+    padding: 10px;
     box-sizing: border-box;
-    font-weight: 500; 
-    padding: 5px;
 }
 
-.contain3 label{
+.contain3 label {
     margin-bottom: 5px;
+    font-size: 18px;
     font-size: 18px;
     margin: 15px 0px;
 }
 
-.contain3 .phoneInput {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+.passwordField {
+    position: relative;
 }
 
-.countryCode {
-    width: 30%;
-    padding: 0 10px;
-    font-size: 16px;
-    border: 2px solid #25863f;
-    border-radius: 0 8px 8px 0; 
-    outline: none;
-    box-sizing: border-box;
-    font-weight: bold;
-    background-color: #f8f8f8;
-    cursor: pointer;
-    height: 50px; 
-    margin-bottom: 19px;
-    overflow-y: auto;
-    max-height: 150px; 
-}
-.countryCode option {
-    padding: 5px 10px;
-    font-size: 16px;
-}
-
-.phoneInput {
-    display: flex;
-    flex-direction: row-reverse;
-}
-.phoneInput input {
-    width: 70%;
-    height: 50px;
-    border: 2px solid #25863f;
-    border-right: none;
-    border-radius: 8px 0 0 8px;
-    padding: 0 10px;
-    font-size: 18px;
-    outline: none;
-    box-sizing: border-box;
-    font-weight: bold;
-}
-.birthDate {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.dateInput {
-    width: 30%;
-    padding: 5px;
-    font-size: 18px;
-    border: 2px solid #25863f;
-    border-radius: 8px;
-    background-color: #f8f8f8;
-    cursor: pointer;
-}
-.dateInput option {
-    padding: 5px 10px;
-    font-size: 16px;
-}
-
-.gender {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-.gender input{
-    height: 20px;
-    margin-top: 20px;
-}
-
-.gender label {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.jobStatus {
+.passwordField input {
     width: 100%;
     padding: 10px;
-    font-size: 18px;
+    border-radius: 8px;
     border: 2px solid #25863f;
-    border-radius: 8px;
-    background-color: #f8f8f8;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-.bu1{
-    margin: 20px 150px ;
-    width: 220px;
-    height: 50px;
-    background-color: #25863f;
-    color: #fff;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
-    border-radius: 8px;
-    cursor: pointer;
-    
+    box-sizing: border-box;
 }
+
+.eyeIcon {
+    position: absolute;
+    left:15px;
+    top: 35%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    cursor: pointer;
+}
+
 .error {
     color: red;
     font-size: 18px;
@@ -177,153 +108,42 @@
     border-radius: 8px;
     border: 1px solid #ff4d4d;
 }
-.terms {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
-}
 
-.terms input {
-    height: 20px;
-    margin-bottom: 5px;
-}
-
-.terms label {
-    font-size: 16px;
-    color: #333;
-    margin-right: 12px;
-}
-.registerLink  {
-text-align: center;
-}
-
-.registerLink a {
-    color: #25863f;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.registerLink a:hover {
-    text-decoration: underline;
-    color: #1b602d;
-}
-.container {
-    width: 640px;
-    margin: 20px auto;
-    background-color: white;
-    color: #262626;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    padding: 5px 50px;
-    text-align: right;
-}
-
-.logo {
-    width: 100vh;
-    height: 110px;
-    display: block;
-    margin: 0 auto 20px;
-}
-
-h1 {
-    font-size: 25px;
-    font-weight: bold;
-    color: #1b602d;
-}
-
-hr {
-    height: 2px;
-    border: none;
-    background-color: #262626;
-    margin-top: 7px;
-}
-
-.form input {
-    height: 55px;
-    border: 2px solid #25863f;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 18px;
-    padding: 0 10px;
-    box-sizing: border-box;
-}
-
-.label {
-    font-size: 19px;
-    margin: 15px 0px;
-}
-
-.passwordField {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.passwordField input {
-    flex: 1;
-}
-.button {
-    min-width: 220px;
-    height: 65px;
+.bu1 {
+    width: 100%;
+    padding: 15px;
     background-color: #25863f;
-    color: #fff;
-    font-size: 25px;
+    color: white;
+    font-size: 18px;
     font-weight: 500;
     border-radius: 8px;
     cursor: pointer;
-    margin: 20px auto;
-    text-align: center;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
 }
 
-.redirectText {
-    text-align: center;
-    font-size: 16px;
-    color: #333;
-    margin-top: 20px;
+.bu1:hover {
+    background-color: #1b602d;
 }
 
-.redirectLink {
-    color: #25863f;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.redirectLink:hover {
-    text-decoration: underline;
-    color: #1b602d;
-}
-.eyeIcon {
-    position: absolute;
-    left: 19px;
-    cursor: pointer;
-    font-size: 22px;
-    color: #333;
-    user-select: none;
-    transition: color 0.3s;
-    margin-bottom: 18px;
-}
-
-.eyeIcon:hover {
-    color: #25863f;
-}
-.googleButton {
+.googleButton, .facebookButton {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 10px;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    font-size: 16px;
+    padding: 15px;
+    font-size: 18px;
     font-weight: bold;
-    color: #444;
+    border-radius: 8px;
+    margin-bottom: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 55px;
-    margin-bottom: 20px;
+}
+
+.googleButton {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    color: #444;
 }
 
 .googleButton img {
@@ -336,35 +156,115 @@ hr {
     background-color: #f5f5f5;
     border-color: #bbb;
 }
+
 .facebookButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 10px;
     background-color: #0073ff;
     border: 1px solid #ddd;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #444;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 55px;
-    margin-bottom: 20px;
     color: white;
 }
 
 .facebookButton img {
     width: 20px;
-    height: 23px;
+    height: 20px;
     margin-right: 10px;
+    color: white;
     background-color: white;
     border-radius: 50%;
+    padding: 3px;
 }
 
 .facebookButton:hover {
     background-color: #0050b3;
-    border-color: blue;
+}
+
+/* روابط التسجيل */
+.registerLink {
+    text-align: center;
+}
+
+.registerLink a {
+    color: #25863f;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.registerLink a:hover {
+    text-decoration: underline;
+    color: #1b602d;
+}
+
+@media (max-width: 768px) {
+    
+    .contain2 {
+        max-width: 540px;
+        padding: 20px;
+    }
+
+    .logo {
+        width: 50%;
+    }
+
+    .contain2 h1 {
+        font-size: 20px;
+    }
+
+    .contain2 h2 {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .contain3 input {
+        font-size: 16px;
+    }
+
+    .bu1, .googleButton, .facebookButton {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .error {
+        font-size: 16px;
+    }
+
+    .eyeIcon {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contain2 {
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+    }
+
+    .logo {
+        width: 60%;
+    }
+
+    .contain2 h1 {
+        font-size: 18px;
+    }
+
+    .contain2 h2 {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .contain3 input {
+        font-size: 14px;
+    }
+
+    .bu1, .googleButton, .facebookButton {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .error {
+        font-size: 14px;
+    }
+
+    .eyeIcon {
+        font-size: 16px;
+    }
 }
