@@ -24,9 +24,9 @@ import {
   InlineBlog,
   CourseContent,
 } from "./pages";
-import  JoinAsTrainer from "./pages/JoinAsTrainer/Joincomp";
+import JoinAsTrainer from "./pages/JoinAsTrainer/Joincomp";
 import { ROUTES } from "./routes";
-import BookDetails from "./pages/FinanceAndBusinessLibrary/multipages/bookdetails"
+import BookDetails from "./pages/FinanceAndBusinessLibrary/multipages/bookdetails";
 import Footer from "./components/general-layout-context/Footer/Footer";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProtectedRoute from "./components/auth/ProtectedRoute/ProtectedRoute";
@@ -50,6 +50,7 @@ import ChatAi from "./pages/chatAi/ChatAi";
 import LevelExam from "./pages/levelexam/LevelExam";
 import LevelExamQuestions from "./pages/levelexam/LevelExamQuestions";
 import Date from "./pages/Reservation/Date";
+import { AuthProvider } from "./Context/AuthContext";
 
 // import RequestConsultation from './pages/RequestConsultation/RequestConsultation';
 // import inlineBlog from './pages/Blog/inlineBlog';
@@ -68,7 +69,7 @@ const router = createBrowserRouter([
       { path: ROUTES.BOOK_YOUR_TRAINER, element: <BookYourTrainer /> },
       { path: ROUTES.BLOG, element: <Blog /> },
       { path: ROUTES.ARTICLE, element: <Article /> },
-      { path: ROUTES.JOIN_AS_TRAINER, element: < JoinAsTrainer/> },
+      { path: ROUTES.JOIN_AS_TRAINER, element: <JoinAsTrainer /> },
       // { path: ROUTES.BOOK_DETAILS, element: <BookDetails /> },
       {
         path: "/bookdetails/:id",
@@ -109,58 +110,48 @@ const router = createBrowserRouter([
       //   element: <ProtectedRoute element={<Admin />} />,
       // },
       {
-        path:ROUTES.ADMIN1,
-        element:<Admin1/>
+        path: ROUTES.ADMIN1,
+        element: <Admin1 />,
       },
       {
         path: "/Employees/*",
-        element: <Employees/>
+        element: <Employees />,
       },
       {
         path: ROUTES.EMPLOYEE,
         element: <ProtectedRoute element={<Employee />} />,
       },
       {
-        path: ROUTES.CLIENT, element :<Client/>
+        path: ROUTES.CLIENT,
+        element: <Client />,
       },
       { path: ROUTES.NOT_FOUND, element: <NotFound /> },
       { path: ROUTES.REQUESTCONSULTATION, element: <RequestConsultation /> },
       { path: ROUTES.INLINEBlog, element: <InlineBlog /> },
-      {path: ROUTES.COURSECONTENT, element: <CourseContent/>},
-      {path: ROUTES.BOOKDETAILS, element: <BookDetails/>},
-        {
+      { path: ROUTES.COURSECONTENT, element: <CourseContent /> },
+      { path: ROUTES.BOOKDETAILS, element: <BookDetails /> },
+      {
         path: "/Trainer/*",
-        element: <Trainer/>
+        element: <Trainer />,
       },
-      {path: ROUTES.PRIVACYPOLICY,
-        element:<PrivacyPolicy/>
-      },
-      {path: ROUTES.ABOUTUS,
-        element:<WhoWeAre/>
-      },
+      { path: ROUTES.PRIVACYPOLICY, element: <PrivacyPolicy /> },
+      { path: ROUTES.ABOUTUS, element: <WhoWeAre /> },
 
-      {path: ROUTES.CONDITIONS,
-        element:<TermsAndConditions/>
-      },
-      {path: ROUTES.ACTIVITIES,
-        element:<Activities/>
-      },
-      {path: ROUTES.CHATAI,
-        element:<ChatAi/>
+      { path: ROUTES.CONDITIONS, element: <TermsAndConditions /> },
+      { path: ROUTES.ACTIVITIES, element: <Activities /> },
+      { path: ROUTES.CHATAI, element: <ChatAi /> },
+      {
+        path: ROUTES.LEVELEXAM,
+        element: <LevelExam />,
       },
       {
-        path:ROUTES.LEVELEXAM,
-        element:<LevelExam/>
+        path: ROUTES.LEVELEXAMQUESTIONS,
+        element: <LevelExamQuestions />,
       },
       {
-        path:ROUTES.LEVELEXAMQUESTIONS,
-        element:<LevelExamQuestions/>
+        path: ROUTES.DATE,
+        element: <Date />,
       },
-      {
-        path:ROUTES.DATE,
-        element:<Date/>
-      },
-
     ],
   },
 ]);
@@ -171,7 +162,9 @@ function App() {
       <ConfigProvider>
         <UserContextProvider>
           <AisleContextProvider>
-            <RouterProvider router={router} />
+            <AuthProvider>
+              <RouterProvider router={router} />
+            </AuthProvider>
           </AisleContextProvider>
         </UserContextProvider>
       </ConfigProvider>
