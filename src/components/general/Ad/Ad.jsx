@@ -4,10 +4,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import cardImg from "/src/assets/imgs/1.webp";
+import { Link } from "react-router-dom";
 // import style from "./Ad.module.css";
 
 function Ad({ adLocation }) {
   const [ads, setAds] = useState([]);
+  const [mainAds, setMainAds] = useState([]);
+  const [courseAds, setCourseAds] = useState([]);
 
   const getData = async () => {
     try {
@@ -19,6 +22,10 @@ function Ad({ adLocation }) {
         const data = await response.json();
         console.log(data);
         setAds(data);
+        const filteredToMain = data.filter((item) => item.locationId === 6);
+        const filteredToCourse = data.filter((item) => item.locationId === 7);
+        setMainAds(filteredToMain);
+        setCourseAds(filteredToCourse);
       } else {
         const errorText = await response.text();
         console.error("Fetch failed:", errorText);
@@ -60,40 +67,49 @@ function Ad({ adLocation }) {
   };
 
   return (
-    <>
-      <div className=" rounded-xl ">
-        {adLocation === "course" ? (
-          <div className="w-full  p-3">
-            <Slider ref={sliderRef} {...settings} dir="rtl">
-              {[1, 2, 3, 4, 5].map((_, index) => (
-                <div
-                  key={index}
-                  className="ad w-1/3 h-[100px] p-1 rounded-lg overflow-hidden"
-                >
+    <div className="w-full ">
+      {adLocation === "course" ? (
+        <div className="w-full  p-3">
+          <Slider ref={sliderRef} {...settings} dir="rtl">
+            {courseAds.map((ad) => (
+              <div
+                key={ad.id}
+                className="ad w-1/3 h-[100px] p-1 rounded-lg overflow-hidden"
+              >
+                <Link to={ad.link}>
                   <img
-                    src={cardImg}
+                    src={ad.image}
                     className="object-cover w-full h-full rounded-lg"
+                    alt={ad.title}
                   />
-                </div>
-              ))}
-            </Slider>
-          </div>
-        ) : (
-          <div className="w-full overflow-hidden">
-            <Slider ref={sliderRef} {...settings} dir="rtl">
-              {[1, 2, 3].map((_, index) => (
+                </Link>
+              </div>
+            ))}
+          </Slider>
+        </div>
+      ) : (
+        <div className="w-full overflow-hidden">
+          <div className="max-w-[100%] h-[200px]">
+            <Slider ref={sliderRef} {...settings} >
+              {mainAds.map((ad) => (
                 <div
-                  key={index}
-                  className="ad w-full h-[200px] rounded-lg px-1 overflow-hidden"
+                  key={ad.id}
+                  className="ad w-full h-[200px] px-1 rounded-lg overflow-hidden"
                 >
-                  <img src={cardImg} className="object-cover w-full h-full rounded-lg" />
+                  <Link to={ad.link}>
+                    <img
+                      src={ad.image}
+                      alt={ad.title}
+                      className="object-cover w-full h-full rounded-lg block"
+                    />
+                  </Link>
                 </div>
               ))}
             </Slider>
           </div>
-        )}
-      </div>
-    </>
+        </div>
+      )}
+    </div>
   );
 }
 

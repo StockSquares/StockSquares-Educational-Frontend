@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Clock, AlertCircle } from "lucide-react";
+import { Calendar, AlertCircle, ChevronLeft } from "lucide-react";
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -80,15 +80,36 @@ function Date() {
         </div>
       </div>
       <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-xl">
-      {/* Time Selection */}
+
+      {/* Birthdate Input */}
       <div className="bg-gray-50 p-6 rounded-xl mb-6">
+          <div className="flex items-center mb-4">
+            <Calendar className="h-5 w-5 text-green-600 ml-2" />
+            <label className="text-lg font-medium text-gray-800">
+              تاريخ الميلاد
+            </label>
+          </div>
+          <input
+            type="date"
+            className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-600"
+          />
+          {errors.birthdate && (
+            <p className="text-red-500 text-sm mt-2 flex items-center">
+              <AlertCircle className="h-4 w-4 ml-1" />
+              {errors.birthdate}
+            </p>
+          )}
+        </div>
+
+      {/* Time Selection */}
+      {/* <div className="bg-gray-50 p-6 rounded-xl mb-6">
         <div className="flex items-center mb-4">
           <Clock className="h-5 w-5 text-green-600 ml-2" />
           <label className="text-lg font-medium text-gray-800">الموعد</label>
-        </div>
+        </div> */}
 
         {/* Days Selection */}
-        <div className="bg-white rounded-xl p-4 shadow-sm mb-4">
+        {/* <div className="bg-white rounded-xl p-4 shadow-sm mb-4">
           <div className="flex justify-between items-center">
             <button
               className="text-gray-500 hover:text-gray-700"
@@ -100,9 +121,9 @@ function Date() {
               }
             >
               <ChevronRight className="h-6 w-6" />
-            </button>
+            </button> */}
 
-            <div className="grid grid-cols-3 gap-4 flex-1 mx-4">
+            {/* <div className="grid grid-cols-3 gap-4 flex-1 mx-4">
               {days.map((day, index) => (
                 <div
                   key={index}
@@ -131,10 +152,10 @@ function Date() {
               <ChevronLeft className="h-6 w-6" />
             </button>
           </div>
-        </div>
+        </div> */}
 
         {/* Times Grid */}
-        <div className="grid grid-cols-4 gap-3">
+        {/* <div className="grid grid-cols-4 gap-3">
           {times.map((time, index) => (
             <div
               key={index}
@@ -158,14 +179,17 @@ function Date() {
             {errors.time}
           </p>
         )}
-        <button
+        
+      </div> */}
+
+      <button
           onClick={handleSubmit}
           className="bg-green-600 mt-5 ms-auto text-white px-8 py-3 rounded-xl hover:bg-green-700 transition-colors shadow-lg flex items-center"
         >
           <span>متابعة للدفع</span>
-          <ChevronRight className="h-5 w-5 mr-2" />
+          <ChevronLeft className="h-5 w-5 mr-2" />
         </button>
-      </div></div>
+      </div>
     </div>
   );
 }

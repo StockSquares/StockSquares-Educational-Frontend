@@ -10,6 +10,8 @@ import {
   Check,
   X,
 } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTasks } from "@fortawesome/free-solid-svg-icons";
 
 export default function Payment() {
   const navigate = useNavigate();
@@ -141,6 +143,8 @@ export default function Payment() {
 
   const imgs = ["/src/assets/imgs/card.png ", "/src/assets/imgs/visa.png "];
 
+  const plan = JSON.parse(localStorage.getItem("plan"));
+
   return (
     <div className="min-h-screen bg-gray-50 p-6 md:p-12 rtl" dir="rtl">
       {/* Progress Steps */}
@@ -182,6 +186,24 @@ export default function Payment() {
           <p className="text-gray-600 mt-2">
             أدخل تفاصيل بطاقتك لإتمام عملية الدفع
           </p>
+        </div>
+
+        <div>
+          <h2 className="text-gray-600 font-semibold ">
+            {" "}
+            <FontAwesomeIcon
+              icon={faTasks}
+              className="me-2 text-green-600"
+            />{" "}
+            خطتك :{" "}
+          </h2>
+          <div
+            className={`w-full sm:w-[240px] my-4   p-3 ${plan.color} rounded-2xl shadow-md cursor-pointer transition-all`}
+          >
+            <h2 className="text-xl font-bold mb-2">{plan.title}</h2>
+            <p className="text-lg font-semibold mb-1">السعر: {plan.price}</p>
+            <p className="text-base">المده: {plan.hours}</p>
+          </div>
         </div>
 
         {/* Payment Method Selection */}
@@ -250,7 +272,6 @@ export default function Payment() {
                 </p>
               )}
             </div>
-
             {/* Expiry Date and CVV */}
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-gray-50 p-6 rounded-xl">
@@ -301,7 +322,6 @@ export default function Payment() {
                 )}
               </div>
             </div>
-
             {/* Name on Card */}
             <div className="bg-gray-50 p-6 rounded-xl">
               <label className="block text-gray-700 mb-3 font-medium flex items-center">
@@ -326,7 +346,6 @@ export default function Payment() {
                 </p>
               )}
             </div>
-
             {/* Promo Code */}
             <div className="bg-gray-50 p-6 rounded-xl">
               <label className="block text-gray-700 mb-3 font-medium flex items-center">
@@ -368,9 +387,8 @@ export default function Payment() {
                 </p>
               )}
             </div>
-
             {/* Order Summary */}
-            <div className="bg-gray-50 p-6 rounded-xl">
+            {/* <div className="bg-gray-50 p-6 rounded-xl">
               <h3 className="text-lg font-semibold mb-4 flex items-center">
                 <Tag className="h-5 w-5 ml-2 text-green-600" />
                 ملخص الطلب
@@ -395,7 +413,7 @@ export default function Payment() {
                   <span>{orderSummary.total} جنيه</span>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         )}
 
@@ -433,12 +451,10 @@ export default function Payment() {
                 </div>
                 <p className="text-gray-500 text-sm text-end mt-5">
                   .Don't send NFTs to this address
-                  <br/>
-                 
+                  <br />
                   Smart contract deposits are not supported with the exception
-                  of ETH via ERC20,
-                  
-                  BSC via BEP20, Arbitrum and Optimism networks
+                  of ETH via ERC20, BSC via BEP20, Arbitrum and Optimism
+                  networks
                 </p>
               </div>
             </div>

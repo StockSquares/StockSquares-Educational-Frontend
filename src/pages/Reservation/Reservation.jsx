@@ -9,6 +9,8 @@ import {
   Clock,
   AlertCircle,
 } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 const Reservation = () => {
   const navigate = useNavigate();
@@ -18,8 +20,8 @@ const Reservation = () => {
     gender: "",
     birthdate: "",
     market: [],
-    selectedDay: 0,
-    selectedTime: null,
+    selectedPlan: "",
+    name: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -49,6 +51,30 @@ const Reservation = () => {
     "بورصة العملات المشفرة",
   ];
 
+  const plans = [
+    {
+      title: "مبتدئ",
+      price: "3000 ج.م",
+      hours: "18 ساعه| 4 محاضرات",
+      color: "bg-green-100 text-green-900",
+      active: "bg-green-300",
+    },
+    {
+      title: "متقدم",
+      price: "5000 ج.م",
+      hours: "36 ساعه| 8 محاضرات",
+      color: "bg-yellow-100 text-yellow-600",
+      active: "bg-yellow-300",
+    },
+    {
+      title: "محترف",
+      price: "7000 ج.م",
+      hours: "36 ساعه| 8 محاضرات",
+      color: "bg-red-100 text-red-600",
+      active: "bg-red-300",
+    },
+  ];
+
   // Handler functions
   const handleInputChange = (field, value) => {
     setFormData((prev) => ({
@@ -66,19 +92,10 @@ const Reservation = () => {
 
   const handleMarketSelection = (market) => {
     setFormData((prev) => {
-      const currentMarkets = prev.market;
-      if (currentMarkets.includes(market)) {
-        return {
-          ...prev,
-          market: currentMarkets.filter((m) => m !== market),
-        };
-      } else if (currentMarkets.length < 1) {
-        return {
-          ...prev,
-          market: [...currentMarkets, market],
-        };
-      }
-      return prev;
+      return {
+        ...prev,
+        market: [market],
+      };
     });
   };
 
@@ -88,6 +105,9 @@ const Reservation = () => {
     if (!formData.birthdate) newErrors.birthdate = "يرجى إدخال تاريخ الميلاد";
     if (formData.market.length === 0)
       newErrors.market = "يرجى اختيار سوق مالي واحد على الأقل";
+    if (!formData.selectedPlan)
+      newErrors.selectedPlan = "يرجى اختيار الخطه المناسبه لك";
+    if (!formData.name) newErrors.name = "يرجى ادخال الاسم ";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -104,12 +124,14 @@ const Reservation = () => {
       gender: "",
       birthdate: "",
       market: [],
-      selectedDay: 0,
-      selectedTime: null,
+      selectedPlan: "",
+      name: "",
     });
     setErrors({});
   };
 
+
+  
   return (
     <div className="min-h-screen bg-gray-50 p-6 md:p-12 rtl" dir="rtl">
       {/* Progress Bar */}
@@ -149,6 +171,24 @@ const Reservation = () => {
           <p className="text-gray-600 mt-2">
             اختر الخيارات المناسبة لجلستك التدريبية
           </p>
+        </div>
+
+        <div className="bg-gray-50 p-6 rounded-xl mb-6">
+          <label className="d-block text-gray-700 font-semibold mb-3">
+            {" "}
+            <FontAwesomeIcon
+              icon={faUser}
+              className="me-2 text-green-600"
+            />{" "}
+            الاسم بالكامل:{" "}
+          </label>
+          <input
+            type="text"
+            placeholder="ادخل الاسم بالكامل"
+            className="border-gray-300 rounded-lg p-3"
+            value={formData.name}
+            onChange={(e) => handleInputChange("name", e.target.value)}
+          />
         </div>
 
         {/* Gender Selection */}
@@ -233,6 +273,36 @@ const Reservation = () => {
               {errors.market}
             </p>
           )}
+        </div>
+
+        <div className="bg-gray-50 p-6 rounded-xl mb-6">
+          <label className="text-lg font-medium text-gray-800 mb-4">
+            {" "}
+            اختر الخطه المناسبه لك:
+          </label>
+
+          <div className="flex flex-wrap justify-between gap-3">
+            {plans.map((plan, index) => (
+              <div
+                key={index}
+                className={`w-full sm:w-[240px] text-center p-3 rounded-2xl shadow-md cursor-pointer transition-all ${
+                  formData.selectedPlan === plan.title
+                    ? plan.active
+                    : `${plan.color} hover:scale-105`
+                } `}
+                onClick={(e) => {
+                  handleInputChange("selectedPlan", plan.title);
+                  localStorage.setItem("plan", JSON.stringify(plans[index]));
+                }}
+              >
+                <h2 className="text-xl font-bold mb-2">{plan.title}</h2>
+                <p className="text-lg font-semibold mb-1">
+                  السعر: {plan.price}
+                </p>
+                <p className="text-base">المده: {plan.hours}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* ----------------------------------------------------------------------------- */}
