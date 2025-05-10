@@ -48,7 +48,7 @@ function PerformanceReport(){
             className={activeButton === "revenue" ? style.performancBtnActivated : style.performanceBtn }>حسب الأرباح</button>
           </div>
     
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="105%" height={300}>
             <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />

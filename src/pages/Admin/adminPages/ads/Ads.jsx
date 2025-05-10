@@ -13,7 +13,7 @@ function Ads() {
 
   return (
     <div className="container w-full flex justify-center mt-5 items-center ">
-      <div className="grid  grid-cols-1 gap-2   w-[50%]">
+      <div className="grid  grid-cols-1 gap-2 lg:w-[50%]">
       <PageHeader Buttons={buttons} Clicked={isClicked} HandleClicked={handleClicked} />
         
         <div className="show w-full">

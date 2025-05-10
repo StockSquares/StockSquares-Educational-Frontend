@@ -14,11 +14,11 @@ function EmployeesManagement(){
     return(
         <div className="flex justify-center mt-5">
         <div className="grid w-full grid-cols-1 gap-2">
-          <div className="controlButtons grid grid-cols-3 gap-5 m-auto justify-center">
+          <div className="controlButtons grid grid-cols-3 gap-3 m-auto justify-center">
             {buttons.map((btn, idx) => (
               <button
                 key={idx}
-                className={`${isClicked === idx ? style.performancBtnActivated : style.performanceBtn} text-[12px] md:text-[15px]`}
+                className={`${isClicked === idx ? style.performancBtnActivated : style.performanceBtn} text-[10px] md:text-[15px]`}
                 onClick={() => setIsClicked(idx)}
               >
                 {btn}

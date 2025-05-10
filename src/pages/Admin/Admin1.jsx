@@ -97,16 +97,16 @@ function Admin1() {
   return (
     <div className="">
       <div
-        className={`sidebar   w-[150px] absolute flex justify-between transition-all ${
+        className={`sidebar z-30  w-[150px] absolute flex justify-between transition-all ${
           isopened ? "" : "translate-x-[90%]"
         }`}
       >
         <div className="bg-white w-[90%] flex flex-col gap-10 p-2 text-center">
-          <nav className="flex flex-col gap-2">
+          <nav className="flex flex-col gap-2 ">
             {links.map((link) => (
               <NavLink
                 key={link.id}
-                className={`px-4 py-2 rounded-md text-lg flex items-center gap-2 transition-all  ${
+                className={`px-4 py-2 rounded-md text-[14px] md:text-lg flex items-center gap-2 transition-all  ${
                   activeLink === link.id
                     ? "bg-primary-dark text-white"
                     : "bg-transparent text-black"

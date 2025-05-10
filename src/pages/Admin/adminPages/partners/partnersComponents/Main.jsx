@@ -31,7 +31,7 @@ function Main() {
   ];
   return (
     <div className="grid grid-cols-1 gap-3">
-    <div className="grid grid-cols-3 mt-7 gap-2">
+    <div className="grid grid-cols-1  md:grid-cols-3 mt-7 gap-2">
       {total.map((item, idx) => (
         <div
           key={idx}

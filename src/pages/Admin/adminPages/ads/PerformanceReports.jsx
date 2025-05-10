@@ -14,7 +14,7 @@ function PerformanceReports(){
           <div className="min-h-screen flex justify-center p-3 w-full">
             <div className="bg-white p-6 rounded-2xl shadow-lg w-full max-w-5xl h-[70%]">
               <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">📈 الإعلانات الأكثر تفاعلًا</h2>
-              <ResponsiveContainer width="95%" height={500}>
+              <ResponsiveContainer width="100%" height={500}>
                 <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#ddd" />
                   <XAxis 

@@ -40,7 +40,7 @@ function ArticlesManagement() {
 
     try {
       const formData = new FormData();
-      formData.append("title", article.title);
+      formData.append("Title", article.title);
       formData.append("Body", article.Body);
       formData.append("Writer", article.Writer);
       formData.append("CategoryId", article.CategoryId);
@@ -58,6 +58,8 @@ function ArticlesManagement() {
       console.log(data);
 
       if (!response.ok) throw new Error("فشل في إرسال المقال");
+      console.log(response.text);
+      
 
       toast.success("تم إرسال المقال بنجاح!", { theme: "colored" });
 
@@ -77,7 +79,7 @@ function ArticlesManagement() {
   };
 
   useEffect(() => {
-    fetch("https://stocksquare.runasp.net/api/Category/GetByType?type=string")
+    fetch("https://stocksquare.runasp.net/api/Category/AllCategory")
       .then((response) => response.json())
       .then((data) => setCategories(data))
       .catch((error) => console.error("❌ حدث خطأ أثناء جلب البيانات:", error));
@@ -108,20 +110,8 @@ function ArticlesManagement() {
   // };
 
   // دالة لرفع الصورة داخل SunEditor واستخدام URL مخصص بدل Base64
-  const handleImageUpload = async (files) => {
-    const file = files[0];
-    if (!file) return;
-
-    // هنا يتم استبدال الـ Base64 بالـ URL المخصص
-    const imageUrl =
-      "https://lawmaster.runasp.net/Attachments/wp5485218-4k-laptop-wallpapers.jpg"; // ضع هنا الرابط المخصص للصورة
-    if (imageUrl) {
-      const updatedBody =
-        article.Body + `<img src="${imageUrl}" alt="Uploaded Image" />`;
-      setArticle((prev) => ({ ...prev, Body: updatedBody }));
-      toast.success("تم رفع الصورة بنجاح");
-    }
-  };
+  console.log(article);
+  
 
   return (
     <div className="flex flex-col gap-3 mt-4">
@@ -141,7 +131,7 @@ function ArticlesManagement() {
           }
         >
           <option value="">اختر التصنيف</option>
-          <option value="mn">n m</option>
+          {/* <option value="mn">n m</option> */}
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
               {category.name}
@@ -220,8 +210,9 @@ function ArticlesManagement() {
               ["font", "fontColor", "hiliteColor", "fontSize"],
               ["align", "list", "table"],
               ["link", "image"],
+              // ["preview"]
             ],
-            imageUploadHandler: handleImageUpload, // ربط دالة رفع الصورة
+            
           }}
         />
         <div className="flex gap-5">

@@ -56,15 +56,15 @@ export function AddEmployee() {
   });
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-2">
       <div className=" flex flex-col gap-3 items-start justify-center ">
         <button className="px-3 py-2 rounded-lg bg-primary-950 text-white mb-3 mt-2" onClick={()=>setShowForm(true)}>
           اضافه موظف جديد
         </button>
-        <table className="w-full">
+        <table className="w-full table-fixed text-[10px]">
           <thead className="bg-emerald-100">
             <th> الاسم </th>
-            <th> المسمي الوظيفي </th>
+            <th > المسمي الوظيفي </th>
             <th> البريد الألكتروني </th>
             <th> الراتب </th>
           </thead>

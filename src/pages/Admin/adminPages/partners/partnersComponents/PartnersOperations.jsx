@@ -44,7 +44,7 @@ function PartnersOperations() {
       <div className="p-4 ">
         {/* اضافه ونقل شريك */}
         <div>
-          <table className="m-auto w-[700px] text-center border-2">
+          <table className="m-auto w-full md:w-[700px] text-center border-2 table-fixed">
             <thead>
               <th className="p-2 bg-green-500 text-white font-semibold">
                 الشريك
@@ -101,7 +101,7 @@ function PartnersOperations() {
 
       {isOpen && (
         <div className="fixed inset-0  flex items-center justify-center bg-gray-900 bg-opacity-50">
-          <div className="absolute bg-white rounded-lg w-[500px] h-auto mt-5 p-4 flex flex-col shadow-md ">
+          <div className="absolute bg-white rounded-lg w-[300px] md:w-[500px] h-auto mt-5 p-4 flex flex-col shadow-md ">
             <h2 className="text-xl text-center font-bold mb-2">
               اختر الموظف المناسب
             </h2>
@@ -128,7 +128,7 @@ function PartnersOperations() {
 
       {isOpenForNew && (
         <div className="fixed inset-0  flex items-center justify-center bg-gray-900 bg-opacity-50">
-          <div className=" bg-white rounded-lg w-[500px] h-auto mt-5 p-4 flex flex-col shadow-md">
+          <div className=" bg-white rounded-lg w-[300px] md:w-[500px] h-auto mt-5 p-4 flex flex-col shadow-md">
             <h2 className="text-xl text-center font-bold mb-2">
               اضافه شريك جديد
             </h2>

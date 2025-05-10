@@ -6,7 +6,7 @@ return(
           {Buttons.map((btn, idx) => (
             <button
               key={idx}
-              className={`px-10 py-2 text-lg font-semibold rounded-full transition ${
+              className={`px-3 py-2 text-lg font-semibold rounded-full transition ${
                 Clicked === idx ? style.btnn : style.btn
               }`}
               onClick={() => HandleClicked(idx)}
