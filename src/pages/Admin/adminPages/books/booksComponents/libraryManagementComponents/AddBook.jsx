@@ -4,6 +4,7 @@ import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useCategories } from "../../Context/CategoriesContext";
 
 const schema = yup.object().shape({
   BookName: yup.string().required("اسم الكتاب مطلوب"),
@@ -39,7 +40,6 @@ const AddBook = () => {
   const [allBooks, setAllBooks] = useState([]);
   const [outOfStock, setOutOfStock] = useState([]);
   const [editBook, setEditBook] = useState(null);
-  const[categories, setCategories]=useState([]);
 
   const DeleteBook = async (bookId) => {
     try {
@@ -128,12 +128,7 @@ const AddBook = () => {
       .catch((e) => console.log(e.message));
   }, []);
 
-  useEffect(() => {
-    fetch("https://stocksquare.runasp.net/api/Category/GetByType?type=string")
-      .then((response) => response.json())
-      .then((data) => setCategories(data))
-      .catch((error) => console.error("❌ حدث خطأ أثناء جلب البيانات:", error));
-  }, []);
+  const categories = useCategories();
 
   return (
     <div className="bg-white rounded-lg p-6 mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -238,65 +233,64 @@ const AddBook = () => {
         </button>
       </form>
 
-     <table className="w-full text-[8px] lg:text-[14px] border-collapse border border-gray-300 h-[20%] table-fixed overflow-x-auto">
-  <thead>
-    <tr className="bg-green-400 text-white">
-      <th className="border border-gray-300 p-2 lg:p-3">الاسم</th>
-      <th className="border border-gray-300 p-2 lg:p-3">النوع</th>
-      <th className="border border-gray-300 p-2 lg:p-3">التصنيف</th>
-      <th className="border border-gray-300 p-2 lg:p-3">السعر</th>
-      <th className="border border-gray-300 p-2 lg:p-3">الكمية</th>
-      <th className="border border-gray-300 p-2 lg:p-3">اجراءات</th>
-    </tr>
-  </thead>
-  <tbody>
-    {allBooks.map((book, idx) => (
-      <tr key={book.id} className="text-center hover:bg-gray-100">
-        <td className="border border-gray-300 p-3"> {book.bookName} </td>
-        <td className="border border-gray-300 p-3"> {book.bookType} </td>
-        <td className="border border-gray-300 p-3">
-          {book.bookCategory}
-        </td>
-        <td className="border border-gray-300 p-3"> {book.bookPrice} </td>
-        <td className="border border-gray-300 p-3"> {book.quantity} </td>
-        <td className="border border-gray-300">
-          <div className="flex justify-center flex-wrap gap-2">
-            {!outOfStock.includes(book.id) ? (
-              <button
-                className="bg-accent-700 text-black py-1 px-1 lg:px-5 rounded-lg"
-                onClick={() => setOutOfStock([...outOfStock, book.id])}
-              >
-                نفذ
-              </button>
-            ) : (
-              <button
-                className="bg-green-600 text-whitepy-1 px-1 lg:px-3 rounded-lg"
-                onClick={() =>
-                  setOutOfStock(outOfStock.filter((id) => id !== book.id))
-                }
-              >
-                متاح
-              </button>
-            )}
-            <button
-              className="bg-blue-500 text-white py-1 px-1 lg:px-3 rounded-lg"
-              onClick={() => handleEdit(book)}
-            >
-              تعديل
-            </button>
-            <button
-              className="bg-red-600 text-white py-1 px-1 lg:px-3 rounded-lg"
-              onClick={() => DeleteBook(book.id)}
-            >
-              حذف
-            </button>
-          </div>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
-
+      <table className="w-full text-[8px] lg:text-[14px] border-collapse border border-gray-300 h-[20%] table-fixed overflow-x-auto">
+        <thead>
+          <tr className="bg-green-400 text-white">
+            <th className="border border-gray-300 p-2 lg:p-3">الاسم</th>
+            <th className="border border-gray-300 p-2 lg:p-3">النوع</th>
+            <th className="border border-gray-300 p-2 lg:p-3">التصنيف</th>
+            <th className="border border-gray-300 p-2 lg:p-3">السعر</th>
+            <th className="border border-gray-300 p-2 lg:p-3">الكمية</th>
+            <th className="border border-gray-300 p-2 lg:p-3">اجراءات</th>
+          </tr>
+        </thead>
+        <tbody>
+          {allBooks.map((book, idx) => (
+            <tr key={book.id} className="text-center hover:bg-gray-100">
+              <td className="border border-gray-300 p-3"> {book.bookName} </td>
+              <td className="border border-gray-300 p-3"> {book.bookType} </td>
+              <td className="border border-gray-300 p-3">
+                {book.bookCategory}
+              </td>
+              <td className="border border-gray-300 p-3"> {book.bookPrice} </td>
+              <td className="border border-gray-300 p-3"> {book.quantity} </td>
+              <td className="border border-gray-300">
+                <div className="flex justify-center flex-wrap gap-2">
+                  {!outOfStock.includes(book.id) ? (
+                    <button
+                      className="bg-accent-700 text-black py-1 px-1 lg:px-5 rounded-lg"
+                      onClick={() => setOutOfStock([...outOfStock, book.id])}
+                    >
+                      نفذ
+                    </button>
+                  ) : (
+                    <button
+                      className="bg-green-600 text-whitepy-1 px-1 lg:px-3 rounded-lg"
+                      onClick={() =>
+                        setOutOfStock(outOfStock.filter((id) => id !== book.id))
+                      }
+                    >
+                      متاح
+                    </button>
+                  )}
+                  <button
+                    className="bg-blue-500 text-white py-1 px-1 lg:px-3 rounded-lg"
+                    onClick={() => handleEdit(book)}
+                  >
+                    تعديل
+                  </button>
+                  <button
+                    className="bg-red-600 text-white py-1 px-1 lg:px-3 rounded-lg"
+                    onClick={() => DeleteBook(book.id)}
+                  >
+                    حذف
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

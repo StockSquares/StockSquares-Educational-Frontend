@@ -5,9 +5,9 @@ import SunEditor from "suneditor-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
+import { useCategories } from "../../../../Context";
 
 function CoursesManagement() {
-  const [categories, setCategories] = useState([]);
   const [allCourses, setAllCourses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showcourseContent, setShowCourseContent] = useState(false);
@@ -125,12 +125,7 @@ function CoursesManagement() {
     setShowModal(true);
   };
 
-  useEffect(() => {
-    fetch("https://stocksquare.runasp.net/api/Category/GetByType?type=string")
-      .then((response) => response.json())
-      .then((data) => setCategories(data))
-      .catch((error) => console.error("❌ حدث خطأ أثناء جلب البيانات:", error));
-  }, []);
+ const categories= useCategories();
 
   useEffect(() => {
     fetch("https://stocksquare.runasp.net/api/Course/GetAll")
