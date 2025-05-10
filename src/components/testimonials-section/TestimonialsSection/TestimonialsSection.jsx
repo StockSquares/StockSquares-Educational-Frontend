@@ -54,6 +54,7 @@ function TestimonialsSection() {
     autoplay: true,
     autoplaySpeed: 3000,
     cssEase: "linear",
+    arrows:false,
   };
 
   return (
@@ -61,25 +62,26 @@ function TestimonialsSection() {
       heading={t("sections.testimonials.title")}
       wrapperClass="wrapperClass-sectionCard"
       headingSpan={t("sections.testimonials.note")}
+      p6={false}
     >
-      <div className="rounded-xl w-full px-6 relative">
+      <div className="rounded-xl w-full p-3 md:px-12 lg:px-14 relative">
         <Slider ref={sliderRef} {...settings}>
           {testimonials.map((item) => (
             <div
               key={item.id}
-              className="p-3 flex flex-col items-center justify-center bg-gray-100 rounded-xl shadow-lg"
+              className="p-3 flex flex-col items-center justify-center bg-gray-100 rounded-xl shadow-lg "
             >
               <div className="flex flex-col items-center md:flex-row-reverse">
                 <img
-                  className="w-[35%] md:w-[40%] h-[5rem]  object-fill rounded-full pt-1
+                  className="w-[75px]  lg:w-[40%] h-[5rem]  object-fill rounded-full pt-1
                    mb-4 border-4 border-primary float-right ml-4"
                   src={item.src}
                   alt="testimonial"
                 />
-                <p className="text-right text-[13px] md:text-[16px] text-gray-800 mb-2">"{item.text}"</p>
+                <p className="text-right text-[13px] lg:text-[16px] text-gray-800 mb-2">"{item.text}"</p>
               </div>
-              <div className="flex flex-row-reverse justify-end gap-1">
-                <img className="w-[30px]" src="/src/assets/imgs/flag.png" />
+              <div className="flex flex-row-reverse justify-end gap-1 text-[12px] md:text-[14px]">
+                <img className="w-[25px] md:w-[30px]" src="/src/assets/imgs/flag.png" />
                 <span className="text-gray-600 font-semibold">{item.name}</span>
                 <span className="text-gray-500 text-sm">{item.position}</span>
               </div>
