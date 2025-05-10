@@ -21,21 +21,21 @@ function TestimonialsSection() {
       src: review1,
       text: "حاولت تعلم التداول بمفردي ولكن نتائجى لم تكن ناجحة، وعندما رشح لي صديقي ستوك سكويرز وتعلمت مع مدرب متخصص أصبح أدائي منضبط وناجح.",
       name: "محمد سمير",
-      position: "مدير سلسل توريد"
+      position: "مدير سلاسل توريد",
     },
     {
       id: 2,
       src: review1,
-      text: "حاولت تعلم التداول بنفردي ولكن نتائجى لم تكن ناجحة، وعندما رشح لي صديقي ستوك سكويرز وتعلمت مع مدرب متخصص أصبحت أدائي منضبط وناجح.",
+      text: "حاولت تعلم التداول بمفردي ولكن نتائجى لم تكن ناجحة، وعندما رشح لي صديقي ستوك سكويرز وتعلمت مع مدرب متخصص أصبح أدائي منضبط وناجح.",
       name: "محمد سمير",
-      position: "مدير سلسل توريد"
+      position: "مدير سلاسل توريد",
     },
     {
       id: 3,
       src: review1,
       text: "حاولت تعلم التداول بمفردي ولكن نتائجى لم تكن ناجحة، وعندما رشح لي صديقي ستوك سكويرز وتعلمت مع مدرب متخصص أصبح أدائي منضبط وناجح.",
       name: "محمد سمير",
-      position: "مدير سلسل توريد"
+      position: "مدير سلاسل توريد",
     },
   ];
 
@@ -65,20 +65,36 @@ function TestimonialsSection() {
       <div className="rounded-xl w-full px-6 relative">
         <Slider ref={sliderRef} {...settings}>
           {testimonials.map((item) => (
-            <div key={item.id} className="p-6 flex flex-col items-center justify-center bg-gray-100 rounded-xl shadow-lg">
-              <img className="w-[5rem] h-[5rem] pr-1 object-fill rounded-full pt-1 mb-4 border-4 border-primary float-right ml-4" src={item.src} alt="testimonial" />
-              <p className="text-right text-gray-800 mb-2">"{item.text}"</p>
+            <div
+              key={item.id}
+              className="p-3 flex flex-col items-center justify-center bg-gray-100 rounded-xl shadow-lg"
+            >
+              <div className="flex flex-col items-center md:flex-row-reverse">
+                <img
+                  className="w-[35%] md:w-[40%] h-[5rem]  object-fill rounded-full pt-1
+                   mb-4 border-4 border-primary float-right ml-4"
+                  src={item.src}
+                  alt="testimonial"
+                />
+                <p className="text-right text-[13px] md:text-[16px] text-gray-800 mb-2">"{item.text}"</p>
+              </div>
               <div className="flex flex-row-reverse justify-end gap-1">
-              <img className="w-[30px]" src="/src/assets/imgs/flag.png"/>
-              <span className="text-gray-600 font-semibold">{item.name}</span>
-              <span className="text-gray-500 text-sm">{item.position}</span>
+                <img className="w-[30px]" src="/src/assets/imgs/flag.png" />
+                <span className="text-gray-600 font-semibold">{item.name}</span>
+                <span className="text-gray-500 text-sm">{item.position}</span>
               </div>
             </div>
           ))}
         </Slider>
         <div className="flex justify-center items-center gap-4 mt-4">
-          <button className="w-4 h-2 bg-primary-400 rounded hover:bg-primary-500" onClick={previous}></button>
-          <button className="w-4 h-2 bg-primary-400 rounded hover:bg-primary-500" onClick={next}></button>
+          <button
+            className="w-4 h-2 bg-primary-400 rounded hover:bg-primary-500"
+            onClick={previous}
+          ></button>
+          <button
+            className="w-4 h-2 bg-primary-400 rounded hover:bg-primary-500"
+            onClick={next}
+          ></button>
         </div>
       </div>
     </SectionCard>

@@ -14,10 +14,10 @@ function VipInvestorServicesSection() {
   const minInvestment = "100.000";
 
   return (
-      <SectionCard heading={t("sections.vipServices.title")} >
-        <div className="flex justify-between items-center  bg-lightgray ">
-          <div className="flex flex-col gap-8">
-            <p className="text-2xl font-semibold  leading-[1.5]">
+      <SectionCard heading={t("sections.vipServices.title")} p6={false} >
+        <div className="flex justify-between items-center  bg-lightgray p-[12px]">
+          <div className="flex flex-col gap-2 md:gap-9">
+            <p className=" text-[15px] md:text-2xl font-bold md:font-semibold  leading-[1.5]">
               {t("sections.vipServices.content_1")}
               <br />
               {t("sections.vipServices.content_2")}
@@ -37,7 +37,7 @@ function VipInvestorServicesSection() {
               </div>
             </div>
           </div>
-          <div className="imgContainer w-[40%]   md:flex lg:flex">
+          <div className="imgContainer w-[70%] md:w-[40%]   md:flex lg:flex">
             <img
               src="/src/assets/imgs/Course app-bro.png"
               className="w-full h-full object-cover"
