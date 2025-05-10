@@ -51,6 +51,7 @@ import LevelExam from "./pages/levelexam/LevelExam";
 import LevelExamQuestions from "./pages/levelexam/LevelExamQuestions";
 import Date from "./pages/Reservation/Date";
 import { AuthProvider } from "./Context/AuthContext";
+import { CategoriesProvider } from "./Context/CategoriesContext";
 
 // import RequestConsultation from './pages/RequestConsultation/RequestConsultation';
 // import inlineBlog from './pages/Blog/inlineBlog';
@@ -163,7 +164,9 @@ function App() {
         <UserContextProvider>
           <AisleContextProvider>
             <AuthProvider>
-              <RouterProvider router={router} />
+              <CategoriesProvider>
+                <RouterProvider router={router} />
+              </CategoriesProvider>
             </AuthProvider>
           </AisleContextProvider>
         </UserContextProvider>

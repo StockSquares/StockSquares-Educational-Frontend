@@ -44,9 +44,10 @@ function InlineBlog() {
         <div className="flex justify-center  gap-10 mt-5 mb-4">
           <button className=" p-2 bg-accent-light rounded-md hover:bg-accent-900">
             <FontAwesomeIcon icon={faHeart} className="text-red-700 me-1" />
-أعجبني المقال          </button>
+            أعجبني المقال{" "}
+          </button>
           <button className="border-2 border-primary-dark p-2 bg-gray-200 rounded-md">
-            <FontAwesomeIcon icon={faShare} className="me-1"/> مشاركة المقال{" "}
+            <FontAwesomeIcon icon={faShare} className="me-1" /> مشاركة المقال{" "}
           </button>
         </div>
       </div>

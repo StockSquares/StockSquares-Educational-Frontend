@@ -42,7 +42,7 @@ function ArticlesManagement() {
       const formData = new FormData();
       formData.append("Title", article.title);
       formData.append("Body", article.Body);
-      formData.append("Writer", article.Writer);
+      formData.append("Writername", article.Writer);
       formData.append("CategoryId", article.CategoryId);
       formData.append("MainImageFile", article.MainImageFile);
       formData.append("WriterImage", article.WriterImage);
@@ -210,6 +210,7 @@ function ArticlesManagement() {
               ["font", "fontColor", "hiliteColor", "fontSize"],
               ["align", "list", "table"],
               ["link", "image"],
+              [ 'preview'],
               // ["preview"]
             ],
             

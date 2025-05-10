@@ -1,119 +1,141 @@
-import React, { useContext } from "react";
-import {
-  adjustments,
-  clipboardList,
-  dashboard,
-  search,
-  userCircle,
-} from "../../assets";
+import React, { useContext, useEffect, useState } from "react";
+import { adjustments, clipboardList, dashboard } from "../../assets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FlexibleCard, Button } from "../../components";
 import { AisleContext } from "../../Context";
 import { ROUTES } from "../../routes";
 import { useTranslation } from "react-i18next";
-import { Tabs, TextInput } from "flowbite-react";
+import { Tabs } from "flowbite-react";
+
+import style from "./Blog.module.css";
+
+import { useCategories } from "../../Context/CategoriesContext";
 
 function Blog() {
   const { t } = useTranslation();
   const { handleAisle } = useContext(AisleContext);
 
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          "https://stocksquare.runasp.net/api/Articles/GetAll"
+        );
+        const data = await response.json();
+        if (response.ok) {
+          setArticles(data);
+          setLoading(false);
+        } else {
+          console.log("فشل استرجاع البيانات");
+        }
+      } catch (e) {
+        console.log(e.message);
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, []);
+
+  const categories = useCategories();
+  const [articleDetails, setArticleDetails] = useState(false);
+  const [selectedArticle, setSelectedArticle] = useState({});
+
+  const getCategoryName = (categoryId) => {
+    const category = categories.find((cat) => cat.id === categoryId);
+    return category ? category.name : "غير معروف";
+  };
+
+  console.log(selectedArticle);
+
   return (
     <>
       <div className="mt-10">
-        {/* <div className="bg-primary-50 h-[30vh] flex-center p-4 mb-6">
-          <form className="w-full md:w-2/3 lg:w-1/2">
-            <div className="flex flex-col md:flex-row justify-between gap-2">
-              <TextInput
-                id="emailToSubscribe"
-                type="email"
-                icon={search}
-                className="input-parent grow mb-2 md:mb-0 me-0 md:me-4"
-                placeholder="Search"
-              />
-              <Button btnText="Search" bgColor="primary" px="px-8" />
-            </div>
-          </form>
-        </div> */}
-        <div className="  ">
-          <div className="flex justify-center  w-full">
-            <div className=" w-[80%]">
-              <Tabs
-                aria-label="Tabs with icons"
-                variant="underline"
-                onActiveTabChange={handleAisle}
-                className="flex justify-evenly"
-              >
-                <Tabs.Item
-                  active
-                  title={
-                    <>
-                      <FontAwesomeIcon
-                        icon={faHeart}
-                        className="me-2 text-primary-700 "
-                      />
-                      <span>الأكثر قراءة</span>
-                    </>
-                  }
+        {!articleDetails ? (
+          <div className="  ">
+            <div className="flex justify-center  w-full">
+              <div className=" w-[80%]">
+                <Tabs
+                  aria-label="Tabs with icons"
+                  variant="underline"
+                  onActiveTabChange={handleAisle}
+                  className="flex justify-evenly"
                 >
-                  <div className="flex flex-col p-5 bg-gray-100">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-5 max-w-screen-lg ms-[6%]">
-                      <div className=" md:col-span-2 flex flex-col items-start">
-                        <FlexibleCard
-                          category="أسواق المال"
-                          title="كيف تستثمر اموالك في أوقات الحرب"
-                          blogImg="/src/assets/imgs/investImg.jpg"
-                          LinkTo={`${ROUTES.INLINEBlog.replace(
-                            ":title",
-                            "كيف تستثمر اموالك في أوقات الحرب"
-                          )}`}
+                  <Tabs.Item
+                    active
+                    title={
+                      <>
+                        <FontAwesomeIcon
+                          icon={faHeart}
+                          className="me-2 text-primary-700 "
                         />
-                      </div>
-                      <div className=" md:col-span-1 flex justify-center items-center bg-gray-200 rounded-lg  shadow-lg h-64">
-                        <h1 className="text-xl font-bold text-gray-600">AD</h1>
-                      </div>
-                    </div>
-                  </div>
-                </Tabs.Item>
+                        <span>الأكثر قراءة</span>
+                      </>
+                    }
+                  >
+                   
 
-                <Tabs.Item title="أسواق المال" icon={dashboard}>
-                  <div className="flex flex-col p-5 bg-gray-100">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-5 max-w-screen-lg ms-[6%]">
-                      <div className=" md:col-span-2 flex flex-col items-start">
-                        <FlexibleCard
-                          category="أسواق المال"
-                          title="كيف تستثمر اموالك في أوقات الحرب"
-                          blogImg="/src/assets/imgs/investImg.jpg"
-                          LinkTo={`${ROUTES.INLINEBlog.replace(
-                            ":title",
-                            "كيف تستثمر اموالك في أوقات الحرب"
-                          )}`}
-                        />
-                      </div>
-                      <div className=" md:col-span-1 flex justify-center items-center bg-gray-200 rounded-lg  shadow-lg h-64">
-                        <h1 className="text-xl font-bold text-gray-600">AD</h1>
-                      </div>
+                    <div className="flex flex-col p-5 min-h-[40vh] items-start bg-gray-100">
+                     {loading ? <span className={style.loader}></span> : ""}
+                      {articles.map((article) => (
+                        <div
+                          className="w-full"
+                          onClick={() => {
+                            setSelectedArticle(article);
+                            setArticleDetails(true);
+                          }}
+                        >
+                          <FlexibleCard
+                            category={getCategoryName(article.categoryId)}
+                            title={article.title}
+                            blogImg={`data:image/*;base64,${article.mainImage}`}
+                            writerName={article.writername}
+                            writerImage={article.writerImage}
+                          />
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                </Tabs.Item>
-                <Tabs.Item title={"ريادة الأعمال"} icon={adjustments}>
-                  This is{" "}
-                  <span className="font-medium text-gray-800 dark:text-white">
-                    Settings tab's associated content
-                  </span>
-                  .
-                </Tabs.Item>
-                <Tabs.Item title="التسويق و المبيعات" icon={clipboardList}>
-                  This is{" "}
-                  <span className="font-medium text-gray-800 dark:text-white">
-                    Contacts tab's associated content
-                  </span>
-                  .
-                </Tabs.Item>
-              </Tabs>
+                  </Tabs.Item>
+
+                  <Tabs.Item title="أسواق المال" icon={dashboard}>
+                    <div className="flex flex-col p-5 items-start bg-gray-100">
+                      <FlexibleCard
+                        category="أسواق المال"
+                        title="كيف تستثمر اموالك في أوقات الحرب"
+                        blogImg="/src/assets/imgs/investImg.jpg"
+                        LinkTo={`${ROUTES.INLINEBlog.replace(
+                          ":title",
+                          "كيف تستثمر اموالك في أوقات الحرب"
+                        )}`}
+                      />
+                    </div>
+                  </Tabs.Item>
+                  <Tabs.Item title={"ريادة الأعمال"} icon={adjustments}>
+                    This is{" "}
+                    <span className="font-medium text-gray-800 dark:text-white">
+                      Settings tab's associated content
+                    </span>
+                    .
+                  </Tabs.Item>
+                  <Tabs.Item title="التسويق و المبيعات" icon={clipboardList}>
+                    This is{" "}
+                    <span className="font-medium text-gray-800 dark:text-white">
+                      Contacts tab's associated content
+                    </span>
+                    .
+                  </Tabs.Item>
+                </Tabs>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div dangerouslySetInnerHTML={{ __html: selectedArticle.body }}></div>
+        )}
       </div>
     </>
   );

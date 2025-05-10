@@ -78,7 +78,7 @@ function Ad({ adLocation }) {
               >
                 <Link to={ad.link}>
                   <img
-                    src={ad.image}
+                    src={`data:image/*;base64,${ad.image}`}
                     className="object-cover w-full h-full rounded-lg"
                     alt={ad.title}
                   />
@@ -90,7 +90,7 @@ function Ad({ adLocation }) {
       ) : (
         <div className="w-full overflow-hidden">
           <div className="max-w-[100%] h-[200px]">
-            <Slider ref={sliderRef} {...settings} >
+            <Slider ref={sliderRef} {...settings}>
               {mainAds.map((ad) => (
                 <div
                   key={ad.id}
@@ -98,7 +98,7 @@ function Ad({ adLocation }) {
                 >
                   <Link to={ad.link}>
                     <img
-                      src={ad.image}
+                      src={`data:image/*;base64,${ad.image}`}
                       alt={ad.title}
                       className="object-cover w-full h-full rounded-lg block"
                     />

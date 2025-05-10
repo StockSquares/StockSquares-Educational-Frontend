@@ -10,39 +10,47 @@ function FlexibleCard({
   title = "",
   LinkTo = "",
   blogImg = "",
+  writerName="",
+  writerImage="",
 }) {
   return (
-    <>
-      <div className="relative w-full h-64 overflow-hidden rounded-lg shadow-lg">
-        <Link to={LinkTo}>
-          {console.log("ok")}
-          <img
-            src={blogImg}
-            alt="Investment"
-            className="object-cover w-full h-full transform transition-transform duration-300 hover:scale-110"
-          />
-        </Link>
-        <h5 className="absolute top-0 right-0 py-2 px-3 text-white  font-bold bg-darkgray">
-          {category}{" "}
-        </h5>
+    <div className="w-full">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-5 max-w-screen-lg ms-[6%]">
+      <div className="w-full md:col-span-2">
+        <div className="relative w-full h-64 overflow-hidden rounded-lg shadow-lg ">
+          <Link to={LinkTo}>
+            {console.log("ok")}
+            <img
+              src={blogImg}
+              alt="Investment"
+              className="object-cover w-full h-full transform transition-transform duration-300 hover:scale-110"
+            />
+          </Link>
+          <h5 className="absolute top-0 right-0 py-2 px-3 text-white  font-bold bg-darkgray">
+            {category}{" "}
+          </h5>
 
-        <h5 className="absolute bottom-0 left-0 w-full py-2 text-white bg-gradient-to-t from-primary-800 to-transparent text-center font-bold">
-          {title}
-        </h5>
-      </div>
-      <div className="mt-4 flex justify-between items-center w-full">
-        <div className="flex justify-between w-full text-sm text-gray-500 gap-3">
-          <div className="flex items-center gap-2">
-            <FontAwesomeIcon icon={faUser} className="text-primary-700" />
-            <span>طارق الليثي</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <FontAwesomeIcon icon={faEye} className="text-primary-700" />
-            <span>1000</span>
+          <h5 className="absolute bottom-0 left-0 w-full py-2 text-white bg-gradient-to-t from-primary-800 to-transparent text-center font-bold">
+            {title}
+          </h5>
+        </div>
+        <div className="mt-4 flex justify-between items-center w-full">
+          <div className="flex justify-between w-full text-sm text-gray-500 gap-3">
+            <div className="flex items-center gap-2 mb-1">
+              <img src={`data:image/*;base64,${writerImage}`} className="w-[40px] h-[40px] object-cover rounded-full"/>
+              <span> {writerName} </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <FontAwesomeIcon icon={faEye} className="text-primary-700" />
+              <span>1000</span>
+            </div>
           </div>
         </div>
       </div>
-    </>
+      <div className=" md:col-span-1 flex justify-center items-center bg-gray-200 rounded-lg  shadow-lg h-64">
+        <h1 className="text-xl font-bold text-gray-600">AD</h1>
+      </div>
+    </div></div>
   );
 }
 
