@@ -4,7 +4,7 @@ import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useCategories } from "../../Context/CategoriesContext";
+import { useCategories } from "/src/Context/CategoriesContext";
 
 const schema = yup.object().shape({
   BookName: yup.string().required("اسم الكتاب مطلوب"),
