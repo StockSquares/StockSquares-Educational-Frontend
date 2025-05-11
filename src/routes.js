@@ -36,5 +36,8 @@ export const ROUTES = {
   CHATAI:"/chatAi",
   LEVELEXAM:"/levelexam",
   LEVELEXAMQUESTIONS:"/levelexamquestions",
-  DATE:"/date"
+  DATE:"/date",
+  SENDCODE:"/sendCode",
+  CONFIRMCODE:"/confirmCode",
+  RESETPASSWORD:"/resetPassword"
 };

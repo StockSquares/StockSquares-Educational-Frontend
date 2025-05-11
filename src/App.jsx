@@ -52,9 +52,12 @@ import LevelExamQuestions from "./pages/levelexam/LevelExamQuestions";
 import Date from "./pages/Reservation/Date";
 import { AuthProvider } from "./Context/AuthContext";
 import { CategoriesProvider } from "./Context/CategoriesContext";
+import SendCode from "./pages/ResetPassword/SendCode";
 
 // import RequestConsultation from './pages/RequestConsultation/RequestConsultation';
 // import inlineBlog from './pages/Blog/inlineBlog';
+import ConfirmCode from "./pages/ResetPassword/ConfirmCode";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
 
 // Create router instance
 const router = createBrowserRouter([
@@ -152,6 +155,18 @@ const router = createBrowserRouter([
       {
         path: ROUTES.DATE,
         element: <Date />,
+      },
+      {
+        path: ROUTES.SENDCODE,
+        element: <SendCode />,
+      },
+      {
+        path: ROUTES.CONFIRMCODE,
+        element: <ConfirmCode />,
+      },
+      {
+        path: ROUTES.RESETPASSWORD,
+        element: <ResetPassword />,
       },
     ],
   },

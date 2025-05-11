@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import falogo2 from '../../assets/icons/social-contacts/facebook-svgrepo-com (1).svg';
 import { Link, useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../routes';
 
 function Login() {
     const [formData, setFormData] = useState({
@@ -184,7 +185,8 @@ function Login() {
                         onClick={togglePasswordVisibility}
                     />
                 </div>
-                <p className="text-blue-600 my-3 cursor-pointer">هل نسيت كلمة المرور؟</p>
+                <Link to={ROUTES.SENDCODE}>
+                <p className="text-blue-600 my-3 cursor-pointer">هل نسيت كلمة المرور؟</p></Link>
 
                 {errorMessage && <p className={styles.error}>{errorMessage}</p>}
 
