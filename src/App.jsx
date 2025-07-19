@@ -17,13 +17,14 @@ import { Loader } from "./components";
 // import { Layout } from "./pages";
  import Home from "./pages/Home/Home";
  import Layout from "./pages/Layout/Layout"
-
+import TrainingAndEducation from "./pages/TrainingAndEducation/TrainingAndEducation";
+import SideBar from "./components/general/SideBar/SideBar";
 
 
  const Login= lazy(()=> import("./pages/Login/Login"));
  const Register = lazy(() => import("./pages/Register/Register"));
  const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
- const TrainingAndEducation = lazy(() => import("./pages/TrainingAndEducation/TrainingAndEducation"));
+//  const TrainingAndEducation = lazy(() => );
  const RecordedCourses = lazy(() => import("./pages/RecordedCourses/RecordedCourses"));
  const OpportunitiesAndRecommendations = lazy(() => import("./pages/OpportunitiesAndRecommendations/OpportunitiesAndRecommendations"));
  const FinanceAndBusinessLibrary = lazy(() => import("./pages/FinanceAndBusinessLibrary/FinanceAndBusinessLibrary"));
@@ -90,7 +91,7 @@ const router = createBrowserRouter([
 { path: ROUTES.ARTICLE, element: <Suspense fallback={<Loader />}><Article /></Suspense> },
 { path: ROUTES.JOIN_AS_TRAINER, element: <Suspense fallback={<Loader />}><JoinAsTrainer /></Suspense> },
 { path: "/bookdetails/:id", element: <Suspense fallback={<Loader />}><BookDetails /></Suspense> },
-{ path: ROUTES.TRAINING_AND_EDUCATION, element: <Suspense fallback={<Loader />}><TrainingAndEducation /></Suspense> },
+{ path: ROUTES.TRAINING_AND_EDUCATION, element: <TrainingAndEducation />},
 { path: ROUTES.RECORDED_COURSES, element: <Suspense fallback={<Loader />}><RecordedCourses /></Suspense> },
 { path: ROUTES.COURSE, element: <Suspense fallback={<Loader />}><Course /></Suspense> },
 { path: ROUTES.RESERVATION, element: <Suspense fallback={<Loader />}><Reservation /></Suspense> },
@@ -121,6 +122,7 @@ const router = createBrowserRouter([
 { path: ROUTES.SENDCODE, element: <Suspense fallback={<Loader />}><SendCode /></Suspense> },
 { path: ROUTES.CONFIRMCODE, element: <Suspense fallback={<Loader />}><ConfirmCode /></Suspense> },
 { path: ROUTES.RESETPASSWORD, element: <Suspense fallback={<Loader />}><ResetPassword /></Suspense> },
+{ path: "/sidebar", element: <SideBar /> },
 
     ],
   },
