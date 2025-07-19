@@ -253,9 +253,13 @@ nav.breadcrumb li button svg {
   color: var(--primary-700); /* اختاري اللون اللي تحبيه */
   font-size: 20px;
 }
-input:focus {
+input:focus, select:focus {
   outline: none !important; 
   border: 2px solid #13c84c !important;
   box-shadow: 0 0 0 3px rgba(19, 200, 76, 0.25) !important; 
   color: #0c6829 !important;
+}
+
+#root{
+    font-family: var(--font-Cairo);
 }

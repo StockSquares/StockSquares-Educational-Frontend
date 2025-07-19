@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import './JoinAsTrainer.css'
+import "../investorSurvey/investorSurvey.css";
 import {questions} from '../../assets/data3';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";
@@ -132,7 +132,7 @@ return(
             {formError && (
               <p className="error">يرجى ملء جميع الحقول بشكل صحيح قبل المتابعة !</p>
             )}
-            <button type="button" onClick={handleStart}>
+            <button type="button" className='px-3' onClick={handleStart}>
               ابدا طلب الانضمام
             </button>
           </div>
