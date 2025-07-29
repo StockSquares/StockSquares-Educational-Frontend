@@ -4,7 +4,7 @@ function Lectures(){
     return(
         <div className="w-[100%]">
         <div className="w-100 text-center mt-3 mb-10  font-Cairo text-2xl ">
-        <h1 className="text-black font-semibold" > ____________ المحاضرات  ____________</h1>
+        <h1 className="text-black font-semibold" >  المحاضرات  </h1>
 
         </div>
 

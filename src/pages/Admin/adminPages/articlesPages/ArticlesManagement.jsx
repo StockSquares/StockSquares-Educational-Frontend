@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
+import { useCategories } from "../../../../Context";
 
 function ArticlesManagement() {
   const [article, setArticle] = useState({
@@ -21,7 +22,9 @@ function ArticlesManagement() {
   };
 
   const [addArticle, setAddArticle] = useState(false);
-  const [categories, setCategories] = useState([]);
+  const categories = useCategories();
+
+  // const [categories, setCategories] = useState([]);
 
   const saveArticle = async () => {
     if (
@@ -59,7 +62,6 @@ function ArticlesManagement() {
 
       if (!response.ok) throw new Error("فشل في إرسال المقال");
       console.log(response.text);
-      
 
       toast.success("تم إرسال المقال بنجاح!", { theme: "colored" });
 
@@ -77,13 +79,6 @@ function ArticlesManagement() {
       console.error("❌ حدث خطأ:", error);
     }
   };
-
-  useEffect(() => {
-    fetch("https://stocksquare.runasp.net/api/Category/AllCategory")
-      .then((response) => response.json())
-      .then((data) => setCategories(data))
-      .catch((error) => console.error("❌ حدث خطأ أثناء جلب البيانات:", error));
-  }, []);
 
   // // دالة لتحميل صورة عبر API واسترجاع الرابط
   // const uploadImageToAPI = async (file) => {
@@ -111,7 +106,6 @@ function ArticlesManagement() {
 
   // دالة لرفع الصورة داخل SunEditor واستخدام URL مخصص بدل Base64
   console.log(article);
-  
 
   return (
     <div className="flex flex-col gap-3 mt-4">
@@ -147,7 +141,7 @@ function ArticlesManagement() {
       />
 
       <div className="article">
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-3 items-center mb-3">
           <label
             htmlFor="mainArticleImage"
             className="px-3 py-2 bg-accent-900 font-semibold rounded-md cursor-pointer hover:bg-accent-400"
@@ -156,7 +150,7 @@ function ArticlesManagement() {
           </label>
           <input
             type="file"
-            className="hidden"
+            className="hidden "
             id="mainArticleImage"
             onChange={(e) => handleFileChange(e, "MainImageFile")}
           />
@@ -174,7 +168,7 @@ function ArticlesManagement() {
           )}
         </div>
 
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-3 items-center mb-3">
           <label
             htmlFor="WriterImage"
             className="px-3 py-2 bg-primary-900 text-white rounded-md cursor-pointer  font-semibold hover:bg-green-700"
@@ -210,10 +204,8 @@ function ArticlesManagement() {
               ["font", "fontColor", "hiliteColor", "fontSize"],
               ["align", "list", "table"],
               ["link", "image"],
-              [ 'preview'],
-              // ["preview"]
+              ["preview"],
             ],
-            
           }}
         />
         <div className="flex gap-5">

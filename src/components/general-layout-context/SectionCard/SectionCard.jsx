@@ -10,12 +10,6 @@ import { Button } from './../..';
 function SectionCard({children, heading = '', wrapperClass = '', headingSpan = '', headingBtn = '', p6=true}) {
     const [counter, setCounter] = useState(0);
 
-
-
-    useEffect(() => {
-        
-    }, []);
-
     return <>
         <div className={`shadow ${wrapperClass} bg-lightgray h-full`}>
             <header className='flex-y-center justify-between bg-primary p-2 mb-0'>

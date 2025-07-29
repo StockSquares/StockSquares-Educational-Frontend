@@ -123,7 +123,7 @@ function SideNavigation({ isOpen, onClose, isLoggedIn }) {
           <div className="border-t pt-4">
             {/* REPEATED CONTENT: Identical to desktop menu buttons */}
             <Button
-              linkTo=""
+              linkTo="chatAi"
               btnText={t("navbar.chatAI")}
               btnClassName="w-full rounded-full px-3 py-2 mb-2"
               bgColor="primary"

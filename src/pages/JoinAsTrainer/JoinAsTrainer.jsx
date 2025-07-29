@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./JoinAsTrainer.css";
+import "../investorSurvey/investorSurvey.css";
 import { questions } from "../../assets/data3";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboardList } from "@fortawesome/free-solid-svg-icons";

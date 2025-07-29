@@ -41,8 +41,8 @@ function TestimonialsSection() {
 
   // Slick Slides
   const sliderRef = useRef(null);
-  const next = () => sliderRef.current && sliderRef.current.slickNext();
-  const previous = () => sliderRef.current && sliderRef.current.slickPrev();
+  // const next = () => sliderRef.current && sliderRef.current.slickNext();
+  // const previous = () => sliderRef.current && sliderRef.current.slickPrev();
 
   const settings = {
     dots: false,
@@ -54,7 +54,7 @@ function TestimonialsSection() {
     autoplay: true,
     autoplaySpeed: 3000,
     cssEase: "linear",
-    arrows:false,
+    arrows: false,
   };
 
   return (
@@ -64,31 +64,32 @@ function TestimonialsSection() {
       headingSpan={t("sections.testimonials.note")}
       p6={false}
     >
-      <div className="rounded-xl w-full p-3 md:px-12 lg:px-14 relative">
+      <div className="rounded-xl w-full p-1 lg:px-5 relative">
         <Slider ref={sliderRef} {...settings}>
           {testimonials.map((item) => (
-            <div
-              key={item.id}
-              className="p-3 flex flex-col items-center justify-center bg-gray-100 rounded-xl shadow-lg "
-            >
-              <div className="flex flex-col items-center md:flex-row-reverse">
-                <img
-                  className="w-[75px]  lg:w-[40%] h-[5rem]  object-fill rounded-full pt-1
-                   mb-4 border-4 border-primary float-right ml-4"
-                  src={item.src}
-                  alt="testimonial"
-                />
-                <p className="text-right text-[13px] lg:text-[16px] text-gray-800 mb-2">"{item.text}"</p>
+            <div className=" w-full  h-auto relative">
+              <img
+                className="w-[4rem] md:w-[3.4rem] lg:w-[4rem] absolute top-0 bg-primary-300 border-2 border-black rounded-full left-[10px]"
+                src="/src/assets/imgs/quotes.png"
+              />
+              <div className="w-[90%] m-auto mt-4 p-3 flex items-center h-[160px] border-2 bg-white/95  border-gray-500   ">
+                <p className="text-right text-[16px] lg:text-lg leading-relaxed">
+                  {" "}
+                  {item.text}{" "}
+                </p>
               </div>
-              <div className="flex flex-row-reverse justify-end gap-1 text-[12px] md:text-[14px]">
-                <img className="w-[25px] md:w-[30px]" src="/src/assets/imgs/flag.png" />
-                <span className="text-gray-600 font-semibold">{item.name}</span>
-                <span className="text-gray-500 text-sm">{item.position}</span>
-              </div>
+              <div className=" w-full flex flex-col items-center">
+                <div className="w-[5rem] h-[10vh] mt-[-40px] border-[3px] border-gray-500 rounded-full overflow-hidden m-auto">
+                  <img src={item.src} className="w-full h-full  bg-white rounded-full" />
+                </div>
+                <div className="flex gap-2 items-center">
+                <p className="mt-2 "> {item.name} &nbsp; <span className=" font-semibold text-primary-700"> ({item.position})</span>  </p>
+                <img src="/src/assets/imgs/flag.png" className="w-[30px] h-[30px] "/>
+              </div></div>
             </div>
           ))}
         </Slider>
-        <div className="flex justify-center items-center gap-4 mt-4">
+        {/* <div className="flex justify-center items-center gap-4 mt-8">
           <button
             className="w-4 h-2 bg-primary-400 rounded hover:bg-primary-500"
             onClick={previous}
@@ -97,7 +98,7 @@ function TestimonialsSection() {
             className="w-4 h-2 bg-primary-400 rounded hover:bg-primary-500"
             onClick={next}
           ></button>
-        </div>
+        </div> */}
       </div>
     </SectionCard>
   );

@@ -7,10 +7,10 @@ import { motion } from "framer-motion";
 
 function Home() {
   return (
-    <div className={`${Style.mainContent} font-Cairo`}>
-      <div className={Style.header}>
+    <div className={`${Style.mainContent} p-0 md:px-1 md:py-1 `}>
+      <div className={`${Style.header} flex-col md:flex-row`}>
         <div className={Style.userInfo}>
-          <div className={Style.useralign}>
+          <div className={`${Style.useralign} flex-col md:flex-row`}>
             <div className={Style.activate}>
               <FontAwesomeIcon icon={faCircleUser} className={Style.userIcon} />
               <span></span>
@@ -23,12 +23,12 @@ function Home() {
             <p className={Style.userEmail}>tarek.ellath@gmail.com</p>
           </div>
         </div>
-        <button className={` ${Style.userCount}`}>  استشاري تطوير الأعمال </button>
+        <p className={` ${Style.userCount} shadow-md p-2 rounded-lg bg-gray-100 text-lg font-semibold`}>  استشاري تطوير الأعمال </p>
       </div>
 
-      <div className="p-6 space-y-6 flex flex-col bg-gray-100 min-h-screen">
+      <div className="p-1 lg:p-6 space-y-6 flex flex-col bg-gray-100 min-h-screen">
         <motion.div
-          className="bg-yellow-200 w-[15%] p-2 self-end shadow-md rounded-lg text-center font-semibold cursor-pointer hover:bg-yellow-300 flex items-center justify-center space-x-2"
+          className="bg-yellow-200 w-full lg:w-[15%] p-2 self-end shadow-md rounded-lg text-center font-semibold cursor-pointer hover:bg-yellow-300 flex items-center justify-center space-x-2"
           whileHover={{ scale: 1.05 }} 
         >
           <motion.span
@@ -42,9 +42,9 @@ function Home() {
         </motion.div>
 
         {/* مخطط الأداء الشهري */}
-        <div className="bg-white p-4 shadow-md rounded-lg">
-          <h2 className="text-xl font-semibold mb-2">مخطط الأداء الشهري</h2>
-          <table className="w-full border border-gray-300">
+        <div className="bg-white p-2 shadow-md rounded-lg">
+          <h2 className="text-xl font-semibold mb-3 mt-1">مخطط الأداء الشهري</h2>
+          <table className="w-full border text-[11px] md:text-lg border-gray-300">
             <thead>
               <tr className="bg-[#008824ab]">
                 <th className="border p-2">الشهر</th>
@@ -73,9 +73,9 @@ function Home() {
         </div>
 
         {/* مخطط أداء الفرص */}
-        <div className="bg-white p-4 shadow-md rounded-lg">
-          <h2 className="text-xl font-semibold mb-2">مخطط أداء الفرص</h2>
-          <table className="w-full border border-gray-300">
+        <div className="bg-white p-2 shadow-md rounded-lg">
+          <h2 className="text-xl font-semibold mb-3 mt-1">مخطط أداء الفرص</h2>
+          <table className="w-full border border-gray-300 text-[11px] md:text-lg">
             <thead>
               <tr className="bg-[#008824ab]">
                 <th className="border p-2">المرحلة الفرصة</th>
@@ -100,9 +100,9 @@ function Home() {
         </div>
 
         {/* مخطط الأداء المالي */}
-        <div className="bg-white p-4 shadow-md rounded-lg">
-          <h2 className="text-xl font-semibold mb-2">مخطط الأداء المالي</h2>
-          <table className="w-full border border-gray-300">
+        <div className="bg-white p-2 shadow-md rounded-lg">
+          <h2 className="text-xl font-semibold mb-3 mt-1">مخطط الأداء المالي</h2>
+          <table className="w-full border border-gray-300 text-[11px] md:text-lg">
             <thead>
               <tr className="bg-[#008824ab]">
                 <th className="border p-2">الأسبوع</th>
@@ -135,9 +135,9 @@ function Home() {
         </div>
 
         {/* مخطط النشاطات اليومية */}
-        <div className="bg-white p-4 shadow-md rounded-lg">
-          <h2 className="text-xl font-semibold mb-2">مخطط النشاطات اليومية</h2>
-          <table className="w-full border border-gray-300">
+        <div className="bg-white p-2 shadow-md rounded-lg">
+          <h2 className="text-xl font-semibold mb-3 mt-1">مخطط النشاطات اليومية</h2>
+          <table className="w-full border border-gray-300 text-[11px] md:text-lg">
             <thead>
               <tr className="bg-[#008824ab]">
                 <th className="border p-2">اليوم</th>

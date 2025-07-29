@@ -1,15 +1,12 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowLeft,
   faBook,
   faBullhorn,
   faGraduationCap,
   faHome,
 } from "@fortawesome/free-solid-svg-icons";
+import { Routes, Route} from "react-router-dom";
 import { faNewspaper, faUser } from "@fortawesome/free-regular-svg-icons";
-import { NavLink } from "react-router-dom";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";
-import { useState } from "react";
 import MainComponent from "./main/main";
 import AdsComponent from "./adminPages/ads/Ads";
 import CoursesComponent from "./adminPages/coursesPages/Courses";
@@ -19,116 +16,79 @@ import PartnersComponent from "./adminPages/partners/Partners";
 import BooksComponent from "./adminPages/books/Books";
 import ArticlesComponent from "./adminPages/articlesPages/Articles";
 import Activities from "./adminPages/activities/Activities";
-import TrainingOppointments from "./adminPages/trainingOppointments/TrainingOppointments";
+import SideBar from "../../components/general/SideBar/SideBar";
 
 function Admin1() {
-  const [isopened, setisopened] = useState(true);
-  const [activeLink, setActiveLink] = useState("home");
-  const [activeComponent, setActiveComponent] = useState(<MainComponent />);
-
-  function handleClick(component, id) {
-    setActiveComponent(component);
-    setActiveLink(id);
-  }
-
   const links = [
     {
-      id: "home",
       icon: faHome,
-      label: "الرئيسية",
-      component: <MainComponent />,
+      name: "الرئيسية",
+      path: "/Admin1"
     },
     {
-      id: "clients",
       icon: faUser,
-      label: "الزبائن",
-      component: <ClientsComponent />,
+      name: "الزبائن",
+      path: "/Admin1/Clients"
+
     },
     {
-      id: "partners",
       icon: faHandshake,
-      label: "الشركاء",
-      component: <PartnersComponent />,
+      name: "الشركاء",
+      path: "/Admin1/Partners"
+
     },
     {
-      id: "employees",
       icon: faUser,
-      label: "الموظفين",
-      component: <EmployeesComponent />,
+      name: "الموظفين",
+      path: "/Admin1/Employees"
+
     },
     {
-      id: "ads",
       icon: faBullhorn,
-      label: "الإعلانات",
-      component: <AdsComponent />,
+      name: "الإعلانات",
+      path: "/Admin1/Ads"
     },
     {
       id: "articles",
       icon: faNewspaper,
-      label: "المقالات",
-      component: <ArticlesComponent />,
+      name: "المقالات",
+      path: "/Admin1/Articles"
+
     },
     {
-      id: "courses",
       icon: faGraduationCap,
-      label: "الكورسات",
-      component: <CoursesComponent />,
+      name: "الكورسات",
+      path: "/Admin1/Courses"
+
     },
     {
-      id: "books",
       icon: faBook,
-      label: "الكتب",
-      component: <BooksComponent />,
+      name: "الكتب",
+      path: "/Admin1/Books"
+
     },
     {
-      id: "activities",
       icon: faBook,
-      label: "الأنشطه",
-      component: <Activities />,
-    },
-    {
-      id: "trainingOppointments",
-      icon: faBook,
-      label: "المواعيد ",
-      component: <TrainingOppointments />,
+      name: "الأنشطه",
+      path: "/Admin1/Activities"
+
     },
   ];
 
   return (
-    <div className="">
-      <div
-        className={`sidebar z-30  w-[150px] absolute flex justify-between transition-all ${
-          isopened ? "" : "translate-x-[90%]"
-        }`}
-      >
-        <div className="bg-white w-[90%] flex flex-col gap-10 p-2 text-center">
-          <nav className="flex flex-col gap-2 ">
-            {links.map((link) => (
-              <NavLink
-                key={link.id}
-                className={`px-4 py-2 rounded-md text-[14px] md:text-lg flex items-center gap-2 transition-all  ${
-                  activeLink === link.id
-                    ? "bg-primary-dark text-white"
-                    : "bg-transparent text-black"
-                } `}
-                onClick={() => handleClick(link.component, link.id)}
-              >
-                <FontAwesomeIcon icon={link.icon} />
-                {link.label}
-              </NavLink>
-            ))}
-          </nav>
-        </div>
-        <button
-          className="  bg-accent-900"
-          onClick={() => setisopened(!isopened)}
-        >
-          <FontAwesomeIcon icon={faArrowLeft} size="xl" />
-        </button>
-      </div>
-
-      {activeComponent}
-    </div>
+    <SideBar menuItems={links}>
+      <Routes>
+        <Route index element={<MainComponent />} />
+        <Route path="Clients" element={<ClientsComponent />} />
+        <Route path="Partners" element={<PartnersComponent />} />
+        <Route path="Employees" element={<EmployeesComponent />} />
+        <Route path="Ads" element={<AdsComponent />} />
+        <Route path="Articles" element={<ArticlesComponent />} />
+        <Route path="Courses" element={<CoursesComponent />} />
+        <Route path="Books" element={<BooksComponent />} />
+        <Route path="Activities" element={<Activities />} />
+      </Routes>
+    </SideBar>
   );
 }
 export default Admin1;

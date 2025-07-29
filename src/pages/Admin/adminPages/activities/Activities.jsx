@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SunEditor from "suneditor-react";
-
+// import "../adminPages.module.css"
 function Activities() {
   const [activity, setActivity] = useState({
     title: "",
@@ -24,14 +24,14 @@ function Activities() {
     console.log(activity);
   };
   return (
-    <div className="w-full flex flex-col justify-center mt-7">
+    <div className="w-full flex flex-col justify-center items-center gap-3 mt-7">
       <h2 className="text-center text-2xl text-primary-900 font-bold">
         {" "}
         اضافه نشاط او فاعليه جديده{" "}
       </h2>
       <form
         onSubmit={handleSubmit}
-        className="w-[50%] text-start bg-white border-none shadow-md flex flex-col"
+        className="w-[50%] text-start p-4 bg-white border-none shadow-md flex flex-col mb-5"
       >
         <label className="mb-2"> العنوان :</label>
         <input

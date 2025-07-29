@@ -155,7 +155,7 @@ function Login() {
     };
 
     return (
-        <div className={styles.contain2}>
+        <div className={`${styles.contain2} font-Cairo `}>
             <img src={logo} alt="Logo" className={styles.logo} />
             <h2>أول منصة عربية ذكية لدعم المستثمرين ورواد الأعمال</h2>
             <h1>تسجيل الدخول</h1>

@@ -7,7 +7,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { consultationDates } from "../../assets/cosultationDates";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import "../investorSurvey/investorSurvey.css";
 import decor from "./RequestConsultation.module.css";
 config.autoAddCss = false;
 

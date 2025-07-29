@@ -1,10 +1,11 @@
-import { React, useState } from 'react';
+import { React, useState } from "react";
 import { questions } from "../../assets/data2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Style from "./PartnerApplication.module.css";
+import "../investorSurvey/investorSurvey.css";
+import countries from "../../Context/Countries";
 
 const PartnerApplication = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -18,7 +19,7 @@ const PartnerApplication = () => {
   const [birthDate, setBirthDate] = useState(null);
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [country, setCountry] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
 
   const handleOptionClick = (optionIndex) => {
     setSelectedOption(optionIndex);
@@ -49,19 +50,22 @@ const PartnerApplication = () => {
       gender: "غير محدد",
       scientificStatus: "غير محدد",
       birthday: birthDate.toISOString(),
-      referralCode: "none"
+      referralCode: "none",
     };
 
     try {
-      const response = await fetch("https://stocksquare.runasp.net/api/Account/partner-register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "text/plain"
-        },
-        body: JSON.stringify(payload)
-      });
-     console.log(response)
+      const response = await fetch(
+        "https://stocksquare.runasp.net/api/Account/partner-register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "text/plain",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+      console.log(response);
       const result = await response.json();
       if (result.isSuccess) {
         setFormError(false);
@@ -106,12 +110,15 @@ const PartnerApplication = () => {
         {!isLoggedIn ? (
           <div className="login">
             <h1>
-              <FontAwesomeIcon icon={faHandshake} /> طلب العمل كشريك 
+              <FontAwesomeIcon icon={faHandshake} /> طلب العمل كشريك
             </h1>
             <div className="full">
               <p className="important-info">
-                يسعدنا طلبك في الأنضمام الى شبكة شركاء ستوك سكويرز<br />
-                يرجى الأجابة على الأسئلة التالية لكي نتمكن من تقيم طلبك بشكل أفضل نود أن نوضح أننا نبحث عن شركاء يتناسبون مع قيمنا ورؤيتنا وأهدافنا ولهذا السبب قد لايتم قبول جميع الطلبات ونشكر تفهمك.
+                يسعدنا طلبك في الأنضمام الى شبكة شركاء ستوك سكويرز
+                <br />
+                يرجى الأجابة على الأسئلة التالية لكي نتمكن من تقيم طلبك بشكل
+                أفضل نود أن نوضح أننا نبحث عن شركاء يتناسبون مع قيمنا ورؤيتنا
+                وأهدافنا ولهذا السبب قد لايتم قبول جميع الطلبات ونشكر تفهمك.
               </p>
               <div>
                 <label>الاسم ثلاثي :</label>
@@ -133,12 +140,16 @@ const PartnerApplication = () => {
               </div>
               <div>
                 <label>بلد الإقامة :</label>
-                <input
-                  type="text"
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  placeholder="أدخل بلد إقامتك"
-                />
+                <select
+                  value={selectedCountry}
+                  onChange={(e) => setSelectedCountry(e.target.value)}
+                  className="w-full px-4 py-4 rounded-lg border-2 border-[#25863f] focus:outline-none focus:ring-2 focus:ring-green-500"
+                >
+                  <option> اختر الدوله </option>
+                  {countries.map((country, idx) => (
+                    <option key={idx}> {country} </option>
+                  ))}
+                </select>
               </div>
               <div>
                 <label>تاريخ الميلاد :</label>
@@ -164,20 +175,23 @@ const PartnerApplication = () => {
               </div>
             </div>
             {formError && (
-              <p className="error">يرجى ملء جميع الحقول بشكل صحيح قبل المتابعة !</p>
+              <p className="error">
+                يرجى ملء جميع الحقول بشكل صحيح قبل المتابعة !
+              </p>
             )}
             <button type="button" onClick={handleStart}>
-              ابدا 
+              ابدا
             </button>
           </div>
         ) : (
           <>
             <h1>
-              <FontAwesomeIcon icon={faHandshake} /> طلب العمل كشريك 
+              <FontAwesomeIcon icon={faHandshake} /> طلب العمل كشريك
             </h1>
             <hr />
             <h2>
-              {index + 1}. {questions[index]?.question || "جارٍ تحميل السؤال..."}
+              {index + 1}.{" "}
+              {questions[index]?.question || "جارٍ تحميل السؤال..."}
             </h2>
             <ul>
               {Object.keys(questions[index])

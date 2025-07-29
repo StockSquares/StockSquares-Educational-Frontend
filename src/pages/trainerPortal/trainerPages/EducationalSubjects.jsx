@@ -18,7 +18,7 @@ const subjects = [
 function EducationalSubjects() {
   return (
     <div className="container  flex flex-col items-center font-Cairo">
-      <h1 className="text-3xl mt-3 text-black mb-6">  _______المواد التعليميه_______ </h1>
+      <h1 className="text-3xl mt-3 text-black mb-6">       المواد التعليميه   </h1>
       <div className="w-full bg-white  rounded-lg p-4">
         {subjects.map((subject, index) => (
           <div

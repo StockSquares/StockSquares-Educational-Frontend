@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import RequestConsultationQuestions from "./RequestConsultationQuestions";
 import decor from "./RequestConsultation.module.css";
-
+import countries from "../../Context/Countries";
 function RequestConsultation() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [formError, setFormError] = useState(false);
@@ -11,31 +11,10 @@ function RequestConsultation() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
-  const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-
-
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const response = await fetch("https://restcountries.com/v3.1/all");
-        const data = await response.json();
-        const countryNames = data.map((country) => country.name.common).sort();
-        setCountries(countryNames);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching countries:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchCountries();
-  }, []);
-
- 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -99,7 +78,7 @@ function RequestConsultation() {
             <div>
               <label className="text-right mb-2 block text-[19px]">رقم الهاتف:</label>
               <input
-                type="text"
+                inputMode="numeric"
                 placeholder="رقم الهاتف"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
@@ -108,7 +87,7 @@ function RequestConsultation() {
             </div>
             <div>
               <label className="text-right mb-2 block text-[19px]">بلد الإقامة:</label>
-              {loading ? (
+              {!countries ? (
                 <p>جارٍ تحميل قائمة الدول...</p>
               ) : (
                 <select
