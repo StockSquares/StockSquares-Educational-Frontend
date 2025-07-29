@@ -20,10 +20,10 @@ function ChatAi() {
     },
   ];
 
-  const { userData } = useAuth();
-  console.log(userData);
+  // const { userData } = useAuth();
+  // console.log(userData);
   
-  if (!userData) return null;
+  // if (!userData) return null;
 
   return (
     <div className="w-full mt-5 flex flex-col gap-5">
@@ -33,7 +33,6 @@ function ChatAi() {
           <h2 className=" text-center">
             {" "}
             <span className="font-semibold"> أهلا وسهلا </span>{" "}
-            <span className="text-green-500 font-bold">{userData["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]}</span> .. أنا بصير
             مساعدك الذكي للتداول في الأسواق الماليه{" "}
           </h2>
 
