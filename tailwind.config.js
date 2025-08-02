@@ -74,9 +74,7 @@ darkMode:"class",
 				// 'gray': 'var(--gray-color)',
 				'darkgray': 'var(--darkgray-color)',
             },
-			backgroundImage: {
-				'book-background': 'url("./src/assets/imgs/bookstore/book-bg.jpg")'
-			}
+		
 		},
 	},
 	plugins: [
