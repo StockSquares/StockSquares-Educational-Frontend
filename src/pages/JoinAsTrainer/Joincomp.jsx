@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import "../investorSurvey/investorSurvey.css";
+import "../InvestorSurvey/investorSurvey.css";
 import {questions} from '../../assets/data3';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";

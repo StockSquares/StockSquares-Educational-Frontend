@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "../investorSurvey/investorSurvey.css";
+import "../InvestorSurvey/investorSurvey.css";
 import countries from "../../Context/Countries";
 
 const PartnerApplication = () => {

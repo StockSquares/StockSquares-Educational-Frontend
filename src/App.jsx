@@ -39,7 +39,7 @@ import SideBar from "./components/general/SideBar/SideBar";
  const Course = lazy(() => import("./pages/Course/Course"));
  const Reservation = lazy(() => import("./pages/Reservation/Reservation"));
 //  const Payment = lazy(() => import("./pages/Payment/Payment"));
- const InvestorSurvey = lazy(() => import("./pages/InvestorSurvey/InvestorSurvey"));
+ const InvestorSurvey = lazy(() => import("./pages/investorSurvey/InvestorSurvey"));
  const RequestConsultation = lazy(() => import("./pages/RequestConsultation/RequestConsultation"));
 //  const InlineBlog = lazy(() => import("./pages/InlineBlog/InlineBlog"));
  const CourseContent = lazy(() => import("./pages/CourseContent/CourseContent"));
