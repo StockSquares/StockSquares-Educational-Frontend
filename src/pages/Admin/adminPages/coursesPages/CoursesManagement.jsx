@@ -5,7 +5,7 @@ import SunEditor from "suneditor-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
-import { useCategories } from "../../../../Context";
+import { useCategories } from "../../../../Context/CategoriesContext";
 
 function CoursesManagement() {
   const [allCourses, setAllCourses] = useState([]);
