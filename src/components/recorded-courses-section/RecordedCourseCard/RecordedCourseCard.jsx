@@ -18,7 +18,7 @@ function RecordedCourseCard() {
   return (
     <SectionCard heading={" الدورات المسجله "} p6={false}>
       <div className="p-2 ">
-        <div className="bg-neutral-200 text-xs font-semibold rounded-sm  py-[2px] flex">
+        <div className="bg-neutral-200 dark:bg-dark-background text-xs font-semibold rounded-sm  py-[2px] flex">
           <div className="content  w-full text-[10px] px-1 py-8 ">
             <span className="bg-primary text-white px-4 py-0.5 rounded lg:text-[15px]  ">
               ابدأ بناء مستقبل مالي قوي

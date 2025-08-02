@@ -72,7 +72,7 @@ function TestimonialsSection() {
                 className="w-[4rem] md:w-[3.4rem] lg:w-[4rem] absolute top-0 bg-primary-300 border-2 border-black rounded-full left-[10px]"
                 src="/src/assets/imgs/quotes.png"
               />
-              <div className="w-[90%] m-auto mt-4 p-3 flex items-center h-[160px] border-2 bg-white/95  border-gray-500   ">
+              <div className="w-[90%] m-auto mt-4 p-3 flex items-center h-[160px] border-2 bg-white/95 dark:bg-dark-background  border-gray-500   ">
                 <p className="text-right text-[16px] lg:text-lg leading-relaxed">
                   {" "}
                   {item.text}{" "}

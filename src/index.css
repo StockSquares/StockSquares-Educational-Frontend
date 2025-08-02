@@ -63,6 +63,10 @@
     --font-Cairo: 'Cairo', sans-serif;
     /* --line-height-short: 1.2; */
 
+    /* dark mode */
+    --dark-background: rgba(26, 25, 25, 0.93);
+    --dark-text: #f3f4f6;
+
 }
 body {
     font-family: var(--font-Cairo);

@@ -32,10 +32,14 @@ darkMode:"class",
 			backgroundColor: {
 			  'dark-primary': '#121212',
 			  'dark-secondary': '#1E1E1E',
+			  'dark-background': 'var(--dark-background)'
 			},
 			textColor: {
 			  'dark-primary': '#E0E0E0',
-			  'dark-secondary': '#A0A0A0',},
+			  'dark-secondary': '#A0A0A0',
+			  'dark-text':'var(--dark-text)'
+			
+			},
 			colors: {
                 'primary': 'var(--primary-color)',
                 'primary-dark': 'var(--primary-color-dark)',

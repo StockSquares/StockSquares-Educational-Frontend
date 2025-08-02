@@ -48,7 +48,7 @@ function Blog() {
     <div className="mt-10">
       {!articleDetails ? (
         <div className="flex justify-center w-full">
-          <div className="w-[80%]">
+          <div className="w-[80%] ">
             <Tabs
               aria-label="Tabs with icons"
               variant="underline"
@@ -65,7 +65,7 @@ function Blog() {
                   </>
                 }
               >
-                <div className="flex flex-col p-5 min-h-[40vh] items-start bg-gray-100">
+                <div className="flex flex-col p-5 min-h-[40vh] items-start bg-gray-100 dark:bg-dark-background">
                   {loading ? <span className={style.loader}></span> : ""}
                   {articles.map((article) => (
                     <div
@@ -91,7 +91,7 @@ function Blog() {
               {/* باقي Tabs: حسب التصنيفات */}
               {categories.map((category) => (
                 <Tabs.Item key={category.id} title={category.name}>
-                  <div className="flex flex-col p-5 min-h-[40vh] items-start bg-gray-100">
+                  <div className="flex flex-col p-5 min-h-[40vh] items-start bg-gray-100 dark:bg-dark-background">
                     {loading ? (
                       <span className={style.loader}></span>
                     ) : (

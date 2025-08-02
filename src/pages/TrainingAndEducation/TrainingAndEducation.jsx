@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import styles from "./TrainingAndEducation.module.css";
-import entryLevel from "/src/assets/imgs/ConsultingBro.png";
+import entryLevel from "/src/assets/imgs/Consulting-bro.png";
 import { ROUTES } from "../../routes";
 
 const TrainingPlanCard = ({ plan }) => (
@@ -77,7 +77,7 @@ function TrainingAndEducation() {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row items-center px-4 md:px-8 py-8 md:py-1">
+      <div className="flex flex-col lg:flex-row items-center px-4 md:px-8 py-8 md:py-1 ">
         <div className="w-full lg:w-2/3 flex flex-col items-start space-y-5 lg:pr-6 ">
           <p className="text-2xl mt-5 lg:text-3xl font-bold text-center lg:text-right " >
             اكتسب مهارة التداول وانضم إلى المستثمرين{" "}
@@ -89,10 +89,10 @@ function TrainingAndEducation() {
           </p>
 
           <div> 
-            <ul className={`${styles.featuresList} space-y-2 `}>
+            <ul className={`${styles.featuresList} space-y-2  `}>
            
 
-              <li>
+              <li className="dark:text-dark-text">
                 <div className=" relative py-4 flex flex-col gap-1">
                   <div className="flex flex-col gap-3">
                   <p style={{letterSpacing:"1.5px"}}>

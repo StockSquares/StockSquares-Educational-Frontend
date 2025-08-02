@@ -20,7 +20,7 @@ function Navbar({ ref_ul, width_ul, height_md, translateY_navbar, translateX_nav
     return (
         <>
         {/* tablet and laptop */}
-        {isAboveMdBreakpoint && <>
+        {isAboveMdBreakpoint && <>ِ
         {/* 'hidden md:block' class is good if we don't target security, otherwise we use (window.innerwidth or resize event) logic */}
         {/* <nav className={`nav-main md:block bg-primary text-white shadow-md transform transition-transform transDuration-500`} */}
         <nav className={`nav-main md:block dark:bg-black bg-white shadow text-primary py-2 px-10 transform transition-transform transDuration-500`}
@@ -30,7 +30,7 @@ function Navbar({ ref_ul, width_ul, height_md, translateY_navbar, translateX_nav
                     : `translateY(0)`,
             }}
         >
-            <div className="">
+            <div>
                 <div className="flex-x-between  items-baseline relative">
                     {/* <Link ref={ref_ul} to='' className={`flex-y-center space-x-1 sm:space-x-3 rtl:space-x-reverse text-xl sm:text-2xl lg:me-10 transform transition-transform transDuration-500 absolute ${translateX_navbar  ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}> */}
                     <Link ref={ref_ul} to='' className={`text-xl sm:text-2xl transform transition-transform transDuration-500 absolute ${translateX_navbar  ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
@@ -63,7 +63,7 @@ function Navbar({ ref_ul, width_ul, height_md, translateY_navbar, translateX_nav
                             </li>
                             <li className='px-1.5 lg:px-3 lg:hidden'>
                             {/* btn-dropdown-toggle */}
-                            <button id="dropdownButton" data-dropdown-toggle="dropdownMenu" type="button" className="">
+                            <button id="dropdownButton" data-dropdown-toggle="dropdownMenu" type="button">
                                     <span className="sr-only">Open main menu</span>
                                     <FontAwesomeIcon icon={ellipsis} />
                                 </button>

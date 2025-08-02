@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect } from "react";
 
 // Create a theme context
 export const ThemeContext = createContext({
@@ -10,28 +10,30 @@ export const ThemeContext = createContext({
 export const ThemeProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // Check local storage or system preference on initial load
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) return savedTheme === 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) return savedTheme === "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
   const toggleTheme = () => {
-    setIsDarkMode(prevMode => {
+    setIsDarkMode((prevMode) => {
       const newMode = !prevMode;
-      localStorage.setItem('theme', newMode ? 'dark' : 'light');
+      localStorage.setItem("theme", newMode ? "dark" : "light");
       return newMode;
     });
   };
 
   useEffect(() => {
     const root = window.document.documentElement;
-    
+
     if (isDarkMode) {
-      root.classList.add('dark');
-      root.style.colorScheme = 'dark';
+      root.classList.add("dark");
+      // div.style.backgroundColor="red";
+
+      root.style.colorScheme = "dark";
     } else {
-      root.classList.remove('dark');
-      root.style.colorScheme = 'light';
+      root.classList.remove("dark");
+      root.style.colorScheme = "light";
     }
   }, [isDarkMode]);
 

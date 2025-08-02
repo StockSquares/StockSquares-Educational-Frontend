@@ -26,7 +26,7 @@ function AboutSection() {
       heading={t("sections.about.title")}
       wrapperClass="wrapperClass-sectionCard"
     >
-      <div className="flex flex-wrap md:flex-nowrap items-center mb-5 gap-6 text-sm font-semibold text-center w-full dark:text-black">
+      <div className="flex flex-wrap md:flex-nowrap items-center mb-5 gap-6 text-sm font-semibold text-center w-full dark:text-dark">
         <AboutFeature
           Title={t("sections.about.feature_1")}
           Icon={handHoldingDollar}

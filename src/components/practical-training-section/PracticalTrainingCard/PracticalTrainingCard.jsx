@@ -22,9 +22,9 @@ function PracticalTrainingCard({
   return (
     <div className="h-full p-2" style={{ direction: "rtl" }}>
       {/* الكرت كامل */}
-      <div className="flex flex-col  bg-white rounded overflow-hidden shadow-md">
+      <div className="flex flex-col  bg-white  rounded overflow-hidden shadow-md">
         {/* الصورة في الأعلى */}
-        <div className="h-64 bg-primary-100 flex items-center justify-center">
+        <div className="h-64 bg-primary-100 dark:bg-dark-primary flex items-center justify-center">
           <img src={cardImg} className="h-auto max-h-full object-contain" />
         </div>
 
