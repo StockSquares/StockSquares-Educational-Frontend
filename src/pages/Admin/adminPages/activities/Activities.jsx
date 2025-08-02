@@ -1,6 +1,5 @@
 import { useState } from "react";
 import SunEditor from "suneditor-react";
-// import "../adminPages.module.css"
 function Activities() {
   const [activity, setActivity] = useState({
     title: "",

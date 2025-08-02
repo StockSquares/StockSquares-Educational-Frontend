@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import style from "../adminPages.module.css";
+import style from "../../../../components/general/PageHeader/adminPages.module.css";
 import TrainerSelected from "./TrainerSelected";
 import SunEditor from "suneditor-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

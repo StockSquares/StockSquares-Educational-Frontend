@@ -1,5 +1,5 @@
 import { useState } from "react";
-import style from "/src/pages/Admin/adminPages/adminPages.module.css";
+import style from "../../../../../components/general/PageHeader/adminPages.module.css";
 import AddBook from "./libraryManagementComponents/AddBook";
 import LoadBook from "./libraryManagementComponents/LoadBook";
 

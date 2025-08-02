@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, ResponsiveContainer } from "recharts";
-import style from "../../adminPages.module.css"
+import style from "../../../../../components/general/PageHeader/adminPages.module.css"
 
 
 function PerformanceReport(){
