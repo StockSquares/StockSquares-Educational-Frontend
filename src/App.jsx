@@ -27,7 +27,7 @@ import SideBar from "./components/general/SideBar/SideBar";
 //  const TrainingAndEducation = lazy(() => );
  const RecordedCourses = lazy(() => import("./pages/RecordedCourses/RecordedCourses"));
  const OpportunitiesAndRecommendations = lazy(() => import("./pages/OpportunitiesAndRecommendations/OpportunitiesAndRecommendations"));
- const FinanceAndBusinessLibrary = lazy(() => import("./pages/FinanceAndBusinessLibrary/FinanceAndBusinessLibrary"));
+ const FinanceAndBusinessLibrary = lazy(() => import("./pages/FinanceAndBusinessLibrary/FinanceAndBusinessLibrary.jsx"));
  const PartnerApplication = lazy(() => import("./pages/PartnerApplication/PartnerApplication"));
  const TryTradingForFree = lazy(() => import("./pages/TryTradingForFree/TryTradingForFree"));
  const VIPInvestorServices = lazy(() => import("./pages/VIPInvestorServices/VIPInvestorServices"));

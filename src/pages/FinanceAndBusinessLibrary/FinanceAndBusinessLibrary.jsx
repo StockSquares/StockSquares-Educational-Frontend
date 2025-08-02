@@ -17,7 +17,7 @@ import bgphoto from "../../assets/imgs/bookstore/2797560.jpg";
 import BookDetails from './multipages/BookDetails';
 import { bookFront } from "../../assets";
 
-export default function BookSlider() {
+export default function FinanceAndBusinessLibrary() {
   const [filter, setFilter] = useState("all"); 
   const [books, setBooks] = useState([]);
   const filteredBooks =
@@ -119,21 +119,3 @@ export default function BookSlider() {
     </div>
   );
 }
-// const AnimatedBook = ({ book, index }) => {
-//   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
-//   return (
-//     <motion.div
-//       ref={ref}
-//       className={styles.bookItem}
-//       initial={{ opacity: 0, y: 100, rotateY: 90 }}
-//       animate={inView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
-//       transition={{
-//         duration: 0.8,
-//         delay: index * 0.2,
-//         ease: "easeOut",
-//       }}
-//     >
-//      <img src={book} alt={`Book ${index + 1}`} className={styles[`bookImage${index + 1}`]} />
-//     </motion.div>
-//   );
-// };  
