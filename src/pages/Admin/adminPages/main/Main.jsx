@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
-import style from "../Admin1.module.css";
+import style from "./Admin1.module.css";
 import { LineChart, Line, ResponsiveContainer } from "recharts";
 
 function Main() {
