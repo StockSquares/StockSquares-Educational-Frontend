@@ -2,7 +2,7 @@ import { useState } from "react";
 import Main from "./partnersComponents/main";
 import Requests from "./partnersComponents/requests";
 import PerformanceReport from "./partnersComponents/PerformanceReport";
-import PageHeader from "../pageHeader";
+import PageHeader from "../../../../components/general/PageHeader/PageHeader";
 import PartnersOperations from "./partnersComponents/PartnersOperations";
 import FinancialPartners from "./partnersComponents/FinancialPartners";
 
@@ -16,27 +16,30 @@ function Partners() {
     " المعاملات الماليه",
   ];
 
-  const handleClicked=(idx)=>{
+  const handleClicked = (idx) => {
     setIsClicked(idx);
-  }
+  };
 
   return (
     <div className="container-fluid justify-center w-full flex  mt-5">
       <div className="grid  grid-cols-1 gap-2">
-
-      <PageHeader Buttons={buttons} Clicked={isClicked} HandleClicked={handleClicked} />
+        <PageHeader
+          Buttons={buttons}
+          Clicked={isClicked}
+          HandleClicked={handleClicked}
+        />
 
         <div className="show w-full">
           {isClicked === 0 ? (
             <Main />
           ) : isClicked === 1 ? (
-            <Requests/>
+            <Requests />
           ) : isClicked === 2 ? (
-            (<PerformanceReport/>)
+            <PerformanceReport />
           ) : isClicked === 3 ? (
-            (<PartnersOperations />)
+            <PartnersOperations />
           ) : (
-            (<FinancialPartners/>)
+            <FinancialPartners />
           )}
         </div>
       </div>

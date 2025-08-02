@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PageHeader from "../pageHeader";
+import PageHeader from "../../../../components/general/PageHeader/PageHeader";
 import Main from "./employeesPages/Main";
 import EmployeesManagement from "./employeesPages/EmployeesManagement";
 import PerformanceReports from "./employeesPages/PerformanceReports";
@@ -7,7 +7,12 @@ import FinancialTransactions from "./employeesPages/FinancialTransactions";
 
 function Employees() {
   const [isClicked, setIsClicked] = useState(0);
-  const buttons = ["  الرئيسية ", " اداره الموظفين ", " تقارير الأداء ", " المعاملات الماليه "];
+  const buttons = [
+    "  الرئيسية ",
+    " اداره الموظفين ",
+    " تقارير الأداء ",
+    " المعاملات الماليه ",
+  ];
 
   const handleClicked = (idx) => {
     setIsClicked(idx);

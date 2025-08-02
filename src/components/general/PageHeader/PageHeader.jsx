@@ -1,4 +1,4 @@
-import style from "/src/pages/Admin/adminPages/adminPages.module.css";
+import style from "./adminPages.module.css";
 
 function PageHeader({Buttons, Clicked, HandleClicked}){
 return(

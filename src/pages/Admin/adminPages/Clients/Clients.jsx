@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PageHeader from "../PageHeader";
+import PageHeader from "../../../../components/general/PageHeader/PageHeader";
 import ClientsDataAnalysis from "./ClientsDataAnalysis";
 import Main from "./Main";
 
@@ -27,15 +27,17 @@ function Clients() {
         />
 
         <div className="show w-full">
-          {isClicked === 0
-            ? <Main/>
-            : isClicked === 1
-            ? "ااا"
-            : isClicked === 2
-            ? "hhhh"
-            : isClicked === 3
-            ? "ااا"
-            : "ااا"}
+          {isClicked === 0 ? (
+            <Main />
+          ) : isClicked === 1 ? (
+            "ااا"
+          ) : isClicked === 2 ? (
+            "hhhh"
+          ) : isClicked === 3 ? (
+            "ااا"
+          ) : (
+            "ااا"
+          )}
         </div>
       </div>
     </div>
