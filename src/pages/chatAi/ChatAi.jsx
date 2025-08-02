@@ -33,7 +33,7 @@ function ChatAi() {
           <h2 className=" text-center">
             {" "}
             <span className="font-semibold"> أهلا وسهلا </span>{" "}
-            <span className="text-green-500 font-bold">{userData["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]}</span> .. أنا بصير
+            <span className="text-primary-600 font-bold">{userData["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]}</span> .. أنا بصير
             مساعدك الذكي للتداول في الأسواق الماليه{" "}
           </h2>
 
