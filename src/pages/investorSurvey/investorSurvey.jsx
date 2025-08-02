@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-const InvestorSurvey = () => {
+function InvestorSurvey() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [index, setIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
