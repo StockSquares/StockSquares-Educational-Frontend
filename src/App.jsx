@@ -44,7 +44,7 @@ import SideBar from "./components/general/SideBar/SideBar";
 //  const InlineBlog = lazy(() => import("./pages/InlineBlog/InlineBlog"));
  const CourseContent = lazy(() => import("./pages/CourseContent/CourseContent"));
  const JoinAsTrainer = lazy(() => import("./pages/JoinAsTrainer/Joincomp"));
- const BookDetails = lazy(() => import("./pages/FinanceAndBusinessLibrary/multipages/bookdetails"));
+ const BookDetails = lazy(() => import("./pages/FinanceAndBusinessLibrary/multipages/BookDetails"));
  const Admin1 = lazy(() => import("./pages/Admin/Admin1"));
  const Employees = lazy(() => import("./pages/Admin/Employees"));
  const Client = lazy(() => import("./pages/Admin/Client"));
