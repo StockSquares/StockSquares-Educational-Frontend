@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 function Partners() {
+
  const [partners, setPartners] = useState([
         {
           id: 1,

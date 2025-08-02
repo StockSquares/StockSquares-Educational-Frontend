@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Main from "./partnersComponents/main";
-import Requests from "./partnersComponents/requests";
+import Main from "./partnersComponents/Main";
+import Requests from "./partnersComponents/Requests";
 import PerformanceReport from "./partnersComponents/PerformanceReport";
 import PageHeader from "../../../../components/general/PageHeader/PageHeader";
 import PartnersOperations from "./partnersComponents/PartnersOperations";

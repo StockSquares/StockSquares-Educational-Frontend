@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 // Internal Imports (components, Assets and Styles)
-import Style from './Course.module.css';
 import { SecondaryInfo, Sidebar } from '../../components';
 import { ROUTES } from '../../routes';
 

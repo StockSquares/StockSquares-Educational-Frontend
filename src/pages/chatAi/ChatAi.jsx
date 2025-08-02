@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import businessRobot from "/src/assets/imgs/baser.png";
 import { useAuth } from "../../Context/AuthContext";
 
-
 function ChatAi() {
   const data = [
     {
@@ -20,10 +19,12 @@ function ChatAi() {
     },
   ];
 
-  // const { userData } = useAuth();
-  // console.log(userData);
-  
-  if (!userData) return null;
+  const { userData } = useAuth();
+  console.log(userData);
+
+  const username = userData
+    ? userData["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
+    : "سيدي";
 
   return (
     <div className="w-full mt-5 flex flex-col gap-5">
@@ -33,11 +34,9 @@ function ChatAi() {
           <h2 className=" text-center">
             {" "}
             <span className="font-semibold"> أهلا وسهلا </span>{" "}
-            <span className="text-primary-600 font-bold">{userData["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]}</span> .. أنا بصير
+            <span className="text-primary-600 font-bold">{username}</span> .. أنا بصير
             مساعدك الذكي للتداول في الأسواق الماليه{" "}
           </h2>
-
-          
         </div>
 
         <div className="flex bg-gray-800 h-10 items-center overflow-hidden">
@@ -110,23 +109,22 @@ function ChatAi() {
                   </div>
                 </div>
               ))}
-
-             
-             
             </div>
           </Tabs.Item>
           <Tabs.Item active title=" البورصه السعوديه "></Tabs.Item>
           <Tabs.Item active title=" البورصه الاماراتيه "></Tabs.Item>
           <Tabs.Item active title=" البورصه العالميه "></Tabs.Item>
           <Tabs.Item active title="  بورصه العملات المشفره ">
-          <div className="flex gap-7 justify-center">
-
-          <div className="relative flex  flex-col gap-4 w-[300px] rounded-2xl shadow-inner bg-white/30 backdrop-blur-sm p-6 border border-gray-300">
+            <div className="flex gap-7 justify-center">
+              <div className="relative flex  flex-col gap-4 w-[300px] rounded-2xl shadow-inner bg-white/30 backdrop-blur-sm p-6 border border-gray-300">
                 <div className="absolute inset-0 rounded-2xl z-10 flex flex-col gap-3 items-center justify-center">
                   <p className="text-red-600 font-bold text-center text-lg">
                     أنت لست مشترك في هذه الباقه
                   </p>
-                  <button className="py-2 px-5 bg-primary-800 text-white rounded-lg hover:bg-primary-900"> اشترك الأن </button>
+                  <button className="py-2 px-5 bg-primary-800 text-white rounded-lg hover:bg-primary-900">
+                    {" "}
+                    اشترك الأن{" "}
+                  </button>
                 </div>
                 <div className=" blur-sm pointer-events-none">
                   <div className="flex flex-col gap-3 items-center text-center border-b border-gray-200 pb-4">
@@ -161,7 +159,7 @@ function ChatAi() {
                   </div>
                 </div>
               </div>
-              </div>
+            </div>
           </Tabs.Item>
         </Tabs>
       </div>
