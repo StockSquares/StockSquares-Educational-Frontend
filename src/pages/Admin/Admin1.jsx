@@ -7,7 +7,7 @@ import {
 import { Routes, Route} from "react-router-dom";
 import { faNewspaper, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";
-import MainComponent from "./pages/Admin/main/Main.jsx";
+import MainComponent from "./pages/Admin/main/Main";
 import AdsComponent from "./adminPages/ads/Ads";
 import CoursesComponent from "./adminPages/coursesPages/Courses";
 import EmployeesComponent from "./adminPages/employees/Employees";
