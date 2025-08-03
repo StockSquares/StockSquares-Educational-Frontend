@@ -1,9 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-
-import Style from './AboutCard.module.css';
-
 function AboutCard() {
     const [counter, setCounter] = useState(0);
 
