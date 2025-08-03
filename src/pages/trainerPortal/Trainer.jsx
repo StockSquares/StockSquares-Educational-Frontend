@@ -8,10 +8,6 @@ import TraineesQuestions from "./trainerPages/TraineesQuestions";
 import TrainingOrders from "./trainerPages/TrainingOrders";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import React, { useState } from "react";
-import Style from "../Admin/Admin.module.css";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import SideBar from "../../components/general/SideBar/SideBar";
 
 function Trainer() {

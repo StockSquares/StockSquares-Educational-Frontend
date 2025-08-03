@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DataAnalysis from "./booksComponents/DataAnalysis";
-import LibraryManagement from "./booksComponents/libraryManagement";
+import LibraryManagement from "./booksComponents/LibraryManagement";
 import PageHeader from "../../../../components/general/PageHeader/PageHeader";
 
 function Books() {

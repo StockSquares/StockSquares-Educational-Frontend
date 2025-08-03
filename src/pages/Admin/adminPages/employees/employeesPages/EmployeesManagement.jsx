@@ -1,6 +1,6 @@
 import { useState } from "react";
 import style from "../../../../../components/general/PageHeader/adminPages.module.css";
-import { AddEmployee, Cobon, EditEmployeeData } from "./employeesManagementPages/employeesComponents";
+import { AddEmployee, Cobon, EditEmployeeData } from "./employeesManagementPages/EmployeesComponents";
 
 function EmployeesManagement(){
      const buttons=[
