@@ -34,7 +34,7 @@ function Footer() {
   return (
     <footer className="bg-darkgray dark:bg-black text-white/90">
       <div className="px-4 py-2 ">
-        <div className="grid grid-cols-2 py-10 gap-10 ">
+        <div className="grid grid-cols-1  sm:grid-cols-2  py-10 gap-10 ">
           <div className="flex flex-col justify-between px-3 ">
             <div className="w-full flex-x-between px-2">
               <div className="">
@@ -172,18 +172,10 @@ function Footer() {
               <p className="mb-3 ">{t("footer.subscribe.title")}</p>
 
               <form className="w-[85%] h-[10vh]">
-                <div className=" flex justify-center gap-2">
-                  {/* <TextInput
-                    id="emailToSubscibe"
-                    type="email"
-                    icon={mail}
-                    className="input-field  "
-                    placeholder="name@example.com"
-                  /> */}
-
-                  <div className="flex w-[60%]">
-                  <FontAwesomeIcon icon={faEnvelope} size="0.5" color="gray" className="mt-2 p-2" />
-                    <input placeholder="name@example.com" className="p-2 w-full"></input>
+                <div className=" flex gap-3 justify-center items-center " >
+                  <div className="flex w-[60%] items-center justify-center gap-2">
+                  <FontAwesomeIcon icon={faEnvelope} size="lg" color="gray" className="" />
+                    <input placeholder="name@example.com" className="px-3 py-1 w-full"></input>
                   </div>
 
                   <Button
@@ -192,7 +184,7 @@ function Footer() {
                     bgColor="accent"
                     px={isBelowMdBreakpoint ? "px-2" : "px-5"}
                   
-                    btnClassName=" h-[6vh] "
+                    btnClassName=" h-[5vh] "
                   >
                     {isBelowMdBreakpoint && (
                       <FontAwesomeIcon
@@ -212,12 +204,13 @@ function Footer() {
           </div>
          
         </div>
+
         <div className="flex items-center mb-5 flex-col">
         
           <hr className="w-full h-[1px] bg-gray-600 mt-3 mb-3"/>
-          <div className="flex justify-center items-end">
-          <small className="tracking-wider text-gray-400">جميع الحقوق محفوظه لموقع و منصه ستوك سكويرز  2018 - 2025 </small>
-          <div className="ms-5 flex gap-1 flex-wrap justify-center mt-5">
+          <div className="flex flex-col sm:flex-row items-center justify-center mt-3 ">
+          <small className="tracking-wider text-gray-400 ">جميع الحقوق محفوظه لموقع و منصه ستوك سكويرز  2018 - 2025 </small>
+          <div className="ms-5 flex gap-1 justify-center">
             <Link
             to={ROUTES.PRIVACYPOLICY}
              className="bg-accent me-1 text-black p-1 rounded-md text-sm">

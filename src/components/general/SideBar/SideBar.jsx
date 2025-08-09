@@ -14,7 +14,7 @@ function SideBar({ menuItems = [], children }) {
           isopened ? "" : "translate-x-[90%]"
         }`}
       >
-        <div className="bg-white w-[90%] flex flex-col gap-10 p-2 text-center">
+        <div className="bg-white dark:bg-dark-background w-[90%] flex flex-col gap-10 p-2 text-center">
           <nav className="flex flex-col gap-2 ">
             <ul>
               {menuItems.map((item) => (
@@ -24,7 +24,7 @@ function SideBar({ menuItems = [], children }) {
                     className={`px-4 py-2 rounded-md text-[14px] md:text-lg flex items-center gap-2 transition-all  ${
                       location.pathname === item.path
                         ? "bg-primary-dark text-white rounded-xl"
-                        : "bg-transparent text-black rounded-xl hover:bg-gray-100"
+                        : "bg-transparent text-black  dark:text-dark-text rounded-xl hover:bg-gray-100 hover:dark:bg-gray-800"
                     } `}
                   >
                     {item.name}
@@ -42,9 +42,8 @@ function SideBar({ menuItems = [], children }) {
         </button>
       </div>
 
-      <div className="flex flex-col w-full min-h-[100vh] py-[5px] px-2 lg:px-[30px]">
+      <div className="flex flex-col w-full min-h-[60vh] py-[5px] px-2 lg:px-[30px]">
         {children}
-     
       </div>
     </div>
   );

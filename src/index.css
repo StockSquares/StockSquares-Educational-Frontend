@@ -259,8 +259,8 @@ nav.breadcrumb li button svg {
 }
 input:focus, select:focus {
   outline: none !important; 
-  border: 2px solid #13c84c !important;
+  border: 2px solid #11973bcf !important;
   box-shadow: 0 0 0 3px rgba(19, 200, 76, 0.25) !important; 
-  color: #0c6829 !important;
+  color: #17af48 !important;
 }
 
