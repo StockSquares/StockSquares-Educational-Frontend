@@ -121,7 +121,7 @@ function TrainingAndEducation() {
                     </p>
                   </div>
 
-                  <div className=" space-y-4 w-full  flex gap-3   sm:space-y-0 sm:space-x-4 mt-10">
+                  <div className="  w-full  flex gap-3 items-center  sm:space-y-0 sm:space-x-4 mt-10">
                   <Link
                       to={ROUTES.LEVELEXAM}
                       className={`${styles.buttonTrial} font-semibold   text-black  rounded-lg shadow-lg hover:bg-accent-800 `}
@@ -138,7 +138,7 @@ function TrainingAndEducation() {
                   </div>
                   <img
                     src="/src/assets/imgs/Arrow.png"
-                    className="absolute w-[210px] left-[-110px] top-[10px] rotate-[30deg]"
+                    className="absolute hidden sm:block w-[210px] left-[-110px] top-[10px] rotate-[30deg]"
                   />
                 </div>
               </li>
@@ -152,7 +152,7 @@ function TrainingAndEducation() {
           <img
             src={entryLevel}
             alt="Logo"
-            className={`${styles.rotatingLogo}  object-cover w-full`}
+            className={`${styles.rotatingLogo} hidden sm:block  object-cover w-full`}
           />
         </div>
       </div>

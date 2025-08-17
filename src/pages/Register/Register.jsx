@@ -1,206 +1,275 @@
-import React, { useState } from 'react';
-import styles from './Register.module.css';
-import logo from '../../assets/imgs/logo-SS.svg';
-import { ROUTES } from '../../routes';
-import { Link , useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import styles from "./Register.module.css";
+import logo from "../../assets/imgs/logo-SS.svg";
+import { ROUTES } from "../../routes";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+import { Link, useNavigate } from "react-router-dom";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 
+import { isValidPhoneNumber } from "react-phone-number-input";
+import { usePostApi } from "../../components/general/custom-hooks/usePostApi";
+import { useJobStatus } from "../../Context/JobStatusContext";
+
+const RegistrationForm = Yup.object().shape({
+  firstName: Yup.string()
+    .min(3, "too short")
+    .max(50, "too long")
+    .required("Required"),
+  parentName: Yup.string()
+    .min(3, "too short")
+    .max(50, "too long")
+    .required("Required"),
+  familyName: Yup.string()
+    .min(3, "too short")
+    .max(50, "too long")
+    .required("Required"),
+  phoneNumber: Yup.string()
+    .required("Required")
+    .test("valid-phone", "رقم الهاتف غير صحيح", (value) =>
+      isValidPhoneNumber(value || "")
+    ),
+  email: Yup.string().email("invalid e-mail").required("Required"),
+  password: Yup.string().required("Required").min(8, "at least 8 characters"),
+  confirmPassword: Yup.string()
+    .required("Required")
+    .oneOf([Yup.ref("password"), null], "Passwords must match"),
+  birthday: Yup.date()
+    .max(new Date(), " invalid birthday ")
+    .required("Required"),
+  gender: Yup.string()
+    .oneOf(["female", "male"], "select the gender")
+    .required("Required"),
+  scientificStatus: Yup.string().required("Required"),
+  // termsAccepted: Yup.boolean(),
+  referralCode: Yup.string().nullable(),
+});
 function Register() {
-    const [formData, setFormData] = useState({
-        firstName: '',
-        middleName: '',
-        lastName: '',
-        phone: '',
-        countryCode: '',
-        email: '',
-        password: '',
-        year: '',
-        month: '',
-        day: '',
-        gender: '',
-        jobStatus: '',
-        termsAccepted: false,
-    });
+  const addToApi = usePostApi();
+  const jobStatus = useJobStatus();
 
-    const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [pending, setIspending] = useState(false);
 
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
-    };
+  return (
+    <div
+      className={`${styles.contain2} dark:bg-dark-background dark:border-black dark:shadow-md`}
+    >
+      <img src={logo} alt="Logo" className={styles.logo} />
+      <h2 className="dark:bg-darkgray dark:text-dark-text">
+        أول منصة عربية ذكية لدعم المستثمرين ورواد الأعمال
+      </h2>
+      <h1>تسجيل حساب جديد</h1>
+      <hr />
+      <div className={styles.contain3}>
+        <Formik
+          initialValues={{
+            firstName: "",
+            parentName: "",
+            familyName: "",
+            phoneNumber: "",
+            password: "",
+            confirmPassword: "",
+            birthday: "",
+            gender: "",
+            scientificStatus: "",
+            email: "",
+            // termsAccepted: true,
+            referralCode: "",
+          }}
+          validationSchema={RegistrationForm}
+          onSubmit={async (values) => {
+            let url = "";
+            const isobirthday = new Date(values.birthday).toISOString();
 
-    const handleSubmit = async () => {
-        const {
-            firstName,
-            middleName,
-            lastName,
-            phone,
-            countryCode,
-            email,
-            password,
-            year,
-            month,
-            day,
-            gender,
-            jobStatus,
-            termsAccepted,
-        } = formData;
+            const updatedData = { ...values, birthday: isobirthday };
 
-        if (!firstName || !middleName || !lastName || !phone || !countryCode || !email || !password || !year || !month || !day || !gender || !jobStatus) {
-            setErrorMessage('من فضلك، تأكد من ملء جميع الحقول المطلوبة.');
-            return;
-        }
+            url = "https://stocksquare.runasp.net/api/Account/user-register";
 
-        if (!termsAccepted) {
-            setErrorMessage('يجب الموافقة على اتفاقية الشروط والأحكام وسياسة الخصوصية.');
-            return;
-        }
-
-        // إنشاء birthday بصيغة ISO
-        const birthday = new Date(`${year}-${month}-${day}`).toISOString();
-
-        const payload = {
-            firstName,
-            parentName: middleName,
-            familyName: lastName,
-            email,
-            phoneNumber: `${countryCode}${phone}`,
-            password,
-            confirmPassword: password,
-            gender,
-            scientificStatus: jobStatus,
-            birthday,
-            referralCode: ""
-        };
-
-        try {
-            const response = await fetch("https://stocksquare.runasp.net/api/Account/user-register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "text/plain"
-                },
-                body: JSON.stringify(payload)
-            });
-
-            const result = await response.json();
-            if (result.isSuccess) {
-                console.log('API Response:', result);
-                alert('🎉 تم تسجيل الحساب بنجاح!');
-                setErrorMessage('');
-                navigate('/login');
-            } 
-            else {
-                if (result.error.statusCode === 409) {
-                    setErrorMessage('الإيميل أو رقم الهاتف مستخدم بالفعل. جرب إيميل أو رقم آخر.');
-                } else {
-                    setErrorMessage(result.error?.description || 'حدث خطأ أثناء التسجيل.');
-                }
+            try {
+              const data = await addToApi.mutateAsync({ url, updatedData });
+              console.log("تم التسجيل", data);
+              navigate(ROUTES.LOGIN); 
+            } catch (err) {
+              console.error("خطأ:", err);
             }
-        }    
-         catch (error) {
-            console.error("Registration Error:", error);
-            setErrorMessage("❌ فشل الاتصال بالخادم.");
-        }
-    };
-
-    return (
-        <div className={styles.contain2}>
-            <img src={logo} alt="Logo" className={styles.logo} />
-            <h2>أول منصة عربية ذكية لدعم المستثمرين ورواد الأعمال</h2>
-            <h1>تسجيل حساب جديد</h1>
-            <hr />
-            <div className={styles.contain3}>
-                <label htmlFor="firstName">الاسم الأول:</label>
-                <input type="text" id="firstName" name="firstName" placeholder="أدخل الاسم الأول" onChange={handleChange} />
-
-                <label htmlFor="middleName">اسم الأب:</label>
-                <input type="text" id="middleName" name="middleName" placeholder="أدخل اسم الأب" onChange={handleChange} />
-
-                <label htmlFor="lastName">اسم العائلة:</label>
-                <input type="text" id="lastName" name="lastName" placeholder="أدخل اسم العائلة" onChange={handleChange} />
-
-                <label htmlFor="phone">رقم الهاتف الجوال:</label>
-                <div className={styles.phoneInput}>
-                    <input type="tel" id="phone" name="phone" placeholder="أدخل رقم الهاتف" onChange={handleChange} />
-                    <select name="countryCode" id="countryCode" className={styles.countryCode} onChange={handleChange}>
-                        <option value="">اختر رمز الدولة</option>
-                        <option value="+20">+20 مصر</option>
-                        <option value="+966">+966 السعودية</option>
-                        <option value="+971">+971 الإمارات</option>
-                        <option value="+973">+973 البحرين</option>
-                        <option value="+965">+965 الكويت</option>
-                        <option value="+974">+974 قطر</option>
-                        <option value="+968">+968 عمان</option>
-                        <option value="+212">+212 المغرب</option>
-                        <option value="+964">+964 العراق</option>
-                        <option value="+961">+961 لبنان</option>
-                        <option value="+962">+962 الأردن</option>
-                        <option value="+249">+249 السودان</option>
-                    </select>
+          }}
+        >
+          {({ errors, touched }) => (
+            <Form
+              className="w-full text-start bg-transparent border-0 drop-shadow-none p-0 mt-5 "
+              style={{ boxShadow: "none" }}
+            >
+              <div className="flex gap-3">
+                <div className="flex flex-col gap-1 w-[50%] ">
+                  <Field name="firstName" placeholder="الاسم الاول" className="dark:text-dark-text" />
+                  {errors.firstName && touched.firstName ? (
+                    <p className="text-red-500"> {errors.firstName} </p>
+                  ) : null}
                 </div>
 
-                <label htmlFor="email">البريد الإلكتروني:</label>
-                <input type="email" id="email" name="email" placeholder="أدخل البريد الإلكتروني" onChange={handleChange} />
-
-                <label htmlFor="password">إنشاء كلمة مرور:</label>
-                <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" onChange={handleChange} />
-
-                <label>تاريخ الميلاد:</label>
-                <div className={styles.birthDate}>
-                    <select name="year" id="year" className={styles.dateInput} onChange={handleChange}>
-                        <option value="">السنة</option>
-                        {[...Array(80).keys()].map((i) => (
-                            <option value={2025 - i} key={i}>{2025 - i}</option>
-                        ))}
-                    </select>
-                    <select name="month" id="month" className={styles.dateInput} onChange={handleChange}>
-                        <option value="">الشهر</option>
-                        {[...Array(12).keys()].map((i) => (
-                            <option value={i + 1} key={i}>{i + 1}</option>
-                        ))}
-                    </select>
-                    <select name="day" id="day" className={styles.dateInput} onChange={handleChange}>
-                        <option value="">اليوم</option>
-                        {[...Array(31).keys()].map((i) => (
-                            <option value={i + 1} key={i}>{i + 1}</option>
-                        ))}
-                    </select>
+                <div className="flex flex-col gap-1 w-[50%]">
+                  <Field name="parentName" placeholder="الاسم الثاني" className="dark:text-dark-text" />
+                  {errors.parentName && touched.parentName ? (
+                    <p className="text-red-500"> {errors.parentName} </p>
+                  ) : null}
                 </div>
+              </div>
 
-                <label>الجنس:</label>
-                <div className={styles.gender}>
-                    <input type="radio" id="male" name="gender" value="male" onChange={handleChange} />
-                    <label htmlFor="male">ذكر</label>
-                    <input type="radio" id="female" name="gender" value="female" onChange={handleChange} />
-                    <label htmlFor="female">أنثى</label>
+              <div className="flex gap-3">
+                <div className="flex flex-col gap-1 w-[50%]">
+                  <Field name="familyName" placeholder="الاسم الأخير" className="dark:text-dark-text" />
+                  {errors.familyName && touched.familyName ? (
+                    <p className="text-red-500"> {errors.familyName} </p>
+                  ) : null}
                 </div>
-
-                <label htmlFor="jobStatus">الحالة العملية:</label>
-                <select name="jobStatus" id="jobStatus" className={styles.jobStatus} onChange={handleChange}>
-                    <option value="">اختر الحالة</option>
-                    <option value="employee">صاحب عمل</option>
-                    <option value="student">موظف</option>
-                    <option value="freelancer">طالب</option>
-                </select>
-
-                <div className={styles.terms}>
-                    <input type="checkbox" id="termsAccepted" name="termsAccepted" onChange={handleChange} />
-                    <label htmlFor="termsAccepted">
-                        قرأت وأوافق على <Link to={ROUTES.CONDITIONS} className='text-blue-500 underline'> اتفاقية الشروط والأحكام</Link> و <Link className='text-blue-500 underline' to={ROUTES.PRIVACYPOLICY}>سياسة الخصوصية</Link> 
-                    </label>
+                <div className="flex flex-col gap-1 w-[50%]">
+                  <Field
+                    name="birthday"
+                    type="date"
+                    placeholder="تاريخ الميلاد"
+                    className="dark:bg-darkgray dark:text-dark-text"
+                  />
+                  {errors.birthday && touched.birthday ? (
+                    <p className="text-red-500"> {errors.birthday} </p>
+                  ) : null}
                 </div>
+              </div>
 
-                {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+              <Field name="phoneNumber" placeholder="أدخل رقم الهاتف">
+                {({ field, form }) => (
+                  <PhoneInput
+                    international
+                    defaultCountry="EG"
+                    value={field.value}
+                    onChange={(value) =>
+                      form.setFieldValue("phoneNumber", value)
+                    }
+                    placeholder="أدخل رقم الهاتف"
+                    className="dark:bg-darkgray"
+                  />
+                )}
+              </Field>
+              {errors.phoneNumber && touched.phoneNumber ? (
+                <p className="text-red-500"> {errors.phoneNumber} </p>
+              ) : null}
 
-                <button className={styles.bu1} onClick={handleSubmit}>إنشاء حساب جديد</button>
-                <p className={styles.redirectText}>
-                   هل لديك حساب؟ <a href="/login" className={styles.redirectLink}>تسجيل الدخول</a>
-                </p>
-            </div>
-        </div>
-    );
+              <div className="flex gap-3">
+                <div className="flex flex-col gap-1 w-[50%]">
+                  <Field
+                    name="password"
+                    type="password"
+                    placeholder="ادخل كلمه المرور"
+                    className="dark:bg-darkgray dark:text-dark-text"
+                  />
+                  {errors.password && touched.password ? (
+                    <p className="text-red-500"> {errors.password} </p>
+                  ) : null}
+                </div>
+                <div className="flex flex-col gap-1 w-[50%]">
+                  <Field
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="تأكيد كلمه المرور"
+                    className="dark:bg-darkgray dark:text-dark-text"
+                  />
+                  {errors.confirmPassword && touched.confirmPassword ? (
+                    <p className="text-red-500"> {errors.confirmPassword} </p>
+                  ) : null}
+                </div>
+              </div>
+
+              <Field
+                name="email"
+                type="email"
+                placeholder="ادخل البريد الالكتروني"
+                className="dark:bg-darkgray dark:text-dark-text"
+              />
+              {errors.email && touched.email ? (
+                <p className="text-red-500"> {errors.email} </p>
+              ) : null}
+
+              <Field
+                as="select"
+                name="scientificStatus"
+                className="dark:bg-darkgray dark:text-dark-text"
+              >
+                <option value=""> الحالة العمليه</option>
+                {jobStatus.map((item) => (
+                  <option key={item.id} value={item.value}>
+                    {item.value}
+                  </option>
+                ))}
+              </Field>
+              {errors.scientificStatus && touched.scientificStatus ? (
+                <p className="text-red-500"> {errors.scientificStatus} </p>
+              ) : null}
+
+              <Field
+                name="referralCode"
+                placeholder=" ادخل كود الدعوه (اختياري) "
+                className="dark:text-dark-text"
+              />
+
+              <div className="flex items-center gap-3">
+                <Field type="radio" name="gender" value="male" />
+                <label className="dark:text-dark-text">ذكر</label>
+
+                <Field type="radio" name="gender" value="female" />
+                <label className="dark:text-dark-text">أنثى</label>
+              </div>
+              {errors.gender && touched.gender ? (
+                <p className="text-red-500"> {errors.gender} </p>
+              ) : null}
+
+              <div className={styles.terms}>
+                <Field type="checkbox" name="termsAccepted" />
+                <label htmlFor="termsAccepted">
+                  <span className="dark:text-dark-text"> قرأت وأوافق على </span>
+                  <Link
+                    to={ROUTES.CONDITIONS}
+                    className="text-blue-500 underline"
+                  >
+                    {" "}
+                    اتفاقية الشروط والأحكام
+                  </Link>{" "}
+                  و{" "}
+                  <Link
+                    className="text-blue-500 underline"
+                    to={ROUTES.PRIVACYPOLICY}
+                  >
+                    سياسة الخصوصية
+                  </Link>
+                </label>
+              </div>
+              {errors.termsAccepted && touched.termsAccepted ? (
+                <p className="text-red-500  "> {errors.termsAccepted} </p>
+              ) : null}
+
+              <button
+                type="submit"
+                className={`${styles.bu1} ${
+                  addToApi.isPending ? "bg-gray-300" : "bg-primary-900 "
+                }  `}
+                disabled={addToApi.isPending}
+              >
+                {addToApi.isPending ? "جاري التسجيل" : "إنشاء حساب جديد"}
+              </button>
+            </Form>
+          )}
+        </Formik>
+
+        <p className={`${styles.redirectText} dark:text-dark-text`}>
+          هل لديك حساب؟{" "}
+          <a href="/login" className={styles.redirectLink}>
+            تسجيل الدخول
+          </a>
+        </p>
+      </div>
+    </div>
+  );
 }
 
 export default Register;

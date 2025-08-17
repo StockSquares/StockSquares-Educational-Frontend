@@ -22,7 +22,7 @@ function TryTradingForFree() {
       
       <div className="flex flex-1 overflow-hidden">
         <div className="flex-1 p-6 overflow-auto">
-          <div className={Style.align}>
+          <div className={`${Style.align} flex flex-col sm:flex-row`}>
             <button className={Style.button} onClick={() => navigate("/training-and-education")}>تعلم مع مدرب شخصي</button>
             <button className={Style.button1} onClick={() => setIsModalOpen(true)}>ابدأ صفقة</button>
           </div>
@@ -30,7 +30,7 @@ function TryTradingForFree() {
             <TradingTable />
           </div>
 
-          <div className="mb-4 flex justify-end space-x-2">
+          <div className="mb-4 flex text-[13px] sm:text-[14px] gap-2 justify-end   space-x-2">
             <button
               onClick={() => setActiveChart('candle')}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
@@ -55,17 +55,17 @@ function TryTradingForFree() {
             </button>
           </div>
 
-          <div className="grid grid-cols-4 gap-6">
+          <div className="grid grid-rows-2 sm:grid-cols-4 sm:grid-rows-1 gap-6">
             {activeChart === 'candle' ? (
               <div className="col-span-4">
                 <ApexChart />
               </div>
             ) : (
               <>
-                <div className="col-span-3">
+                <div className="sm:col-span-3">
                   <AdvancedChart />
                 </div>
-                <div className="col-span-1">
+                <div className="sm:col-span-1">
                   <OrderBook />
                 </div>
               </>

@@ -74,7 +74,7 @@ body {
     @apply box-border text-start
 }
 * {
-    @apply break-all sm:break-normal box-border;
+    @apply  sm:break-normal box-border;
 }
 
 @layer base {

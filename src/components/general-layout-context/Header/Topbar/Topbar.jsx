@@ -111,7 +111,7 @@ function SideNavigation({ isOpen, onClose, isLoggedIn }) {
                 {t("auth.login")}
               </Link>
               <Link 
-                to="/survey" 
+                to="/investorSurvey" 
                 className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
                 onClick={onClose}
               >

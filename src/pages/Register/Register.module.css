@@ -19,7 +19,7 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 .contain2 h1{
-    font-size: 25px;
+    font-size: 23px;
     font-weight: bold;
     color: #1b602d;
 }
@@ -51,85 +51,28 @@
     margin-top: 7px;
 }
 
-.contain3 input{
-    height: 55px;
+.contain3 input:not([type="radio"]), select{
+   padding: 10px;
     border: 2px solid #25863f;
     border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 18px;
+    margin-bottom: 12px;
+    font-size: 15px;
     cursor: pointer;
     text-align: start;
     box-sizing: border-box;
     font-weight: 500; 
 }
 
+.contain3 select{
+    width: 100%;
+    
+}
+
+
 .contain3 label{
     margin-bottom: 5px;
-    font-size: 19px;
-    margin: 15px 0px;
-}
-
-.contain3 .phoneInput {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.countryCode {
-    width: 30%;
-    padding: 0 10px;
     font-size: 16px;
-    border: 2px solid #25863f;
-    border-radius: 0 8px 8px 0; 
-    outline: none;
-    box-sizing: border-box;
-    font-weight: bold;
-    background-color: #f8f8f8;
-    cursor: pointer;
-    height: 50px; 
-    margin-bottom: 19px;
-    overflow-y: auto;
-    max-height: 150px; 
-}
-.countryCode option {
-    padding: 5px 10px;
-    font-size: 16px;
-}
-
-.phoneInput {
-    display: flex;
-    flex-direction: row-reverse;
-}
-.phoneInput input {
-    width: 70%;
-    height: 50px;
-    border: 2px solid #25863f;
-    border-right: none;
-    border-radius: 8px 0 0 8px;
-    padding: 0 10px;
-    font-size: 19px;
-    outline: none;
-    box-sizing: border-box;
-    font-weight: bold;
-}
-.birthDate {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.dateInput {
-    width: 30%;
-    padding: 5px;
-    font-size: 18px;
-    border: 2px solid #25863f;
-    border-radius: 8px;
-    background-color: #f8f8f8;
-    cursor: pointer;
-}
-.dateInput option {
-    padding: 5px 10px;
-    font-size: 16px;
+    margin: 10px 0px;
 }
 
 .gender {
@@ -138,10 +81,7 @@
     gap: 15px;
     margin-bottom: 20px;
 }
-.gender input{
-    height: 20px;
-    margin-top: 20px;
-}
+
 
 .gender label {
     font-size: 18px;
@@ -161,8 +101,8 @@
 .bu1 {
     width: 100%;
     max-width: 220px;
-    height: 55px;
-    background-color: #25863f;
+    height: 45px;
+    /* background-color: #25863f; */
     color: #fff;
     font-size: 20px;
     font-size: 20px;
@@ -185,13 +125,13 @@
 }
 .terms {
     display: flex;
-    align-items: center;
+    align-items: end;
     margin: 10px 0;
 }
 
 .terms input {
     height: 20px;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
 }
 
 .terms label {
@@ -243,7 +183,7 @@
     .jobStatus,
     .countryCode {
         font-size: 16px;
-        height: 50px;
+        /* height: 50px; */
     }
 
     .bu1 {
@@ -252,7 +192,14 @@
     }
 
     .contain2 {
-        padding: 20px;
+        padding: 10px;
+    }
+    .contain2 h2{
+        font-size: 15px;
+       
+    }
+    .contain2 h1{
+        font-size: 20px;
     }
 
     .gender {

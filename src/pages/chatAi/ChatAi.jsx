@@ -29,7 +29,7 @@ function ChatAi() {
   return (
     <div className="w-full mt-5 flex flex-col gap-5">
       <div>
-        <div className="flex items-center gap-3 mr-5">
+        <div className="flex flex-col sm:flex-row items-center gap-3 mr-5">
           <img src={businessRobot} className="w-[60px] h-[55px] ms-2" />
           <h2 className=" text-center">
             {" "}
@@ -63,7 +63,7 @@ function ChatAi() {
           className="flex justify-evenly"
         >
           <Tabs.Item active title=" البورصه المصريه ">
-            <div className="flex gap-7 justify-center">
+            <div className="flex flex-col sm:flex-row items-center gap-7 justify-center">
               {data.map((item) => (
                 <div className="flex flex-col gap-4 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300 w-[300px]">
                   <div className="flex flex-col gap-3 items-center text-center border-b border-gray-200 pb-4">

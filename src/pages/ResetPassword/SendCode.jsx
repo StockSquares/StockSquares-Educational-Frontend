@@ -76,7 +76,7 @@ function SendCode() {
 
   return (
     <div className="container m-auto ">
-      <ToastContainer
+      {/* <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -87,7 +87,7 @@ function SendCode() {
         draggable
         pauseOnHover
         theme="light"
-      />
+      /> */}
       <div className="flex flex-col gap-2 max-w-lg mx-auto mt-20 shadow-md p-4">
         <div className="w-[70%] m-auto">
           <img src={logo} className="w-full h-full object-cover" />

@@ -3,10 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-/* 
-body {
-    font-family: 'Arial', sans-serif;
-} */
+
 .contain2 {
     max-width: 640px;
     margin: 20px auto;
@@ -22,18 +19,18 @@ body {
 }
 
 .contain2 h1 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     color: #1b602d;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .contain2 h2 {
     background-color: #f0f8ff;
     border: 2px solid #25863f;
     border-radius: 8px;
-    padding: 20px;
-    margin: 20px 0;
+    padding: 15px;
+    margin: 15px 0;
     font-size: 18px;
     font-weight: bold;
     color: #262626;
@@ -42,7 +39,7 @@ body {
 }
 
 .logo {
-    width: 70%;
+    width: 60%;
     display: block;
     margin: 0 auto 20px;
 }
@@ -51,7 +48,7 @@ body {
 .contain2 hr {
     height: 2px;
     border: none;
-    background-color: #262626;
+    background-color: #929292;
     margin-top: 7px;
 }
 
@@ -67,51 +64,8 @@ body {
     box-sizing: border-box;
 }
 
-.contain3 label {
-    margin-bottom: 5px;
-    font-size: 18px;
-    font-size: 18px;
-    margin: 15px 0px;
-}
 
-.passwordField {
-    position: relative;
-}
-
-.passwordField input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 2px solid #25863f;
-    font-size: 18px;
-    font-weight: 500;
-    box-sizing: border-box;
-}
-
-.eyeIcon {
-    position: absolute;
-    left:15px;
-    top: 35%;
-    transform: translateY(-50%);
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.error {
-    color: red;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 15px;
-    background-color: #ffe6e6;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ff4d4d;
-}
-
-.bu1 {
-    width: 100%;
-    padding: 15px;
+.bu1 {    
     background-color: #25863f;
     color: white;
     font-size: 18px;
@@ -131,9 +85,9 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 15px;
+    padding: 10px;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 600;
     border-radius: 8px;
     margin-bottom: 15px;
     cursor: pointer;
@@ -180,6 +134,7 @@ body {
 /* روابط التسجيل */
 .registerLink {
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .registerLink a {
@@ -247,7 +202,7 @@ body {
     }
 
     .contain2 h2 {
-        font-size: 14px;
+        font-size: 12px;
         padding: 10px;
     }
 
@@ -268,3 +223,4 @@ body {
         font-size: 16px;
     }
 }
+

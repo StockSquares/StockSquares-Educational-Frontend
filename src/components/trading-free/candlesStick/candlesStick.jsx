@@ -304,8 +304,8 @@ export const ApexChart = () => {
   
     return (
       <div >
-        <div id="chart" >
-            <ReactApexChart options={state.options} series={state.series} type="candlestick" height={350} />
+        <div id="chart" className='overflow-x-auto w-full' >
+            <ReactApexChart options={state.options} series={state.series} type="candlestick" height={350}  />
           </div>
         <div id="html-dist"></div>
       </div>

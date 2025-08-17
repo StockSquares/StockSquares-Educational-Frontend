@@ -169,7 +169,7 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
     };
   
     const TableHeader = () => (
-      <div className="grid grid-cols-7 gap-4 text-sm font-medium text-gray-60 dark:text-white dark:bg-black  border-b pb-2">
+      <div className="grid grid-cols-7 gap-4  text-[12px] sm:text-sm font-medium text-gray-60 dark:text-white dark:bg-black  border-b pb-2">
         <div className="col-span-1 text-right ">الاداة المالية</div>
         <div className="col-span-1 text-right">الصنف</div>
         <div className="col-span-1 text-right">السعر</div>
@@ -182,12 +182,12 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
   
     return (
       <div className="w-full dark:bg-black space-y-4">
-        <div className="flex justify-start gap-2 mb-4">
+        <div className="flex flex-wrap justify-center sm:flex-nowrap sm:justify-start gap-2 mb-4">
           {markets.map(market => (
             <button
               key={market}
               onClick={() => setSelectedMarket(market)}
-              className={`px-4 py-2 rounded-md text-sm transition-colors ${
+              className={`px-8 py-2 sm:px-4 rounded-md text-sm transition-colors ${
                 selectedMarket === market
                   ? 'bg-green-700 text-white'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -207,7 +207,7 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
               return (
                 <div
                   key={index}
-                  className="grid grid-cols-7 gap-4 text-sm items-center py-2 dark:bg-black hover:bg-gray-50 transition-colors rounded"
+                  className="grid grid-cols-7 gap-4 text-[10px] sm:text-sm items-center py-2 dark:bg-black hover:bg-gray-50 transition-colors rounded"
                 >
                   <div className="text-right text-gray-600 capitalize dark:text-white">
                     {order.typec}
@@ -237,13 +237,13 @@ const SideNav = ({ isOpen, onClose, type, initialData }) => {
                   <div className="col-span-2 flex justify-center gap-2">
                     <button
                       onClick={() => handleOrderAction(order, 'buy')}
-                      className="px-4 py-1 rounded text-sm transition-colors bg-green-100 text-green-600 hover:bg-green-200"
+                      className="px-2 sm:px-4 py-1 rounded text-sm transition-colors bg-green-100 text-green-600 hover:bg-green-200"
                     >
                       شراء
                     </button>
                     <button
                       onClick={() => handleOrderAction(order, 'sell')}
-                      className="px-4 py-1 rounded text-sm transition-colors bg-red-100 text-red-600 hover:bg-red-200"
+                      className="px-2 sm:px-4 py-1 rounded text-sm transition-colors bg-red-100 text-red-600 hover:bg-red-200"
                     >
                       بيع
                     </button>
