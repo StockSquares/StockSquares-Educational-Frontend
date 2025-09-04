@@ -8,69 +8,69 @@ import { Routes, Route} from "react-router-dom";
 import { faNewspaper, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";
 import MainComponent from "./adminPages/main/Main.jsx";
-import AdsComponent from "./adminPages/ads/Ads";
-import CoursesComponent from "./adminPages/coursesPages/Courses";
-import EmployeesComponent from "./adminPages/employees/Employees";
-import ClientsComponent from "./adminPages/Clients/Clients";
-import PartnersComponent from "./adminPages/partners/Partners";
-import BooksComponent from "./adminPages/books/Books";
-import ArticlesComponent from "./adminPages/articlesPages/Articles";
-import Activities from "./adminPages/activities/Activities";
-import SideBar from "../../components/general/SideBar/SideBar";
+import AdsComponent from "./adminPages/ads/Ads.jsx";
+import CoursesComponent from "./adminPages/coursesPages/Courses.jsx";
+import EmployeesComponent from "./adminPages/employees/Employees.jsx";
+import ClientsComponent from "./adminPages/Clients/Clients.jsx";
+import PartnersComponent from "./adminPages/partners/Partners.jsx";
+import BooksComponent from "./adminPages/books/Books.jsx";
+import ArticlesComponent from "./adminPages/articlesPages/Articles.jsx";
+import Activities from "./adminPages/activities/Activities.jsx";
+import SideBar from "../../components/general/SideBar/SideBar.jsx";
 
-function Admin1() {
+function Admin() {
   const links = [
     {
       icon: faHome,
       name: "الرئيسية",
-      path: "/Admin1"
+      path: "/Admin"
     },
     {
       icon: faUser,
       name: "الزبائن",
-      path: "/Admin1/Clients"
+      path: "/Admin/Clients"
 
     },
     {
       icon: faHandshake,
       name: "الشركاء",
-      path: "/Admin1/Partners"
+      path: "/Admin/Partners"
 
     },
     {
       icon: faUser,
       name: "الموظفين",
-      path: "/Admin1/Employees"
+      path: "/Admin/Employees"
 
     },
     {
       icon: faBullhorn,
       name: "الإعلانات",
-      path: "/Admin1/Ads"
+      path: "/Admin/Ads"
     },
     {
       id: "articles",
       icon: faNewspaper,
       name: "المقالات",
-      path: "/Admin1/Articles"
+      path: "/Admin/Articles"
 
     },
     {
       icon: faGraduationCap,
       name: "الكورسات",
-      path: "/Admin1/Courses"
+      path: "/Admin/Courses"
 
     },
     {
       icon: faBook,
       name: "الكتب",
-      path: "/Admin1/Books"
+      path: "/Admin/Books"
 
     },
     {
       icon: faBook,
       name: "الأنشطه",
-      path: "/Admin1/Activities"
+      path: "/Admin/Activities"
 
     },
   ];
@@ -91,4 +91,4 @@ function Admin1() {
     </SideBar>
   );
 }
-export default Admin1;
+export default Admin;

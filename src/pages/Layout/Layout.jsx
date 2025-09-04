@@ -11,7 +11,7 @@ import { ROUTES } from "../../routes";
 function Layout() {
   const location = useLocation();
   const dashboards = [
-    // ROUTES.ADMIN1,
+    ROUTES.ADMIN,
     ROUTES.CLIENT,
     ROUTES.EMPLOYEE,
     ROUTES.TRAINER,

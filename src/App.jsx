@@ -73,7 +73,7 @@ const JoinAsTrainer = lazy(() => import("./pages/JoinAsTrainer/Joincomp"));
 const BookDetails = lazy(() =>
   import("./pages/FinanceAndBusinessLibrary/multipages/BookDetails")
 );
-const Admin1 = lazy(() => import("./pages/Admin/Admin1"));
+const Admin = lazy(() => import("./pages/Admin/Admin"));
 const Employees = lazy(() => import("./pages/employeesPortal/Employees"));
 const Client = lazy(() => import("./pages/Admin/Client"));
 const Trainer = lazy(() => import("./pages/trainerPortal/Trainer"));
@@ -248,10 +248,10 @@ const router = createBrowserRouter([
         element: <Suspense fallback={<Loader />}><User /> </Suspense>,
       },
       {
-        path: ROUTES.ADMIN1,
+        path: ROUTES.ADMIN,
         element: (
           <Suspense fallback={<Loader />}>
-            <Admin1 />
+            <Admin />
           </Suspense>
         ),
       },

@@ -15,7 +15,7 @@ function ProtectedRoute({ children, role }) {
     // لو دخل على Route مش بتاعه
     switch (userRole) {
       case "Admin":
-        return <Navigate to={ROUTES.ADMIN1} />;
+        return <Navigate to={ROUTES.ADMIN} />;
       case "Client":
         return <Navigate to={ROUTES.CLIENT} />;
       case "Trainer":
