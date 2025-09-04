@@ -1,5 +1,5 @@
 import React from "react";
-import  style from '../Admin.module.css'
+import style from "../Admin/Admin.module.css";
 import { useState } from "react";
 
 

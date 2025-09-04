@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from 'react';
-
-import Style from './NotFound.module.css';
-
+import emptyImg from "../../assets/imgs/empty.svg";
 function NotFound() {
-    const [counter, setCounter] = useState(0);
-
-
-
-    useEffect(() => {
-        
-    }, []);
-
-    return <>
-        <h2>NotFound</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quidem distinctio dicta tenetur impedit aspernatur!</p>
-    </>
+  return (
+    <div className="w-full h-[70vh] flex justify-center items-center">
+      <div className="flex flex-col gap-3  items-center">
+        <img src={emptyImg} />
+        <h1 className="text-lg"> Ooh! this page is not found </h1>
+      </div>
+    </div>
+  );
 }
 
-export default NotFound
+export default NotFound;

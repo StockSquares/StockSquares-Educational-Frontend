@@ -2,7 +2,7 @@ import React from "react";
 import Spline from "@splinetool/react-spline";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
-import Style from "../Admin.module.css";
+import Style from "../Admin/Admin.module.css";
 import { motion } from "framer-motion";
 
 function Home() {

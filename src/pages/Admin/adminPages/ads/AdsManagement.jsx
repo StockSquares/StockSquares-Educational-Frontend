@@ -21,7 +21,7 @@ const AdsManagement = () => {
 
   const fetchAds = () => {
     fetch(
-      "https://stocksquare.runasp.net/api/Advertisement/GetAll?ts=${Date.now()}"
+      "https://stocksquare1.runasp.net/api/Advertisement/GetAll?ts=${Date.now()}"
     )
       .then((response) => response.json())
       .then((data) => setAds(data))
@@ -40,7 +40,7 @@ const AdsManagement = () => {
         formData.append("Id", newAd.Id);
         try {
           let response = await fetch(
-            "https://stocksquare.runasp.net/api/Advertisement/Update",
+            "https://stocksquare1.runasp.net/api/Advertisement/Update",
             {
               method: "PUT",
               body: formData,
@@ -68,7 +68,7 @@ const AdsManagement = () => {
       } else {
         try {
           let response = await fetch(
-            "https://stocksquare.runasp.net/api/Advertisement/create",
+            "https://stocksquare1.runasp.net/api/Advertisement/create",
             {
               method: "POST",
               body: formData,
@@ -108,7 +108,7 @@ const AdsManagement = () => {
   const deleteAds = async (adId) => {
     try {
       const response = await fetch(
-        `https://stocksquare.runasp.net/api/Advertisement/Delete?id=${adId}`,
+        `https://stocksquare1.runasp.net/api/Advertisement/Delete?id=${adId}`,
         {
           method: "DELETE",
           headers: {
@@ -127,7 +127,7 @@ const AdsManagement = () => {
 
   useEffect(() => {
     fetch(
-      "https://stocksquare.runasp.net/api/SystemCode/GetByType?type=Location"
+      "https://stocksquare1.runasp.net/api/SystemCode/GetByType?type=Location"
     )
       .then((response) => response.json())
       .then((data) => setLocations(data))

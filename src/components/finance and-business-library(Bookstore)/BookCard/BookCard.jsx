@@ -44,10 +44,10 @@ function BookCard() {
                     btnText="" 
                     textColor="black" 
                     bgColor="accent" 
-                    btnClassName="w-full text-start group relative"
+                    btnClassName="w-full text-start  group relative"
                 >
                     {/* Hover Animation */}
-                    <span className="transDuration-500 group-hover:opacity-0">
+                    <span className="transDuration-500 text-[11px] sm:text-lg group-hover:opacity-0">
                         {t('sections.bookstore.bookCard.btn')}
                     </span>
                     <div className="w-1/3 absolute end-0 -translate-x-1/5 transDuration-500 group-hover:scale-110 z-20">

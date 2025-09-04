@@ -35,7 +35,7 @@ function FutureTasks() {
     return (
   
      <div className="mt-5 text-[9px] md:text-[15px] font-Cairo">
-        <h1 className="font-bold text-2xl text-center text-black mb-5">  📋المهمات المستقبليه  :- </h1>
+        <h1 className="font-semibold text-2xl text-center text-black mb-5">  📋المهمات المستقبليه  :- </h1>
         <div className="overflow-x-auto">
             <table className="w-full border border-gray-200 shadow-lg rounded-lg">
               <thead className="bg-green-500 text-white">

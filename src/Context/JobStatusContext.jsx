@@ -10,7 +10,7 @@ export const JobStatusProvider = ({ children }) => {
     const fetchStatus = async () => {
       try {
         const res = await fetch(
-          "https://stocksquare.runasp.net/api/SystemCode/GetByType?type=scientificStatus"
+          "https://stocksquare1.runasp.net/api/SystemCode/GetByType?type=jobStatus"
         );
         if (res.ok) {
           const data = await res.json();

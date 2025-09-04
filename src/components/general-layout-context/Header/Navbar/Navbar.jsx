@@ -23,7 +23,7 @@ function Navbar({ ref_ul, width_ul, height_md, translateY_navbar, translateX_nav
         {isAboveMdBreakpoint && <>ِ
         {/* 'hidden md:block' class is good if we don't target security, otherwise we use (window.innerwidth or resize event) logic */}
         {/* <nav className={`nav-main md:block bg-primary text-white shadow-md transform transition-transform transDuration-500`} */}
-        <nav className={`nav-main md:block dark:bg-black bg-white shadow text-primary py-2 px-10 transform transition-transform transDuration-500`}
+        <nav className={`nav-main mt-[-25px]  md:block dark:bg-black bg-white shadow text-primary py-2 px-10 transform transition-transform transDuration-500`}
             style={{ // Tailwind doesn't apply parameters values as arbitrary values dynamically
                 transform: translateY_navbar
                     ? `translateY(-${height_md}px)` 
@@ -39,7 +39,7 @@ function Navbar({ ref_ul, width_ul, height_md, translateY_navbar, translateX_nav
                     <div className={`mx-auto transDuration-500`} style={{ // Tailwind doesn't apply parameters values as arbitrary values dynamically
                             transform: translateX_navbar
                                 ? `translatex(-${width_ul}px)` 
-                                : `translatex(0)`,
+                                : `translatex(0)`
                         }}
                     >
                         <ul className='text-sm font-medium flex-center'>
@@ -80,6 +80,7 @@ function Navbar({ ref_ul, width_ul, height_md, translateY_navbar, translateX_nav
                         <li>
                             <NavLink to={ROUTES.PARTNER_APPLICATION} className="block px-4 py-2 hover:text-primary hover:bg-lightgray hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{t('navbar.partnerApplication')}</NavLink>
                         </li>
+                        
                     </ul>
                 </div>
             </div>

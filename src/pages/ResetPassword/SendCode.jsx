@@ -11,11 +11,11 @@ function SendCode() {
 
   const sendEmail = async () => {
     const formData = new FormData();
-    formData.append("Email", email);
+    formData.append("email", email);
 
     try {
       const response = await fetch(
-        "https://stocksquare.runasp.net/api/Account/SendCodeToEmail",
+        "https://stocksquare1.runasp.net/api/Account/generate-reset-password-code",
         {
           method: "POST",
           body: formData,

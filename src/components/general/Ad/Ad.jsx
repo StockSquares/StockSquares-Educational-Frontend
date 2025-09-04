@@ -15,7 +15,7 @@ function Ad({ adLocation }) {
   const getData = async () => {
     try {
       const response = await fetch(
-        "https://stocksquare.runasp.net/api/Advertisement/GetAll"
+        "https://stocksquare1.runasp.net/api/Advertisement/GetAll"
       );
 
       if (response.ok) {

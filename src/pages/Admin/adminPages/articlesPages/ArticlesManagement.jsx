@@ -51,7 +51,7 @@ function ArticlesManagement() {
       formData.append("WriterImage", article.WriterImage);
 
       const response = await fetch(
-        "https://stocksquare.runasp.net/api/Articles/create",
+        "https://stocksquare1.runasp.net/api/Articles/create",
         {
           method: "POST",
           body: formData,

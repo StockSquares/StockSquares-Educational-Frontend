@@ -14,15 +14,16 @@ function ResetPassword() {
 
   const sendEmail = async () => {
     const email = localStorage.getItem("Email");
-    const code = localStorage.getItem("Code");
+    // const code = localStorage.getItem("Code");
     const formData = new FormData();
-    formData.append("Code", code);
-    formData.append("Email", email);
-    formData.append("ConfirmPassword", confirmPassword);
+    // formData.append("Code", code);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("confirmPassword", confirmPassword);
 
     try {
       const response = await fetch(
-        "https://stocksquare.runasp.net/api/Account/ResetPassword",
+        "https://stocksquare1.runasp.net/api/Account/reset-password",
         {
           method: "POST",
           body: formData,

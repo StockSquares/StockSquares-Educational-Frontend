@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-function InvestorSurvey(){
+import Questionare from "../../components/general/questionare/Questionare";
+function InvestorSurvey() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [index, setIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -78,7 +79,7 @@ function InvestorSurvey(){
               />
             </div>
             <div>
-                <label className="block mb-1 ">تاريخ الميلاد:</label>
+              <label className="block mb-1 ">تاريخ الميلاد:</label>
               <DatePicker
                 selected={birthDate}
                 onChange={(date) => setBirthDate(date)}
@@ -89,7 +90,7 @@ function InvestorSurvey(){
                 showYearDropdown
                 dropdownMode="select"
               />
-              </div>
+            </div>
             <div>
               <label>البريد الإلكتروني :</label>
               <input
@@ -101,51 +102,30 @@ function InvestorSurvey(){
             </div>
           </div>
           {formError && (
-            <p className="error">يرجى ملء جميع الحقول بشكل صحيح قبل المتابعة !</p>
+            <p className="error">
+              يرجى ملء جميع الحقول بشكل صحيح قبل المتابعة !
+            </p>
           )}
           <button type="button" onClick={handleStart}>
             بدء
           </button>
         </div>
       ) : (
-        <>
-          <h1>
-            <FontAwesomeIcon icon={faClipboardList} /> إستبيان شخصية مستثمر
-          </h1>
-          <hr />
-          <h2>
-            {index + 1}. {questions[index]?.question || "Loading question..."}
-          </h2>
-          <ul>
-            {Object.keys(questions[index])
-              .filter((key) => key.startsWith("option"))
-              .map((key, i) => (
-                <li
-                  key={i}
-                  className={selectedOption === i + 1 ? "selected" : ""}
-                  onClick={() => handleOptionClick(i + 1)}
-                >
-                  {questions[index][key]}
-                </li>
-              ))}
-          </ul>
-          <p className={error ? "error" : ""}>
-            {error ? "يرجى اختيار إجابة قبل المتابعة!" : ""}
-          </p>
-          <div className="pop">
-            <button className="pop1" onClick={previous}>
-              السابق
-            </button>
-            <button onClick={next}>التالي</button>
-            <div className="index">
-              <span className="top">{index + 1}</span> of{" "}
-              <span className="top">{questions.length}</span> Questions
-            </div>
-          </div>
-        </>
+        <Questionare
+          next={next}
+          previous={previous}
+          index={index}
+          setIndex={setIndex}
+          selectedOption={selectedOption}
+          answers={answers}
+          handleOptionClick={handleOptionClick}
+          questions={questions}
+          setAnswers={setAnswers}
+          error={error}
+        />
       )}
     </div>
   );
-};
+}
 
 export default InvestorSurvey;

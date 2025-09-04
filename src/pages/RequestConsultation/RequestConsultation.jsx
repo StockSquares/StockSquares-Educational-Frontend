@@ -3,7 +3,7 @@ import RequestConsultationQuestions from "./RequestConsultationQuestions";
 import decor from "./RequestConsultation.module.css";
 import countries from "../../Context/Countries";
 function RequestConsultation() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [formError, setFormError] = useState(false);
 
   const [name, setName] = useState("");
@@ -38,7 +38,7 @@ function RequestConsultation() {
   
     try {
       const response = await fetch(
-        "https://stocksquare.runasp.net/api/Consultations/MakeConsultation",
+        "https://stocksquare1.runasp.net/api/Consultations/MakeConsultation",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

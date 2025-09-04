@@ -1,15 +1,14 @@
 import React from "react";
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
+import Home from "./Home";
 
-import Home from "./multipages/Home";
-
-import Partners from "./multipages/Partners";
-import Benefits from "./multipages/Benefits";
-import FutureTasks from "./multipages/FutureTasks";
-import MarketingLink from "./multipages/MarketingLink";
-import ProbabilityEmployees from "./multipages/ProbabilityEmployees";
-import CurrentEmployees from "./multipages/CurrentEmployees";
+import Partners from "./Partners";
+import Benefits from "./Benefits";
+import FutureTasks from "./FutureTasks";
+import MarketingLink from "./MarketingLink";
+import ProbabilityEmployees from "./ProbabilityEmployees";
+import CurrentEmployees from "./CurrentEmployees";
 import SideBar from "../../components/general/SideBar/SideBar";
 
 function Employees() {

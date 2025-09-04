@@ -52,8 +52,8 @@ const VIPInvestorServices = lazy(() =>
   import("./pages/VIPInvestorServices/VIPInvestorServices")
 );
 const User = lazy(() => import("./pages/User/User"));
-const Employee = lazy(() => import("./pages/Employee/Employee"));
-const Article = lazy(() => import("./pages/Article/Article"));
+// const Employee = lazy(() => import("./pages/Employee/Employee"));
+// const Article = lazy(() => import("./pages/Article/Article"));
 const BookYourTrainer = lazy(() =>
   import("./pages/BookYourTrainer/BookYourTrainer")
 );
@@ -74,7 +74,7 @@ const BookDetails = lazy(() =>
   import("./pages/FinanceAndBusinessLibrary/multipages/BookDetails")
 );
 const Admin1 = lazy(() => import("./pages/Admin/Admin1"));
-const Employees = lazy(() => import("./pages/Admin/Employees"));
+const Employees = lazy(() => import("./pages/employeesPortal/Employees"));
 const Client = lazy(() => import("./pages/Admin/Client"));
 const Trainer = lazy(() => import("./pages/trainerPortal/Trainer"));
 const PrivacyPolicy = lazy(() => import("./pages/privacyPolicy/PrivacyPolicy"));
@@ -92,6 +92,8 @@ const Date = lazy(() => import("./pages/Reservation/Date"));
 const SendCode = lazy(() => import("./pages/ResetPassword/SendCode"));
 const ConfirmCode = lazy(() => import("./pages/ResetPassword/ConfirmCode"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword/ResetPassword"));
+const VerifyOTP = lazy(() => import("./pages/Register/VerifyOTP"));
+const Partner = lazy(() => import("./pages/PartnerPortal/Partner"));
 
 // const pages = {};
 // for (const [key, Path] of Object.entries(lazyPages)) {
@@ -156,14 +158,14 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      {
-        path: ROUTES.ARTICLE,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Article />
-          </Suspense>
-        ),
-      },
+      // {
+      //   path: ROUTES.ARTICLE,
+      //   element: (
+      //     <Suspense fallback={<Loader />}>
+      //       <Article />
+      //     </Suspense>
+      //   ),
+      // },
       {
         path: ROUTES.JOIN_AS_TRAINER,
         element: (
@@ -213,7 +215,7 @@ const router = createBrowserRouter([
         path: ROUTES.OPPORTUNITIES_AND_RECOMMENDATIONS,
         element: (
           <Suspense fallback={<Loader />}>
-            element={<OpportunitiesAndRecommendations />}{" "}
+            <OpportunitiesAndRecommendations />
           </Suspense>
         ),
       },
@@ -237,13 +239,13 @@ const router = createBrowserRouter([
         path: ROUTES.VIP_INVESTOR_SERVICES,
         element: (
           <Suspense fallback={<Loader />}>
-            element={<VIPInvestorServices />}{" "}
+            <VIPInvestorServices />
           </Suspense>
         ),
       },
       {
         path: ROUTES.USER,
-        element: <Suspense fallback={<Loader />}>element={<User />} </Suspense>,
+        element: <Suspense fallback={<Loader />}><User /> </Suspense>,
       },
       {
         path: ROUTES.ADMIN1,
@@ -261,12 +263,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      {
-        path: ROUTES.EMPLOYEE,
-        element: (
-          <Suspense fallback={<Loader />}>element={<Employee />} </Suspense>
-        ),
-      },
+
       {
         path: ROUTES.CLIENT,
         element: (
@@ -309,7 +306,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/Trainer/*",
+        path: ROUTES.TRAINER,
         element: (
           <Suspense fallback={<Loader />}>
             <Trainer />
@@ -404,6 +401,22 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path: ROUTES.VERIFYOTP,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <VerifyOTP />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTES.PARTNER,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Partner />
+          </Suspense>
+        ),
+      },
       { path: "/sidebar", element: <SideBar /> },
     ],
   },
@@ -415,17 +428,17 @@ function App() {
       <ConfigProvider>
         <UserContextProvider>
           <AisleContextProvider>
-            <AuthProvider>
-              <CategoriesProvider>
-                <QueryClientProvider client={queryClient}>
+            <CategoriesProvider>
+              <QueryClientProvider client={queryClient}>
+                <AuthProvider>
                   <JobStatusProvider>
                     <GoogleOAuthProvider clientId="914414890801-3noui8aprqr7mnqfk7hd35q47cm72f4e.apps.googleusercontent.com">
                       <RouterProvider router={router} />
                     </GoogleOAuthProvider>
                   </JobStatusProvider>
-                </QueryClientProvider>
-              </CategoriesProvider>
-            </AuthProvider>
+                </AuthProvider>
+              </QueryClientProvider>
+            </CategoriesProvider>
           </AisleContextProvider>
         </UserContextProvider>
       </ConfigProvider>

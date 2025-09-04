@@ -30,7 +30,7 @@ export default function FinanceAndBusinessLibrary() {
   useEffect(() => {
     const query = new URLSearchParams({}).toString();
   
-    fetch(`https://stocksquare.runasp.net/api/Book/GetAllBooks?${query}`)
+    fetch(`https://stocksquare1.runasp.net/api/Book/GetAllBooks?${query}`)
       .then((response) => response.json())
       .then((data) => {
         console.log("بيانات الكتب:", data);

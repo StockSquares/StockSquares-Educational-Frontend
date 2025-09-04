@@ -75,7 +75,7 @@ function RequestConsultationQuestions() {
   };
 
   useEffect(() => {
-    fetch("https://stocksquare.runasp.net/api/Consultations") 
+    fetch("https://stocksquare1.runasp.net/api/Consultations") 
       .then((response) => response.json())
       .then((data) => {   console.log("Received data:", data); 
 

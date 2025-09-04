@@ -52,7 +52,7 @@ function CoursesManagement() {
         if (newCourse.id) {
           localStorage.setItem('courseID', newCourse.id);
           let response = await fetch(
-            "https://stocksquare.runasp.net/api/Course/UpdateCourse",
+            "https://stocksquare1.runasp.net/api/Course/UpdateCourse",
             {
               method: "PUT",
               body: formData,
@@ -63,7 +63,7 @@ function CoursesManagement() {
           console.log(data);
         } else {
           let response = await fetch(
-            "https://stocksquare.runasp.net/api/Course/CreateCourse",
+            "https://stocksquare1.runasp.net/api/Course/CreateCourse",
             {
               method: "Post",
               body: formData,
@@ -92,7 +92,7 @@ function CoursesManagement() {
 
     try {
       let response = await fetch(
-        `https://stocksquare.runasp.net/api/Course/DeleteCourse?id=${courseId}`,
+        `https://stocksquare1.runasp.net/api/Course/DeleteCourse?id=${courseId}`,
         {
           method: "DELETE",
           headers: {
@@ -128,7 +128,7 @@ function CoursesManagement() {
  const categories= useCategories();
 
   useEffect(() => {
-    fetch("https://stocksquare.runasp.net/api/Course/GetAll")
+    fetch("https://stocksquare1.runasp.net/api/Course/GetAll")
       .then((response) => response.json())
       .then((data) => setAllCourses(data))
       .catch((error) => alert("wrong data", error));
@@ -151,7 +151,7 @@ function CoursesManagement() {
 
       try {
         let response = await fetch(
-          "https://stocksquare.runasp.net/api/CourseAttachment",
+          "https://stocksquare1.runasp.net/api/CourseAttachment",
           {
             method: "POST",
             body: contentFormData,

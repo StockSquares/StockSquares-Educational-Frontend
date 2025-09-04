@@ -44,7 +44,7 @@ const AddBook = () => {
   const DeleteBook = async (bookId) => {
     try {
       let response = await fetch(
-        `https://stocksquare.runasp.net/api/Book?Id=${bookId}`,
+        `https://stocksquare1.runasp.net/api/Book?Id=${bookId}`,
         {
           method: "DELETE",
           headers: {
@@ -84,7 +84,7 @@ const AddBook = () => {
     if (editBook) {
       formData.append("Id", data.Id);
       try {
-        let response = await fetch("https://stocksquare.runasp.net/api/Book", {
+        let response = await fetch("https://stocksquare1.runasp.net/api/Book", {
           method: "PUT",
           body: formData,
         });
@@ -98,7 +98,7 @@ const AddBook = () => {
       }
     } else {
       try {
-        let response = await fetch("https://stocksquare.runasp.net/api/Book", {
+        let response = await fetch("https://stocksquare1.runasp.net/api/Book", {
           method: "POST",
           body: formData,
         });
@@ -118,7 +118,7 @@ const AddBook = () => {
   };
 
   useEffect(() => {
-    fetch("https://stocksquare.runasp.net/api/Book/GetAllBooks")
+    fetch("https://stocksquare1.runasp.net/api/Book/GetAllBooks")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

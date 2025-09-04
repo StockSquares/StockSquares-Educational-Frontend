@@ -5,7 +5,9 @@ import Style from "./TestimonialsSection.module.css";
 import { SectionCard } from "../../";
 import { imgReview2, imgReview3 } from "../../../assets";
 import review1 from "../../../assets/imgs/review1.jpeg";
-
+import review2 from "../../../assets/imgs/client2.jpg";
+import egyFlag from "../../../assets/imgs/flag.png";
+import phaFlag from "../../../assets/imgs/phalestine.png";
 // External libraries
 import { useTranslation } from "react-i18next";
 import Slider from "react-slick";
@@ -22,20 +24,15 @@ function TestimonialsSection() {
       text: "حاولت تعلم التداول بمفردي ولكن نتائجى لم تكن ناجحة، وعندما رشح لي صديقي ستوك سكويرز وتعلمت مع مدرب متخصص أصبح أدائي منضبط وناجح.",
       name: "محمد سمير",
       position: "مدير سلاسل توريد",
+      flag: egyFlag,
     },
     {
       id: 2,
-      src: review1,
-      text: "حاولت تعلم التداول بمفردي ولكن نتائجى لم تكن ناجحة، وعندما رشح لي صديقي ستوك سكويرز وتعلمت مع مدرب متخصص أصبح أدائي منضبط وناجح.",
-      name: "محمد سمير",
-      position: "مدير سلاسل توريد",
-    },
-    {
-      id: 3,
-      src: review1,
-      text: "حاولت تعلم التداول بمفردي ولكن نتائجى لم تكن ناجحة، وعندما رشح لي صديقي ستوك سكويرز وتعلمت مع مدرب متخصص أصبح أدائي منضبط وناجح.",
-      name: "محمد سمير",
-      position: "مدير سلاسل توريد",
+      src: review2,
+      text: " كنت مشتت في بداية تعلمي التداول، لكن بعد التحاقي بستوك سكويرز اكتسبت فهم واضح واستراتيجيات فعالة. التعليم العملي ساعدني أحقق نتائج ملموسة وأصبحت أكثر ثقة في قراراتي.",
+      name: " أنس أيوب",
+      position: "مدير عمليات ",
+      flag: phaFlag,
     },
   ];
 
@@ -73,7 +70,7 @@ function TestimonialsSection() {
                 src="/src/assets/imgs/quotes.png"
               />
               <div className="w-[90%] m-auto mt-4 p-3 flex items-center h-[160px] border-2 bg-white/95 dark:bg-dark-background  border-gray-500   ">
-                <p className="text-right text-[16px] lg:text-lg leading-relaxed">
+                <p className="text-right text-[14px] md:text-[16px] lg:text-lg leading-relaxed">
                   {" "}
                   {item.text}{" "}
                 </p>
@@ -84,7 +81,7 @@ function TestimonialsSection() {
                 </div>
                 <div className="flex gap-2 items-center">
                 <p className="mt-2 "> {item.name} &nbsp; <span className=" font-semibold text-primary-700"> ({item.position})</span>  </p>
-                <img src="/src/assets/imgs/flag.png" className="w-[30px] h-[30px] "/>
+                <img src={item.flag} className="w-[30px] h-[30px] object-contain"/>
               </div></div>
             </div>
           ))}
