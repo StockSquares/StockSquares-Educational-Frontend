@@ -7,6 +7,7 @@ import { Navbar, Footer, Header, Topbar } from "../../components";
 // External libraries
 import { Outlet, useLocation } from "react-router-dom";
 import { ROUTES } from "../../routes";
+import DashNavbar from "../../components/general-layout-context/Header/dashNav/DashNavbar";
 
 function Layout() {
   const location = useLocation();
@@ -30,7 +31,7 @@ function Layout() {
 
   return (
     <>
-      {!hideHeader && <Header />}
+      {!hideHeader ? <Header /> : <DashNavbar />}
       {/* <div className='py-12 my-12'>
             {shouldApplyContainer ? (
                     <div className='container'>
