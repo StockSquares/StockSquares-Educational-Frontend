@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
 import Cookies from "js-cookie";
-import { useLoginData } from "./useLoginData";
+import { useLoginData } from "./UseLoginData";
 import { useAuth } from "../../Context/AuthContext";
 import { FormValidation } from "../../components/general/formValidation/FormValidation";
 import LoginUi from "./LoginUi";
@@ -31,8 +31,7 @@ function Login() {
       setDecodedUser(res.data["token"]);
       // Cookies.set("token", res.data["token"]);
       // navigate(ROUTES.HOME);
-      navigate(`/${res.data['role']}`);
-
+      navigate(`/${res.data["role"]}`);
     } catch (e) {
       console.log("error sendind");
       setIsError(true);
