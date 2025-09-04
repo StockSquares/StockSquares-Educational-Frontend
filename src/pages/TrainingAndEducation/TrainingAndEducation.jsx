@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-
+import line from "/src/assets/imgs/line.png";
+import arrow from "/src/assets/imgs/Arrow.png";
 import styles from "./TrainingAndEducation.module.css";
 import entryLevel from "/src/assets/imgs/Consulting-bro.png";
 import { ROUTES } from "../../routes";
@@ -79,36 +80,35 @@ function TrainingAndEducation() {
     <>
       <div className="flex flex-col lg:flex-row items-center px-4 md:px-8 py-8 md:py-1 ">
         <div className="w-full lg:w-2/3 flex flex-col items-start space-y-5 lg:pr-6 ">
-          <p className="text-2xl mt-5 lg:text-3xl font-bold text-center lg:text-right " >
+          <p className="text-2xl mt-5 lg:text-3xl font-bold text-center lg:text-right ">
             اكتسب مهارة التداول وانضم إلى المستثمرين{" "}
             <div className="inline-block items-end">
               {" "}
               <span className="text-green-500 text-4xl "> الناجحين </span>{" "}
-              <img className="w-[110px] mt-2" src="/src/assets/imgs/line.png" />{" "}
+              <img className="w-[110px] mt-2" src={line} />{" "}
             </div>
           </p>
 
-          <div> 
+          <div>
             <ul className={`${styles.featuresList} space-y-2  `}>
-           
-
               <li className="dark:text-dark-text">
                 <div className=" relative py-4 flex flex-col gap-1">
                   <div className="flex flex-col gap-3">
-                  <p style={{letterSpacing:"1.5px"}}>
-                  <FontAwesomeIcon icon={faCheck} className={styles.icon} />
-                  تعلم التداول عبر الإنترنت مع 
-                <span
-                  style={{
-                    color: "var(--primary-color-light)",
-                    fontWeight: "bold",
-                    padding: "0 2px",
-                    letterSpacing:"5px"
-                  }}
-                >
-                   {" "} مدرب شخصي 
-                </span>
-                  </p>
+                    <p style={{ letterSpacing: "1.5px" }}>
+                      <FontAwesomeIcon icon={faCheck} className={styles.icon} />
+                      تعلم التداول عبر الإنترنت مع
+                      <span
+                        style={{
+                          color: "var(--primary-color-light)",
+                          fontWeight: "bold",
+                          padding: "0 2px",
+                          letterSpacing: "5px",
+                        }}
+                      >
+                        {" "}
+                        مدرب شخصي
+                      </span>
+                    </p>
                     <p>
                       {" "}
                       <FontAwesomeIcon icon={faCheck} className={styles.icon} />
@@ -122,7 +122,7 @@ function TrainingAndEducation() {
                   </div>
 
                   <div className="  w-full  flex gap-3 items-center  sm:space-y-0 sm:space-x-4 mt-10">
-                  <Link
+                    <Link
                       to={ROUTES.LEVELEXAM}
                       className={`${styles.buttonTrial} font-semibold   text-black  rounded-lg shadow-lg hover:bg-accent-800 `}
                     >
@@ -134,10 +134,9 @@ function TrainingAndEducation() {
                     >
                       احجز مدربك الشخصي
                     </Link>
-                   
                   </div>
                   <img
-                    src="/src/assets/imgs/Arrow.png"
+                    src={arrow}
                     className="absolute hidden sm:block w-[210px] left-[-110px] top-[10px] rotate-[30deg]"
                   />
                 </div>

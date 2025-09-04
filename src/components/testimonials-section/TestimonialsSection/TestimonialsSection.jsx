@@ -8,6 +8,7 @@ import review1 from "../../../assets/imgs/review1.jpeg";
 import review2 from "../../../assets/imgs/client2.jpg";
 import egyFlag from "../../../assets/imgs/flag.png";
 import phaFlag from "../../../assets/imgs/phalestine.png";
+import qoutesImg from "/src/assets/imgs/quotes.png";
 // External libraries
 import { useTranslation } from "react-i18next";
 import Slider from "react-slick";
@@ -67,22 +68,36 @@ function TestimonialsSection() {
             <div className=" w-full  h-auto relative">
               <img
                 className="w-[4rem] md:w-[3.4rem] lg:w-[4rem] absolute top-0 bg-primary-300 border-2 border-black rounded-full left-[10px]"
-                src="/src/assets/imgs/quotes.png"
+                src={qoutesImg}
               />
               <div className="w-[90%] m-auto mt-4 p-3 flex items-center h-[160px] border-2 bg-white/95 dark:bg-dark-background  border-gray-500   ">
-                <p className="text-right text-[14px] md:text-[16px] lg:text-lg leading-relaxed">
+                <p className="text-right text-[11px] md:text-[14px] lg:text-[16px] leading-relaxed">
                   {" "}
                   {item.text}{" "}
                 </p>
               </div>
               <div className=" w-full flex flex-col items-center">
-                <div className="w-[5rem] h-[10vh] mt-[-40px] border-[3px] border-gray-500 rounded-full overflow-hidden m-auto">
-                  <img src={item.src} className="w-full h-full  bg-white rounded-full" />
+                <div className="w-[5rem] h-[80px] mt-[-35px] border-[3px] border-gray-500 rounded-full overflow-hidden m-auto">
+                  <img
+                    src={item.src}
+                    className="w-full h-full  bg-white rounded-full"
+                  />
                 </div>
                 <div className="flex gap-2 items-center">
-                <p className="mt-2 "> {item.name} &nbsp; <span className=" font-semibold text-primary-700"> ({item.position})</span>  </p>
-                <img src={item.flag} className="w-[30px] h-[30px] object-contain"/>
-              </div></div>
+                  <p className="mt-2 ">
+                    {" "}
+                    {item.name} &nbsp;{" "}
+                    <span className=" font-semibold text-primary-700">
+                      {" "}
+                      ({item.position})
+                    </span>{" "}
+                  </p>
+                  <img
+                    src={item.flag}
+                    className="w-[30px] h-[30px] object-contain"
+                  />
+                </div>
+              </div>
             </div>
           ))}
         </Slider>

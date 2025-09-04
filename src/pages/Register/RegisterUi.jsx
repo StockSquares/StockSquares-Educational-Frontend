@@ -8,6 +8,7 @@ import PhoneInput from "react-phone-number-input";
 import { Link } from "react-router-dom";
 import { Form, Field } from "formik";
 import { ROUTES } from "../../routes";
+import 'react-phone-number-input/style.css';
 
 function RegisterUi({ RegistrationForm, handleSubmit }) {
   const addToApi = usePostApi();

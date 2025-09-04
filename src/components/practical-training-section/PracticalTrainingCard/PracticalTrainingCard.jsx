@@ -54,7 +54,7 @@ function PracticalTrainingCard({
 
             <Link
               to={ROUTES.BOOK_YOUR_TRAINER}
-              className="px-6 py-1 rounded-md bg-accent text-black hover:scale-105 transition-all"
+              className="px-5 py-1 text-[15px] rounded-md bg-accent text-black hover:scale-105 transition-all"
             >
               {t("sections.PracticalTraining.trainingCard.btn")}
             </Link>

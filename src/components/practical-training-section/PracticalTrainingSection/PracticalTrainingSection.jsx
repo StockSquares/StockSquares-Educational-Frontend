@@ -19,7 +19,6 @@ import { ROUTES } from "../../../routes";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Clients from "./../../../pages/Admin/adminPages/Clients/Clients";
 
 function PracticalTrainingSection() {
   const { t } = useTranslation();

@@ -168,7 +168,7 @@
     .dateInput {
         width: 100%;
     }
-
+/* 
     .phoneInput {
         flex-direction: column-reverse;
     }
@@ -177,7 +177,7 @@
     .countryCode {
         width: 100%;
         border-radius: 8px;
-    }
+    } */
 
     .contain3 input,
     .jobStatus,
