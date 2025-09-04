@@ -96,8 +96,8 @@ function PrivacyPolicy() {
       <div className="flex flex-col-reverse md:flex-row  justify-between ">
         <div className=" w-[100%] md:w-[60%] ">
           <div className=" gap-3  ">
-            <h1 className="font-bold text-3xl mb-3 ">سياسه الخصوصيه :</h1>
-            <p className="font-bold">
+            <h1 className="font-[600] text-3xl mb-3 ">سياسه الخصوصيه :</h1>
+            <p className="font-[600]">
               ستوك سكويرز يعتبر خصوصية المستخدمين أمرًا هامًا للغاية. هذه
               السياسة تشمل كيفية جمعنا واستخدامنا وحماية معلوماتك الشخصية.
             </p>
@@ -108,7 +108,7 @@ function PrivacyPolicy() {
               <div key={idx} className="mb-5">
                 <div className="flex items-center gap-4">
                   <FontAwesomeIcon icon={faCircle} className="" size="xs" />
-                  <h1 className="font-bold text-2xl mt-3 mb-4">
+                  <h1 className="font-[600] text-2xl mt-3 mb-4">
                     {collectdata.title}
                   </h1>
                 </div>

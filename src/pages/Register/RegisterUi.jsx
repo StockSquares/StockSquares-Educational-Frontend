@@ -187,7 +187,7 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
                 type="email"
                 placeholder="ادخل البريد الالكتروني"
                 autoComplete="email"
-                className="dark:bg-darkgray dark:text-dark-text"
+                className="dark:bg-darkgray dark:text-dark-text w-full"
               />
               {errors.email && touched.email ? (
                 <p className="text-red-500"> {errors.email} </p>
@@ -221,7 +221,7 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
                 id="referralCode"
                 name="referralCode"
                 placeholder=" ادخل كود الدعوه (اختياري) "
-                className="dark:text-dark-text"
+                className="dark:text-dark-text w-full"
               />
 
               <div className="flex items-center gap-3">

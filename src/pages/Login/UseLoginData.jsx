@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Cookies from "js-cookie";
+import { ROUTES } from "../../routes";
 export function useLoginData() {
   const queryClient = useQueryClient();
   return useMutation({
@@ -26,7 +27,7 @@ export function useLoginData() {
         secure: true,
         sameSite: "strict",
       });
-      localStorage.setItem('role', Data.data['role']);
+      localStorage.setItem("role", Data.data["role"]);
       queryClient.invalidateQueries();
     },
     onError: (error) => {

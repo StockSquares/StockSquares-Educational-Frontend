@@ -8,7 +8,7 @@ import { ellipsis } from "../../../../assets";
 import { angleDown, bars, companyLogo, xMark } from "./../../../../assets";
 
 // External libraries
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import i18n from "../../../../utilities/i18n";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -251,6 +251,7 @@ function Topbar({
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
   const { userData, revokeTokens } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const renderMobileMenu = (isLoggedIn = false) => (
     <div
@@ -354,7 +355,10 @@ function Topbar({
                       </li>
                       <li
                         className="p-3 hover:bg-gray-100 hover:transition-all cursor-pointer"
-                        onClick={revokeTokens}
+                        onClick={() => {
+                          revokeTokens;
+                          navigate(ROUTES.LOGIN);
+                        }}
                       >
                         <button type="reset">
                           <FontAwesomeIcon

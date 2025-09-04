@@ -1,6 +1,13 @@
 import { ThemeContext } from "../../../../Context/ThemeContext";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "../../../../Context/AuthContext";
+import {
+  faArrowRightFromBracket,
+  faUserCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion";
 
 function LanguageToggleButton() {
   const { i18n } = useTranslation();
@@ -47,10 +54,50 @@ function ThemeToggleButton() {
 }
 
 function DashNavbar() {
-  const { isDarkMode } = useContext(ThemeContext);
+  const { userData, revokeTokens } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="w-full px-8 h-[10vh] bg-gray-100 shadow-md flex justify-end items-center">
+    <div className="w-full px-8 h-[10vh] bg-gray-100 dark:bg-dark-background shadow-md flex justify-end items-center gap-3">
+      {!userData ? (
+        ""
+      ) : (
+        <div className="relative">
+          <FontAwesomeIcon
+            icon={faUserCircle}
+            className="text-4xl text-primary-950 hover:cursor-pointer"
+            onClick={() => setIsOpen(!isOpen)}
+          />
+          {isOpen && (
+            <motion.ul
+              initial={{ y: -10, x: 60, opacity: 0 }}
+              animate={{ y: 0, x: 60, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="bg-gray-50 dark:text-dark-text dark:bg-darkgray  w-[10rem] mt-2 rounded-lg shadow-md text-end absolute   z-20"
+            >
+              <li className="border-b-2 rounded-lg rounded-b-none p-3 dark:hover:bg-gray-700 hover:bg-gray-100 hover:transition-all cursor-pointer">
+                {
+                  userData[
+                    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+                  ]
+                }
+              </li>
+              <li
+                className="p-3 hover:bg-gray-100 hover:transition-all cursor-pointer dark:hover:bg-gray-700 "
+                onClick={revokeTokens}
+              >
+                <button type="reset">
+                  <FontAwesomeIcon
+                    icon={faArrowRightFromBracket}
+                    className="mx-2  "
+                  />{" "}
+                  تسجيل الخروج{" "}
+                </button>
+              </li>
+            </motion.ul>
+          )}
+        </div>
+      )}
       <div className=" flex gap-3 ">
         <LanguageToggleButton />
         <ThemeToggleButton />

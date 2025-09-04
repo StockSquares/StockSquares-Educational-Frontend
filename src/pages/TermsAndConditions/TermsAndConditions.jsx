@@ -148,8 +148,8 @@ function TermsAndConditions() {
       <div className="flex flex-col-reverse justify-between  md:flex-row">
         <div className="w-[100%] md:w-[60%]">
           <div className="gap-3">
-            <h1 className="text-3xl font-bold mb-3"> اتفاقيه الشروط و الأحكام :</h1>
-            <p className="font-bold">
+            <h1 className="text-3xl font-[600] mb-3"> اتفاقيه الشروط و الأحكام :</h1>
+            <p className="font-[600]">
               أهلاً بك في ستوك سكويرز! من خلال استخدامك لهذا الموقع، فإنك توافق
               على الالتزام بشروط الاستخدام والخصوصية التالية.
             </p>
@@ -160,7 +160,7 @@ function TermsAndConditions() {
               <div key={idx} className="mb-5">
                 <div className="flex gap-4 items-center">
                   <FontAwesomeIcon icon={faCircle} className="" size="xs" />
-                  <h1 className="text-2xl font-bold mb-4 mt-3">
+                  <h1 className="text-2xl font-[600] mb-4 mt-3">
                     {termsdata.title}
                   </h1>
                 </div>

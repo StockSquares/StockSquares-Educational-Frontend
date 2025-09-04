@@ -40,6 +40,7 @@ function LoginUi({ loginForm, isError, handleSubmit }) {
                 name="email"
                 type="email"
                 placeholder="أدخل البريد الالكتروني"
+                className="block w-full"
               />
               {errors.email && touched.email ? (
                 <p className="text-red-500"> {errors.email} </p>
@@ -48,6 +49,7 @@ function LoginUi({ loginForm, isError, handleSubmit }) {
                 name="password"
                 type="password"
                 placeholder="أدخل كلمه المرور"
+                className="block w-full"
               />
               {errors.password && touched.password ? (
                 <p className="text-red-500"> {errors.password} </p>
