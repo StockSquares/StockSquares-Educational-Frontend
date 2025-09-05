@@ -7,6 +7,7 @@ import * as Yup from "yup";
 
 import { FormValidation } from "../../components/general/formValidation/FormValidation";
 import RegisterUi from "./RegisterUi";
+import { usePostApi } from "../../components/general/custom-hooks/usePostApi";
 
 const RegistrationForm = Yup.object().shape({
   firstName: FormValidation.name,
@@ -23,8 +24,8 @@ const RegistrationForm = Yup.object().shape({
   referralCode: FormValidation.referralCode,
 });
 function Register() {
-
   const navigate = useNavigate();
+  const addToApi = usePostApi();
 
   const handleSubmit = async (values) => {
     let url = "";
@@ -48,7 +49,6 @@ function Register() {
     <RegisterUi
       RegistrationForm={RegistrationForm}
       handleSubmit={handleSubmit}
-     
     />
   );
 }

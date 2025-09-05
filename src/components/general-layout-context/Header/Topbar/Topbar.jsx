@@ -149,44 +149,9 @@ function SideNavigation({ isOpen, onClose, isLoggedIn }) {
                 {t("navbar.investorPersonalitySurvey")}
               </Link>
               <ul className="text-sm font-medium flex flex-col  border-t pt-4  ">
-                <li className="px-1.5 lg:px-3">
-                  <NavLink
-                    to={ROUTES.TRAINING_AND_EDUCATION}
-                    className="inline-block pb-2"
-                    onClick={onClose}
-                  >
-                    {t("navbar.trainingAndEducation")}
-                  </NavLink>
-                </li>
-                <li className="px-1.5 lg:px-3">
-                  <NavLink
-                    to={ROUTES.RECORDED_COURSES}
-                    className="inline-block py-2"
-                    onClick={onClose}
-                  >
-                    {t("navbar.recordedCourses")}
-                  </NavLink>
-                </li>
-                <li className="px-1.5 lg:px-3">
-                  <NavLink
-                    to={ROUTES.BOOKSTORE}
-                    className="inline-block py-2"
-                    onClick={onClose}
-                  >
-                    {t("navbar.financeAndBusinessLibrary")}
-                  </NavLink>
-                </li>
-                <li className="px-1.5 lg:px-3">
-                  <NavLink
-                    to={ROUTES.BLOG}
-                    className="inline-block py-2"
-                    onClick={onClose}
-                  >
-                    {t("navbar.educationalBlog")}
-                  </NavLink>
-                </li>
+              
 
-                <li className="px-1.5 lg:px-3  lg:block">
+                {/* <li className="px-1.5 lg:px-3  lg:block">
                   <NavLink
                     to={ROUTES.PARTNER_APPLICATION}
                     className="inline-block py-2"
@@ -194,7 +159,7 @@ function SideNavigation({ isOpen, onClose, isLoggedIn }) {
                   >
                     {t("navbar.partnerApplication")}
                   </NavLink>
-                </li>
+                </li> */}
                 <li className="px-1.5 lg:px-3 lg:hidden">
                   {/* btn-dropdown-toggle */}
                   <button
@@ -225,6 +190,14 @@ function SideNavigation({ isOpen, onClose, isLoggedIn }) {
               btnClassName="w-full rounded-full px-3 py-2"
               textColor="black"
               bgColor="accent"
+              onClick={onClose}
+            />
+            <Button
+              linkTo={ROUTES.PARTNER_APPLICATION}
+              btnText={t("navbar.partnerApplication")}
+              btnClassName="w-full rounded-full px-3 py-2 bg-gray-50 border-2 border-primary-900 "
+              textColor="primary"
+              // bgColor="accent"
               onClick={onClose}
             />
           </div>
