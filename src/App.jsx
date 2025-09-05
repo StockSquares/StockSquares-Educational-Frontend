@@ -245,7 +245,11 @@ const router = createBrowserRouter([
       },
       {
         path: ROUTES.USER,
-        element: <Suspense fallback={<Loader />}><User /> </Suspense>,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <User />{" "}
+          </Suspense>
+        ),
       },
       {
         path: ROUTES.ADMIN,
@@ -256,7 +260,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/Employees/*",
+        path: ROUTES.EMPLOYEE,
         element: (
           <Suspense fallback={<Loader />}>
             <Employees />

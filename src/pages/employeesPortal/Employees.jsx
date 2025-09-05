@@ -13,32 +13,32 @@ import SideBar from "../../components/general/SideBar/SideBar";
 
 function Employees() {
   const links = [
-    { name: "الرئيسية", path: "/Employees" },
+    { name: "الرئيسية", path: "/Employee" },
     {
       name: " العملاء المحتملين",
 
-      path: "/Employees/ProbabilityEmployees",
+      path: "/Employee/ProbabilityEmployees",
     },
     {
       name: " العملاء الحالين",
 
-      path: "/Employees/CurrentEmployees",
+      path: "/Employee/CurrentEmployees",
     },
-    { name: " الشركاء", path: "/Employees/Partners" },
+    { name: " الشركاء", path: "/Employee/Partners" },
     {
       name: "الارباح و العمولات",
 
-      path: "/Employees/Benefits",
+      path: "/Employee/Benefits",
     },
     {
       name: " مهمات مستقبليه",
 
-      path: "/Employees/FutureTasks",
+      path: "/Employee/FutureTasks",
     },
     {
       name: " الرابط التسويقي ",
 
-      path: "/Employees/MarketingLink",
+      path: "/Employee/MarketingLink",
     },
   ];
 

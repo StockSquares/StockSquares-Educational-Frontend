@@ -149,8 +149,6 @@ function SideNavigation({ isOpen, onClose, isLoggedIn }) {
                 {t("navbar.investorPersonalitySurvey")}
               </Link>
               <ul className="text-sm font-medium flex flex-col  border-t pt-4  ">
-              
-
                 {/* <li className="px-1.5 lg:px-3  lg:block">
                   <NavLink
                     to={ROUTES.PARTNER_APPLICATION}
@@ -328,10 +326,10 @@ function Topbar({
                       </li>
                       <li
                         className="p-3 hover:bg-gray-100 hover:transition-all cursor-pointer"
-                        onClick={() => {
-                          revokeTokens;
-                          navigate(ROUTES.LOGIN);
-                        }}
+                        onClick={
+                          revokeTokens
+                          // navigate(ROUTES.LOGIN);
+                        }
                       >
                         <button type="reset">
                           <FontAwesomeIcon

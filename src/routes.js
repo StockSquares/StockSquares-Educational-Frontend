@@ -20,7 +20,7 @@ export const ROUTES = {
   USER: "/user/:type",
   CLIENT: "/Client/*",
   ADMIN: "/Admin/*",
-  EMPLOYEE: "/Employee",
+  EMPLOYEE: "/Employee/*",
   TRAINER: "/Trainer/*",
   NOT_FOUND: "*",
   INVESTORSURVEY: "/investorSurvey",
