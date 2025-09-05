@@ -37,7 +37,7 @@ function PracticalTrainingSection() {
     autoplaySpeed: 5000,
     cssEase: "linear",
     rtl: false,
-    arrows:false,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1030,
@@ -59,6 +59,7 @@ function PracticalTrainingSection() {
         </Link>
       }
       p6={false}
+      LinkTo={ROUTES.TRAINING_AND_EDUCATION}
     >
       <div className={``}>
         <Slider ref={sliderRef} {...settings} dir="rtl">

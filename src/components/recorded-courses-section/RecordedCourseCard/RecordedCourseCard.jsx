@@ -16,7 +16,7 @@ function RecordedCourseCard() {
   useEffect(() => {}, []);
 
   return (
-    <SectionCard heading={" الدورات المسجله "} p6={false}>
+    <SectionCard heading={" الدورات المسجله "} p6={false} LinkTo={ROUTES.RECORDED_COURSES} >
       <div className="p-2 ">
         <div className="bg-neutral-200 dark:bg-dark-background text-xs font-semibold rounded-sm  py-[2px] flex">
           <div className="content  w-full text-[10px] px-1 py-8 ">

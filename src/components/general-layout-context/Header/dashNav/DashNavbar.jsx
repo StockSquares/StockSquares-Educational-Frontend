@@ -8,6 +8,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../../../routes";
 
 function LanguageToggleButton() {
   const { i18n } = useTranslation();
@@ -56,6 +58,12 @@ function ThemeToggleButton() {
 function DashNavbar() {
   const { userData, revokeTokens } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const logOut = async () => {
+    await revokeTokens();
+    navigate(ROUTES.LOGIN);
+  };
 
   return (
     <div className="w-full px-8 h-[10vh] bg-gray-100 dark:bg-dark-background shadow-md flex justify-end items-center gap-3">
@@ -84,7 +92,7 @@ function DashNavbar() {
               </li>
               <li
                 className="p-3 hover:bg-gray-100 hover:transition-all cursor-pointer dark:hover:bg-gray-700 "
-                onClick={revokeTokens}
+                onClick={logOut}
               >
                 <button type="reset">
                   <FontAwesomeIcon

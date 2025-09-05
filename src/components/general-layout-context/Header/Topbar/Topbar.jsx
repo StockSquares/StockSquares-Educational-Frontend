@@ -193,9 +193,9 @@ function SideNavigation({ isOpen, onClose, isLoggedIn }) {
             <Button
               linkTo={ROUTES.PARTNER_APPLICATION}
               btnText={t("navbar.partnerApplication")}
-              btnClassName="w-full rounded-full px-3 py-2 bg-gray-50 border-2 border-primary-900 "
+              btnClassName="w-full rounded-full px-3 py-2 bg-gray-50 border-2 border-primary-900 mt-2"
               textColor="primary"
-              // bgColor="accent"
+              bgColor=""
               onClick={onClose}
             />
           </div>
@@ -223,6 +223,11 @@ function Topbar({
   const { userData, revokeTokens } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+
+  const logOut = async () => {
+    await revokeTokens();
+    navigate(ROUTES.LOGIN);
+  };
 
   const renderMobileMenu = (isLoggedIn = false) => (
     <div
@@ -326,10 +331,7 @@ function Topbar({
                       </li>
                       <li
                         className="p-3 hover:bg-gray-100 hover:transition-all cursor-pointer"
-                        onClick={
-                          revokeTokens
-                          // navigate(ROUTES.LOGIN);
-                        }
+                        onClick={logOut}
                       >
                         <button type="reset">
                           <FontAwesomeIcon

@@ -27,12 +27,12 @@ export const AuthProvider = ({ children }) => {
   const revokeTokens = async () => {
     try {
       await revoke.mutateAsync();
-      revokeTokens();
       setUserData(null);
     } catch (e) {
       console.log("error in revokee");
     }
   };
+
   const setDecodedUser = (token) => {
     if (!token) {
       setUserData(null);
