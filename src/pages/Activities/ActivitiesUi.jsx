@@ -12,7 +12,7 @@ function ActivitiesUi({list}) {
       </h1>
       <div className="grid grid-cols-1  p-4 gap-4 mt-7 justify-center md:grid-cols-2">
         {list.map((card) => (
-          <div className="bg-white h-60 rounded-2xl mt-5 shadow-xl w-[85%] overflow-hidden">
+          <div className="bg-white  h-60 rounded-2xl mt-5 shadow-xl w-[85%] overflow-hidden">
             <div className="h-40 w-full overflow-hidden duration-150 hover:scale-110 ">
               <img
                 src={card.image}

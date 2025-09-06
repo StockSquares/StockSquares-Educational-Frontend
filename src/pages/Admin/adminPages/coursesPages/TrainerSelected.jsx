@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Modal } from "../../../../components";
 
 function TrainerSelected() {
   const [clients, setClients] = useState([
@@ -13,11 +14,20 @@ function TrainerSelected() {
     { id: 3, name: "منى عبد الله" },
   ];
 
-  const schedules = ["السبت صباحًا", "السبت مساءً", "الأحد صباحًا", "الأحد مساءً"];
+  const schedules = [
+    "السبت صباحًا",
+    "السبت مساءً",
+    "الأحد صباحًا",
+    "الأحد مساءً",
+  ];
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editingClient, setEditingClient] = useState(null);
-  const [newClient, setNewClient] = useState({ name: "", trainerId: "", schedule: "" });
+  const [newClient, setNewClient] = useState({
+    name: "",
+    trainerId: "",
+    schedule: "",
+  });
 
   // تحديث بيانات المدرب
   const assignTrainer = (clientId, trainerId) => {
@@ -59,7 +69,9 @@ function TrainerSelected() {
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold text-center mb-4">إدارة تسكين المدربين</h2>
+      <h2 className="text-2xl font-bold text-center mb-4">
+        إدارة تسكين المدربين
+      </h2>
       <table className="w-full border border-gray-300 shadow-md">
         <thead>
           <tr className="bg-gray-200 text-gray-800">
@@ -75,7 +87,8 @@ function TrainerSelected() {
               <td className="p-3 border text-center">{client.name}</td>
               <td className="p-3 border text-center">
                 {client.trainerId
-                  ? trainers.find((t) => t.id === Number(client.trainerId))?.name
+                  ? trainers.find((t) => t.id === Number(client.trainerId))
+                      ?.name
                   : "لم يتم التسكين بعد"}
               </td>
               <td className="p-3 border text-center">
@@ -102,56 +115,63 @@ function TrainerSelected() {
       </button>
 
       {modalOpen && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-5 rounded-lg shadow-lg w-96">
-            <h3 className="text-xl font-semibold mb-3">{editingClient ? "تعديل العميل" : "إضافة عميل جديد"}</h3>
-            <input
-              type="text"
-              placeholder="اسم العميل"
-              value={newClient.name}
-              onChange={(e) => setNewClient({ ...newClient, name: e.target.value })}
-              className="w-full px-3 py-2 border rounded-md mb-3"
-            />
-            <select
-              className="w-full px-3 py-2 border rounded-md mb-3"
-              value={newClient.trainerId}
-              onChange={(e) => setNewClient({ ...newClient, trainerId: e.target.value })}
+        <Modal>
+        <div className="p-3 flex flex-col ">
+          <h3 className="text-xl self-start font-semibold mb-4">
+            {editingClient ? "تعديل العميل" : "إضافة عميل جديد"}
+          </h3>
+          <input
+            type="text"
+            placeholder="اسم العميل"
+            value={newClient.name}
+            onChange={(e) =>
+              setNewClient({ ...newClient, name: e.target.value })
+            }
+            className="w-full px-3 py-2 border rounded-md mb-5"
+          />
+          <select
+            className="w-full px-3 py-2 border rounded-md mb-5"
+            value={newClient.trainerId}
+            onChange={(e) =>
+              setNewClient({ ...newClient, trainerId: e.target.value })
+            }
+          >
+            <option value="">اختر مدربًا</option>
+            {trainers.map((trainer) => (
+              <option key={trainer.id} value={trainer.id}>
+                {trainer.name}
+              </option>
+            ))}
+          </select>
+          <select
+            className="w-full px-3 py-2 border rounded-md mb-4"
+            value={newClient.schedule}
+            onChange={(e) =>
+              setNewClient({ ...newClient, schedule: e.target.value })
+            }
+          >
+            <option value="">اختر موعدًا</option>
+            {schedules.map((schedule, index) => (
+              <option key={index} value={schedule}>
+                {schedule}
+              </option>
+            ))}
+          </select>
+          <div className="flex  justify-between mt-4">
+            <button
+              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+              onClick={handleSave}
             >
-              <option value="">اختر مدربًا</option>
-              {trainers.map((trainer) => (
-                <option key={trainer.id} value={trainer.id}>
-                  {trainer.name}
-                </option>
-              ))}
-            </select>
-            <select
-              className="w-full px-3 py-2 border rounded-md mb-3"
-              value={newClient.schedule}
-              onChange={(e) => setNewClient({ ...newClient, schedule: e.target.value })}
+              حفظ
+            </button>
+            <button
+              className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+              onClick={() => setModalOpen(false)}
             >
-              <option value="">اختر موعدًا</option>
-              {schedules.map((schedule, index) => (
-                <option key={index} value={schedule}>
-                  {schedule}
-                </option>
-              ))}
-            </select>
-            <div className="flex justify-between mt-4">
-              <button
-                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
-                onClick={handleSave}
-              >
-                حفظ
-              </button>
-              <button
-                className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-700"
-                onClick={() => setModalOpen(false)}
-              >
-                إلغاء
-              </button>
-            </div>
-          </div>
-        </div>
+              إلغاء
+            </button>
+          </div></div>
+        </Modal>
       )}
     </div>
   );

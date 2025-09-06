@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import { useCategories } from "../../../../Context/CategoriesContext";
+import { Modal } from "../../../../components";
 
 function CoursesManagement() {
   const [allCourses, setAllCourses] = useState([]);
@@ -45,12 +46,10 @@ function CoursesManagement() {
       formData.append("Description", newCourse.Description);
       formData.append("CategoryId", newCourse.CategoryId);
 
-     
-
       try {
         setIsLoading(true);
         if (newCourse.id) {
-          localStorage.setItem('courseID', newCourse.id);
+          localStorage.setItem("courseID", newCourse.id);
           let response = await fetch(
             "https://stocksquare1.runasp.net/api/Course/UpdateCourse",
             {
@@ -125,7 +124,7 @@ function CoursesManagement() {
     setShowModal(true);
   };
 
- const categories= useCategories();
+  const categories = useCategories();
 
   useEffect(() => {
     fetch("https://stocksquare1.runasp.net/api/Course/GetAll")
@@ -134,14 +133,9 @@ function CoursesManagement() {
       .catch((error) => alert("wrong data", error));
   }, []);
 
-
-  
-
-  
   const handleCourseContent = async () => {
-
     console.log(courseContent);
-    
+
     if (courseContent.FileName && courseContent.Pdfs) {
       const contentFormData = new FormData();
 
@@ -163,23 +157,20 @@ function CoursesManagement() {
       } catch (e) {
         console.log(e.message);
       }
-    }
-    else{
+    } else {
       console.log("no");
-      
     }
   };
 
   console.log(allCourses);
   return (
     <div className="container mx-auto p-4">
-
       <div className="flex justify-center gap-2 mb-3">
         <button
           onClick={() => setIsShow(false)}
           className={`${style.performanceBtn}`}
         >
-          إضافة الكورسات 
+          إضافة الكورسات
         </button>
         <button
           onClick={() => setIsShow(true)}
@@ -208,12 +199,12 @@ function CoursesManagement() {
           </div>
 
           <table className="text-[9px] md:text-[15px]">
-            <thead className="text-center bg-slate-200 ">
+            <thead className="text-center bg-slate-200 dark:text-black ">
               <th className="p-2 rounded-s-lg"> العنوان </th>
-              <th> النوع </th>
-              <th> مده الكورس </th>
-              <th> المدرب </th>
-              <th className="rounded-e-lg"> اجراءات </th>
+              <th className="p-2"> النوع </th>
+              <th className="p-2"> مده الكورس </th>
+              <th className="p-2"> المدرب </th>
+              <th className=" p-2 rounded-e-lg"> اجراءات </th>
             </thead>
             <tbody>
               {allCourses.map((course) => (
@@ -253,9 +244,8 @@ function CoursesManagement() {
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 mt-[8%] flex items-center justify-center bg-gray-900 bg-opacity-50"
             >
-              <div className="bg-white p-8 rounded-lg shadow-lg w-[90%] md:w-[70%] ">
+              <Modal>
                 <h3 className="text-xl font-bold mb-4">إضافة كورس جديد</h3>
 
                 <div className="flex gap-3">
@@ -400,7 +390,7 @@ function CoursesManagement() {
                     إلغاء
                   </button>
                 </div>
-              </div>
+              </Modal>
             </motion.div>
           )}
 
@@ -409,12 +399,18 @@ function CoursesManagement() {
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 mt-[8%] flex items-center justify-center bg-gray-900 bg-opacity-50"
             >
-              <div className="bg-white flex flex-col items-start gap-3 p-8 rounded-lg shadow-lg w-[90%] md:w-[30%] ">
+              <Modal>
+                {" "}
                 <h2 className="font-bold mb-4"> رفع محتوي الكورس </h2>
+                <div className="flex flex-col gap-4 p-3">
+                <label htmlFor="fileName" className=" font-normal ">
+                  {" "}
+                   اسم الملف{" "}
+                </label>
                 <input
                   type="text"
+                  id="fileName"
                   name="FileName"
                   value={courseContent.FileName}
                   placeholder=" اسم الملف "
@@ -444,7 +440,7 @@ function CoursesManagement() {
                     }
                   }}
                 />
-                <div className="flex justify-between w-full mt-3">
+                <div className="flex justify-between w-full mt-4">
                   <button
                     onClick={() => handleCourseContent()}
                     className="bg-primary-900 text-white px-4 py-2 rounded"
@@ -458,8 +454,8 @@ function CoursesManagement() {
                   >
                     إلغاء
                   </button>
-                </div>
-              </div>
+                </div></div>
+              </Modal>
             </motion.div>
           )}
         </>

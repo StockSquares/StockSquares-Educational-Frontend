@@ -206,5 +206,19 @@
         flex-direction: column;
         align-items: flex-start;
     }
+    .terms{
+        align-items: center;
+    }
+
+    .terms input {
+    height: 15px;
+    /* margin-bottom: 5px; */
+}
+
+.terms label {
+    font-size: 13px;
+    color: #333;
+    margin-right: 12px;
+}
 }
 

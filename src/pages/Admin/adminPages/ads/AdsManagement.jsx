@@ -140,20 +140,20 @@ const AdsManagement = () => {
 
   return (
     <div className="p-6 min-h-screen">
-      <div className="bg-white p-4 rounded-xl shadow-md mb-6">
+      <div className="bg-white dark:bg-dark-background dark:shadow-gray-800 dark:border-primary-800 dark:border-2 p-4 rounded-xl shadow-md mb-6">
         <h2 className="text-xl font-semibold mb-2">➕ إضافة إعلان جديد</h2>
 
         <input
           type="text"
           name="Title"
           placeholder="🏷️ عنوان الإعلان"
-          className="border p-2 rounded w-full mb-2"
+          className="border p-2 rounded w-full mb-2 dark:bg-dark-background dark:placeholder-gray-300"
           value={newAd.Title}
           onChange={handleInputChange}
         />
 
         <select
-          className="border p-2 rounded w-full mb-2"
+          className="border p-2 rounded w-full mb-2 dark:bg-dark-background "
           name="LocationId"
           value={newAd.LocationId}
           onChange={handleInputChange}
@@ -190,7 +190,7 @@ const AdsManagement = () => {
           type="url"
           name="Link"
           placeholder="🔗 رابط الإعلان"
-          className="border p-2 rounded w-full mb-2"
+          className="border p-2 rounded w-full mb-2 dark:bg-dark-background dark:placeholder-gray-300"
           value={newAd.Link}
           onChange={handleInputChange}
         />
@@ -203,7 +203,7 @@ const AdsManagement = () => {
         </button>
       </div>
 
-      <div className="bg-white p-4 rounded-xl shadow-md">
+      <div className="bg-white dark:bg-dark-background dark:shadow-gray-800 dark:border-primary-800 dark:border-2 p-4 rounded-xl shadow-md">
         <h2 className="text-xl font-semibold mb-2">📃 قائمة الإعلانات</h2>
         {ads.length === 0 ? (
           <p className="text-gray-500">لا توجد إعلانات مضافة حتى الآن.</p>
@@ -216,9 +216,9 @@ const AdsManagement = () => {
               >
                 <h3 className="font-semibold">{ad.title}</h3>
                 <img
-                  src={ad.image}
+                  src={`data:image/*;base64,${ad.image}`}
                   alt={ad.title}
-                  className="w-full h-32 object-cover rounded my-2"
+                  className="w-full h-32 object-contain rounded my-2"
                 />
                 <a
                   href={ad.link}

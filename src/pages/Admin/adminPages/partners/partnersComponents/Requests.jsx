@@ -31,7 +31,7 @@ import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
       <div className="space-y-3">
         {requests.map((request) => (
-          <div key={request.id} className="flex items-center justify-between bg-gray-100 p-3 rounded shadow-md relative">
+          <div key={request.id} className="flex items-center justify-between bg-gray-100 dark:bg-dark-background dark:shadow-md dark:shadow-gray-800 dark:border-2 dark:border-primary-900  p-3 rounded shadow-md relative">
             <span className="font-semibold">{request.name}</span>
             <div className="space-x-2 flex gap-2 items-center relative">
               <button 

@@ -1,9 +1,11 @@
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import shareImg from "./../../../assets/Share link.gif";
+import shareImg from "../../../assets/ShareLink.gif";
 import { useState } from "react";
+import facebook from "../../../assets/imgs/facebook.webp";
+import snapshot from "../../../assets/imgs/snapshot.png";
 function PromotionalLink() {
-    const[link, setLink]=useState('www.stocksquares.com');
+  const [link, setLink] = useState("www.stocksquares.com");
   return (
     <div>
       <div className="flex flex-col sm:flex-row gap-2 justify-between  container ">
@@ -28,11 +30,17 @@ function PromotionalLink() {
             {" "}
             60 ${" "}
           </p>
+          <p> شارك الرابط عبر: </p>
+          <div className="flex justify-center sm:justify-start ">
+            <img src={facebook} className="w-[70px] h-[70px]  " />
+            <img src={snapshot} className="w-[70px] h-[70px]  " />
+          </div>
         </div>
+
         <div className=" w-full sm:w-[30%]">
           <img
             src={shareImg}
-            className="w-full h-full overflow-hidden object-contain"
+            className="w-full h-full overflow-hidden hidden sm:block object-contain"
           />
         </div>
       </div>

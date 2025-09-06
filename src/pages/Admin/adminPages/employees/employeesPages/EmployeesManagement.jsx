@@ -18,7 +18,7 @@ function EmployeesManagement(){
             {buttons.map((btn, idx) => (
               <button
                 key={idx}
-                className={`${isClicked === idx ? style.performancBtnActivated : style.performanceBtn} text-[9px] md:text-[15px]`}
+                className={` dark:text-black ${isClicked === idx ? style.performancBtnActivated : style.performanceBtn} text-[9px] md:text-[15px]`}
                 onClick={() => setIsClicked(idx)}
               >
                 {btn}

@@ -18,7 +18,7 @@ function LibraryManagement() {
             {buttons.map((btn, idx) => (
               <button
                 key={idx}
-                className={`${isClicked === idx ? style.performancBtnActivated : style.performanceBtn} text-[12px] md:text-[15px]`}
+                className={`${isClicked === idx ? style.performancBtnActivated : style.performanceBtn} text-[12px] md:text-[15px] dark:text-black`}
                 onClick={() => setIsClicked(idx)}
               >
                 {btn}

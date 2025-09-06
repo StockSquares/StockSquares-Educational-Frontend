@@ -35,17 +35,17 @@ function PerformanceReport(){
       const [activeButton,setActiveButton]=useState("duration");
     
       return (
-        <div className="w-full max-w-2xl mx-auto p-4 bg-white shadow-lg rounded-lg">
+        <div className="w-full max-w-2xl mx-auto p-4 bg-white dark:bg-dark-background shadow-lg rounded-lg">
         <div className="flex justify-center gap-5 mb-4 ">
 
             <button onClick={() =>{ setChartData(dataByDuration); setActiveButton("duration")}}
-             className={activeButton === "duration" ? style.performancBtnActivated : style.performanceBtn }>حسب المدة</button>
+             className={` dark:text-black ${activeButton === "duration" ? style.performancBtnActivated : style.performanceBtn }`}>حسب المدة</button>
             
             <button onClick={() => {setChartData(dataBySubscription); setActiveButton("subscription")}}
-            className={activeButton === "subscription" ? style.performancBtnActivated : style.performanceBtn }>حسب الاشتراك</button>
+            className={`dark:text-black ${activeButton === "subscription" ? style.performancBtnActivated : style.performanceBtn }`}>حسب الاشتراك</button>
             
             <button onClick={() => {setChartData(dataByRevenue); setActiveButton("revenue")}}
-            className={activeButton === "revenue" ? style.performancBtnActivated : style.performanceBtn }>حسب الأرباح</button>
+            className={` dark:text-black ${activeButton === "revenue" ? style.performancBtnActivated : style.performanceBtn }`}>حسب الأرباح</button>
           </div>
     
           <ResponsiveContainer width="105%" height={300}>

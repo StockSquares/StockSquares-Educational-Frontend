@@ -11,11 +11,11 @@ function LectureCard({ subject, trainee, date, level, traineeRequests=false, cou
             {subject}
           </h1>
         </div>
-        <div className="bg-gray-100 w-[100%] p-2 shadow-md ">
+        <div className="bg-gray-100 w-[100%] p-2 shadow-md dark:bg-dark-background dark:shadow-md dark:shadow-gray-700 dark:border-primary-700 dark:border-2">
           {trainee ? (
-            <h1 className="text-gray-600 text-lg mt-3 px-2">
+            <h1 className="text-gray-600 text-lg mt-3 px-2 dark:text-primary-700">
               اسم المتدرب :{" "}
-              <span className="text-black me-3 text-[15px] md:text-lg">{trainee}</span>|
+              <span className="text-black me-3 text-[15px] md:text-lg dark:text-dark-text">{trainee}</span>|
               <span
                 className={` ms-2 font-bold text-[15px] md:text-[20px]  ${
                   level === "محترف"
@@ -29,7 +29,7 @@ function LectureCard({ subject, trainee, date, level, traineeRequests=false, cou
               </span>
             </h1>
           ) : (
-            <h1 className="text-gray-600 text-lg mt-3 px-2">
+            <h1 className="text-gray-600 text-lg mt-3 px-2 dark:text-dark-text ">
               مستوي الكورس:{" "}
               <span
                 className={` ms-2 font-bold text-[15px] md:text-[20px] ${
@@ -45,7 +45,7 @@ function LectureCard({ subject, trainee, date, level, traineeRequests=false, cou
             </h1>
           )}
           <div className="flex  mb-5 px-2 mt-3 py-3">
-          {traineeRequests?(<p className="text-lg text-gray-600"> مده الكورس: <span className="text-black font-semibold ">{courseInterval}</span> </p>):(
+          {traineeRequests?(<p className="text-lg text-gray-600 dark:text-primary-700"> مده الكورس: <span className="text-black font-semibold dark:text-dark-text">{courseInterval}</span> </p>):(
             <p className="text-lg"> {date} </p>
           )}  
            {!traineeRequests&&  <button className="ms-4 px-5  bg-white rounded-lg text-black  border border-2  border-y-green-500 border-x-yellow-300 hover:bg-green-500 hover:text-white">

@@ -79,7 +79,7 @@ function Ad({ adLocation }) {
                 <Link to={ad.link}>
                   <img
                     src={`data:image/*;base64,${ad.image}`}
-                    className="object-cover w-full h-full rounded-lg"
+                    className="object-contain w-full h-[70px] rounded-lg"
                     alt={ad.title}
                   />
                 </Link>

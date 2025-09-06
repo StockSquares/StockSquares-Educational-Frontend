@@ -16,7 +16,7 @@ function Home() {
 
   return (
     <div className="w-full min-h-screen font-Cairo  px-4 sm:px-6 lg:px-12">
-      <div className="w-full flex flex-col md:flex-row justify-between items-center bg-primary-200 p-4 shadow-md rounded-lg mt-4 border border-green-500">
+      <div className="w-full flex flex-col md:flex-row justify-between items-center bg-primary-200 dark:bg-dark-background p-4 shadow-md rounded-lg mt-4 border border-green-500">
         <div className="text-center md:text-right">
           <div className="flex items-center justify-center md:justify-start gap-2">
             <FontAwesomeIcon
@@ -28,11 +28,11 @@ function Home() {
               اهلا: <span className="text-green-500">عمرو مندور</span>
             </h1>
           </div>
-          <p className="mt-2  text-lg bg-yellow-200 px-4 py-1 rounded-md shadow-md inline-block">
+          <p className="mt-2  text-lg bg-yellow-200 px-4 py-1 rounded-md shadow-md inline-block dark:text-black">
             لديك ٢ طالب جديد
           </p>
         </div>
-        <p className="mt-4 md:mt-0 text-xl text-gray-700">مدرب شريك</p>
+        <p className="mt-4 md:mt-0 text-xl text-gray-700 dark:text-dark-text ">مدرب شريك</p>
       </div>
 
       <div className="mt-6">
@@ -45,17 +45,17 @@ function Home() {
         />
       </div>
 
-      <div className="mt-6 bg-white  rounded-lg grid md:grid-cols-2 gap-6 items-end ">
+      <div className="mt-6  bg-white dark:bg-dark-background  rounded-lg grid md:grid-cols-2 gap-6 items-end ">
         {/* قسم تقييم المتدربين */}
-        <div className="flex flex-col items-center justify-center gap-4 w-full p-6 bg-primary-200 border border-green-500">
-          <h1 className="text-2xl font-bold text-gray-700">تقييم المتدربين </h1>
+        <div className="flex flex-col items-center justify-center gap-4 w-full p-6 bg-primary-200 border border-green-500 dark:bg-dark-background ">
+          <h1 className="text-2xl font-bold text-gray-700 dark:text-dark-text ">تقييم المتدربين </h1>
           <div className="flex mt-3 gap-2 text-yellow-400 text-3xl">
             {[...Array(5)].map((_, i) => (
               <FontAwesomeIcon key={i} icon={faStar} />
             ))}
           </div>
           <div className="flex justify-between w-full items-center mt-4 px-4">
-            <p className="font-semibold underline text-gray-700">التعليقات</p>
+            <p className="font-semibold underline text-gray-700 dark:text-dark-text ">التعليقات</p>
             <div className="flex items-end gap-2">
               <span className="text-lg font-semibold">
                 {" "}
@@ -64,7 +64,7 @@ function Home() {
               <FontAwesomeIcon
                 icon={faCircleUser}
                 size="2x"
-                className="text-black"
+                className="text-black dark:text-primary-700 "
               />
             </div>
           </div>
@@ -72,13 +72,13 @@ function Home() {
 
         {/* قسم تقييم الأداء */}
         <div className=" ">
-          <h2 className="text-center text-2xl font-bold text-gray-700 mb-4">
+          <h2 className="text-center text-2xl font-semibold text-gray-700 mb-4 dark:text-dark-text">
             تقييم الأداء
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse min-w-[300px] shadow-md bg-white">
-              <thead className="bg-green-500 text-white text-lg">
-                <tr className="text-sm md:text-lg">
+              <thead className="bg-primary-700 text-white font-semibold text-lg">
+                <tr className="text-sm md:text-[16px]">
                   <th className="border border-gray-400 p-3">الشهر</th>
                   <th className="border border-gray-400 p-3">عدد الساعات</th>
                   <th className="border border-gray-400 p-3">عدد المتدربين</th>
@@ -86,7 +86,7 @@ function Home() {
               </thead>
               <tbody>
                 {data.map((item, index) => (
-                  <tr key={index} className="hover:bg-gray-100 text-center">
+                  <tr key={index} className="hover:bg-gray-100 text-center dark:bg-dark-background ">
                     <td className="border border-gray-400 p-3">{item.month}</td>
                     <td className="border border-gray-400 p-3">{item.hours}</td>
                     <td className="border border-gray-400 p-3">

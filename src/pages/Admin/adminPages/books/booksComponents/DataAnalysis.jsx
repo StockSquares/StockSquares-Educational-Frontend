@@ -13,7 +13,7 @@ const DatatAnalysis = () => {
   return (
     <div className=" min-h-screen">
       
-      <div className="bg-white p-4 rounded-xl shadow-md mb-6">
+      <div className="bg-white dark:bg-dark-background p-4 rounded-xl shadow-md mb-6">
         <h2 className="text-xl font-semibold mb-2">📊 الكتب الأكثر طلبًا وقراءة</h2>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={booksData}>
@@ -28,11 +28,11 @@ const DatatAnalysis = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white p-4 rounded-xl shadow-md">
+        <div className="bg-white dark:bg-dark-background p-4 rounded-xl shadow-md">
           <h2 className="text-xl font-semibold mb-2">🔥 الكتب الأكثر طلبًا</h2>
           <table className="w-full border-collapse border border-gray-300">
             <thead>
-              <tr className="bg-gray-200">
+              <tr className="bg-gray-200 dark:bg-primary-800">
                 <th className="border p-2">📖 العنوان</th>
                 <th className="border p-2">📌 الطلبات</th>
               </tr>
@@ -48,11 +48,11 @@ const DatatAnalysis = () => {
           </table>
         </div>
 
-        <div className="bg-white p-4 rounded-xl shadow-md">
+        <div className="bg-white dark:bg-dark-background p-4 rounded-xl shadow-md">
           <h2 className="text-xl font-semibold mb-2">📈 الكتب الأكثر قراءة</h2>
           <table className="w-full border-collapse border border-gray-300">
             <thead>
-              <tr className="bg-gray-200">
+              <tr className="bg-gray-200 dark:bg-primary-800">
                 <th className="border p-2">📖 العنوان</th>
                 <th className="border p-2">👁️ عدد القراءات</th>
               </tr>

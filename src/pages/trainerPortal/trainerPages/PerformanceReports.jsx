@@ -62,7 +62,7 @@ function PerformanceReports() {
               className="flex justify-between border-b last:border-b-0 p-2"
             >
               <span>{label}</span>
-              <span className="bg-gray-100 p-2 rounded-lg">95%</span>
+              <span className="bg-gray-100 p-2 rounded-lg dark:text-black">95%</span>
             </div>
           ))}
         </div>

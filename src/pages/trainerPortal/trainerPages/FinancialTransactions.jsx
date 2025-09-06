@@ -1,11 +1,13 @@
 import { useState } from "react";
 import BankAccount from "./FinancialTransactionsPages/BankAccount";
 import EWallet from "./FinancialTransactionsPages/EWallet";
+import CryptoCurrency from "./FinancialTransactionsPages/CryptoCurrency";
 
 function FinancialTransactions() {
   const topButtons = [
     "المحفظه الالكترونيه",
     "الحساب البنكي",
+    "عملات مشفره"
   ];
 
   const [selectedMethod, setSelectedMethod] = useState(0);
@@ -36,6 +38,7 @@ function FinancialTransactions() {
       <div className=" w-full">
       {selectedMethod === 1 && <BankAccount />}
       {selectedMethod===0 && <EWallet/> }
+      {selectedMethod===2 && <CryptoCurrency/> }
       </div>
     </div></div>
   );

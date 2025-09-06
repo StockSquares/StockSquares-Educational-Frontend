@@ -57,7 +57,7 @@ function Main(){
              </thead>
              <tbody>
                {topClients.map((partner, index) => (
-                 <tr key={index} className="bg-gray-50 hover:bg-gray-200 transition-all">
+                 <tr key={index} className="bg-gray-50 dark:bg-dark-background hover:bg-gray-200 transition-all">
                    <td className="border border-gray-300 px-4 py-2 text-center">{getMedalIcon(partner.medal)}</td>
                    <td className="border border-gray-300 px-4 py-2">{partner.name}</td>
                    <td className="border border-gray-300 px-4 py-2">{partner.level}</td>
@@ -78,7 +78,7 @@ function Main(){
              </thead>
              <tbody>
                {newClients.map((partner, index) => (
-                 <tr key={index} className="bg-gray-50 hover:bg-gray-200 transition-all">
+                 <tr key={index} className="bg-gray-50 dark:bg-dark-background hover:bg-gray-200 transition-all">
                    <td className="border border-gray-300 px-4 py-2">{partner.name}</td>
                    <td className="border border-gray-300 px-4 py-2">{partner.level}</td>
                  </tr>

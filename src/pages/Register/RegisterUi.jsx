@@ -50,7 +50,7 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
               className="w-full text-start bg-transparent border-0 drop-shadow-none p-0 mt-5"
               style={{ boxShadow: "none" }}
             >
-              <div className="flex gap-3">
+              <div className="flex gap-1 sm:gap-3">
                 <div className="flex flex-col gap-1 w-[50%] ">
                   <label htmlFor="firstName" className="sr-only">
                     الاسم الاول
@@ -85,7 +85,7 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
                 </div>
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex gap-1 sm:gap-3">
                 <div className="flex flex-col gap-1 w-[50%]">
                   <label htmlFor="familyName" className="sr-only">
                     الاسم الأخير
@@ -143,7 +143,7 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
                 <p className="text-red-500"> {errors.phoneNumber} </p>
               ) : null}
 
-              <div className="flex gap-3">
+              <div className="flex gap-1 sm:gap-3">
                 <div className="flex flex-col gap-1 w-[50%]">
                   <label htmlFor="password" className="sr-only">
                     كلمة المرور
@@ -252,7 +252,7 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
               <div className={styles.terms}>
                 <Field id="acceptTerms" type="checkbox" name="acceptTerms" />
                 <label htmlFor="acceptTerms">
-                  <span className="dark:text-dark-text"> قرأت وأوافق على </span>
+                  <span className="dark:text-dark-text  "> قرأت وأوافق على </span>
                   <Link
                     to={ROUTES.CONDITIONS}
                     className="text-blue-500 underline"

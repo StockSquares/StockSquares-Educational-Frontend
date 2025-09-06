@@ -131,9 +131,9 @@ const AddBook = () => {
   const categories = useCategories();
 
   return (
-    <div className="bg-white rounded-lg p-6 mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div className="bg-white dark:bg-dark-background rounded-lg p-6 mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
       <form
-        className="w-full text-start bg-white border-none shadow-md"
+        className="w-full text-start p-3 bg-white dark:bg-dark-background dark:border-2 dark:border-primary-700  shadow-md"
         onSubmit={handleSubmit(onSubmit)}
       >
         <h2 className="text-2xl font-bold mb-4 text-green-600 text-start">
@@ -145,7 +145,8 @@ const AddBook = () => {
             <label className="block mb-2">اسم الكتاب:</label>
             <input
               {...register("BookName")}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded dark:bg-darkgray dark:placeholder-slate-400"
+              placeholder="اسم الكتاب"
             />
             <p className="text-red-500">{errors.BookName?.message}</p>
           </div>
@@ -154,7 +155,8 @@ const AddBook = () => {
             <input
               type="number"
               {...register("BookPrice")}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded dark:bg-darkgray dark:placeholder-slate-400"
+              placeholder="السعر"
             />
             <p className="text-red-500">{errors.BookPrice?.message}</p>
           </div>
@@ -163,7 +165,7 @@ const AddBook = () => {
         {/* التصنيف ونوع الكتاب */}
         <div className="flex gap-4 mt-4 items-end">
           <div className="w-1/2">
-            <select {...register("BookCategory")}>
+            <select {...register("BookCategory")} className="dark:bg-darkgray dark:placeholder-slate-400">
               <option value="">اختر التصنيف</option>
               <option value="mn">n m</option>
               {categories.map((category) => (
@@ -178,7 +180,8 @@ const AddBook = () => {
             <label className="block mb-2">نوع الكتاب:</label>
             <input
               {...register("BookType")}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded dark:bg-darkgray dark:placeholder-slate-400"
+              placeholder="نوع الكتاب"
             />
             <p className="text-red-500">{errors.BookType?.message}</p>
           </div>
@@ -187,7 +190,7 @@ const AddBook = () => {
         {/* الصورة */}
         <div className="mt-4">
           <label className="block mb-2">صورة الكتاب:</label>
-          <input type="file" {...register("BookPhoto")} className="w-full" />
+          <input type="file" {...register("BookPhoto")} className="w-full dark:bg-darkgray dark:placeholder-slate-400" />
           <p className="text-red-500">{errors.BookPhoto?.message}</p>
         </div>
 
@@ -197,7 +200,8 @@ const AddBook = () => {
           <input
             type="number"
             {...register("Quantity")}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-darkgray dark:placeholder-slate-400"
+            placeholder="الكميه"
           />
           <p className="text-red-500">{errors.Quantity?.message}</p>
         </div>
@@ -207,7 +211,8 @@ const AddBook = () => {
           <label className="block mb-2">وصف الكتاب:</label>
           <textarea
             {...register("BookDescription")}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-darkgray dark:placeholder-slate-400"
+            placeholder="اكتب الوصف هنا..."
           ></textarea>
           <p className="text-red-500">{errors.BookDescription?.message}</p>
         </div>

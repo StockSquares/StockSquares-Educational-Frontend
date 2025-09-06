@@ -114,12 +114,14 @@ function ArticlesManagement() {
           type="text"
           placeholder="عنوان المقال"
           value={article.title}
+          className="dark:bg-dark-background dark:placeholder-100"
           onChange={(e) =>
             setArticle((prev) => ({ ...prev, title: e.target.value }))
           }
         />
         <select
           value={article.CategoryId}
+          className="dark:bg-dark-background dark:placeholder-100"
           onChange={(e) =>
             setArticle({ ...article, CategoryId: e.target.value })
           }
@@ -137,6 +139,7 @@ function ArticlesManagement() {
         type="text"
         placeholder="الكاتب"
         value={article.Writer}
+        className="dark:bg-dark-background dark:placeholder-100"
         onChange={(e) => setArticle({ ...article, Writer: e.target.value })}
       />
 
@@ -144,7 +147,7 @@ function ArticlesManagement() {
         <div className="flex gap-3 items-center mb-3">
           <label
             htmlFor="mainArticleImage"
-            className="px-3 py-2 bg-accent-900 font-semibold rounded-md cursor-pointer hover:bg-accent-400"
+            className="px-3 py-2 bg-accent-900 dark:text-black font-semibold rounded-md cursor-pointer hover:bg-accent-400"
           >
             اضف صورة للمقال
           </label>
@@ -171,7 +174,7 @@ function ArticlesManagement() {
         <div className="flex gap-3 items-center mb-3">
           <label
             htmlFor="WriterImage"
-            className="px-3 py-2 bg-primary-900 text-white rounded-md cursor-pointer  font-semibold hover:bg-green-700"
+            className="px-3 py-2 bg-primary-900  text-white rounded-md cursor-pointer  font-semibold hover:bg-green-700"
           >
             اضف صورة للكاتب
           </label>
@@ -198,6 +201,7 @@ function ArticlesManagement() {
           onChange={(content) =>
             setArticle((prev) => ({ ...prev, Body: content }))
           }
+          
           setOptions={{
             buttonList: [
               ["bold", "italic", "underline", "strike"],
@@ -209,7 +213,7 @@ function ArticlesManagement() {
           }}
         />
         <div className="flex gap-5">
-          <button className="bg-accent-950 text-dark px-4 py-2 mt-3 rounded hover:bg-gray-600">
+          <button className="bg-accent-950 dark:text-black text-dark px-4 py-2 mt-3 rounded hover:bg-gray-600">
             حفظ المقال
           </button>
 

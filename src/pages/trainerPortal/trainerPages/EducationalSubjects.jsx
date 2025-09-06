@@ -18,14 +18,14 @@ const subjects = [
 function EducationalSubjects() {
   return (
     <div className="container  flex flex-col items-center font-Cairo">
-      <h1 className="text-3xl mt-3 text-black mb-6">       المواد التعليميه   </h1>
-      <div className="w-full bg-white  rounded-lg p-4">
+      <h1 className="text-3xl mt-3 text-black mb-6 dark:text-dark-text">       المواد التعليميه   </h1>
+      <div className="w-full bg-white dark:bg-dark-background  rounded-lg p-4">
         {subjects.map((subject, index) => (
           <div
             key={index}
             className="flex justify-between items-center border-b p-4 last:border-none"
           >
-            <p className="text-[10px] md:text-lg font-medium">{subject.name} - <span className={` ms-2 font-bold text-[15px] md:text-[20px] ${
+            <p className="text-[12px] md:text-lg font-medium">{subject.name} - <span className={` ms-2 font-bold text-[15px] md:text-[20px] ${
                   subject.level === "محترف"
                     ? "text-red-600"
                     : subject.level === "متقدم"

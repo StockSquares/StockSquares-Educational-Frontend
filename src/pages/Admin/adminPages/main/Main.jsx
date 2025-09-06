@@ -136,7 +136,7 @@ function Main() {
 
       <div className="grid grid-cols-12 gap-2 text-center items-center">
         <div className="col-span-12 sm:col-span-3 md:col-span-2 p-2">
-          <select className="rounded-md text-center w-full border-2 border-green-500">
+          <select className="rounded-md text-center w-full border-2 dark:bg-dark-background border-green-500">
             <option>السنه</option>
             <option>2025</option>
             <option>2024</option>
@@ -150,14 +150,14 @@ function Main() {
           <div className="flex flex-wrap justify-center p-3 gap-4">
             <button
               onClick={() => setDataType("sales")}
-              className={`${style.btn}`}
+              className={`${style.btn} dark:bg-dark-background `}
             >
               {" "}
               اجمالي المبيعات{" "}
             </button>
             <button
               onClick={() => setDataType("subscribes")}
-              className={`${style.btn}`}
+              className={`${style.btn} dark:bg-dark-background `}
             >
               {" "}
               متوسط الاشتراكات{" "}
@@ -190,7 +190,7 @@ function Main() {
           {buttons.map((btn, index) => (
             <button
               key={index}
-              className={`ms-4 ${
+              className={`ms-4 dark:text-black ${
                 activeButton === index
                   ? `p-3 bg-yellow-400 ${style.clicked}`
                   : ` ${style.bottom} p-3 bg-yellow-300`
@@ -207,8 +207,8 @@ function Main() {
               <h1 className="font-bold mb-2"> اجمالي المبيعات - الشريك </h1>
               <div className="h-full grid grid-cols-2 text-center border-4 border-primary-500">
                 <div className="bg-primary-400"> محمد - شريك </div>
-                <div className="bg-white"> سما - موظف </div>
-                <div className="bg-white"> علي - موظف </div>
+                <div className="bg-white dark:bg-dark-background"> سما - موظف </div>
+                <div className="bg-white dark:bg-dark-background"> علي - موظف </div>
                 <div className="bg-primary-400"> هانيا - شريك </div>
               </div>
             </div>
@@ -237,7 +237,7 @@ function Main() {
           </div>
           <hr className="h-[2px] bg-gray-400 mb-3 mt-3" />
 
-          <div className="bg-white p-4 rounded-lg shadow-md w-full">
+          <div className="bg-white dark:bg-dark-background p-4 rounded-lg shadow-md w-full">
             <h2 className="text-lg font-semibold text-center mb-4">
               إجمالي المبيعات - التوصيات
             </h2>
@@ -271,7 +271,7 @@ function Main() {
       <div className="grid grid-cols-12 gap-2 mb-5">
         <div className="col-span-12 sm:col-span-3 md:col-span-2">
           <select
-            className="rounded-md text-center w-full border-2 border-green-500"
+            className="rounded-md text-center w-full dark:bg-dark-background border-2 border-green-500"
             value={selectedValue}
             onChange={(e) => setSelectedValue(e.target.value)}
           >
@@ -285,9 +285,9 @@ function Main() {
           </select>
         </div>
         <div className="col-span-12 sm:col-span-9 md:col-span-10 overflow-x-auto">
-          <table className="table-fixed w-full bg-white border border-gray-200 shadow-md rounded-lg overflow-hidden text-[10px] md:text-[14px] lg:text-[16px]">
+          <table className="table-fixed w-full bg-white dark:bg-dark-background border border-gray-200 shadow-md rounded-lg overflow-hidden text-[10px] md:text-[14px] lg:text-[16px]">
             <thead className="bg-gray-200 text-center">
-              <tr>
+              <tr className="dark:bg-primary-700 ">
                 <th className="py-3 lg:px-6 border-b w-1/4">الاسم</th>
                 <th className="py-3 lg:px-6 border-b w-1/4">المسمي الوظيفي</th>
                 <th className="py-3 lg:px-6 border-b w-1/4">عدد الاشتراكات</th>
@@ -298,9 +298,9 @@ function Main() {
               {tableData.map((person) => (
                 <tr
                   key={person.name}
-                  className={`hover:bg-gray-100 text-center ${
+                  className={`hover:bg-gray-100 dark:hover:text-black  text-center ${
                     selectedValue === person.name
-                      ? "bg-primary-100 scale-105 transition-all"
+                      ? "bg-primary-100 dark:text-black scale-105 transition-all"
                       : ""
                   }`}
                 >

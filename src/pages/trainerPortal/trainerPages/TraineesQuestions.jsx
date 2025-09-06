@@ -8,7 +8,7 @@ const traineesData = [
     date: "23/7/2025",
     question: "ما الفرق بين البورصة المصرية والسعودية والاجنبيه ",
     trainingDate: "AH6 - Sun",
-    status: "تم الاجابة",
+    status: "تم ",
     level: "محترف",
     statusColor: "bg-green-500",
   },
@@ -59,7 +59,7 @@ function TraineesQuestions() {
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
           <thead>
-            <tr className="bg-primary-300">
+            <tr className="bg-primary-300 text-[10px] sm:text-[15px]">
               <th className="p-2 border">الطالب</th>
               <th className="p-2 border">تاريخ السؤال</th>
               <th className="p-2 border">السؤال</th>
@@ -70,9 +70,9 @@ function TraineesQuestions() {
           </thead>
           <tbody>
             {traineesData.map((t, i) => (
-              <tr key={i} className="text-center">
+              <tr key={i} className="text-center text-[9px] sm:text-[15px] ">
                 <td className="p-2 border flex items-center justify-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-gray-400"></div>
+                  <div className="w-10 h-8 md:w-11 md:h-10 lg:w-12 lg:h-12 rounded-full bg-gray-400"></div>
                   {t.name}
                 </td>
                 <td className="p-2 border">{t.date}</td>
@@ -80,7 +80,7 @@ function TraineesQuestions() {
                 <td className="p-2 border">{t.trainingDate}</td>
                 <td className="p-2 border">
                   <span
-                    className={`text-white px-3 py-1 rounded-md ${t.statusColor}`}
+                    className={`text-white p-1 md:px-3 md:py-1 rounded-md ${t.statusColor}`}
                   >
                     {t.status}
                   </span>

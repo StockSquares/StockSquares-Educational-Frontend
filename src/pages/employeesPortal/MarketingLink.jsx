@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import shareImg from "../../assets/ShareLink.gif";
 
 function MarketingLink() {
   const [referralRecord, setReferralRecord] = useState([
@@ -38,7 +38,8 @@ function MarketingLink() {
             ارسل الرابط التالي الخاص بك الي اصدقائك و عملائك
           </h1>
           <h1 className="text-black text-lg sm:text-2xl text-center sm:text-start">
-            و احصل علي <span className="text-primary-900">عمولات فوريه</span> و مستمرة شهريه بالاضافه الي ارباح سنويه.
+            و احصل علي <span className="text-primary-900">عمولات فوريه</span> و
+            مستمرة شهريه بالاضافه الي ارباح سنويه.
           </h1>
 
           <h1 className="text-blue-600 mt-5 underline">
@@ -46,13 +47,20 @@ function MarketingLink() {
           </h1>
         </div>
         <div className="w-[100%] md:w-[25%] ">
-          <img src="/src/assets/Share link.gif" alt="image" className="w-full h-full object-cover" />
+          <img
+            src={shareImg}
+            alt="image"
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
 
       <hr className="bg-gray-200 h-0.5 mb-5 mt-5 font-bold" />
 
-      <h1 className="font-semibold text-lg md:text-[15px] text-black mb-3"> سجل الاحاله :</h1>
+      <h1 className="font-semibold text-lg md:text-[15px] text-black mb-3">
+        {" "}
+        سجل الاحاله :
+      </h1>
       <div className="overflow-x-auto">
         <table className="w-full border border-gray-200 shadow-lg rounded-lg">
           <thead className="bg-green-600 text-white ">
@@ -66,7 +74,10 @@ function MarketingLink() {
           </thead>
           <tbody>
             {referralRecord.map((referral) => (
-              <tr key={referral.id} className="text-center text-[9px] sm:text-lg">
+              <tr
+                key={referral.id}
+                className="text-center text-[9px] sm:text-lg"
+              >
                 <td className="p-3 border">{referral.Name}</td>
                 <td className="p-3 border">{referral.referralDate}</td>
 
@@ -79,7 +90,9 @@ function MarketingLink() {
         </table>
       </div>
 
-      <h1 className="mt-7 text-xl text-black font-semibold mb-4">مكتبه التصميمات الدعائيه :</h1>
+      <h1 className="mt-7 text-xl text-black font-semibold mb-4">
+        مكتبه التصميمات الدعائيه :
+      </h1>
       {services.map((ser) => (
         <div
           className="flex flex-col sm:flex-row text-center items-center justify-between mb-3"

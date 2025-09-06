@@ -172,7 +172,7 @@ function ProbabilityEmployees() {
         </Modal>
       )}
 
-      <div className="w-full mb-5 mt-5 font-Cairo flex flex-col gap-10 text-[8px] md:text-[15px] ">
+      <div className="w-full mb-5 mt-5 font-Cairo flex flex-col gap-10 text-[9px] md:text-[15px] ">
         <div>
           <h2 className="text-2xl font-semibold mb-4 text-center">
             📋 قائمة العملاء المحتملين
@@ -189,8 +189,8 @@ function ProbabilityEmployees() {
             />
           </div>
 
-          <div className="mb-5 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 h-[60vh]">
-            <div className="bg-gray-50 p-3 h-full space-y-3 overflow-auto">
+          <div className="mb-5 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
+            <div className="bg-gray-50 p-3 space-y-3 overflow-auto h-[60vh]">
               <div className="flex justify-between">
                 <h2> جديد </h2>
                 <FontAwesomeIcon
@@ -203,14 +203,14 @@ function ProbabilityEmployees() {
                 <ClientCard index={idx} isClicked={setNameClicked} />
               ))}
             </div>
-            <div className="bg-gray-50 p-3 space-y-3">
+            <div className="bg-gray-50 p-3 space-y-3 h-[60vh]">
               <h2 className="mb-5"> متابعه </h2>
 
               {[1,2].map((item, idx) => (
                 <ClientCard index={idx} isClicked={setNameClicked} />
               ))}
             </div>
-            <div className="bg-gray-50 p-3 space-y-3">
+            <div className="bg-gray-50 p-3 space-y-3 h-[60vh]">
               <h2 className="mb-2"> مؤهل </h2>
               <Tabs className="gap-2  ">
                 <Tabs.Item title="مؤهل بنجاح">
@@ -222,7 +222,7 @@ function ProbabilityEmployees() {
               </Tabs>
             </div>
 
-            <div className="bg-gray-50 p-3 space-y-3">
+            <div className="bg-gray-50 p-3 space-y-3 h-[60vh]">
               <h2> مغلق </h2>
               <Tabs className="gap-2">
                 <Tabs.Item title="مغلق بنجاح">

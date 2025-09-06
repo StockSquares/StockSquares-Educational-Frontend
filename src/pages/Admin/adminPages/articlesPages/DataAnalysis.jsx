@@ -16,7 +16,7 @@ function DatatAnalysis(){
         <div className="p-6  min-h-screen">
       <h1 className="text-2xl font-bold mb-4">📝 لوحة تحكم المقالات</h1>
       
-      <div className="bg-white p-4 rounded-xl shadow-md mb-6">
+      <div className="bg-white dark:bg-dark-background p-4 rounded-xl shadow-md mb-6">
         <h2 className="text-xl font-semibold mb-2">📊 المقالات الأكثر تفاعلاً وقراءة</h2>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={articles}>
@@ -32,11 +32,11 @@ function DatatAnalysis(){
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* جدول المقالات الأكثر تفاعلاً */}
-        <div className="bg-white p-4 rounded-xl shadow-md">
+        <div className="bg-white dark:bg-dark-background p-4 rounded-xl shadow-md">
           <h2 className="text-xl font-semibold mb-2">🔥 المقالات الأكثر تفاعلاً</h2>
           <table className="w-full border-collapse border border-gray-300">
             <thead>
-              <tr className="bg-gray-200">
+              <tr className="bg-gray-200 dark:bg-primary-900">
                 <th className="border p-2">📝 العنوان</th>
                 <th className="border p-2">💬 التفاعلات</th>
               </tr>
@@ -52,11 +52,11 @@ function DatatAnalysis(){
           </table>
         </div>
 
-        <div className="bg-white p-4 rounded-xl shadow-md">
+        <div className="bg-white dark:bg-dark-background p-4 rounded-xl shadow-md">
           <h2 className="text-xl font-semibold mb-2">📖 المقالات الأكثر قراءة</h2>
           <table className="w-full border-collapse border border-gray-300">
             <thead>
-              <tr className="bg-gray-200">
+              <tr className="bg-gray-200 dark:bg-primary-900">
                 <th className="border p-2">📝 العنوان</th>
                 <th className="border p-2">👁️ عدد القراءات</th>
               </tr>
