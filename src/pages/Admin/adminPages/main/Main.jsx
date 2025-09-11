@@ -4,6 +4,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 import style from "./Admin1.module.css";
 import { LineChart, Line, ResponsiveContainer } from "recharts";
+import { logo } from '/src/assets/imgs/logo-SS.svg';
 
 function Main() {
   const data = [
@@ -109,7 +110,7 @@ function Main() {
     <div className="container-fluid w-100 px-2 sm:px-4 md:px-8">
       <div className="grid grid-cols-12 gap-2 mb-5 mt-4 items-center">
         <div className="col-span-12 sm:col-span-3 md:col-span-2 ms-4 flex justify-center sm:justify-start">
-          <img src="/src/assets/imgs/logo-SS.svg" className="w-32 sm:w-40" />
+          <img src={logo} className="w-32 sm:w-40" />
         </div>
         <div className="col-span-12 sm:col-span-9 md:col-span-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 px-3">

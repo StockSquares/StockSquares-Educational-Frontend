@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 // Internal Imports (components, Assets and Styles)
 import { Ad, Button } from "./../..";
 import { circleUser, clock, companyLogo } from "./../../../assets";
-import instructorPhoto from "/src/assets/imgs/instructorImg.png";
+import instructorPhoto from "/src/assets/imgs/instructorImg2.png";
 // External libraries
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
@@ -16,9 +16,13 @@ function RecordedCourseCard() {
   useEffect(() => {}, []);
 
   return (
-    <SectionCard heading={" الدورات المسجله "} p6={false} LinkTo={ROUTES.RECORDED_COURSES} >
+    <SectionCard
+      heading={" الدورات المسجله "}
+      p6={false}
+      LinkTo={ROUTES.RECORDED_COURSES}
+    >
       <div className="p-2 ">
-        <div className="bg-neutral-200 dark:bg-dark-background text-xs font-semibold rounded-sm  py-[2px] flex">
+        <div className="bg-gradient-to-t from-primary-400 to-primary-100 dark:bg-dark-background text-xs font-semibold rounded-sm  py-[2px] flex">
           <div className="content  w-full text-[10px] px-1 py-8 ">
             <span className="bg-primary text-white px-4 py-0.5 rounded lg:text-[15px]  ">
               ابدأ بناء مستقبل مالي قوي
@@ -38,11 +42,11 @@ function RecordedCourseCard() {
             </div>
           </div>
           <div className="image w-full relative p-1  overflow-hidden flex justify-center">
-            <div className="circle w-[170px] aspect-[1] md:w-[230px] h-full bg-primary-300 rounded-full  absolute"></div>
-            <div className="photo absolute h-full overflow-hidden ">
+            {/* <div className="circle w-[170px] aspect-[1] md:w-[230px] h-full bg-primary-300 rounded-full  absolute"></div> */}
+            <div className="photo absolute h-full  ">
               <img
                 src={instructorPhoto}
-                className="w-[300px] h-full object-fit-contain"
+                className="w-[250px] h-[260px] md:h-full lg:h-[240px] object-cover"
               />
             </div>
           </div>

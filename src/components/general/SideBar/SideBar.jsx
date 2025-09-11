@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 function SideBar({ menuItems = [], children }) {
   const location = useLocation();
@@ -11,7 +11,7 @@ function SideBar({ menuItems = [], children }) {
     <div className="">
       <div
         className={`sidebar z-30 mt-4 min-h-[50vh] min-w-[150px] absolute flex justify-between transition-all ${
-          isopened ? "" : "translate-x-[90%]"
+          isopened ? "" : "translate-x-[85%]"
         }`}
       >
         <div className="bg-white dark:bg-dark-background w-[90%] flex flex-col gap-10 p-2 text-center">
@@ -35,10 +35,14 @@ function SideBar({ menuItems = [], children }) {
           </nav>
         </div>
         <button
-          className="  bg-accent-900"
+          className=" p-[2px] bg-accent-900"
           onClick={() => setisopened(!isopened)}
         >
-          <FontAwesomeIcon icon={faArrowLeft} size="xl" />
+          {isopened ? (
+            <FontAwesomeIcon icon={faArrowRight} size="xl" />
+          ) : (
+            <FontAwesomeIcon icon={faArrowLeft} size="xl" />
+          )}
         </button>
       </div>
 

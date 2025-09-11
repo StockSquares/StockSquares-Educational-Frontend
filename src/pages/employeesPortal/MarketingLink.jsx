@@ -33,11 +33,11 @@ function MarketingLink() {
   return (
     <div className=" mt-5 mb-5 font-Cairo">
       <div className="flex flex-col gap-2 md:flex-row justify-between">
-        <div className="font-bold flex flex-col items-center mt-7 gap-2  ">
-          <h1 className="text-black text-lg sm:text-2xl text-center sm:text-start">
+        <div className="font-bold flex flex-col items-center sm:items-start mt-7 gap-2 px-7 ">
+          <h1 className="text-black text-lg sm:text-2xl  sm:text-start dark:text-dark-text ">
             ارسل الرابط التالي الخاص بك الي اصدقائك و عملائك
           </h1>
-          <h1 className="text-black text-lg sm:text-2xl text-center sm:text-start">
+          <h1 className="text-black dark:text-dark-text text-lg sm:text-2xl text-center sm:text-start">
             و احصل علي <span className="text-primary-900">عمولات فوريه</span> و
             مستمرة شهريه بالاضافه الي ارباح سنويه.
           </h1>

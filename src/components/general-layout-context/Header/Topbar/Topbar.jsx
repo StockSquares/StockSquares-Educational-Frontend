@@ -71,6 +71,11 @@ function SideNavigation({ isOpen, onClose, isLoggedIn }) {
 
   const { userData, revokeTokens } = useAuth();
 
+  const logOut = async () => {
+    await revokeTokens();
+    navigate(ROUTES.LOGIN);
+  };
+
   return (
     <>
       {/* Overlay */}
@@ -136,7 +141,7 @@ function SideNavigation({ isOpen, onClose, isLoggedIn }) {
                       icon={faArrowRightFromBracket}
                       className="mx-2 rotate-180 "
                       title="تسجيل الخروج"
-                      onClick={revokeTokens}
+                      onClick={logOut}
                     />
                   </div>
                 )}
@@ -223,6 +228,7 @@ function Topbar({
   const { userData, revokeTokens } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const role = localStorage.getItem("role");
 
   const logOut = async () => {
     await revokeTokens();
@@ -320,9 +326,9 @@ function Topbar({
                       initial={{ y: -10, x: 60, opacity: 0 }}
                       animate={{ y: 0, x: 60, opacity: 1 }}
                       transition={{ duration: 0.5 }}
-                      className="bg-gray-50  w-[10rem] mt-2 rounded-lg shadow-md text-end absolute   z-20"
+                      className="bg-gray-50 dark:text-dark-text dark:bg-darkgray   w-[10rem] mt-2 rounded-lg shadow-md text-start absolute   z-20"
                     >
-                      <li className="border-b-2 rounded-lg rounded-b-none p-3 hover:bg-gray-100 hover:transition-all cursor-pointer">
+                      <li className="border-b-2 rounded-lg rounded-b-none p-3 dark:hover:bg-gray-700 hover:bg-gray-100 hover:transition-all cursor-pointer">
                         {
                           userData[
                             "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
@@ -330,15 +336,23 @@ function Topbar({
                         }
                       </li>
                       <li
-                        className="p-3 hover:bg-gray-100 hover:transition-all cursor-pointer"
+                        onClick={() => navigate(`/${role}`)}
+                        className="p-3 border-b-2 rounded-lg rounded-b-none hover:bg-gray-100 hover:transition-all cursor-pointer dark:hover:bg-gray-700 "
+                      >
+                        {" "}
+                        لوحه التحكم{" "}
+                      </li>
+                      <li
+                        className="p-3 hover:bg-gray-100 hover:transition-all cursor-pointer dark:hover:bg-gray-700 "
                         onClick={logOut}
                       >
                         <button type="reset">
+                          {" "}
+                          تسجيل الخروج{" "}
                           <FontAwesomeIcon
                             icon={faArrowRightFromBracket}
                             className="mx-2  "
-                          />{" "}
-                          تسجيل الخروج{" "}
+                          />
                         </button>
                       </li>
                     </motion.ul>
