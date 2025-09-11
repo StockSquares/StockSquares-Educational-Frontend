@@ -4,7 +4,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 import style from "./Admin1.module.css";
 import { LineChart, Line, ResponsiveContainer } from "recharts";
-import { logo } from '/src/assets/imgs/logo-SS.svg';
+import logo from "../../../../assets/imgs/logo-SS.svg";
 
 function Main() {
   const data = [
@@ -208,8 +208,14 @@ function Main() {
               <h1 className="font-bold mb-2"> اجمالي المبيعات - الشريك </h1>
               <div className="h-full grid grid-cols-2 text-center border-4 border-primary-500">
                 <div className="bg-primary-400"> محمد - شريك </div>
-                <div className="bg-white dark:bg-dark-background"> سما - موظف </div>
-                <div className="bg-white dark:bg-dark-background"> علي - موظف </div>
+                <div className="bg-white dark:bg-dark-background">
+                  {" "}
+                  سما - موظف{" "}
+                </div>
+                <div className="bg-white dark:bg-dark-background">
+                  {" "}
+                  علي - موظف{" "}
+                </div>
                 <div className="bg-primary-400"> هانيا - شريك </div>
               </div>
             </div>
@@ -307,7 +313,9 @@ function Main() {
                 >
                   <td className="py-3 lg:px-6 border-b">{person.name}</td>
                   <td className="py-3 lg:px-6 border-b">{person.title}</td>
-                  <td className="py-3 lg:px-6 border-b">{person.subscriptions}</td>
+                  <td className="py-3 lg:px-6 border-b">
+                    {person.subscriptions}
+                  </td>
                   <td className="py-3 lg:px-6 border-b">{person.sales}</td>
                 </tr>
               ))}
