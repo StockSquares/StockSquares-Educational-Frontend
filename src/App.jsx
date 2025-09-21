@@ -46,7 +46,7 @@ const PartnerApplication = lazy(() =>
   import("./pages/PartnerApplication/PartnerApplication")
 );
 const TryTradingForFree = lazy(() =>
-  import("./pages/TryTradingForFree/TryTradingForFree")
+  import("./pages/trading/StockTabs")
 );
 const VIPInvestorServices = lazy(() =>
   import("./pages/VIPInvestorServices/VIPInvestorServices")
