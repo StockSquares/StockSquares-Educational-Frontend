@@ -97,7 +97,7 @@ function BlogUi({
           </div>
         </div>
       ) : (
-        <div dangerouslySetInnerHTML={{ __html: selectedArticle.body }}></div>
+        <div dangerouslySetInnerHTML={{ __html: selectedArticle.body }} className="px-3"></div>
       )}
     </div>
   );

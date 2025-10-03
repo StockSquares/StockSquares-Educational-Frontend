@@ -52,11 +52,13 @@ export function VideoCard({
               className="text-white px-[1rem] py-3 pl-4 flex justify-center rounded-full bg-green-600 hover:bg-green-700"
               whileHover={{ scale: 1.1 }}
             >
-              <FontAwesomeIcon icon={faPlay} className="text-xl m-auto text-center" />
+              <FontAwesomeIcon
+                icon={faPlay}
+                className="text-xl m-auto text-center"
+              />
             </motion.button>
           </Link>
           <h1 className="text-2xl "> جاري اكمال الدورة ...</h1>
-
         </div>
         {progress > 0 && (
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200">
@@ -205,11 +207,9 @@ function VideoGrid() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="flex flex-wrap gap-2 items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">
-          أساسيات الاستثمار والتداول في الأسواق المالية
-        </h1>
-        <div className="flex gap-4">
+      <div className="flex justify-between flex-wrap gap-2 items-center mb-8">
+      <h1 className="font-[650] text-2xl border-b-2 border-b-accent-600 pb-2"> اطلع علي أحدث الدورات المتاحه  </h1>
+        <div className="flex  gap-4">
           <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
             تصفية النتائج
           </button>
@@ -219,14 +219,21 @@ function VideoGrid() {
         </div>
       </div>
 
-      <VideoCard
-        videoTitle="تطوير الأعمال"
-        instructor="د. طارق"
-        duration={60}
-        imageUrl="https://via.placeholder.com/400x200"
-        instructorImage="https://via.placeholder.com/100"
-        progress={45}
-      />
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        {[1, 2].map((_, idx) => (
+          <div>
+            <VideoCard
+              key={idx}
+              videoTitle="تطوير الأعمال"
+              instructor="د. طارق"
+              duration={60}
+              imageUrl="https://via.placeholder.com/400x200"
+              instructorImage="https://via.placeholder.com/100"
+              progress={45}
+            />
+          </div>
+        ))}
+      </div>
 
       <div className="flex items-center justify-between mt-8 mb-4">
         <h2 className="text-2xl font-bold text-gray-800">
@@ -238,7 +245,7 @@ function VideoGrid() {
       </div>
       <VideoSlider videos={videoData} />
 
-      <h2 className="text-2xl font-bold text-gray-800 mt-8 mb-4">
+      {/* <h2 className="text-2xl font-bold text-gray-800 mt-8 mb-4">
         أكمل من حيث توقفت
       </h2>
 
@@ -246,7 +253,7 @@ function VideoGrid() {
         {videoData.map((video, index) => (
           <VideoCard key={index} {...video} />
         ))}
-      </div>
+      </div> */}
     </motion.div>
   );
 }

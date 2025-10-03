@@ -70,9 +70,7 @@ const RequestConsultation = lazy(() =>
 //  const InlineBlog = lazy(() => import("./pages/InlineBlog/InlineBlog"));
 const CourseContent = lazy(() => import("./pages/CourseContent/CourseContent"));
 const JoinAsTrainer = lazy(() => import("./pages/JoinAsTrainer/Joincomp"));
-const BookDetails = lazy(() =>
-  import("./pages/FinanceAndBusinessLibrary/multipages/BookDetails")
-);
+const Cart = lazy(()=> import("./pages/FinanceAndBusinessLibrary/Cart"));
 const Admin = lazy(() => import("./pages/Admin/Admin"));
 const Employees = lazy(() => import("./pages/employeesPortal/Employees"));
 const Client = lazy(() => import("./pages/Admin/Client"));
@@ -174,14 +172,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      {
-        path: "/bookdetails/:id",
-        element: (
-          <Suspense fallback={<Loader />}>
-            <BookDetails />
-          </Suspense>
-        ),
-      },
+      
       {
         path: ROUTES.TRAINING_AND_EDUCATION,
         element: <TrainingAndEducation />,
@@ -301,14 +292,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      {
-        path: ROUTES.BOOKDETAILS,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <BookDetails />
-          </Suspense>
-        ),
-      },
+     
       {
         path: ROUTES.TRAINER,
         element: (
@@ -421,6 +405,16 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+
+      {
+        path: ROUTES.CART,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Cart />
+          </Suspense>
+        ),
+      },
+
       { path: "/sidebar", element: <SideBar /> },
     ],
   },

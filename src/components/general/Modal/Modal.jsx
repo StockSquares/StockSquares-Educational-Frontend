@@ -10,7 +10,7 @@ function Modal({ children }) {
   useEffect(() => {}, []);
 
   return ReactDOM.createPortal(
-    <div className="bg-black/50 w-full h-full fixed z-40">
+    <div className="bg-black/50 w-full h-full fixed z-50">
       <div className="absolute left-[50%] translate-x-[-50%] top-[10%] p-2 dark:text-black   bg-white rounded-lg min-w-[30%] min-h-[370px]">
         {children}
       </div>

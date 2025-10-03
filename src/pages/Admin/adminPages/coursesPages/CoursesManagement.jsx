@@ -194,7 +194,7 @@ function CoursesManagement() {
               onClick={() => setShowCourseContent(true)}
               className="bg-green-500 text-white px-2 py-2 rounded-lg hover:bg-green-700 transition"
             >
-              ➕ إضافة محتوي الكورس
+              ➕ إضافة ماتريال الكورس
             </button>
           </div>
 
@@ -270,11 +270,11 @@ function CoursesManagement() {
                     }
                   />
                 </div>
-                <div className="flex gap-2 justify-center">
+                <div className="flex gap-2 justify-start">
                   <input
                     type="number"
                     placeholder=" مده الكورس بالدقائق "
-                    className=" p-2 border rounded mb-2"
+                    className=" p-2 w-full border rounded mb-2"
                     value={newCourse.Time}
                     disabled={isLoading}
                     onChange={(e) =>
@@ -284,23 +284,6 @@ function CoursesManagement() {
                       })
                     }
                   />
-
-                  <select
-                    onChange={(e) =>
-                      setNewCourse({ ...newCourse, CategoryId: e.target.value })
-                    }
-                    value={newCourse.CategoryId}
-                    disabled={isLoading}
-                    className="h-[42px] rounded-lg"
-                  >
-                    <option> اختر التصنيف </option>
-                    <option> mn </option>
-                    {categories.map((category) => (
-                      <option key={category.id} value={category.id}>
-                        {category.name}
-                      </option>
-                    ))}
-                  </select>
                 </div>
                 <input
                   type="text"
@@ -329,7 +312,7 @@ function CoursesManagement() {
                 <div className="flex items-center gap-3">
                   <label
                     htmlFor="trainerImage"
-                    className=" bg-darkgray text-white rounded-md  p-2  font-normal hover:cursor-pointer"
+                    className=" bg-darkgray text-white rounded-md  p-2 my-2 font-normal hover:cursor-pointer"
                   >
                     {" "}
                     اضافه صوره المدرب
@@ -338,7 +321,7 @@ function CoursesManagement() {
                     id="trainerImage"
                     type="file"
                     placeholder="  صوره المدرب "
-                    className=" p-2 border rounded mb-2 hidden"
+                    className=" p-2 border rounded hidden"
                     disabled={isLoading}
                     onChange={(e) =>
                       setNewCourse({
@@ -355,22 +338,24 @@ function CoursesManagement() {
                     />
                   )}
                 </div>
-                <SunEditor
-                  setContents={newCourse.Description}
-                  onChange={(content) =>
-                    setNewCourse((prevState) => ({
-                      ...prevState,
-                      Description: content,
-                    }))
-                  }
-                  setOptions={{
-                    buttonList: [
-                      ["bold", "italic", "underline", "strike"],
-                      ["font", "fontColor", "hiliteColor", "fontSize"],
-                      ["align", "list", "table"],
-                    ],
-                  }}
-                />
+                <div className="w-full h-[270px] overflow-y-scroll ">
+                  <SunEditor
+                    setContents={newCourse.Description}
+                    onChange={(content) =>
+                      setNewCourse((prevState) => ({
+                        ...prevState,
+                        Description: content,
+                      }))
+                    }
+                    setOptions={{
+                      buttonList: [
+                        ["bold", "italic", "underline", "strike"],
+                        ["font", "fontColor", "hiliteColor", "fontSize"],
+                        ["align", "list", "table"],
+                      ],
+                    }}
+                  />
+                </div>
 
                 <div className="flex justify-between mt-4">
                   <button
@@ -402,59 +387,74 @@ function CoursesManagement() {
             >
               <Modal>
                 {" "}
-                <h2 className="font-bold mb-4"> رفع محتوي الكورس </h2>
-                <div className="flex flex-col gap-4 p-3">
-                <label htmlFor="fileName" className=" font-normal ">
-                  {" "}
-                   اسم الملف{" "}
-                </label>
-                <input
-                  type="text"
-                  id="fileName"
-                  name="FileName"
-                  value={courseContent.FileName}
-                  placeholder=" اسم الملف "
+                <h2 className="font-bold mb-2"> رفع محتوي الكورس </h2>
+                <div className="flex flex-col gap-2 p-3">
+                <p > اختر الكورس  </p>
+                <select
                   onChange={(e) =>
-                    setCourseContent({
-                      ...courseContent,
-                      FileName: e.target.value,
-                    })
+                    setNewCourse({ ...newCourse, CategoryId: e.target.value })
                   }
-                />
-                <label htmlFor="content" className=" font-normal ">
-                  {" "}
-                  رفع المحتوي{" "}
-                </label>
-                <input
-                  id="content"
-                  type="file"
-                  accept=".pdf"
-                  name="Pdfs"
-                  placeholder="  الملف "
-                  onChange={(e) => {
-                    if (e.target.files.length > 0) {
+                  value={newCourse.CategoryId}
+                  disabled={isLoading}
+                  className="h-[42px] w-full rounded-lg"
+                >
+                  <option> اختر الكورس </option>
+                  <option> mn </option>
+                </select></div>
+                <div className="flex flex-col gap-2 mb-2 px-3">
+                  <label htmlFor="fileName" className=" font-normal ">
+                    {" "}
+                    اسم الملف{" "}
+                  </label>
+                  <input
+                    type="text"
+                    id="fileName"
+                    className="rounded-lg"
+                    name="FileName"
+                    value={courseContent.FileName}
+                    placeholder=" اسم الملف "
+                    onChange={(e) =>
                       setCourseContent({
                         ...courseContent,
-                        Pdfs: e.target.files[0],
-                      });
+                        FileName: e.target.value,
+                      })
                     }
-                  }}
-                />
-                <div className="flex justify-between w-full mt-4">
-                  <button
-                    onClick={() => handleCourseContent()}
-                    className="bg-primary-900 text-white px-4 py-2 rounded"
-                  >
-                    حفظ
-                  </button>
+                  />
+                  <label htmlFor="content" className="mt-2 font-normal ">
+                    {" "}
+                    رفع المحتوي{" "}
+                  </label>
+                  <input
+                    id="content"
+                    type="file"
+                    accept=".pdf"
+                    name="Pdfs"
+                    placeholder="  الملف "
+                    onChange={(e) => {
+                      if (e.target.files.length > 0) {
+                        setCourseContent({
+                          ...courseContent,
+                          Pdfs: e.target.files[0],
+                        });
+                      }
+                    }}
+                  />
+                  <div className="flex justify-between w-full mt-4">
+                    <button
+                      onClick={() => handleCourseContent()}
+                      className="bg-primary-900 text-white px-4 py-2 rounded"
+                    >
+                      حفظ
+                    </button>
 
-                  <button
-                    onClick={() => setShowCourseContent(false)}
-                    className="bg-red-500 text-white px-4 py-2 rounded"
-                  >
-                    إلغاء
-                  </button>
-                </div></div>
+                    <button
+                      onClick={() => setShowCourseContent(false)}
+                      className="bg-red-500 text-white px-4 py-2 rounded"
+                    >
+                      إلغاء
+                    </button>
+                  </div>
+                </div>
               </Modal>
             </motion.div>
           )}

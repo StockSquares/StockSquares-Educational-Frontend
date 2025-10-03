@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import { SectionCard } from "../..";
 import { ROUTES } from "../../../routes";
+import { faCertificate } from "@fortawesome/free-solid-svg-icons";
 
 function RecordedCourseCard() {
   const { t } = useTranslation();
@@ -24,18 +25,18 @@ function RecordedCourseCard() {
       <div className="p-2 ">
         <div className="bg-gradient-to-t from-primary-400 to-primary-100 dark:bg-dark-background text-xs font-semibold rounded-sm  py-[2px] flex">
           <div className="content  w-full text-[10px] px-1 py-8 ">
-            <span className="bg-primary text-white px-4 py-0.5 rounded lg:text-[15px]  ">
+            <span className="bg-primary text-white px-4 py-0.5 rounded lg:text-[16px]  ">
               ابدأ بناء مستقبل مالي قوي
             </span>
-            <p className="pt-1  mt-3  text-[10px] md:text-sm">
+            <p className="pt-1  mt-3  text-[10px] md:text-[15px]">
               تعلم تداول الأسهم والعملات والذهب
             </p>
 
             <div className="mt-5">
               <h4 className="text-sm font-bold mb-1">أ/طارق الليثي</h4>
-              <div className="flex flex-col w-fit py-1 gap-1 border-b-2 border-primary ">
-                <span className="text-xs">مستشار استثمار ومدرب معتمد</span>
-                <span className="text-xs">
+              <div className="flex flex-col w-fit py-1 gap-1 pb-1 border-b-2 border-primary ">
+                <span className="text-[13px]">مستشار استثمار ومدرب معتمد</span>
+                <span className="text-[13px]">
                   استشاري تطوير الأعمال في عدة شركات مالية
                 </span>
               </div>
@@ -63,34 +64,34 @@ function RecordedCourseCard() {
                 <FontAwesomeIcon className="px-1" icon={circleUser} />
                 <span>أ/طارق الليثي</span>
               </li>
-              <li className="flex-y-center">
+              <li className="flex-y-center pe-6">
                 <FontAwesomeIcon className="px-1" icon={clock} />
                 <span>55 دقيقة</span>
               </li>
+              <li className="flex-y-center">
+                <FontAwesomeIcon className="px-1" icon={faCertificate} />
+                <span> شهاده </span>
+              </li>
             </ul>
-          </div>
-          <div className="mt-2 sm:mt-0 mx-auto md:me-0">
-            <Button
-              btnText={t(
-                "sections.recordedCourses.courseSection.courseCard.btn"
-              )}
-              textColor="black"
-              bgColor="accent"
-              px="px-4 md:px-6"
-              linkTo={ROUTES.RECORDED_COURSES}
-            />
           </div>
 
           {/* عروض الشركات */}
-          <div className="mt-2 flex flex-col justify-center items-center w-full p-1">
+          {/* <div className="mt-2 flex flex-col justify-center items-center w-full p-1">
             <hr className="text-lg bg-gray-400 h-[0.2px] w-full mb-1" />
             <h2 className="font-bold text-base mb-1 mt-3">
               عروض شركات الاستثمار و التداول
             </h2>
-            <div className=" w-full gap-2 text-center font-bold h-[110px] px-1">
-              <Ad adLocation="course" />
-            </div>
-          </div>
+            
+          </div> */}
+        </div>
+        <div className="mt-3">
+          <Button
+            btnText={"ابدأ بدون اشتراك"}
+            textColor="black"
+            bgColor="accent"
+            px="px-4 py-1 md:px-6"
+            linkTo={ROUTES.RECORDED_COURSES}
+          />
         </div>
       </div>
     </SectionCard>

@@ -48,7 +48,7 @@ function Ad({ adLocation }) {
     dots: false,
     infinite: adLocation === "course" ? false : true,
     speed: 1000,
-    slidesToShow: adLocation === "course" ? 3 : 1,
+    slidesToShow: adLocation === "course" ? 4 : 1,
     slidesToScroll: 1,
     autoplay: adLocation === "course" ? false : true,
     autoplaySpeed: 5000,
@@ -69,7 +69,8 @@ function Ad({ adLocation }) {
   return (
     <div className="w-full ">
       {adLocation === "course" ? (
-        <div className="w-full  p-3">
+        <div className="w-full   p-3">
+        <h2 className="font-semibold text-lg mb-2"> عروض شركات الاستثمار والتداول </h2>
           <Slider ref={sliderRef} {...settings} dir="rtl">
             {courseAds.map((ad) => (
               <div
@@ -79,10 +80,11 @@ function Ad({ adLocation }) {
                 <Link to={ad.link}>
                   <img
                     src={`data:image/*;base64,${ad.image}`}
-                    className="object-contain w-full h-[70px] rounded-lg"
+                    className="object-contain w-full h-[60px] rounded-lg"
                     alt={ad.title}
                   />
                 </Link>
+                <p>desc</p>
               </div>
             ))}
           </Slider>

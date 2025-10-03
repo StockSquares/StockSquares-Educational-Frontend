@@ -36,7 +36,7 @@ function Header({children}) {
     }, []);
 
     return <>
-        <header className={`sticky top-0 z-50`}>
+        <header className={`sticky top-0 z-40`}>
             <Topbar userLogin={userLogin} logoutFn={logout} ref_md={ref_md} translateY_topbar={translateY_bar} isBelowMdBreakpoint={isBelowMdBreakpoint} isAboveMdBreakpoint={isAboveMdBreakpoint} />
             <Navbar ref_ul={ref_ul} width_ul={width_ul} height_md={height_md} translateY_navbar={translateY_bar} translateX_navbar={translateX_bar} isAboveMdBreakpoint={isAboveMdBreakpoint} />
         </header>

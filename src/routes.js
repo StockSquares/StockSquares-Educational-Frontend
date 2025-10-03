@@ -13,6 +13,7 @@ export const ROUTES = {
   RECORDED_COURSES: "/recorded-courses",
   // COURSE: '/recorded-courses/recorded-course',
   COURSE: "/recorded-course",
+  CART: "/bookstore/cart",
   OPPORTUNITIES_AND_RECOMMENDATIONS: "/opportunities-and-recommendations",
   PARTNER_APPLICATION: "/partner-application",
   TRY_TRADING_FOR_FREE: "/try-trading-for-free",

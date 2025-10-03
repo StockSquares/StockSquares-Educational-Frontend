@@ -11,6 +11,7 @@ import {
 function StockTabs() {
   const [count, setCount] = useState(10);
   const [index, setIndex] = useState(0);
+  const [marketId, setMarketId] = useState(0);
   const [selectedStock, setSelectedStock] = useState(0);
   const [selectedMarket, setSelectedMarket] = useState("EGX:COMI");
   const [arr, setArr] = useState([]);
@@ -70,7 +71,10 @@ function StockTabs() {
               {arr.map((subMarket, idx) => (
                 <p
                   key={idx}
-                  onClick={() => setSelectedMarket(subMarket)}
+                  onClick={() =>{
+                     setSelectedMarket(subMarket);
+                     setMarketId(market.id);
+                  }}
                   className={` ${
                     selectedMarket === subMarket
                       ? "bg-primary-800 text-white"
@@ -89,7 +93,7 @@ function StockTabs() {
         ))}
       </Tabs>
 
-      <Trading stockSymbol={selectedMarket} />
+      <Trading stockSymbol={selectedMarket} marketId={marketId} />
     </>
   );
 }

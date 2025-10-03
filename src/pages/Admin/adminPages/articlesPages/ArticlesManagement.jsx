@@ -114,14 +114,14 @@ function ArticlesManagement() {
           type="text"
           placeholder="عنوان المقال"
           value={article.title}
-          className="dark:bg-dark-background dark:placeholder-100"
+          className="dark:bg-dark-background w-full dark:placeholder-100"
           onChange={(e) =>
             setArticle((prev) => ({ ...prev, title: e.target.value }))
           }
         />
         <select
           value={article.CategoryId}
-          className="dark:bg-dark-background dark:placeholder-100"
+          className="dark:bg-dark-background w-full dark:placeholder-100"
           onChange={(e) =>
             setArticle({ ...article, CategoryId: e.target.value })
           }
@@ -139,12 +139,13 @@ function ArticlesManagement() {
         type="text"
         placeholder="الكاتب"
         value={article.Writer}
-        className="dark:bg-dark-background dark:placeholder-100"
+        className="dark:bg-dark-background  dark:placeholder-100"
         onChange={(e) => setArticle({ ...article, Writer: e.target.value })}
       />
 
       <div className="article">
-        <div className="flex gap-3 items-center mb-3">
+      <div className="flex justify-between gap-3">
+        <div className="flex flex-col md:flex-row gap-3 w-full items-center mb-3">
           <label
             htmlFor="mainArticleImage"
             className="px-3 py-2 bg-accent-900 dark:text-black font-semibold rounded-md cursor-pointer hover:bg-accent-400"
@@ -171,7 +172,7 @@ function ArticlesManagement() {
           )}
         </div>
 
-        <div className="flex gap-3 items-center mb-3">
+        <div className="flex flex-col md:flex-row w-full justify-start  gap-3 items-center mb-3">
           <label
             htmlFor="WriterImage"
             className="px-3 py-2 bg-primary-900  text-white rounded-md cursor-pointer  font-semibold hover:bg-green-700"
@@ -194,6 +195,7 @@ function ArticlesManagement() {
               />
             </div>
           )}
+        </div>
         </div>
 
         <SunEditor

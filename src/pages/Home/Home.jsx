@@ -20,9 +20,9 @@ function Home() {
         <Ad adLocation="main" />
       </section>
 
-      <section className="grid grid-cols-1 gap-2 lg:grid-cols-2 mb-5 md:grid-cols-2"></section>
+      {/* <section className="grid grid-cols-1 gap-2 lg:grid-cols-2 mb-5 md:grid-cols-2"></section> */}
 
-      <section className="grid grid-cols-1 overflow-hidden mb-10  gap-3 md:grid-cols-2 ">
+      <section className="grid grid-cols-1 overflow-hidden mb-1  gap-3 md:grid-cols-2 ">
         {/* Practical Training Section */}
         <section className=" ">
           <PracticalTrainingSection />
@@ -32,6 +32,10 @@ function Home() {
           <RecordedCourseCard />
         </section>
       </section>
+
+      <div className="w-full gap-2 text-center font-semibold min-h-[130px] px-1">
+        <Ad adLocation="course" />
+      </div>
 
       {/* Finance Business Library Section */}
       <section id="finance-library" className="mb-10">

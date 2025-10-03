@@ -6,19 +6,25 @@ import TechnicalAnalysis from "./tradingComponents/TechnicalAnalysis";
 import TickerTab from "./tradingComponents/TickerTab";
 import TopStories from "./tradingComponents/TopStories";
 import { useTheme } from "../../Context/ThemeContext";
+import CryptoCoinsHeatmap from "./tradingComponents/CryptoCoinsHeatmap";
+import CryptocurrencyMarket from "./tradingComponents/CryptocurrencyMarket";
+import ForexCrossRates from "./tradingComponents/ForexCrossRates";
+import EconomicCalendar from "./tradingComponents/EconomicCalendar";
 
-function Trading({ stockSymbol }) {
+function Trading({ stockSymbol, marketId }) {
   const { isDarkMode } = useTheme();
 
   const theme = isDarkMode ? "dark" : "light";
   return (
     <div className="min-h-[110vh] p-5 w-full ">
       <div className="w-full mi-h-[20vh] overflow-hidden mb-3 ">
-        <TickerTab
-          symbol={stockSymbol}
-          Theme={theme}
-          key={stockSymbol + "ticker"}
-        />
+        {stockSymbol.split(":")[0] !== "Vantage" && (
+          <TickerTab
+            symbol={stockSymbol}
+            Theme={theme}
+            key={stockSymbol + "ticker"}
+          />
+        )}
       </div>
       <div className="w-full flex justify-end h-[30vh] mb-3 overflow-hidden ">
         <SymbolInfo
@@ -35,18 +41,40 @@ function Trading({ stockSymbol }) {
           key={stockSymbol + "chart"}
         />
       </div>
-      <div className="w-full mt-8 grid grid-cols-1 gap-1 justify-items-center md:grid-cols-2 ">
+      <div
+        className={`w-full mt-8 grid grid-cols-1 gap-1 justify-items-center ${
+          stockSymbol.split(":")[0] !== "Vantage"
+            ? "md:grid-cols-2"
+            : "md:grid-cols-1"
+        }  `}
+      >
         <CompanyProfile
           symbol={stockSymbol}
           Theme={theme}
           key={stockSymbol + "profile"}
         />
-        <FundamentalData
-          symbol={stockSymbol}
-          Theme={theme}
-          key={stockSymbol + "fundamental"}
-        />
+        {stockSymbol.split(":")[0] !== "Vantage" && (
+          <FundamentalData
+            symbol={stockSymbol}
+            Theme={theme}
+            key={stockSymbol + "fundamental"}
+          />
+        )}
       </div>
+
+      {marketId === 4 && (
+        <>
+          <CryptoCoinsHeatmap />
+          <CryptocurrencyMarket />
+        </>
+      )}
+
+      {marketId === 5 && (
+        <>
+          <ForexCrossRates />
+          <EconomicCalendar />
+        </>
+      )}
 
       <div className="w-full mt-3 grid grid-cols-1 gap-1 justify-items-center md:grid-cols-2  ">
         <TechnicalAnalysis
