@@ -59,7 +59,7 @@ function Footer() {
                   <li className="pt-2 mb-3">
                     <NavLink
                       className="hover:text-primary-300"
-                      to="opportunities-and-recommendations"
+                      to={ROUTES.PARTNER_APPLICATION}
                     >
                       {t("footer.askAsPartner")}
                     </NavLink>
@@ -90,7 +90,7 @@ function Footer() {
                   <li className="pt-2 mb-3">
                     <NavLink
                       className="hover:text-primary-300"
-                      to="opportunities-and-recommendations"
+                      to={ROUTES.CHATAI}
                     >
                       {t("navbar.chatAI")}
                     </NavLink>

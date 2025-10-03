@@ -42,11 +42,11 @@ function CourseContent() {
           <TabItem title="البورصه السعوديه"></TabItem>
         </Tabs>
         <hr />
-        <div className="coursedetails w-[50%] p-3 flex flex-col gap-5">
+        <div className="coursedetails text-sm sm:text-[16px] w-full md:w-[60%] lg:w-[50%] p-3 flex flex-col gap-5">
           <ol className="flex flex-col  gap-3 mb-5">
             <li>
               <div className="flex justify-between ">
-                <div className="flex justify-between gap-5 ">
+                <div className="gap-1 lg:flex ">
                   <p>١-١ مقدمه حول التحليل الفني و أهميته</p>
                   <p className="text-red-500 font-semibold">(درس مجاني )</p>
                 </div>
@@ -102,7 +102,7 @@ function CourseContent() {
               </div>
             </li>
             <li>
-              <div className="flex gap-5 justify-between">
+              <div className="flex gap-2 justify-between">
                 <p>٣-٣ نصائح و توجيهات للمبتدئين في التحليل الفني</p>
                 <span className="text-green-500">&nbsp;{courseTime}</span>
               </div>

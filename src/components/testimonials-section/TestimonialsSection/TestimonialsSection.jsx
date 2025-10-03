@@ -6,8 +6,13 @@ import { SectionCard } from "../../";
 import { imgReview2, imgReview3 } from "../../../assets";
 import review1 from "../../../assets/imgs/review1.jpeg";
 import review2 from "../../../assets/imgs/client2.jpg";
+import review3 from "../../../assets/imgs/client3.jpg";
+import review4 from "../../../assets/imgs/client4.jpg";
+import review5 from "../../../assets/imgs/client5.jpg";
+import review6 from "../../../assets/imgs/client6.jpg";
 import egyFlag from "../../../assets/imgs/flag.png";
 import phaFlag from "../../../assets/imgs/phalestine.png";
+import saudiFlag from "../../../assets/imgs/sudia.png";
 import qoutesImg from "/src/assets/imgs/quotes.png";
 // External libraries
 import { useTranslation } from "react-i18next";
@@ -35,6 +40,38 @@ function TestimonialsSection() {
       position: "مدير عمليات ",
       flag: phaFlag,
     },
+    {
+      id:3,
+      src: review3,
+      text:"شكرًا من القلب! الكورس فعلاً أضاف لي كتير في مجال التداول. الشرح واضح، عميق، ومقدم من ناس فعلاً محترفة. والمتابعة من خدمة العملاء ممتازة بكل المقاييس.",
+      name:"عبدالله إبراهيم",
+      position:"مدير تنفيذي",
+      flag:egyFlag,
+    },
+     {
+      id:4,
+      src:review4,
+      text:"المحتوى غني ومفيد جدًا، ويقدّم معلومات عملية وفعالة تساعد أي مبتدئ على دخول سوق التداول في الأسهم والفوركس بثقة ووضوح.",
+      name:"حسام عبيد",
+      position:"خبير تحليل بيانات",
+      flag:egyFlag,
+    },
+     {
+      id:5,
+      src:review5,
+      text:"خدمة إدارة الأصول في ستوك سكويرز فاقت توقعاتي ،احترافية عالية، متابعة دقيقة، واستراتيجيات فعلاً مصممة حسب احتياجاتي. حسّيت إن ثروتي في أيد أمينة.",
+      name:"بدر فهدان",
+      position:"رجل أعمال",
+      flag:saudiFlag,
+    },
+     {
+      id:6,
+      src:review6,
+      text:"كنت داخل المستوى الأول وأنا حاسس إن الموضوع هيكون صعب ومش هفهم حاجة، لكن فعلاً التجربة فرقت معايا جدًا. دلوقتي شايف تطور واضح في مستواي ومبسوط جدًا باللي وصلت له. شكراً لكل من ساهم في الرحلة دي!",
+      name:"إبراهيم إمام",
+      position:" أعمال حره",
+      flag:egyFlag,
+    }
   ];
 
   // Slick Slides

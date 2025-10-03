@@ -1,10 +1,7 @@
 import * as Yup from "yup";
 import { isValidPhoneNumber } from "react-phone-number-input";
 export const FormValidation = {
-  name: Yup.string()
-    .min(3, "too short")
-    .max(50, "too long")
-    .required("مطلوب"),
+  name: Yup.string().min(3, "too short").max(50, "too long").required("مطلوب"),
 
   phoneNumber: Yup.string()
     .required("مطلوب")
@@ -17,7 +14,15 @@ export const FormValidation = {
     .required("مطلوب")
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
   birthday: Yup.date()
-    .max(new Date(), " invalid birthday ")
+    .max(
+      new Date(
+        new Date().getFullYear() - 13,
+        new Date().getMonth(),
+        new Date().getDate()
+      ),
+      "You must be at least 13 years old"
+    )
+
     .required("مطلوب"),
   gender: Yup.string()
     .oneOf(["female", "male"], "select the gender")

@@ -23,7 +23,7 @@ function RecordedCourseCard() {
       LinkTo={ROUTES.RECORDED_COURSES}
     >
       <div className="p-2 ">
-        <div className="bg-gradient-to-t from-primary-400 to-primary-100 dark:bg-dark-background text-xs font-semibold rounded-sm  py-[2px] flex">
+        <div className="bg-gradient-to-t from-primary-400 to-primary-100 dark:to-primary-800 dark:text-black text-xs font-semibold rounded-sm  py-[2px] flex">
           <div className="content  w-full text-[10px] px-1 py-8 ">
             <span className="bg-primary text-white px-4 py-0.5 rounded lg:text-[16px]  ">
               ابدأ بناء مستقبل مالي قوي

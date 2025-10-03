@@ -237,9 +237,7 @@ function Topbar({
 
   const renderMobileMenu = (isLoggedIn = false) => (
     <div
-      className={`block md:hidden px-6 dark:bg-dark bg-white dark:bg-black shadow-md transition-transform transDuration-500 ${
-        translateY_topbar ? "transform -translate-y-full" : ""
-      }`}
+      className={`block md:hidden px-6 dark:bg-dark bg-white dark:bg-black shadow-md transition-transform transDuration-500 `}
     >
       <div className="flex-y-center dark:text-dark justify-between py-4">
         {/* REPEATED CONTENT: Logo section is identical in both mobile renders */}

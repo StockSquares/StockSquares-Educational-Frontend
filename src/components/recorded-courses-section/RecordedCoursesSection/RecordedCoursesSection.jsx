@@ -15,7 +15,7 @@ import { RecordedCourseCard } from "../..";
 import CourseView from "../CoursePage/CoursePage";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../routes";
-
+import recordCourseImg from "../../../assets/imgs/recordCourse.jpg";
 export function VideoCard({
   videoTitle,
   instructor,
@@ -30,17 +30,17 @@ export function VideoCard({
 
   return (
     <motion.div
-      className="bg-white shadow-md rounded-lg p-2 flex flex-col gap-2 md:gap-4 relative"
+      className="bg-white dark:bg-darkgray shadow-md rounded-lg p-2 flex flex-col gap-2 md:gap-4 relative"
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.2 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
-      <div className="relative rounded-lg overflow-hidden h-36 md:h-48">
+      <div className="relative rounded-lg overflow-hidden  h-36 md:h-48">
         <img
           src={imageUrl}
           alt="Video Thumbnail"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover "
         />
         <div
           className={`absolute inset-0 flex flex-col items-center justify-center bg-black transition-opacity duration-300 ${
@@ -58,7 +58,7 @@ export function VideoCard({
               />
             </motion.button>
           </Link>
-          <h1 className="text-2xl "> جاري اكمال الدورة ...</h1>
+          <h1 className="text-2xl text-gray-300 "> جاري اكمال الدورة ...</h1>
         </div>
         {progress > 0 && (
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200">
@@ -72,7 +72,7 @@ export function VideoCard({
 
       <div className="flex-1 flex flex-col justify-between">
         <div>
-          <h2 className="text-sm md:text-lg font-bold mb-1 text-gray-800">
+          <h2 className="text-sm md:text-lg font-bold mb-1 dark:text-primary-400 text-gray-800">
             {videoTitle}
           </h2>
           <div className="flex items-center gap-2 mb-2">
@@ -81,10 +81,10 @@ export function VideoCard({
               alt={instructor}
               className="w-6 h-6 rounded-full"
             />
-            <p className="text-xs md:text-sm text-gray-600">{instructor}</p>
+            <p className="text-xs md:text-sm text-gray-600 dark:text-dark-text">{instructor}</p>
           </div>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-xs md:text-sm text-gray-500">
+            <div className="flex items-center gap-2 text-xs md:text-sm text-gray-500 dark:text-dark-text">
               <FontAwesomeIcon icon={faClock} />
               <span>{duration} دقيقة</span>
             </div>
@@ -208,7 +208,10 @@ function VideoGrid() {
       transition={{ duration: 0.5 }}
     >
       <div className="flex justify-between flex-wrap gap-2 items-center mb-8">
-      <h1 className="font-[650] text-2xl border-b-2 border-b-accent-600 pb-2"> اطلع علي أحدث الدورات المتاحه  </h1>
+        <h1 className="font-[650] text-2xl border-b-2 border-b-accent-600 pb-2">
+          {" "}
+          اطلع علي أحدث الدورات المتاحه{" "}
+        </h1>
         <div className="flex  gap-4">
           <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
             تصفية النتائج
@@ -220,23 +223,31 @@ function VideoGrid() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-        {[1, 2].map((_, idx) => (
-          <div>
-            <VideoCard
-              key={idx}
-              videoTitle="تطوير الأعمال"
-              instructor="د. طارق"
-              duration={60}
-              imageUrl="https://via.placeholder.com/400x200"
-              instructorImage="https://via.placeholder.com/100"
-              progress={45}
-            />
-          </div>
-        ))}
+        <div>
+          <VideoCard
+            videoTitle=" أساسيات الاستثمار في الأسواق الماليه"
+            instructor="د. طارق"
+            duration={60}
+            imageUrl={recordCourseImg}
+            instructorImage="https://via.placeholder.com/100"
+            progress={45}
+          />
+        </div>
+
+        <div>
+          <VideoCard
+            videoTitle="رياده الأعمال"
+            instructor="د. طارق"
+            duration={60}
+            imageUrl="https://via.placeholder.com/400x200"
+            instructorImage="https://via.placeholder.com/100"
+            progress={45}
+          />
+        </div>
       </div>
 
       <div className="flex items-center justify-between mt-8 mb-4">
-        <h2 className="text-2xl font-bold text-gray-800">
+        <h2 className="text-2xl font-[650] border-b-2 border-b-accent-600 pb-2 text-gray-800">
           استكشف المزيد من الفيديوهات
         </h2>
         <button className="text-green-600 hover:text-green-700 transition-colors">

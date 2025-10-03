@@ -22,7 +22,7 @@ function Header({children}) {
 
     const isBelowMdBreakpoint = size.width < breakpoints.md.minWidth;
     const isAboveMdBreakpoint = size.width >= breakpoints.md.minWidth;
-    const translateY_bar = scrollDir == 'down' && scrollPosition.top >= 500;
+    const translateY_bar = scrollDir == 'down' && scrollPosition.top >= 900;
     const translateX_bar = (scrollDir == 'down' || scrollDir == 'up') && scrollPosition.top >= 500;
     
     function logout() {
