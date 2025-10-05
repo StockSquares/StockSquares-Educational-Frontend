@@ -18,7 +18,7 @@ export default function FinanceAndBusinessLibrary() {
 
       <div className="w-full min-h-[80vh] mt-6">
         <div className="fixed  p-1">
-          <span className="bg-red-400 absolute left-0 px-2 top-0 rounded-full">
+          <span className="bg-primary-600 absolute left-0 px-2 top-0 rounded-full">
             0
           </span>
           <FontAwesomeIcon
@@ -37,11 +37,11 @@ export default function FinanceAndBusinessLibrary() {
         />
       </div> */}
         <div className="container m-auto flex flex-col gap-5">
-          <div className="sliderCard w-full h-[30vh] bg-red-400"></div>
+          <div className="sliderCard w-full h-[30vh] bg-primary-400"></div>
           <div className="flex flex-col items-start gap-2 mb-2 min-h-[35px]">
             <p className="font-semibold "> التصنيف عبر: </p>
-            <ul className="flex gap-2 items-center  *:border-2 *:border-red-400 *:rounded-lg *:p-1">
-              <li className="bg-red-400"> الكل </li>
+            <ul className="flex gap-2 items-center  *:border-2 *:border-primary-400 *:rounded-lg *:p-1">
+              <li className="bg-primary-400"> الكل </li>
               <li className="bg-gray-50"> الأكثر شراء </li>
               <li className="bg-gray-50"> نسخه مادية أصليه </li>
               <li className="bg-gray-50"> نسخه رقمية ابداعيه </li>
@@ -50,23 +50,23 @@ export default function FinanceAndBusinessLibrary() {
           <div className="grid grid-cols-5 gap-3">
             {[1, 2, 3, 4, 5].map((card, idx) => (
               <div
-                className="bookCard flex flex-col justify-between bg-red-200 h-[30vh]"
+                className="bookCard flex flex-col justify-between bg-gray-50 h-[30vh]"
                 key={idx}
               >
-                <div className="bg-red-500 relative h-[60%]">
+                <div className="bg-primary-500 relative h-[60%]">
                   <FontAwesomeIcon
                     icon={faSquarePlus}
                     className="absolute bottom-0 right-0 text-xl"
                     onClick={() => setIsOpen(true)}
                   />
-                  <span className="absolute top-0 left-0 px-1 rounded-br-lg bg-red-300">
+                  <span className="absolute top-0 left-0 px-1 rounded-br-lg bg-primary-300">
                     category
                   </span>
                   <img />
                 </div>
                 <div className="p-2"> BookDetails is here </div>
                 <div className="flex items-center mb-1 p-2">
-                  <button className="bg-red-300 px-5 py-1 rounded-lg transition-all border-2 border-red-300 hover:bg-red-100 ">
+                  <button className="bg-primary-500 px-5 py-1 rounded-lg transition-all border-2 border-primary-300 hover:bg-primary-100 ">
                     {" "}
                     اضافه الي العربه{" "}
                     <FontAwesomeIcon icon={faBasketShopping} className="mx-1" />

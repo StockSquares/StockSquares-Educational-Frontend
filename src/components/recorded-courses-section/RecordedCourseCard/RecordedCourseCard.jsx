@@ -55,11 +55,11 @@ function RecordedCourseCard() {
 
         {/* تفاصيل الدورة */}
         <div className="flex-y-center justify-between mt-4 ">
-          <div>
-            <h3 className="mb-2 text-base font-semibold">
+          <div className="w-full flex flex-col items-center">
+            <h3 className="mb-2 text-lg font-semibold">
               أساسيات الاستثمار والتداول في الأسواق المالية
             </h3>
-            <ul className="row">
+            <ul className="row w-full flex justify-around">
               <li className="flex-y-center pe-6">
                 <FontAwesomeIcon className="px-1" icon={circleUser} />
                 <span>أ/طارق الليثي</span>
@@ -84,12 +84,12 @@ function RecordedCourseCard() {
             
           </div> */}
         </div>
-        <div className="mt-3">
+        <div className="mt-3 flex justify-center">
           <Button
             btnText={"ابدأ بدون اشتراك"}
             textColor="black"
             bgColor="accent"
-            px="px-4 py-1 md:px-6"
+            px="px-4 py-1 md:px-7"
             linkTo={ROUTES.RECORDED_COURSES}
           />
         </div>

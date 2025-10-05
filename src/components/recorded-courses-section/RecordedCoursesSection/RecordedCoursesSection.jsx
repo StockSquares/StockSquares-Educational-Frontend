@@ -44,7 +44,7 @@ export function VideoCard({
         />
         <div
           className={`absolute inset-0 flex flex-col items-center justify-center bg-black transition-opacity duration-300 ${
-            isHovered ? "bg-opacity-60" : "bg-opacity-40"
+            isHovered ? "bg-opacity-40" : "bg-opacity-20"
           }`}
         >
           <Link to={ROUTES.COURSECONTENT}>
@@ -222,7 +222,7 @@ function VideoGrid() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1  sm:grid-cols-2 gap-5">
         <div>
           <VideoCard
             videoTitle=" أساسيات الاستثمار في الأسواق الماليه"

@@ -2,7 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import vantage from "../../../assets/imgs/vantage.jpg";
+import additionalLogo from "../../../assets/imgs/additionalLogo.png";
 import cardImg from "/src/assets/imgs/1.webp";
 import { Link } from "react-router-dom";
 // import style from "./Ad.module.css";
@@ -10,7 +11,38 @@ import { Link } from "react-router-dom";
 function Ad({ adLocation }) {
   const [ads, setAds] = useState([]);
   const [mainAds, setMainAds] = useState([]);
-  const [courseAds, setCourseAds] = useState([]);
+  const [courseAds, setCourseAds] = useState([
+    {
+      id: 1,
+      link: "https://www.google.com/",
+      image: vantage,
+      title: "Vantage",
+    },
+    {
+      id: 2,
+      link: "www.google.com",
+      image: additionalLogo,
+      title: "additional",
+    },
+    {
+      id: 3,
+      link: "www.google.com",
+      image: additionalLogo,
+      title: "additional",
+    },
+    {
+      id: 4,
+      link: "www.google.com",
+      image: additionalLogo,
+      title: "additional",
+    },
+    {
+      id: 5,
+      link: "www.google.com",
+      image: additionalLogo,
+      title: "additional",
+    },
+  ]);
 
   const getData = async () => {
     try {
@@ -70,20 +102,24 @@ function Ad({ adLocation }) {
     <div className="w-full ">
       {adLocation === "course" ? (
         <div className="w-full   p-3">
-        <h2 className="font-semibold text-lg mb-2"> عروض شركات الاستثمار والتداول </h2>
+          <h2 className="font-semibold text-lg mb-2">
+            {" "}
+            عروض شركات الاستثمار والتداول{" "}
+          </h2>
           <Slider ref={sliderRef} {...settings} dir="rtl">
             {courseAds.map((ad) => (
               <div
                 key={ad.id}
-                className="ad w-1/3 h-[100px] p-1 rounded-lg overflow-hidden"
+                className="ad w-1/3  h-[100px] p-1 rounded-lg overflow-hidden"
               >
-                <Link to={ad.link}>
+                <a href={ad.link}>
                   <img
-                    src={`data:image/*;base64,${ad.image}`}
-                    className="object-contain w-full h-[60px] rounded-lg"
+                    // src={`data:image/*;base64,${ad.image}`}
+                    src={ad.image}
+                    className="object-fill px-2 w-full h-[60px] rounded-lg"
                     alt={ad.title}
                   />
-                </Link>
+                </a>
                 <p>desc</p>
               </div>
             ))}

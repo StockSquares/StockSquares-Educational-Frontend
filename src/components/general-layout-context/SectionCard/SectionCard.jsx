@@ -25,7 +25,7 @@ function SectionCard({
       <div
         className={`shadow ${wrapperClass} bg-lightgray dark:bg-dark-background dark:text-dark h-full`}
       >
-        <header className="flex-y-center justify-between bg-primary p-2 mb-0">
+        <header className="flex-y-center justify-between bg-primary min-h-[45px] p-2 mb-0">
           <Link to={LinkTo} className="text-white underline md:no-underline">
             {heading}
           </Link>
