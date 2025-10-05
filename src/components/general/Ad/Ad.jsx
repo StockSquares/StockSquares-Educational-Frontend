@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import vantage from "../../../assets/imgs/vantage.jpg";
+import mainImg from "../../../assets/imgs/1.webp";
 import additionalLogo from "../../../assets/imgs/additionalLogo.png";
 import cardImg from "/src/assets/imgs/1.webp";
 import { Link } from "react-router-dom";
@@ -10,7 +11,14 @@ import { Link } from "react-router-dom";
 
 function Ad({ adLocation }) {
   const [ads, setAds] = useState([]);
-  const [mainAds, setMainAds] = useState([]);
+  const [mainAds, setMainAds] = useState([
+     {
+      id: 1,
+      link: "www.google.com",
+      image: mainImg ,
+      title: "main image",
+    },
+  ]);
   const [courseAds, setCourseAds] = useState([
     {
       id: 1,
@@ -136,7 +144,8 @@ function Ad({ adLocation }) {
                 >
                   <Link to={ad.link}>
                     <img
-                      src={`data:image/*;base64,${ad.image}`}
+                    src={ad.image}
+                      // src={`data:image/*;base64,${ad.image}`}
                       alt={ad.title}
                       className="object-cover w-full h-full rounded-lg block"
                     />
