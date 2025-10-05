@@ -40,11 +40,11 @@ export function VideoCard({
         <img
           src={imageUrl}
           alt="Video Thumbnail"
-          className="w-full h-full object-cover "
+          className="w-full h-[110%] object-fill  "
         />
         <div
           className={`absolute inset-0 flex flex-col items-center justify-center bg-black transition-opacity duration-300 ${
-            isHovered ? "bg-opacity-40" : "bg-opacity-20"
+            isHovered ? "bg-opacity-30" : "bg-opacity-10"
           }`}
         >
           <Link to={ROUTES.COURSECONTENT}>
@@ -58,7 +58,7 @@ export function VideoCard({
               />
             </motion.button>
           </Link>
-          <h1 className="text-2xl text-gray-300 "> جاري اكمال الدورة ...</h1>
+          <h1 className="text-2xl text-gray-300 "> جاري اعداد و تصوير الدورة ...</h1>
         </div>
         {progress > 0 && (
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200">

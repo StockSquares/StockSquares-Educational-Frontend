@@ -11,46 +11,8 @@ import { Link } from "react-router-dom";
 
 function Ad({ adLocation }) {
   const [ads, setAds] = useState([]);
-  const [mainAds, setMainAds] = useState([
-     {
-      id: 1,
-      link: "www.google.com",
-      image: mainImg ,
-      title: "main image",
-    },
-  ]);
-  const [courseAds, setCourseAds] = useState([
-    {
-      id: 1,
-      link: "https://www.google.com/",
-      image: vantage,
-      title: "Vantage",
-    },
-    {
-      id: 2,
-      link: "www.google.com",
-      image: additionalLogo,
-      title: "additional",
-    },
-    {
-      id: 3,
-      link: "www.google.com",
-      image: additionalLogo,
-      title: "additional",
-    },
-    {
-      id: 4,
-      link: "www.google.com",
-      image: additionalLogo,
-      title: "additional",
-    },
-    {
-      id: 5,
-      link: "www.google.com",
-      image: additionalLogo,
-      title: "additional",
-    },
-  ]);
+  const [mainAds, setMainAds] = useState([]);
+  const [courseAds, setCourseAds] = useState([]);
 
   const getData = async () => {
     try {
@@ -122,8 +84,8 @@ function Ad({ adLocation }) {
               >
                 <a href={ad.link}>
                   <img
-                    // src={`data:image/*;base64,${ad.image}`}
-                    src={ad.image}
+                     src={`data:image/*;base64,${ad.image}`}
+                    // src={ad.image}
                     className="object-fill px-2 w-full h-[60px] rounded-lg"
                     alt={ad.title}
                   />
@@ -144,8 +106,8 @@ function Ad({ adLocation }) {
                 >
                   <Link to={ad.link}>
                     <img
-                    src={ad.image}
-                      // src={`data:image/*;base64,${ad.image}`}
+                      // src={ad.image}
+                      src={`data:image/*;base64,${ad.image}`}
                       alt={ad.title}
                       className="object-cover w-full h-full rounded-lg block"
                     />
