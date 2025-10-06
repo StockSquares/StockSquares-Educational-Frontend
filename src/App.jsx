@@ -45,8 +45,11 @@ const FinanceAndBusinessLibrary = lazy(() =>
 const PartnerApplication = lazy(() =>
   import("./pages/PartnerApplication/PartnerApplication")
 );
+// const TryTradingForFree = lazy(() =>
+//   import("./pages/trading/StockTabs")
+// );
 const TryTradingForFree = lazy(() =>
-  import("./pages/trading/StockTabs")
+  import("./pages/TryTradingForFree/TryTradingForFree")
 );
 const VIPInvestorServices = lazy(() =>
   import("./pages/VIPInvestorServices/VIPInvestorServices")
@@ -70,7 +73,7 @@ const RequestConsultation = lazy(() =>
 //  const InlineBlog = lazy(() => import("./pages/InlineBlog/InlineBlog"));
 const CourseContent = lazy(() => import("./pages/CourseContent/CourseContent"));
 const JoinAsTrainer = lazy(() => import("./pages/JoinAsTrainer/Joincomp"));
-const Cart = lazy(()=> import("./pages/FinanceAndBusinessLibrary/Cart"));
+const Cart = lazy(() => import("./pages/FinanceAndBusinessLibrary/Cart"));
 const Admin = lazy(() => import("./pages/Admin/Admin"));
 const Employees = lazy(() => import("./pages/employeesPortal/Employees"));
 const Client = lazy(() => import("./pages/Admin/Client"));
@@ -97,6 +100,7 @@ const Partner = lazy(() => import("./pages/PartnerPortal/Partner"));
 // for (const [key, Path] of Object.entries(lazyPages)) {
 //   pages[key] = lazy(() => import(`${Path}`));
 // }import { jobStatusProvider } from './Context/JobStatusContext';
+// import TryTradingForFree from './pages/TryTradingForFree/TryTradingForFree';
 
 // Create router instance
 const router = createBrowserRouter([
@@ -172,7 +176,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      
+
       {
         path: ROUTES.TRAINING_AND_EDUCATION,
         element: <TrainingAndEducation />,
@@ -292,7 +296,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-     
+
       {
         path: ROUTES.TRAINER,
         element: (
