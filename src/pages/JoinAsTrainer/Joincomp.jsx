@@ -7,7 +7,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 function Joincomp() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [index, setIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState([]);
   const [error, setError] = useState(false);

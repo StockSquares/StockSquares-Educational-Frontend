@@ -7,7 +7,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Questionare from "../../components/general/questionare/Questionare";
 function InvestorSurvey() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [index, setIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [error, setError] = useState(false);
@@ -114,6 +114,7 @@ function InvestorSurvey() {
         </div>
       ) : (
         <Questionare
+          title={"استبيان شخصيه مستثمر"}
           next={next}
           previous={previous}
           index={index}

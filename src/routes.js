@@ -43,5 +43,5 @@ export const ROUTES = {
   CONFIRMCODE: "/confirmCode",
   RESETPASSWORD: "/resetPassword",
   VERIFYOTP: "/verifyOtp",
-  PARTNER: "/Partner",
+  PARTNER: "/Partner/*",
 };

@@ -80,11 +80,11 @@ function TrainingAndEducation() {
     <>
       <div className="flex flex-col lg:flex-row items-center px-4 md:px-8 py-8 md:py-1 ">
         <div className="w-full lg:w-2/3 flex flex-col items-start space-y-5 lg:pr-6 ">
-          <p className="text-2xl mt-5 lg:text-3xl font-bold text-center lg:text-right ">
-            اكتسب مهارة التداول وانضم إلى المستثمرين{" "}
+          <p className="text-2xl mt-1 lg:text-3xl font-bold text-center lg:text-right ">
+            {t("TrainingAndEducation.gainSkills")}
             <div className="inline-block items-end">
               {" "}
-              <span className="text-green-500 text-4xl "> الناجحين </span>{" "}
+              <span className="text-green-500 text-4xl "> {t("TrainingAndEducation.successful_people")} </span>{" "}
               <img className="w-[110px] mt-2" src={line} />{" "}
             </div>
           </p>
@@ -96,7 +96,7 @@ function TrainingAndEducation() {
                   <div className="flex flex-col gap-3">
                     <p style={{ letterSpacing: "1.5px" }}>
                       <FontAwesomeIcon icon={faCheck} className={styles.icon} />
-                      تعلم التداول عبر الإنترنت مع
+                      {t("TrainingAndEducation.learnTradingVia")}
                       <span
                         style={{
                           color: "var(--primary-color-light)",
@@ -106,18 +106,18 @@ function TrainingAndEducation() {
                         }}
                       >
                         {" "}
-                        مدرب شخصي
+                        {t("TrainingAndEducation.personalTrainer")}
                       </span>
                     </p>
                     <p>
                       {" "}
                       <FontAwesomeIcon icon={faCheck} className={styles.icon} />
-                      تدريب تفاعلي متابعة دورية مستمرة في التداول
+                      {t("TrainingAndEducation.interactiveTraining")}
                     </p>
 
                     <p>
                       <FontAwesomeIcon icon={faCheck} className={styles.icon} />
-                      أفضل مدربين التداول المعتمدين في الوطن العربي
+                      {t("TrainingAndEducation.bestTrainers")}
                     </p>
                   </div>
 
@@ -126,13 +126,13 @@ function TrainingAndEducation() {
                       to={ROUTES.LEVELEXAM}
                       className={`${styles.buttonTrial} font-semibold   text-black  rounded-lg shadow-lg hover:bg-accent-800 `}
                     >
-                      اختبار تحديد المستوي
+                      {t("TrainingAndEducation.examLevel")}
                     </Link>
                     <Link
                       to={ROUTES.RESERVATION}
                       className={`${styles.buttonTrial}  font-semibold  bg-primary-900 text-white  rounded-lg shadow-lg hover:bg-primary-800 `}
                     >
-                      احجز مدربك الشخصي
+                      {t("TrainingAndEducation.bookYourTrainer")}
                     </Link>
                   </div>
                   <img

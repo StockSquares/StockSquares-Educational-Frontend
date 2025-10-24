@@ -36,8 +36,8 @@ function BookCard() {
 
             {/* Book Details */}
             <div className="text-center dark:text-dark">
-                <p>علم المال</p>
-                <p className="mb-2">200 جنيه</p>
+                <p>  {t("BookCard.field_of_money")}  </p>
+                <p className="mb-2"> {t("BookCard.200EGP")}    </p>
 
                 {/* Animated Button */}
                 <Button 

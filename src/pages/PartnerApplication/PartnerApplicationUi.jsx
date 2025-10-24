@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../routes";
 import PhoneInput from "react-phone-number-input";
 import styles from "../Register/Register.module.css";
-import 'react-phone-number-input/style.css';
+import "react-phone-number-input/style.css";
 
 function PartnerApplicationUi({
   handleOptionClick,
@@ -325,6 +325,7 @@ function PartnerApplicationUi({
           </div>
         ) : (
           <Questionare
+            title={"طلب العمل كشريك"}
             next={next}
             previous={previous}
             index={index}

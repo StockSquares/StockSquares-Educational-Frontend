@@ -97,7 +97,11 @@ function BlogUi({
           </div>
         </div>
       ) : (
-        <div dangerouslySetInnerHTML={{ __html: selectedArticle.body }} className="px-3"></div>
+        <div className="w-[100%] flex justify-center">
+        <div
+          dangerouslySetInnerHTML={{ __html: selectedArticle.body }}
+          className={` w-[80%] flex flex-col  px-5 [&_img]:hidden lg:[&_img]:block  ${style.articleBody} `}
+        ></div></div>
       )}
     </div>
   );

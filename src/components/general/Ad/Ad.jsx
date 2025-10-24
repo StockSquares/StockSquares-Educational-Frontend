@@ -7,6 +7,8 @@ import mainImg from "../../../assets/imgs/1.webp";
 import additionalLogo from "../../../assets/imgs/additionalLogo.png";
 import cardImg from "/src/assets/imgs/1.webp";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 // import style from "./Ad.module.css";
 
 function Ad({ adLocation }) {
@@ -68,13 +70,17 @@ function Ad({ adLocation }) {
     ],
   };
 
+    const { t } = useTranslation();
+  
+    useEffect(() => {}, []);
+
   return (
     <div className="w-full ">
       {adLocation === "course" ? (
         <div className="w-full   p-3">
           <h2 className="font-semibold text-lg mb-2">
-            {" "}
-            عروض شركات الاستثمار والتداول{" "}
+            
+             {t("ad.ad")}
           </h2>
           <Slider ref={sliderRef} {...settings} dir="rtl">
             {courseAds.map((ad) => (

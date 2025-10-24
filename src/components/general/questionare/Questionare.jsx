@@ -10,11 +10,12 @@ function Questionare({
   handleOptionClick,
   questions,
   error,
+  title
 }) {
   return (
     <>
       <h1>
-        <FontAwesomeIcon icon={faHandshake} /> طلب العمل كشريك
+        <FontAwesomeIcon icon={faHandshake} /> {title}
       </h1>
       <hr />
       <h2>

@@ -77,7 +77,6 @@ function LoginUi({ loginForm, isError, handleSubmit }) {
                 <div className="flex flex-col mb-3 sm:flex-row gap-3">
                   <SignInWithGoogle />
 
-                  <SignInWithFacebook />
                 </div>
                 <p className={`${styles.registerLink} dark:text-dark-text`}>
                   ليس لديك حساب؟ <Link to="/register">إنشاء حساب جديد</Link>

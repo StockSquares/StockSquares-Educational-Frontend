@@ -213,6 +213,83 @@
     "proPrice": "7500",
     "bitCoinStock": "Cryptocurrency Course"
 
+},
+"RecordedCourse": {
+    "recordedCourse": "Recorded Courses",
+    "start_Bulding_Strong_Future_Money": "Build Your Financial Future",
+    "learning_Gold_Coins": "Learn Stock, Currency, and Gold Trading",
+    "Tarek_Ellithy": "Mr. Tarek Ellithy",
+    "Certified Trainer": "Investment Consultant and Certified Trainer",
+    "Business_Development_Consultant_at_several_financial_companies": "Business Development Consultant at several financial companies",
+    "BasicInvestment": "Fundamentals of Investment and Trading in Financial Markets",
+    "55Min": " 55 Minutes",
+    "Certificate": "Certificate",
+    "start_with_no_subscribe": "Start Without Subscription",
+    "LookForNewestCourses": "Check out the latest available courses",
+    "ExploreMore": "Explore more videos",
+    "showAll": "Show all",
+    "loadVideo": "The course is being prepared..."
+
+},
+"ad": {
+    "ad": "Investment and Trading Company Offers"
+},
+"BookCard": {
+    "field_of_money": "The Science of Money",
+    "200EGP": "200 EGP"
+},
+"testimonials": {
+  "review1": {
+    "text": "I tried to learn trading on my own, but my results weren’t successful. When my friend recommended Stock Squares and I learned with a professional trainer, my performance became disciplined and successful.",
+    "name": "Mohamed Samir",
+    "position": "(Supply Chain Manager)"
+  },
+
+  "review2": {
+    "text": "I was confused at the beginning of my trading journey, but after joining Stock Squares, I gained clear understanding and effective strategies. The practical training helped me achieve real results and become more confident in my decisions.",
+    "name": "Anas Ayoub",
+    "position": "(Operations Manager)"
+  },
+
+  "review3": {
+    "text": "Heartfelt thanks! The course truly added great value to my trading knowledge. The explanation was clear, deep, and delivered by real professionals. Customer service follow-up was excellent in every way.",
+    "name": "Abdullah Ibrahim",
+    "position": "(Executive Director)"
+  },
+
+  "review4": {
+    "text": "The content is rich and highly beneficial, offering practical and effective information that helps any beginner enter the stock and forex markets with confidence and clarity.",
+    "name": "Hossam Obeid",
+    "position": "(Data Analysis Expert)"
+  },
+
+  "review5": {
+    "text": "The asset management service at Stock Squares exceeded my expectations — high professionalism, precise follow-up, and strategies truly tailored to my needs. I felt my wealth was in safe hands.",
+    "name": "Badr Fahdan",
+    "position": "(Businessman)"
+  },
+
+  "review6": {
+    "text": "When I joined the first level, I thought it would be difficult and I wouldn’t understand much, but the experience really made a difference. Now I see clear progress in my skills and I’m very happy with how far I’ve come. Thanks to everyone who contributed to this journey!",
+    "name": "Ibrahim Emam",
+    "position": "(Freelancer)"
+  }
+},
+
+"TrainingAndEducation": {
+  "gainSkills": "Gain trading skills and join successful investors",
+  "successful_people": "successful people",
+  "learnTradingVia": "Learn trading online with a",
+  "personalTrainer": "personal trainer",
+  "interactiveTraining": "Interactive training with continuous follow-up in trading",
+  "bestTrainers": "The best certified trading trainers in the Arab world",
+  "examLevel": "Level assessment test",
+  "bookYourTrainer": "Book your personal trainer"
 }
+
+
+
+
+
 
 }

@@ -27,49 +27,49 @@ function TestimonialsSection() {
     {
       id: 1,
       src: review1,
-      text: "حاولت تعلم التداول بمفردي ولكن نتائجى لم تكن ناجحة، وعندما رشح لي صديقي ستوك سكويرز وتعلمت مع مدرب متخصص أصبح أدائي منضبط وناجح.",
-      name: "محمد سمير",
-      position: "مدير سلاسل توريد",
+      text: t('testimonials.review1.text') ,
+      name:  t('testimonials.review1.name'),
+      position: t('testimonials.review1.position'),
       flag: egyFlag,
     },
     {
       id: 2,
       src: review2,
-      text: " كنت مشتت في بداية تعلمي التداول، لكن بعد التحاقي بستوك سكويرز اكتسبت فهم واضح واستراتيجيات فعالة. التعليم العملي ساعدني أحقق نتائج ملموسة وأصبحت أكثر ثقة في قراراتي.",
-      name: " أنس أيوب",
-      position: "مدير عمليات ",
+      text: t('testimonials.review2.text'),
+      name:  t('testimonials.review2.name'),
+      position: t('testimonials.review2.position'),
       flag: phaFlag,
     },
     {
       id:3,
       src: review3,
-      text:"شكرًا من القلب! الكورس فعلاً أضاف لي كتير في مجال التداول. الشرح واضح، عميق، ومقدم من ناس فعلاً محترفة. والمتابعة من خدمة العملاء ممتازة بكل المقاييس.",
-      name:"عبدالله إبراهيم",
-      position:"مدير تنفيذي",
+      text: t('testimonials.review3.text'),
+      name:  t('testimonials.review3.name'),
+      position: t('testimonials.review3.position'),
       flag:egyFlag,
     },
      {
       id:4,
       src:review4,
-      text:"المحتوى غني ومفيد جدًا، ويقدّم معلومات عملية وفعالة تساعد أي مبتدئ على دخول سوق التداول في الأسهم والفوركس بثقة ووضوح.",
-      name:"حسام عبيد",
-      position:"خبير تحليل بيانات",
+      text: t('testimonials.review4.text'),
+      name:  t('testimonials.review4.name'),
+      position: t('testimonials.review4.position'),
       flag:egyFlag,
     },
      {
       id:5,
       src:review5,
-      text:"خدمة إدارة الأصول في ستوك سكويرز فاقت توقعاتي ،احترافية عالية، متابعة دقيقة، واستراتيجيات فعلاً مصممة حسب احتياجاتي. حسّيت إن ثروتي في أيد أمينة.",
-      name:"بدر فهدان",
-      position:"رجل أعمال",
+      text: t('testimonials.review5.text'),
+      name:  t('testimonials.review5.name'),
+      position: t('testimonials.review5.position'),
       flag:saudiFlag,
     },
      {
       id:6,
       src:review6,
-      text:"كنت داخل المستوى الأول وأنا حاسس إن الموضوع هيكون صعب ومش هفهم حاجة، لكن فعلاً التجربة فرقت معايا جدًا. دلوقتي شايف تطور واضح في مستواي ومبسوط جدًا باللي وصلت له. شكراً لكل من ساهم في الرحلة دي!",
-      name:"إبراهيم إمام",
-      position:" أعمال حره",
+      text: t('testimonials.review6.text'),
+      name:  t('testimonials.review6.name'),
+      position: t('testimonials.review6.position'),
       flag:egyFlag,
     }
   ];
@@ -126,7 +126,7 @@ function TestimonialsSection() {
                     {item.name} &nbsp;{" "}
                     <span className=" font-semibold text-primary-700">
                       {" "}
-                      ({item.position})
+                      {item.position}
                     </span>{" "}
                   </p>
                   <img

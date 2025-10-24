@@ -13,9 +13,12 @@ import {
 import { motion } from "framer-motion";
 import { RecordedCourseCard } from "../..";
 import CourseView from "../CoursePage/CoursePage";
+import { useTranslation } from "react-i18next";
+
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../routes";
 import recordCourseImg from "../../../assets/imgs/recordCourse.jpg";
+import dummyImg from "../../../assets/imgs/1.webp";
 export function VideoCard({
   videoTitle,
   instructor,
@@ -27,6 +30,7 @@ export function VideoCard({
   const [isHovered, setIsHovered] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <motion.div
@@ -58,7 +62,9 @@ export function VideoCard({
               />
             </motion.button>
           </Link>
-          <h1 className="text-2xl text-gray-300 "> جاري اعداد و تصوير الدورة ...</h1>
+          <h1 className="text-xl text-gray-300 ">
+            {t('RecordedCourse.loadVideo')}
+          </h1>
         </div>
         {progress > 0 && (
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200">
@@ -81,7 +87,9 @@ export function VideoCard({
               alt={instructor}
               className="w-6 h-6 rounded-full"
             />
-            <p className="text-xs md:text-sm text-gray-600 dark:text-dark-text">{instructor}</p>
+            <p className="text-xs md:text-sm text-gray-600 dark:text-dark-text">
+              {instructor}
+            </p>
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 text-xs md:text-sm text-gray-500 dark:text-dark-text">
@@ -185,7 +193,7 @@ function VideoGrid() {
       videoTitle: "تطوير الأعمال",
       instructor: "د. طارق",
       duration: 60,
-      imageUrl: "https://via.placeholder.com/400x200",
+      imageUrl: dummyImg,
       instructorImage: "https://via.placeholder.com/100",
       progress: 75,
     },
@@ -193,12 +201,13 @@ function VideoGrid() {
       videoTitle: "أساسيات تطوير الأعمال",
       instructor: "د. طارق",
       duration: 45,
-      imageUrl: "https://via.placeholder.com/400x200",
+      imageUrl: dummyImg,
       instructorImage: "https://via.placeholder.com/100",
       progress: 30,
     },
     // ... rest of the video data ...
   ];
+  const { t } = useTranslation();
 
   return (
     <motion.div
@@ -210,7 +219,7 @@ function VideoGrid() {
       <div className="flex justify-between flex-wrap gap-2 items-center mb-8">
         <h1 className="font-[650] text-2xl border-b-2 border-b-accent-600 pb-2">
           {" "}
-          اطلع علي أحدث الدورات المتاحه{" "}
+          {t("RecordedCourse.LookForNewestCourses")}
         </h1>
         <div className="flex  gap-4">
           <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
@@ -229,7 +238,7 @@ function VideoGrid() {
             instructor="د. طارق"
             duration={60}
             imageUrl={recordCourseImg}
-            instructorImage="https://via.placeholder.com/100"
+            instructorImage={"https://via.placeholder.com/100"}
             progress={45}
           />
         </div>
@@ -239,8 +248,8 @@ function VideoGrid() {
             videoTitle="رياده الأعمال"
             instructor="د. طارق"
             duration={60}
-            imageUrl="https://via.placeholder.com/400x200"
-            instructorImage="https://via.placeholder.com/100"
+            imageUrl={dummyImg}
+            instructorImage={"https://via.placeholder.com/100"}
             progress={45}
           />
         </div>
@@ -248,10 +257,10 @@ function VideoGrid() {
 
       <div className="flex items-center justify-between mt-8 mb-4">
         <h2 className="text-2xl font-[650] border-b-2 border-b-accent-600 pb-2 text-gray-800">
-          استكشف المزيد من الفيديوهات
+          {t("RecordedCourse.ExploreMore")}
         </h2>
         <button className="text-green-600 hover:text-green-700 transition-colors">
-          عرض الكل
+          {t("RecordedCourse.showAll")}
         </button>
       </div>
       <VideoSlider videos={videoData} />
