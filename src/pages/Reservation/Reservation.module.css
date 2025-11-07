@@ -109,5 +109,5 @@ input[type="radio"] {
     }
 }
 .rtl {
-    direction: rtl;
+    /* direction: rtl; */
   }

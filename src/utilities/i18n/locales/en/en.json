@@ -1,208 +1,204 @@
 {
-    "logo": "Stock Squares",
-    "auth": {
-        "login": "Login",
-        "signup": "Sign Up",
-        "signout": "Sign Out"
+  "logo": "Stock Squares",
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "signout": "Sign Out"
+  },
+  "general": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "yes": "Yes",
+    "no": "No",
+    "submit": "Submit",
+    "viewMore": "View More",
+    "edit": "Edit",
+    "delete": "Delete",
+    "update": "Update",
+    "moreInfo": "More Information"
+  },
+  "buttons": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "contactUs": "Contact Us",
+    "tryForFree": "Try for Free",
+    "subscribe": "Subscribe",
+    "readMore": "Read More"
+  },
+  "notifications": {
+    "label": "Notifications",
+    "newMessage": "You have a new message",
+    "updateAvailable": "A new update is available",
+    "courseCompleted": "Congratulations! You’ve completed the course"
+  },
+  "topbar": {},
+  "navbar": {
+    "home": "Home",
+    "trainingAndEducation-1": "Training And Education",
+    "recordedCourses-2": "Recorded Courses",
+    "opportunitiesAndRecommendations-3": "Opportunities And Recommendations",
+    "financeAndBusinessLibrary-4": "Finance And Business Library",
+    "partnerApplication-5": "Partner Application",
+    "trainingAndEducation": "Education Hub",
+    "recordedCourses": "Learning Library",
+    "opportunitiesAndRecommendations": "Investment Insights",
+    "financeAndBusinessLibrary": "Finance Library",
+    "educationalBlog": "Educational Blog",
+    "partnerApplication": "Become a Partner",
+    "aboutUs": "About Us",
+    "ourTeam": "Our Team",
+    "successPartners": "Success Partners",
+    "careers": "Careers",
+    "investorPersonalitySurvey": "Investor Personality Survey",
+    "tryTradingForFree": "Try Trading for Free",
+    "tryTradingForFree-sm": "Try Trading",
+    "chatAI": "Basir AI Recommendations",
+    "chatAI-sm": "Basir AI Recommendations"
+  },
+  "footer": {
+    "siteMap": "Site Map",
+    "ourServices": "Our Services",
+    "contactUs": {
+      "title": "Contact Us",
+      "phone-1": "010 0000 0000",
+      "address-1": "Headquarters Address",
+      "email": "company's/hr's email"
     },
-    "general": {
-        "loading": "Loading...",
-        "save": "Save",
-        "cancel": "Cancel",
-        "back": "Back",
-        "next": "Next",
-        "yes": "Yes",
-        "no": "No",
-        "submit": "Submit",
-        "viewMore": "View More",
-        "edit": "Edit",
-        "delete": "Delete",
-        "update": "Update",
-        "moreInfo": "More Information"
+    "subscribe": {
+      "title": "Get the Latest News and Free Courses",
+      "btn": "Subscribe Now"
     },
-    "buttons": {
-        "login": "Login",
-        "signup": "Sign Up",
-        "logout": "Logout",
-        "contactUs": "Contact Us",
-        "tryForFree": "Try for Free",
-        "subscribe": "Subscribe",
-        "readMore": "Read More"
+    "followUs": "Follow Us",
+    "socialLinks": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "telegram": "Telegram",
+      "tiktok": "TikTok",
+      "x": "X (formerly Twitter)",
+      "youtube": "YouTube"
+    }
+  },
+  "sections": {
+    "about": {
+      "title": "Why Stock Squares?",
+      "feature_1": "Certified Investment Experts",
+      "feature_2": "Hands-on Simulation Training",
+      "feature_3": "Receive a Training Certificate",
+      "feature_4": "Innovation and Development",
+      "feature_5": "Satisfaction Rate: 96%"
     },
-    "notifications": {
-        "label": "Notifications",
-        "newMessage": "You have a new message",
-        "updateAvailable": "A new update is available",
-        "courseCompleted": "Congratulations! You’ve completed the course"
+    "bookstore": {
+      "title": "Finance and Business Library",
+      "bookCard": {
+        "btn": "Order Now"
+      },
+      "tabs": {
+        "popular": "Most Popular"
+      }
     },
-    "topbar": {
+    "blog": {
+      "title": "Educational Blog"
     },
-    "navbar": {
-        "home": "Home",
-        "trainingAndEducation-1": "Training And Education",
-        "recordedCourses-2": "Recorded Courses",
-        "opportunitiesAndRecommendations-3": "Opportunities And Recommendations",
-        "financeAndBusinessLibrary-4": "Finance And Business Library",
-        "partnerApplication-5": "Partner Application",
-        "trainingAndEducation": "Education Hub",
-        "recordedCourses": "Learning Library",
-        "opportunitiesAndRecommendations": "Investment Insights",
-        "financeAndBusinessLibrary": "Finance Library",
-        "educationalBlog": "Educational Blog",
-        "partnerApplication": "Become a Partner",
-        "aboutUs": "About Us",
-        "ourTeam": "Our Team",
-        "successPartners": "Success Partners",
-        "careers": "Careers",
-        "investorPersonalitySurvey": "Investor Personality Survey",
-        "tryTradingForFree": "Try Trading for Free",
-        "tryTradingForFree-sm": "Try Trading",
-        "chatAI": "Basir AI Recommendations",
-        "chatAI-sm": "Basir AI Recommendations"
+    "PracticalTraining": {
+      "title": "Practical personal Training",
+
+      "btn": "Join As A Personal Trainer",
+      "trainingCard": {
+        "btn": "Book trainer"
+      }
     },
-    "footer": {
-        "siteMap": "Site Map",
-        "ourServices": "Our Services",
-        "contactUs": {
-            "title": "Contact Us",
-            "phone-1": "010 0000 0000",
-            "address-1": "Headquarters Address",
-            "email": "company's/hr's email"
-        },
-        "subscribe": {
-            "title": "Get the Latest News and Free Courses",
-            "btn": "Subscribe Now"
-        },
-        "followUs": "Follow Us",
-        "socialLinks": {
-            "facebook": "Facebook",
-            "instagram": "Instagram",
-            "telegram": "Telegram",
-            "tiktok": "TikTok",
-            "x": "X (formerly Twitter)",
-            "youtube": "YouTube"
+    "recordedCourses": {
+      "title": "Recorded Courses",
+      "courseSection": {
+        "courseCard": {
+          "btn": "Start For Free"
         }
-    },  
-    "sections": {
-        "about": {
-            "title": "Why Stock Squares?",
-            "feature_1": "Certified Investment Experts",
-            "feature_2": "Hands-on Simulation Training",
-            "feature_3": "Receive a Training Certificate",
-            "feature_4": "Innovation and Development",
-            "feature_5": "Satisfaction Rate: 96%"
-
-            
-        },
-        "bookstore": {
-            "title": "Finance and Business Library",
-            "bookCard": {
-                "btn": "Order Now"
-            },
-            "tabs":{
-                "popular":"Most Popular"
-            }
-        },
-        "blog": {
-            "title": "Educational Blog"
-        },
-        "PracticalTraining": {
-
-            "title": "Practical personal Training",
-
-            "btn": "Join As A Personal Trainer",
-            "trainingCard": {
-                "btn": "Book trainer"
-            }
-        },
-        "recordedCourses": {
-            "title": "Recorded Courses",
-            "courseSection": {
-                "courseCard": {
-                    "btn": "Start For Free"
-                }
-            },
-            "stockOffers": {
-                "title": "Stock Company Offers"
-            }
-        },
-        "testimonials": {
-            "title": "Customer Testimonials",
-            "note": "Your feedback matters"
-        },
-        "vipServices": {
-            "title": "VIP Investor Services",
-            "content_1": "You know the value of money",
-            "content_2": "And we know the secrets of investing it wisely",
-            "btn": "Request Consultation",
-            "note": "Minimum investment plan: {{minInvestment}} EGP"
-        }
+      },
+      "stockOffers": {
+        "title": "Stock Company Offers"
+      }
     },
-    "form": {
-        "name": {
-            "label": "Name",
-            "placeholder": "Enter your name",
-            "error": "Name is required"
-        },
-        "firstName": {
-            "label": "First Name",
-            "placeholder": "Enter your first name",
-            "error": "First name is required"
-        },
-        "lastName": {
-            "label": "Last Name",
-            "placeholder": "Enter your last name",
-            "error": "Last name is required"
-        },
-        "email": {
-            "label": "Email Address",
-            "placeholder": "Enter your email address",
-            "error": "A valid email is required"
-        },
-        "password": {
-            "label": "Password",
-            "placeholder": "Enter your password",
-            "error": "Password is required"
-        },
-        "confirmPassword": {
-            "label": "Confirm Password",
-            "placeholder": "Re-enter your password",
-            "error": "Passwords do not match"
-        },
-        "phone": {
-            "label": "Phone Number",
-            "placeholder": "Enter your phone number",
-            "error": "A valid phone number is required"
-        },
-        "address": {
-            "label": "Address",
-            "placeholder": "Enter your address",
-            "error": "Address is required"
-        },
-        "city": {
-            "label": "City",
-            "placeholder": "Enter your city",
-            "error": "City is required"
-        },
-        "zipCode": {
-            "label": "Zip Code",
-            "placeholder": "Enter your zip code",
-            "error": "A valid zip code is required"
-        },
-        "submit": {
-            "label": "Submit"
-        },
-        "reset": {
-            "label": "Reset"
-        }
+    "testimonials": {
+      "title": "Customer Testimonials",
+      "note": "Your feedback matters"
     },
+    "vipServices": {
+      "title": "VIP Investor Services",
+      "content_1": "You know the value of money",
+      "content_2": "And we know the secrets of investing it wisely",
+      "btn": "Request Consultation",
+      "note": "Minimum investment plan: {{minInvestment}} EGP"
+    }
+  },
+  "form": {
+    "name": {
+      "label": "Name",
+      "placeholder": "Enter your name",
+      "error": "Name is required"
+    },
+    "firstName": {
+      "label": "First Name",
+      "placeholder": "Enter your first name",
+      "error": "First name is required"
+    },
+    "lastName": {
+      "label": "Last Name",
+      "placeholder": "Enter your last name",
+      "error": "Last name is required"
+    },
+    "email": {
+      "label": "Email Address",
+      "placeholder": "Enter your email address",
+      "error": "A valid email is required"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password",
+      "error": "Password is required"
+    },
+    "confirmPassword": {
+      "label": "Confirm Password",
+      "placeholder": "Re-enter your password",
+      "error": "Passwords do not match"
+    },
+    "phone": {
+      "label": "Phone Number",
+      "placeholder": "Enter your phone number",
+      "error": "A valid phone number is required"
+    },
+    "address": {
+      "label": "Address",
+      "placeholder": "Enter your address",
+      "error": "Address is required"
+    },
+    "city": {
+      "label": "City",
+      "placeholder": "Enter your city",
+      "error": "City is required"
+    },
+    "zipCode": {
+      "label": "Zip Code",
+      "placeholder": "Enter your zip code",
+      "error": "A valid zip code is required"
+    },
+    "submit": {
+      "label": "Submit"
+    },
+    "reset": {
+      "label": "Reset"
+    }
+  },
 
-   "practicalTraining": {
+  "practicalTraining": {
     "egyptianStock": "Egyptian Stock Market Course",
     "hours": "8 hours",
     "beginner": "Beginner",
     "juniorPrice": "3500",
-    "pound":" pound",
+    "pound": " pound",
     "saudiStock": "Saudi Stock Market Course",
     "advanced": "Advanced",
     "advancedHours": "12 hours",
@@ -212,9 +208,8 @@
     "proHours": "16 hours",
     "proPrice": "7500",
     "bitCoinStock": "Cryptocurrency Course"
-
-},
-"RecordedCourse": {
+  },
+  "RecordedCourse": {
     "recordedCourse": "Recorded Courses",
     "start_Bulding_Strong_Future_Money": "Build Your Financial Future",
     "learning_Gold_Coins": "Learn Stock, Currency, and Gold Trading",
@@ -229,67 +224,133 @@
     "ExploreMore": "Explore more videos",
     "showAll": "Show all",
     "loadVideo": "The course is being prepared..."
-
-},
-"ad": {
+  },
+  "ad": {
     "ad": "Investment and Trading Company Offers"
-},
-"BookCard": {
+  },
+  "BookCard": {
     "field_of_money": "The Science of Money",
     "200EGP": "200 EGP"
-},
-"testimonials": {
-  "review1": {
-    "text": "I tried to learn trading on my own, but my results weren’t successful. When my friend recommended Stock Squares and I learned with a professional trainer, my performance became disciplined and successful.",
-    "name": "Mohamed Samir",
-    "position": "(Supply Chain Manager)"
   },
 
-  "review2": {
-    "text": "I was confused at the beginning of my trading journey, but after joining Stock Squares, I gained clear understanding and effective strategies. The practical training helped me achieve real results and become more confident in my decisions.",
-    "name": "Anas Ayoub",
-    "position": "(Operations Manager)"
+  "TrainingAndEducation": {
+    "gainSkills": "Gain trading skills and join ",
+    "successful_people": "successful",
+    "investors": "investors",
+    "learnTradingVia": "Learn trading online with a",
+    "personalTrainer": "personal trainer",
+    "interactiveTraining": "Interactive training with continuous follow-up in trading",
+    "bestTrainers": "The best certified trading trainers in the Arab world",
+    "examLevel": "Level assessment test",
+    "bookYourTrainer": "Book your personal trainer",
+    "chooseYourLevel": "Choose Your Suitable Level",
+    "showContent": "Show Training Content",
+    "hideContent": "Hide Training Content",
+    "plans": {
+      "beginner": {
+        "title": "Beginner",
+        "brief": "Investment and Trading Fundamentals",
+        "miniContent": "This level focuses on building a solid foundation. By the end of it, you will be able to understand how markets work, analyze financial instruments and companies in a simple way, and build your first investment portfolio.",
+        "EgpPrice": "5000 EGP",
+        "duration": "10 hours",
+        "lectures": "5 lectures",
+        "title1": "Fundamentals of Economic Analysis",
+        "content1": "You will discover the relationship between key economic news — such as interest rate decisions — and their impact on financial markets.",
+        "title2": "Fundamentals of Financial Analysis",
+        "content2": "You will learn how to read basic financial statements (income, balance sheet, and cash flow) and understand the key financial ratios that help evaluate companies.",
+        "title3": "Fundamentals of Technical Analysis",
+        "content3": "You will master the basics of charting, types of candlestick patterns, and how to identify market trends.",
+        "title4": "Fundamentals of Risk Management",
+        "content4": "You will learn the importance of having a capital management plan, setting entry and exit points to avoid major losses.",
+        "title5": "Building an Investment Portfolio",
+        "content5": "You will understand how to select diversified assets to build a simple, goal-oriented investment portfolio.",
+        "title6": "Practical Real-World Application",
+        "content6": "We will conduct a hands-on application on the stock market you’re interested in, focusing on technical analyses to deliver accurate and valuable results."
+      },
+      "advanced": {
+        "title": "Advanced",
+        "brief": "Strategy Development and In-Depth Analysis",
+        "miniContent": "After mastering the basics, this level delves deeper into more complex tools and analyses. By the end, you will be able to build your own trading strategies, use advanced indicators, and manage your emotions effectively.",
+        "EgpPrice": "7500 EGP",
+        "duration": "12 hours",
+        "lectures": "6 lectures",
+        "title1": "Macroeconomic Analysis",
+        "content1": "You will dive into the effects of fiscal and monetary policies and understand how major economic factors influence global markets.",
+        "title2": "Advanced Financial Analysis",
+        "content2": "You will master asset valuation using models such as discounted cash flow and analyze growth and profitability ratios.",
+        "title3": "Advanced Technical Analysis",
+        "content3": "You will learn how to use advanced technical indicators such as RSI and MACD, and understand complex chart patterns.",
+        "title4": "Trading Strategies",
+        "content4": "You will explore and test various strategies such as day trading, swing trading, and scalping.",
+        "title5": "Trading Psychology",
+        "content5": "You will learn how to control emotions and make rational decisions in a volatile and risky market environment.",
+        "title6": "Practical Real-World Application",
+        "content6": "We will apply advanced strategies to live markets, focusing on integrating financial, economic, and technical analysis."
+      },
+      "professional": {
+        "title": "Professional",
+        "brief": "Advanced Trading Systems and Complex Risk Management",
+        "miniContent": "This level focuses on deep strategies, advanced models, and complex risk management. By the end, you will be able to develop trading strategies, handle volatile markets skillfully, and make decisions based on multi-faceted analysis.",
+        "EgpPrice": "15000 EGP",
+        "duration": "14 hours",
+        "lectures": "7 lectures",
+        "title1": "Advanced Economic Analysis and Quantitative Modeling",
+        "content1": "You will dive into macroeconomic data analysis and learn how to build simple econometric models to estimate inflation trends or interest rates and their complex impact on different asset classes.",
+        "title2": "Professional Financial Valuation",
+        "content2": "You will master complex valuation models such as Discounted Cash Flow (DCF), intangible asset valuation, and how to use sector multiples and ratios to determine the true value of specialized companies.",
+        "title3": "Behavioral and Harmonic Technical Analysis",
+        "content3": "You will move beyond the basics into Harmonic Patterns, advanced momentum and volatility indicators, and integrate trading psychology with technical analysis to anticipate market movements based on trader behavior.",
+        "title4": "Strategic Risk Management and VaR Measurement",
+        "content4": "You will learn how to calculate Value-at-Risk (VaR), use derivative hedging tools such as futures and options, and develop strict protocols for managing total portfolio exposure during crises.",
+        "title5": "Building and Adjusting Advanced Portfolios",
+        "content5": "You will apply Modern Portfolio Theory (MPT), calculate Beta coefficients, and incorporate alternative assets like commodities and currencies to maximize returns relative to risk (Sharpe Ratio), focusing on dynamic rebalancing.",
+        "title6": "Algorithmic Trading and Strategy Development",
+        "content6": "You will explore how to build and backtest trading strategies using programming languages such as Python, learn about High-Frequency Trading (HFT), and transform investment ideas into automated trading systems."
+      }
+    }
   },
 
-  "review3": {
-    "text": "Heartfelt thanks! The course truly added great value to my trading knowledge. The explanation was clear, deep, and delivered by real professionals. Customer service follow-up was excellent in every way.",
-    "name": "Abdullah Ibrahim",
-    "position": "(Executive Director)"
+  "testimonials": {
+    "review1": {
+      "text": "I tried to learn trading on my own, but my results weren’t successful. When my friend recommended Stock Squares and I learned with a professional trainer, my performance became disciplined and successful.",
+      "name": "Mohamed Samir",
+      "position": "(Supply Chain Manager)"
+    },
+
+    "review2": {
+      "text": "I was confused at the beginning of my trading journey, but after joining Stock Squares, I gained clear understanding and effective strategies. The practical training helped me achieve real results and become more confident in my decisions.",
+      "name": "Anas Ayoub",
+      "position": "(Operations Manager)"
+    },
+
+    "review3": {
+      "text": "Heartfelt thanks! The course truly added great value to my trading knowledge. The explanation was clear, deep, and delivered by real professionals. Customer service follow-up was excellent in every way.",
+      "name": "Abdullah Ibrahim",
+      "position": "(Executive Director)"
+    },
+
+    "review4": {
+      "text": "The content is rich and highly beneficial, offering practical and effective information that helps any beginner enter the stock and forex markets with confidence and clarity.",
+      "name": "Hossam Obeid",
+      "position": "(Data Analysis Expert)"
+    },
+
+    "review5": {
+      "text": "The asset management service at Stock Squares exceeded my expectations — high professionalism, precise follow-up, and strategies truly tailored to my needs. I felt my wealth was in safe hands.",
+      "name": "Badr Fahdan",
+      "position": "(Businessman)"
+    },
+
+    "review6": {
+      "text": "When I joined the first level, I thought it would be difficult and I wouldn’t understand much, but the experience really made a difference. Now I see clear progress in my skills and I’m very happy with how far I’ve come. Thanks to everyone who contributed to this journey!",
+      "name": "Ibrahim Emam",
+      "position": "(Freelancer)"
+    }
   },
 
-  "review4": {
-    "text": "The content is rich and highly beneficial, offering practical and effective information that helps any beginner enter the stock and forex markets with confidence and clarity.",
-    "name": "Hossam Obeid",
-    "position": "(Data Analysis Expert)"
-  },
-
-  "review5": {
-    "text": "The asset management service at Stock Squares exceeded my expectations — high professionalism, precise follow-up, and strategies truly tailored to my needs. I felt my wealth was in safe hands.",
-    "name": "Badr Fahdan",
-    "position": "(Businessman)"
-  },
-
-  "review6": {
-    "text": "When I joined the first level, I thought it would be difficult and I wouldn’t understand much, but the experience really made a difference. Now I see clear progress in my skills and I’m very happy with how far I’ve come. Thanks to everyone who contributed to this journey!",
-    "name": "Ibrahim Emam",
-    "position": "(Freelancer)"
-  }
-},
-
-"TrainingAndEducation": {
-  "gainSkills": "Gain trading skills and join successful investors",
-  "successful_people": "successful people",
-  "learnTradingVia": "Learn trading online with a",
-  "personalTrainer": "personal trainer",
-  "interactiveTraining": "Interactive training with continuous follow-up in trading",
-  "bestTrainers": "The best certified trading trainers in the Arab world",
-  "examLevel": "Level assessment test",
-  "bookYourTrainer": "Book your personal trainer"
+  "chatAi": {
+  "greeting": "Welcome",
+  "iamChat": "I basir your smart assistant for trading in the financial markets",
+  "intro": "The nature of financial markets is price volatility, and that’s why professional traders aim to secure profits regularly. For successful trading, adjust the trade’s stop-loss to the entry price after reaching the first target. You can also take partial profit to convert floating profit into actual realized profit."
 }
-
-
-
-
-
-
 }

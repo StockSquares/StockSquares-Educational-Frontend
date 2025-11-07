@@ -29,5 +29,5 @@ export const FormValidation = {
     .required("مطلوب"),
   jobStatus: Yup.string().required("مطلوب"),
   acceptTerms: Yup.boolean(),
-  referralCode: Yup.string().nullable(),
+  referralCode: Yup.string(),
 };

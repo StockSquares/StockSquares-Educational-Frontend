@@ -5,14 +5,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { Modal } from "../../../../../components";
-import {
-  AddEmployee,
-  EditEmployeeData,
-} from "./employeesManagementPages/EmployeesComponents";
-import FinancialTransactions from "./FinancialTransactions";
+import { AddClient, EditClientData } from "./ClientsComponents";
+import { Modal } from "../../../../components";
+import FinancialTransactions from "../employees/employeesPages/FinancialTransactions";
 
-function EmployeesManagement() {
+function ClientsManagement() {
   const [openModal, setOpenModal] = useState(false);
   const [openTransactionModal, setOpenTransactionModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
@@ -20,11 +17,11 @@ function EmployeesManagement() {
 
   return (
     <>
-      <div className="container  w-full flex flex-col gap-5 items-start  dark:text-dark-text">
-        <h1 className="text-3xl font-[600] "> اداره الموظفين </h1>
+      <div className=" w-full flex flex-col gap-5 items-start  dark:text-dark-text">
+        <h1 className="text-3xl font-[600] "> اداره الزبائن </h1>
         <p className="mt-[-10px] text-gray-500">
           {" "}
-          إدارة ذكية لفريق العمل تساعدك على توفير الوقت وتحسين الأداء.{" "}
+          إدارة ذكية للعملاء تساعدك على توفير الوقت وتحسين الأداء.{" "}
         </p>
         <hr className="bg-gray-200 mb-2 h-0.5 w-56 mt-[-10px] " />
         <button
@@ -32,7 +29,7 @@ function EmployeesManagement() {
           className="px-3 py-2 self-end bg-primary-900 rounded-lg text-white hover:bg-primary-800 font-semibold"
         >
           {" "}
-          + اضافه موظف
+          + اضافه زبون
         </button>
         <input
           type="text"
@@ -87,13 +84,13 @@ function EmployeesManagement() {
       </div>
       {openModal && (
         <Modal onClose={() => setOpenModal(false)}>
-          <AddEmployee />
+          <AddClient />
         </Modal>
       )}
 
       {openEditModal && selectedItem && (
         <Modal onClose={() => setOpenEditModal(false)}>
-          <EditEmployeeData />
+          <EditClientData />
         </Modal>
       )}
 
@@ -105,4 +102,4 @@ function EmployeesManagement() {
     </>
   );
 }
-export default EmployeesManagement;
+export default ClientsManagement;

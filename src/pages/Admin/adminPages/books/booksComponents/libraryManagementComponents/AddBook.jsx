@@ -5,6 +5,9 @@ import "suneditor/dist/css/suneditor.min.css";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useCategories } from "../../../../../../Context/CategoriesContext";
+import { BookType } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircle, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const schema = yup.object().shape({
   BookName: yup.string().required("اسم الكتاب مطلوب"),
@@ -27,19 +30,19 @@ const schema = yup.object().shape({
 });
 
 const AddBook = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
   const [allBooks, setAllBooks] = useState([]);
   const [outOfStock, setOutOfStock] = useState([]);
   const [editBook, setEditBook] = useState(null);
+
+  const [newBook, setNewBook] = useState({
+    BookName: "",
+    BookPrice: "",
+    BookDescription: "",
+    Quantity: "",
+    BookCategory: "",
+    BookType: "",
+    BookSummary: "",
+  });
 
   const DeleteBook = async (bookId) => {
     try {
@@ -60,61 +63,57 @@ const AddBook = () => {
 
   const handleEdit = (book) => {
     setEditBook(book); // حفظ بيانات الكتاب المحدد
-    reset({
-      Id: book.id,
+    setNewBook({
       BookName: book.bookName,
       BookPrice: book.bookPrice,
       BookDescription: book.bookDescription,
       Quantity: book.quantity,
       BookCategory: book.bookCategory,
       BookType: book.bookType,
+      BookPhoto: null,
+      // BookSummary: book.bookSummary || "",
     });
   };
 
-  const onSubmit = async (data) => {
+  const onSubmit = async () => {
     const formData = new FormData();
-    formData.append("BookName", data.BookName);
-    formData.append("BookPrice", data.BookPrice);
-    formData.append("BookPhoto", data.BookPhoto[0]);
-    formData.append("BookDescription", data.BookDescription);
-    formData.append("Quantity", data.Quantity);
-    formData.append("BookCategory", data.BookCategory);
-    formData.append("BookType", data.BookType);
+    formData.append("BookName", newBook.BookName);
+    formData.append("BookPrice", newBook.BookPrice);
+    if (newBook.BookPhoto) {
+      formData.append("BookPhoto", newBook.BookPhoto);
+    }
+    formData.append("BookDescription", newBook.BookDescription);
+    formData.append("Quantity", newBook.Quantity);
+    formData.append("BookCategory", newBook.BookCategory);
+    formData.append("BookType", newBook.BookType);
+    // formData.append("BookSummary", newBook.BookSummary);
 
     if (editBook) {
-      formData.append("Id", data.Id);
-      try {
-        let response = await fetch("https://stocksquare1.runasp.net/api/Book", {
-          method: "PUT",
-          body: formData,
-        });
-        if (response.ok) {
-          console.log("تم التعديل بنجاح");
-        } else {
-          console.log("فشل التعديل");
-        }
-      } catch (e) {
-        console.log(e.message);
-      }
-    } else {
-      try {
-        let response = await fetch("https://stocksquare1.runasp.net/api/Book", {
-          method: "POST",
-          body: formData,
-        });
-        console.log(response);
+      formData.append("Id", editBook.id);
 
-        if (response.ok) {
-          console.log("great");
-        } else {
-          console.log("not great");
-        }
-      } catch (e) {
-        console.log(e.message);
-      }
+      const response = await fetch("https://stocksquare1.runasp.net/api/Book", {
+        method: "PUT",
+        body: formData,
+      });
+    } else {
+      const response = await fetch("https://stocksquare1.runasp.net/api/Book", {
+        method: "POST",
+        body: formData,
+      });
+      console.log("sent");
     }
-    setEditBook(null); // إلغاء وضع التعديل بعد الحفظ
-    reset();
+
+    setEditBook(null);
+    setNewBook({
+      BookName: "",
+      BookPrice: "",
+      BookDescription: "",
+      Quantity: "",
+      BookCategory: "",
+      BookType: "",
+      BookSummary: "",
+      BookPhoto: null,
+    });
   };
 
   useEffect(() => {
@@ -128,13 +127,14 @@ const AddBook = () => {
       .catch((e) => console.log(e.message));
   }, []);
 
-  const categories = useCategories();
-
   return (
-    <div className="bg-white dark:bg-dark-background rounded-lg p-6 mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div className="bg-white  w-full dark:bg-dark-background rounded-lg  mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
       <form
         className="w-full text-start p-3 bg-white dark:bg-dark-background dark:border-2 dark:border-primary-700  shadow-md"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit();
+        }}
       >
         <h2 className="text-2xl font-bold mb-4 text-green-600 text-start">
           {editBook ? "تعديل الكتاب" : "إضافة كتاب جديد"}{" "}
@@ -144,54 +144,66 @@ const AddBook = () => {
           <div className="w-1/2">
             <label className="block mb-2">اسم الكتاب:</label>
             <input
-              {...register("BookName")}
+              value={newBook.BookName}
+              onChange={(e) =>
+                setNewBook({ ...newBook, BookName: e.target.value })
+              }
               className="w-full p-2 border rounded dark:bg-darkgray dark:placeholder-slate-400"
               placeholder="اسم الكتاب"
             />
-            <p className="text-red-500">{errors.BookName?.message}</p>
           </div>
           <div className="w-1/2">
             <label className="block mb-2">السعر:</label>
             <input
               type="number"
-              {...register("BookPrice")}
+              value={newBook.BookPrice}
+              onChange={(e) =>
+                setNewBook({ ...newBook, BookPrice: e.target.value })
+              }
               className="w-full p-2 border rounded dark:bg-darkgray dark:placeholder-slate-400"
               placeholder="السعر"
             />
-            <p className="text-red-500">{errors.BookPrice?.message}</p>
           </div>
         </div>
 
         {/* التصنيف ونوع الكتاب */}
         <div className="flex gap-4 mt-4 items-end">
           <div className="w-1/2">
-            <select {...register("BookCategory")} className="dark:bg-darkgray dark:placeholder-slate-400">
+            <select
+              value={newBook.BookCategory}
+              onChange={(e) =>
+                setNewBook({ ...newBook, BookCategory: e.target.value })
+              }
+              className="dark:bg-darkgray dark:placeholder-slate-400"
+            >
               <option value="">اختر التصنيف</option>
-              <option value="mn">n m</option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
+              <option value="physical_Copy"> نسخه ماديه أصليه </option>
+              <option value="digital_Copy"> نسخه رقميه ابداعيه </option>
             </select>
-            <p className="text-red-500">{errors.BookCategory?.message}</p>
           </div>
           <div className="w-1/2">
             <label className="block mb-2">نوع الكتاب:</label>
             <input
-              {...register("BookType")}
+              value={newBook.BookType}
+              onChange={(e) =>
+                setNewBook({ ...newBook, BookType: e.target.value })
+              }
               className="w-full p-2 border rounded dark:bg-darkgray dark:placeholder-slate-400"
               placeholder="نوع الكتاب"
             />
-            <p className="text-red-500">{errors.BookType?.message}</p>
           </div>
         </div>
 
         {/* الصورة */}
         <div className="mt-4">
           <label className="block mb-2">صورة الكتاب:</label>
-          <input type="file" {...register("BookPhoto")} className="w-full dark:bg-darkgray dark:placeholder-slate-400" />
-          <p className="text-red-500">{errors.BookPhoto?.message}</p>
+          <input
+            type="file"
+            onChange={(e) =>
+              setNewBook({ ...newBook, BookPhoto: e.target.files[0] })
+            }
+            className="w-full dark:bg-darkgray dark:placeholder-slate-400"
+          />
         </div>
 
         {/* الكمية */}
@@ -199,27 +211,32 @@ const AddBook = () => {
           <label className="block mb-2">الكمية:</label>
           <input
             type="number"
-            {...register("Quantity")}
+            value={newBook.Quantity}
+            onChange={(e) =>
+              setNewBook({ ...newBook, Quantity: e.target.value })
+            }
             className="w-full p-2 border rounded dark:bg-darkgray dark:placeholder-slate-400"
             placeholder="الكميه"
           />
-          <p className="text-red-500">{errors.Quantity?.message}</p>
         </div>
 
         {/* الوصف */}
         <div className="mt-4">
           <label className="block mb-2">وصف الكتاب:</label>
           <textarea
-            {...register("BookDescription")}
+            value={newBook.BookDescription}
+            onChange={(e) =>
+              setNewBook({ ...newBook, BookDescription: e.target.value })
+            }
             className="w-full p-2 border rounded dark:bg-darkgray dark:placeholder-slate-400"
             placeholder="اكتب الوصف هنا..."
           ></textarea>
-          <p className="text-red-500">{errors.BookDescription?.message}</p>
         </div>
 
         <SunEditor
-          setContents={watch("BookSummary")}
-          onChange={(content) => setValue("BookSummary", content)}
+          onChange={(content) => (prev) => {
+            setNewBook({ ...prev, BookSummary: content });
+          }}
           setOptions={{
             buttonList: [
               ["bold", "italic", "underline", "strike"],
@@ -250,7 +267,7 @@ const AddBook = () => {
           </tr>
         </thead>
         <tbody>
-          {allBooks.map((book, idx) => (
+          {allBooks.map((book) => (
             <tr key={book.id} className="text-center hover:bg-gray-100">
               <td className="border border-gray-300 p-3"> {book.bookName} </td>
               <td className="border border-gray-300 p-3"> {book.bookType} </td>
@@ -262,34 +279,31 @@ const AddBook = () => {
               <td className="border border-gray-300">
                 <div className="flex justify-center flex-wrap gap-2">
                   {!outOfStock.includes(book.id) ? (
-                    <button
-                      className="bg-accent-700 text-black py-1 px-1 lg:px-5 rounded-lg"
+                    <FontAwesomeIcon
+                      icon={faCircle}
+                      className=" text-primary-700  rounded-lg"
                       onClick={() => setOutOfStock([...outOfStock, book.id])}
-                    >
-                      نفذ
-                    </button>
+                    />
                   ) : (
-                    <button
-                      className="bg-green-600 text-whitepy-1 px-1 lg:px-3 rounded-lg"
+                    <FontAwesomeIcon
+                      icon={faCircle}
+                      className=" text-red-600 rounded-lg"
                       onClick={() =>
                         setOutOfStock(outOfStock.filter((id) => id !== book.id))
                       }
-                    >
-                      متاح
-                    </button>
+                    />
                   )}
-                  <button
-                    className="bg-blue-500 text-white py-1 px-1 lg:px-3 rounded-lg"
+
+                  <FontAwesomeIcon
+                    icon={faEdit}
+                    className="text-blue-500 rounded-lg"
                     onClick={() => handleEdit(book)}
-                  >
-                    تعديل
-                  </button>
-                  <button
-                    className="bg-red-600 text-white py-1 px-1 lg:px-3 rounded-lg"
+                  />
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    className="text-red-600 rounded-lg"
                     onClick={() => DeleteBook(book.id)}
-                  >
-                    حذف
-                  </button>
+                  />
                 </div>
               </td>
             </tr>

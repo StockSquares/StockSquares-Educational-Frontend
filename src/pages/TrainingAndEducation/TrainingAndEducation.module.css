@@ -160,7 +160,7 @@
 
 .icon {
     color: var(--stocksquares-color);
-    margin-left: 0.5rem;
+    padding: 0 0.5rem;
     flex-shrink: 0;
 }
 .planCard {

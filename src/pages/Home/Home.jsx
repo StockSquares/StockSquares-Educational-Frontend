@@ -43,7 +43,7 @@ function Home() {
       </section>
 
       {/* VIP Investor Services Section */}
-      <section className="grid grid-cols-1 gap-2 lg:grid-cols-2 mb-10 md:grid-cols-2">
+      <section className="grid grid-cols-1 gap-2 lg:grid-cols-2 mb-10 md:grid-cols-2 ">
         <VIPInvestorServicesSection />
         <TestimonialsSection />
       </section>

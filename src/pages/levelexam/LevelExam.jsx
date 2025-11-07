@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../routes";
 // import { useCountries } from "../../Context/CountriesContext";
 import countries from "../../Context/Countries";
+import { Login, Register } from "..";
+import LevelExamQuestions from "./LevelExamQuestions";
+import { useAuth } from "../../Context/AuthContext";
 
 function LevelExam() {
   const [formError, setFormError] = useState(false);
@@ -17,6 +20,8 @@ function LevelExam() {
   const [loading, setLoading] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+  const { userData } = useAuth();
 
   // const countries = useCountries() ? useCountries() : "";
 
@@ -39,111 +44,31 @@ function LevelExam() {
     };
   };
   return (
-    <div className="w-[80%] m-auto ">
-      <div className="container  mt-7 flex flex-col  justify-center items-center">
-        <div className="p-2 rounded-2xl border shadow-md bg-green-100 mb-5 w-[100%] md:w-[70%] ">
-          <FontAwesomeIcon
-            icon={faCircle}
-            className="text-white border bg-[#25863f]  rounded-full"
-          />
-          <h4 className="text-[12px] md:text-xl lg:text-xl px-1 md:px-3 mb-4 flex flex-col text-green-600 font-semibold leading-5 ">
-            يساعدك اختبار تحديد المستوى على اختيار مستوى التدريب المناسب لخبرتك
-            والحصول على تدريب تفاعلي فعال بناء على الاجابات المختارة ولذالك يجب
-            ان تقوم بالاختبار للتأكد من تعلمك في المستوى المناسب ( متقدم – محترف
-            ) <br />
-            <span className=" text-green-700 self-center mt-2 font-bold">
-              {" "}
-              *لا تحتاج الي عمل الاختبار اذا كنت ستبدأ من المستوي المبتدئ{" "}
-            </span>
-          </h4>
+    <>
+      {!userData ? (
+        <Login />
+      ) : (
+        <div className="flex flex-col items-center gap-5 mt-5 ">
+          <div className="p-2 rounded-2xl border w-[90%] md:w-[60%] shadow-md bg-green-100  ">
+            <FontAwesomeIcon
+              icon={faCircle}
+              className="text-white border bg-[#25863f]  rounded-full"
+            />
+            <h4 className="text-[12px] md:text-xl lg:text-xl px-1 md:px-3 mb-4 flex flex-col text-green-600 font-semibold leading-5 ">
+              يساعدك اختبار تحديد المستوى على اختيار مستوى التدريب المناسب
+              لخبرتك والحصول على تدريب تفاعلي فعال بناء على الاجابات المختارة
+              ولذالك يجب ان تقوم بالاختبار للتأكد من تعلمك في المستوى المناسب (
+              متقدم – محترف ) <br />
+              <span className=" text-green-700 self-center mt-2 font-bold">
+                {" "}
+                *لا تحتاج الي عمل الاختبار اذا كنت ستبدأ من المستوي المبتدئ{" "}
+              </span>
+            </h4>
+          </div>
+          <LevelExamQuestions />
         </div>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col gap-4  bg-white shadow-none border-none w-[100%] md:w-[70%]"
-        >
-          <div>
-            <label className="text-right mb-2 block">الاسم ثلاثي:</label>
-            <input
-              type="text"
-              placeholder="الاسم ثلاثي"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
-            />
-          </div>
-          <div>
-            <label className="text-right mb-2 block">رقم الهاتف:</label>
-            <input
-              type="text"
-              placeholder="رقم الهاتف"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
-            />
-          </div>
-          <div>
-            <label className="text-right mb-2 block">بلد الإقامة:</label>
-            {!countries ? (
-              <p>جارٍ تحميل قائمة الدول...</p>
-            ) : (
-              <select
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300"
-              >
-                <option value="">اختر بلد الإقامة</option>
-                {countries.map((country, index) => (
-                  <option key={index} value={country}>
-                    {country}
-                  </option>
-                ))}
-              </select>
-            )}
-          </div>
-          <div>
-            <label className="text-right mb-2 block">تاريخ الميلاد:</label>
-            <input
-              type="date"
-              value={birthDate}
-              onChange={(e) => setBirthDate(e.target.value)}
-              className={`w-full px-4 py-3 rounded-lg border transition duration-300 
-                  ${
-                    isFocused ? "border-green-500 shadow-lg" : "border-gray-300"
-                  } 
-                  ${isHovered ? "border-gray-400" : ""} 
-                  focus:outline-none focus:ring-2 focus:ring-green-500`}
-              onFocus={() => setIsFocused(true)}
-              onBlur={() => setIsFocused(false)}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            />
-          </div>
-          <div>
-            <label className="text-right mb-2 block">البريد الإلكتروني:</label>
-            <input
-              type="email"
-              placeholder="البريد الإلكتروني"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
-            />
-          </div>
-
-          {formError && (
-            <p className="text-red-600 text-sm self-start">
-              يرجى ملء جميع الحقول بشكل صحيح قبل المتابعة.
-            </p>
-          )}
-
-          <Link
-            to={ROUTES.LEVELEXAMQUESTIONS}
-            className="self-center mt-4 px-10 py-3 rounded-lg bg-green-600 text-white text-xl hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
-          >
-            ابدأ
-          </Link>
-        </form>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 export default LevelExam;

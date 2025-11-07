@@ -2,7 +2,10 @@ import { Tabs } from "flowbite-react";
 import { motion } from "framer-motion";
 import businessRobot from "/src/assets/imgs/baser.png";
 import React from "react";
+import { useTranslation } from "react-i18next";
 function ChatAiUi({ list, username }) {
+  const { t } = useTranslation();
+  const lang = localStorage.getItem("lang");
   return (
     <div className="w-full mt-5 flex flex-col gap-5">
       <div>
@@ -10,9 +13,9 @@ function ChatAiUi({ list, username }) {
           <img src={businessRobot} className="w-[60px] h-[55px] ms-2" />
           <h2 className=" text-center">
             {" "}
-            <span className="font-semibold"> أهلا وسهلا </span>{" "}
+            <span className="font-semibold"> {t("chatAi.greeting")}</span>{" "}
             <span className="text-primary-600 font-bold">{username}</span> ..
-            أنا بصير مساعدك الذكي للتداول في الأسواق الماليه{" "}
+            {t("chatAi.iamChat")}
           </h2>
         </div>
 
@@ -20,15 +23,11 @@ function ChatAiUi({ list, username }) {
           <motion.div
             className="text-white font-semibold whitespace-nowrap "
             style={{ letterSpacing: "2px" }}
-            initial={{ x: "-50%" }}
-            animate={{ x: "100%" }}
+            initial={{ x: lang === "ar" ? "-50%" : "100%" }}
+            animate={{ x: lang === "ar" ? "100%" : "-100%" }}
             transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
           >
-            طبيعه أسواق المال هي التذبذب في الأسعار و لذلك يعمل المتداولون
-            المحترفون الي حجز الأرباح أولا بأول , ولتحقيق تداول ناجح قم بتغيير
-            سعر وقف خساره الصفقه الي سعر فتح الصفقه بعد تحقيق الهدف الأول و
-            يمكنك أيضا جني أرباح جزء من الصفقه لتحويل الربح من ربح عائم الي ربح
-            محقق فعليا
+            {t("chatAi.intro")}
           </motion.div>
         </div>
       </div>

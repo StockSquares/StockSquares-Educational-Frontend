@@ -1,57 +1,109 @@
 import { useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
 
-function FinancialTransactions() {
-  const [profits, setProfits] = useState(0);
-  const [transferAmount, setTransferAmount] = useState(0);
-  const [commissionRate, setCommissionRate] = useState(10); // نسبة العمولة 10%
-  const [users, setUsers] = useState([
-    { id: 1, name: "أحمد علي", balance: 500 },
-    { id: 2, name: "محمد حسن", balance: 300 },
-  ]);
-  const [selectedUser, setSelectedUser] = useState(null);
+export default function FinancialTransactions() {
+  const [transfer, setTransfer] = useState({
+    employee: "",
+    amount: "",
+    date: "",
+    method: "",
+    note: "",
+  });
 
-  const handleAddProfit = () => {
-    if (!selectedUser || profits <= 0) return;
-    setUsers(users.map(user => user.id === selectedUser.id ? { ...user, balance: user.balance + profits } : user));
-    setProfits(0);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!transfer.employee || !transfer.amount || !transfer.date || !transfer.method) {
+      toast.error("من فضلك املأ كل الحقول المطلوبة ⚠️");
+      return;
+    }
+
+    toast.success("تم تحويل المبلغ بنجاح 💸");
+    console.log("Transfer Data:", transfer);
+
+    setTransfer({ employee: "", amount: "", date: "", method: "", note: "" });
   };
 
-  const handleTransferProfit = () => {
-    if (!selectedUser || transferAmount <= 0 || transferAmount > selectedUser.balance) return;
-    const commission = (transferAmount * commissionRate) / 100;
-    const finalAmount = transferAmount - commission;
-    setUsers(users.map(user => user.id === selectedUser.id ? { ...user, balance: user.balance - transferAmount } : user));
-    alert(`تم التحويل بعد خصم العمولة: ${finalAmount} `);
-    setTransferAmount(0);
-  };
+  const paymentMethods = [
+    { id: "bank", label: "تحويل بنكي" },
+    { id: "vodafone", label: "فودافون كاش" },
+  ];
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">💰 المعاملات المالية</h2>
-      <div className="mb-4">
-        <label className="block">اختر المستخدم:</label>
-        <select onChange={(e) => setSelectedUser(users.find(user => user.id === Number(e.target.value)))}
-          className="border p-2 w-full">
-          <option value="">اختر...</option>
-          {users.map(user => (
-            <option key={user.id} value={user.id}>{user.name} - رصيد: {user.balance} $</option>
-          ))}
-        </select>
-      </div>
+    <div className="w-full flex justify-center items-center p-4">
+      <Toaster position="top-right" />
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white rounded-xl flex flex-col w-full p-4 space-y-4"
+      >
+        <h2 className="text-xl font-semibold border-b pb-2">
+          تحويل أموال  💰
+        </h2>
 
-      <div className="mb-4">
-        <label className="block">📈 إضافة الأرباح:</label>
-        <input type="number" className="border p-2 w-full" value={profits} onChange={(e) => setProfits(Number(e.target.value))} />
-        <button onClick={handleAddProfit} className="bg-green-500 text-white p-2 rounded mt-2">إضافة</button>
-      </div>
+        {/* Employee */}
+        <div className="flex flex-col">
+          <label className="text-gray-600 font-medium mb-1">الاسم </label>
+          <input
+            type="text"
+            value={transfer.employee}
+            onChange={(e) => setTransfer({ ...transfer, employee: e.target.value })}
+            placeholder="اكتب الاسم "
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none"
+          />
+        </div>
 
-      <div className="mb-4">
-        <label className="block">🔄 تحويل الأرباح:</label>
-        <input type="number" className="border p-2 w-full" value={transferAmount} onChange={(e) => setTransferAmount(Number(e.target.value))} />
-        <button onClick={handleTransferProfit} className="bg-blue-500 text-white p-2 rounded mt-2">تحويل</button>
-      </div>
+        {/* Amount */}
+        <div className="flex flex-col">
+          <label className="text-gray-600 font-medium mb-1">المبلغ (جنيه)</label>
+          <input
+            type="number"
+            value={transfer.amount}
+            onChange={(e) => setTransfer({ ...transfer, amount: e.target.value })}
+            placeholder="ادخل المبلغ"
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none"
+          />
+        </div>
+
+        {/* Date */}
+        <div className="flex flex-col">
+          <label className="text-gray-600 font-medium mb-1">تاريخ التحويل</label>
+          <input
+            type="date"
+            value={transfer.date}
+            onChange={(e) => setTransfer({ ...transfer, date: e.target.value })}
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none"
+          />
+        </div>
+
+        {/* Payment Method Buttons */}
+        <div className="flex flex-col">
+          <label className="text-gray-600 font-medium mb-2">طريقة الدفع</label>
+          <div className="flex gap-3">
+            {paymentMethods.map((m) => (
+              <button
+                type="button"
+                key={m.id}
+                onClick={() => setTransfer({ ...transfer, method: m.id })}
+                className={`flex-1 py-2 rounded-lg font-medium border transition-all ${
+                  transfer.method === m.id
+                    ? "bg-gray-200 font-semibold text-primary-900 border-2 border-primary-900"
+                    : "bg-white text-gray-600 border-gray-300 border-2 hover:bg-gray-100"
+                }`}
+              >
+                {m.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Submit */}
+        <button
+          type="submit"
+          className="  bg-green-600 self-center px-5 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition-all"
+        >
+          تأكيد التحويل
+        </button>
+      </form>
     </div>
   );
 }
-
-export default FinancialTransactions;

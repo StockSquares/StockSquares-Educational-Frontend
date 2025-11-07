@@ -16,14 +16,18 @@ import { ThemeContext } from "../../../../Context/ThemeContext";
 import { ROUTES } from "../../../../routes";
 import Login from "./../../../../pages/Login/Login";
 import { useAuth } from "../../../../Context/AuthContext";
+
 import {
   faArrowRightFromBracket,
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
+import switchLanguage from "../../../../utilities/i18n/lang";
 function LanguageToggleButton() {
   const { i18n } = useTranslation();
   const currentLang = i18n.language;
+    switchLanguage(currentLang);
+
 
   const toggleLanguage = () => {
     const newLang = currentLang === "en" ? "ar" : "en";
@@ -309,7 +313,7 @@ function Topbar({
             {/* Desktop navigation links */}
             <div className="me-auto gap-3  flex-center">
               {!userData ? (
-                <Link to="/login" className="px-2">
+                <Link to="/login" className="border-2 font-medium rounded-lg border-primary-800 text-sm  px-3 py-2 text-white bg-primary-800 hover:bg-gray-50 hover:text-black transDuration-300">
                   <p>{t("auth.login")}</p>
                 </Link>
               ) : (
@@ -360,7 +364,7 @@ function Topbar({
 
               <Link
                 to="/investorSurvey"
-                className="border-2 rounded border-primary-800  px-3 py-2 hover:bg-primary-800 hover:text-white transDuration-300"
+                className="border-2 rounded-lg font-medium border-primary-800  px-3 py-2 text-sm hover:bg-gray-100 hover:text-black transDuration-300"
               >
                 <p>{t("navbar.investorPersonalitySurvey")}</p>
               </Link>

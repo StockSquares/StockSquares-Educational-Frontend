@@ -27,57 +27,58 @@ function TestimonialsSection() {
     {
       id: 1,
       src: review1,
-      text: t('testimonials.review1.text') ,
-      name:  t('testimonials.review1.name'),
-      position: t('testimonials.review1.position'),
+      text: t("testimonials.review1.text"),
+      name: t("testimonials.review1.name"),
+      position: t("testimonials.review1.position"),
       flag: egyFlag,
     },
     {
       id: 2,
       src: review2,
-      text: t('testimonials.review2.text'),
-      name:  t('testimonials.review2.name'),
-      position: t('testimonials.review2.position'),
+      text: t("testimonials.review2.text"),
+      name: t("testimonials.review2.name"),
+      position: t("testimonials.review2.position"),
       flag: phaFlag,
     },
     {
-      id:3,
+      id: 3,
       src: review3,
-      text: t('testimonials.review3.text'),
-      name:  t('testimonials.review3.name'),
-      position: t('testimonials.review3.position'),
-      flag:egyFlag,
+      text: t("testimonials.review3.text"),
+      name: t("testimonials.review3.name"),
+      position: t("testimonials.review3.position"),
+      flag: egyFlag,
     },
-     {
-      id:4,
-      src:review4,
-      text: t('testimonials.review4.text'),
-      name:  t('testimonials.review4.name'),
-      position: t('testimonials.review4.position'),
-      flag:egyFlag,
+    {
+      id: 4,
+      src: review4,
+      text: t("testimonials.review4.text"),
+      name: t("testimonials.review4.name"),
+      position: t("testimonials.review4.position"),
+      flag: egyFlag,
     },
-     {
-      id:5,
-      src:review5,
-      text: t('testimonials.review5.text'),
-      name:  t('testimonials.review5.name'),
-      position: t('testimonials.review5.position'),
-      flag:saudiFlag,
+    {
+      id: 5,
+      src: review5,
+      text: t("testimonials.review5.text"),
+      name: t("testimonials.review5.name"),
+      position: t("testimonials.review5.position"),
+      flag: saudiFlag,
     },
-     {
-      id:6,
-      src:review6,
-      text: t('testimonials.review6.text'),
-      name:  t('testimonials.review6.name'),
-      position: t('testimonials.review6.position'),
-      flag:egyFlag,
-    }
+    {
+      id: 6,
+      src: review6,
+      text: t("testimonials.review6.text"),
+      name: t("testimonials.review6.name"),
+      position: t("testimonials.review6.position"),
+      flag: egyFlag,
+    },
   ];
 
   // Slick Slides
   const sliderRef = useRef(null);
   // const next = () => sliderRef.current && sliderRef.current.slickNext();
   // const previous = () => sliderRef.current && sliderRef.current.slickPrev();
+  const isRTL = localStorage.getItem("lang") === "ar" ? true : false;
 
   const settings = {
     dots: false,
@@ -90,6 +91,8 @@ function TestimonialsSection() {
     autoplaySpeed: 3000,
     cssEase: "linear",
     arrows: false,
+    rtl: false,
+    
   };
 
   return (
@@ -100,15 +103,15 @@ function TestimonialsSection() {
       p6={false}
     >
       <div className="rounded-xl w-full p-1 lg:px-5 relative">
-        <Slider ref={sliderRef} {...settings}>
+        <Slider ref={sliderRef} {...settings} dir='rtl'>
           {testimonials.map((item) => (
-            <div className=" w-full  h-auto relative">
+            <div key={item.id} className=" w-full  h-auto relative">
               <img
                 className="w-[4rem] md:w-[3.4rem] lg:w-[4rem] absolute top-0 bg-primary-300 border-2 border-black rounded-full left-[10px]"
                 src={qoutesImg}
               />
               <div className="w-[90%] m-auto mt-4 p-3 flex items-center h-[160px] border-2 bg-white/95 dark:bg-dark-background  border-gray-500   ">
-                <p className="text-right text-[11px] md:text-[14px] lg:text-[16px] leading-relaxed">
+                <p className="text-[11px] md:text-[14px] lg:text-[16px] leading-relaxed">
                   {" "}
                   {item.text}{" "}
                 </p>
@@ -138,16 +141,7 @@ function TestimonialsSection() {
             </div>
           ))}
         </Slider>
-        {/* <div className="flex justify-center items-center gap-4 mt-8">
-          <button
-            className="w-4 h-2 bg-primary-400 rounded hover:bg-primary-500"
-            onClick={previous}
-          ></button>
-          <button
-            className="w-4 h-2 bg-primary-400 rounded hover:bg-primary-500"
-            onClick={next}
-          ></button>
-        </div> */}
+       
       </div>
     </SectionCard>
   );

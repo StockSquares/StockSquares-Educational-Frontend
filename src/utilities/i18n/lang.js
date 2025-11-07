@@ -5,7 +5,7 @@
  *                        If 'ar' is provided, the text direction will be set to 'rtl' (right-to-left).
  *                        Otherwise, it defaults to 'ltr' (left-to-right).
  */
-const switchLanguage = (lang) => {
+export default function switchLanguage (lang='ar')  {
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     localStorage.setItem('lang', lang); // Optional: persist the language choice in local storage

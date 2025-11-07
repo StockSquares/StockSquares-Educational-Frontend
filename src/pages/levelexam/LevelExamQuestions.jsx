@@ -468,10 +468,10 @@ function LevelExamQuestions() {
   }, [x]);
 
   return (
-    <div>
+    <div className="w-full" >
       {index <= 2 ? (
-        <div className="w-full  h-[80vh] flex justify-center items-center">
-          <div className=" min-h-[70%] w-[60%] flex flex-col  gap-4 bg-gray-50 shadow-md p-2">
+        <div className="w-full  min-h-[80vh] mb-5 flex justify-center items-start">
+          <div className=" min-h-[70%] w-[90%] md:w-[60%] flex flex-col  gap-4 bg-gray-50 shadow-md p-2">
             <div className="w-full h-[10px] bg-gray-100 rounded-full overflow-hidden">
               <span
                 className={` h-full block bg-accent-900 rounded-full transition-all`}
@@ -485,14 +485,14 @@ function LevelExamQuestions() {
             {questions[index].data.map((item, inx) =>
               inx === idx ? (
                 <div key={inx}>
-                  <p className="text-2xl text-primary-900"> {item.question} </p>
+                  <p className=" text-lg md:text-2xl text-primary-900"> {item.question} </p>
                   <ul className="space-y-3 mt-3">
                     {item.answers.map((answer, i) => (
                       <li
                         key={i}
                         className={`cursor-pointer p-2 border rounded-md ${
                           selectedAnswer === answer
-                            ? "bg-green-200 font-bold"
+                            ? "bg-green-200 "
                             : "bg-white"
                         }`}
                         onClick={() => setSelectedAnswer(answer)}

@@ -6,6 +6,7 @@ import "react-phone-input-2/lib/style.css";
 import { motion } from "framer-motion";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { Modal } from "../../../../../../components";
+
 export function AddEmployee() {
   const [employees, setEmployees] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -54,40 +55,10 @@ export function AddEmployee() {
   });
 
   return (
+    
     <div className="container mx-auto p-2">
       <div className=" flex flex-col gap-3 items-start justify-center ">
-        <button
-          className="px-3 py-2 rounded-lg bg-primary-950 text-white mb-3 mt-2"
-          onClick={() => setShowForm(true)}
-        >
-          اضافه موظف جديد
-        </button>
-        <table className="w-full table-fixed text-[10px] sm:text-[14px] ">
-          <thead className="bg-emerald-100  dark:text-black *:p-2 ">
-            <th> الاسم </th>
-            <th> المسمي الوظيفي </th>
-            <th> البريد الألكتروني </th>
-            <th> الراتب </th>
-          </thead>
-          <tbody>
-            {employees.map((emp) => (
-              <tr className="text-center dark:text-dark-text">
-                <td className="p-2">{emp.name}</td>
-                <td className="p-2">{emp.jobTitle}</td>
-                <td className="p-2">{emp.email}</td>
-                <td className="p-2">{emp.salary}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {showForm && (
-          <motion.div
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="bg-white dark:bg-dark-background p-4 mt-10 rounded shadow-lg w-[100%]"
-          >
-            <h3 className="text-xl font-bold mb-4">إضافة موظف جديد</h3>
+            <h3 className="text-xl mb-4 font-bold dark:text-dark-text ">إضافة موظف جديد</h3>
 
             <Formik
               initialValues={{
@@ -111,7 +82,7 @@ export function AddEmployee() {
               }}
             >
               {({ setFieldValue, values }) => (
-                <Form className="bg-white dark:bg-dark-background shadow-none border-none w-full text-right  ">
+                <Form className="text-sm  space-y-2  shadow-none border-none w-full text-right  ">
                   <div className="flex gap-3">
                     <div className="flex flex-col w-full">
                       <Field
@@ -238,17 +209,17 @@ export function AddEmployee() {
                     name="address"
                     type="text"
                     placeholder="العنوان"
-                    className="w-full p-2 border rounded mb-2 dark:bg-dark-background dark:placeholder-gray-300"
+                    className="w-full p-2 border rounded  dark:bg-dark-background dark:placeholder-gray-300"
                   />
                   <ErrorMessage
                     name="address"
                     component="p"
-                    className="text-red-500"
+                    className="text-red-500 "
                   />
 
                   <label
                     htmlFor="attachments"
-                    className="mt-2 mb-1 font-semibold text-right"
+                    className=" mb-1 font-semibold text-right"
                   >
                     رفع المرفقات
                   </label>
@@ -276,10 +247,10 @@ export function AddEmployee() {
                 </Form>
               )}
             </Formik>
-          </motion.div>
-        )}
+       
       </div>
     </div>
+    
   );
 }
 
@@ -309,25 +280,17 @@ export function EditEmployeeData() {
   ];
 
   const [employees, setEmployees] = useState(employeesData);
-  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [selectedEmployee, setSelectedEmployee] = useState( {
+      id: 3,
+      name: "الاسم ",
+      email: "name@example.com",
+      jobTitle: "الوظيفه ",
+      salary: 7000,
+    });
 
-  const handleEdit = (employee) => {
-    setSelectedEmployee(employee);
-  };
-
-  const handleSave = () => {
-    setEmployees((prev) =>
-      prev.map((emp) =>
-        emp.id === selectedEmployee.id ? selectedEmployee : emp
-      )
-    );
-    setSelectedEmployee(null);
-  };
 
   return (
-    <>
-      {selectedEmployee && (
-        <Modal>
+    <div className="w-full p-4">
           <h3 className="text-xl font-bold mb-4">تعديل بيانات الموظف</h3>
           <label className="block mb-2">الاسم:</label>
           <input
@@ -384,53 +347,14 @@ export function EditEmployeeData() {
           <div className="flex justify-between mt-4">
             <button
               className="bg-green-500 text-white px-4 py-2 rounded"
-              onClick={handleSave}
+              
             >
               حفظ التعديلات
             </button>
-            <button
-              className="bg-gray-500 text-white px-4 py-2 rounded"
-              onClick={() => setSelectedEmployee(null)}
-            >
-              إلغاء
-            </button>
+       
           </div>
-        </Modal>
-      )}
-
-      <div className="p-6">
-        <h2 className="text-2xl font-bold mb-4">جدول الموظفين</h2>
-        <table className="w-full border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-200 dark:bg-primary-900">
-              <th className="border p-2">الاسم</th>
-              <th className="border p-2">البريد الإلكتروني</th>
-              <th className="border p-2">الوظيفة</th>
-              <th className="border p-2">الراتب</th>
-              <th className="border p-2">إجراء</th>
-            </tr>
-          </thead>
-          <tbody>
-            {employees.map((employee) => (
-              <tr key={employee.id} className="text-center">
-                <td className="border p-2">{employee.name}</td>
-                <td className="border p-2">{employee.email}</td>
-                <td className="border p-2">{employee.jobTitle}</td>
-                <td className="border p-2">{employee.salary} $</td>
-                <td className="border p-2">
-                  <button
-                    className="bg-green-500 text-white px-3 py-1 rounded"
-                    onClick={() => handleEdit(employee)}
-                  >
-                    تعديل
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+    </div>
+   
   );
 }
 

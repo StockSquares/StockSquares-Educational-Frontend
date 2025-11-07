@@ -6,6 +6,8 @@ import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Questionare from "../../components/general/questionare/Questionare";
+import { Login, Register } from "..";
+import { useAuth } from "../../Context/AuthContext";
 function InvestorSurvey() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [index, setIndex] = useState(0);
@@ -16,6 +18,8 @@ function InvestorSurvey() {
   const [birthDate, setBirthDate] = useState(null);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
+
+  const { userData } = useAuth();
 
   const handleOptionClick = (optionIndex) => {
     setSelectedOption(optionIndex);
@@ -48,7 +52,6 @@ function InvestorSurvey() {
 
     setIndex(index + 1);
     setSelectedOption(updatedAnswers[index + 1] || null);
-
   };
 
   const previous = () => {
@@ -57,78 +60,37 @@ function InvestorSurvey() {
     setSelectedOption(answers[index - 1] || null);
   };
 
-  
   return (
-    <div className="contain">
-      {!isLoggedIn ? (
-        <div className="login">
-          <h1>
-            <FontAwesomeIcon icon={faClipboardList} /> إستبيان شخصية مستثمر
-          </h1>
-          <div className="full">
-            <p className="important-info">
-              📌 هذا الاستبيان هو أداة لتقييم مستوي المخاطرة في الشخصية. لتقييم
-              دقيق وشامل، يجب إجراء تقييم نفسي متخصص مثل مقياس البحث عن الإثارة
-              ومقياس الميل في المخاطرة.
-            </p>
-            <div>
-              <label>الاسم الثنائي :</label>
-              <input
-                type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder="أدخل اسمك الثنائي"
-              />
-            </div>
-            <div>
-              <label className="block mb-1 ">تاريخ الميلاد:</label>
-              <DatePicker
-                selected={birthDate}
-                onChange={(date) => setBirthDate(date)}
-                dateFormat="yyyy-MM-dd"
-                placeholderText="اختر تاريخ الميلاد"
-                className="w-full p-2 rounded border"
-                showMonthDropdown
-                showYearDropdown
-                dropdownMode="select"
-              />
-            </div>
-            <div>
-              <label>البريد الإلكتروني :</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="أدخل بريدك الإلكتروني"
-              />
-            </div>
-          </div>
-          {formError && (
-            <p className="error">
-              يرجى ملء جميع الحقول بشكل صحيح قبل المتابعة !
-            </p>
-          )}
-          <button type="button" onClick={handleStart}>
-            بدء
-          </button>
-        </div>
+    <>
+      {!userData ? (
+        <Login />
       ) : (
-        <Questionare
-          title={"استبيان شخصيه مستثمر"}
-          next={next}
-          previous={previous}
-          index={index}
-          setIndex={setIndex}
-          selectedOption={selectedOption}
-          answers={answers}
-          handleOptionClick={handleOptionClick}
-          questions={questions}
-          setAnswers={setAnswers}
-          error={error}
-        />
+        <div className="contain">
+          <p className="important-info">
+            📌 هذا الاستبيان هو أداة لتقييم مستوي المخاطرة في الشخصية. لتقييم
+            دقيق وشامل، يجب إجراء تقييم نفسي متخصص مثل مقياس البحث عن الإثارة
+            ومقياس الميل في المخاطرة.
+          </p>
+          <Questionare
+            title={"استبيان شخصيه مستثمر"}
+            next={next}
+            previous={previous}
+            index={index}
+            setIndex={setIndex}
+            selectedOption={selectedOption}
+            answers={answers}
+            handleOptionClick={handleOptionClick}
+            questions={questions}
+            setAnswers={setAnswers}
+            error={error}
+          />
+        </div>
       )}
-    </div>
+    </>
   );
+}
+
+{
 }
 
 export default InvestorSurvey;

@@ -13,13 +13,13 @@ export { default as OpportunitiesAndRecommendations } from "./OpportunitiesAndRe
 export { default as FinanceAndBusinessLibrary } from "./FinanceAndBusinessLibrary/FinanceAndBusinessLibrary.jsx";
 export { default as Blog } from "./Blog/Blog.jsx";
 export { default as InlineBlog } from "./Blog/InlineBlog.jsx";
-export { default as Article } from "./Article/Article.jsx";
+// export { default as Article } from "./Article/Article.jsx";
 export { default as PartnerApplication } from "./PartnerApplication/PartnerApplication.jsx";
 export { default as TryTradingForFree } from "./TryTradingForFree/TryTradingForFree.jsx";
 export { default as VIPInvestorServices } from "./VIPInvestorServices/VIPInvestorServices.jsx";
 export { default as User } from "./User/User.jsx";
 export { default as Client } from "./employeesPortal/Employees.jsx";
-export { default as Employee } from "./Employee/Employee.jsx";
+// export { default as Employee } from "./Employee/Employee.jsx";
 export { default as Reservation } from "./Reservation/Reservation.jsx";
 export { default as Payment } from "./Reservation/Payment.jsx";
 export { default as InvestorSurvey } from "./InvestorSurvey/InvestorSurvey.jsx";

@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Login, Register } from "..";
+import { useAuth } from "../../Context/AuthContext";
 
 function Joincomp() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -88,82 +90,21 @@ function Joincomp() {
     setSelectedOption(answers[index - 1] || null);
   };
 
+  const{userData}= useAuth();
+
   return (
     <>
-      <div className="contain">
-        {!isLoggedIn ? (
-          <div className="login">
-            <h1>
-              <FontAwesomeIcon icon={faHandshake} /> طلب الانضمام كمدرب شخصي
-            </h1>
-            {/* form start */}
-            <div className="full">
-              <p className="important-info text-lg">
+    
+      
+        {userData ? (
+          <Login/>
+        ) : (
+          <div className="contain">
+           <p className="important-info text-lg">
                 نشكرك على اهتمامك بالانضمام إلى فريقنا كمدرب شخصي حر . <br />
                 قبل البدء في ملء طلب التقديم، نود أن نوجهكم إلى صراحة الإجابات
                 حتى نستطيع تقيم طلبكم بطريقة فعالة وبناء علاقة عملية موثوقة
               </p>
-              <div>
-                <label>الاسم ثلاثي :</label>
-                <input
-                  type="text"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  placeholder="أدخل اسمك ثلاثي"
-                />
-              </div>
-              <div>
-                <label>رقم الهاتف :</label>
-                <input
-                  type="tel"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  placeholder="أدخل رقم هاتفك"
-                />
-              </div>
-              <div>
-                <label>بلد الإقامة :</label>
-                <input
-                  type="text"
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  placeholder="أدخل بلد إقامتك"
-                />
-              </div>
-              <div>
-                <label>تاريخ الميلاد :</label>
-                <DatePicker
-                  selected={birthDate}
-                  onChange={(date) => setBirthDate(date)}
-                  dateFormat="yyyy-MM-dd"
-                  placeholderText="اختر تاريخ الميلاد"
-                  className="w-full p-2 rounded border"
-                  showMonthDropdown
-                  showYearDropdown
-                  dropdownMode="select"
-                />
-              </div>
-              <div>
-                <label>البريد الإلكتروني :</label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="أدخل بريدك الإلكتروني"
-                />
-              </div>
-            </div>
-            {formError && (
-              <p className="error">
-                يرجى ملء جميع الحقول بشكل صحيح قبل المتابعة !
-              </p>
-            )}
-            <button type="button" className="px-3" onClick={handleStart}>
-              ابدا طلب الانضمام
-            </button>
-          </div>
-        ) : (
-          <>
             <h1>
               <FontAwesomeIcon icon={faHandshake} /> طلب الانضمام كمدرب شخصي
             </h1>
@@ -224,9 +165,10 @@ function Joincomp() {
                 <span className="top">{questions.length}</span> Questions
               </div>
             </div>
-          </>
-        )}
       </div>
+
+        
+        )}
     </>
   );
 }

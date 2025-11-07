@@ -20,7 +20,7 @@ function PracticalTrainingCard({
   const { t } = useTranslation();
 
   return (
-    <div className="h-full p-2" style={{ direction: "rtl" }}>
+    <div className="h-full p-2" >
       {/* الكرت كامل */}
       <div className="flex flex-col  bg-white  rounded overflow-hidden shadow-md">
         {/* الصورة في الأعلى */}
