@@ -21,7 +21,7 @@ function PartnerApplicationUi({
   // PartnerRegister,
   // handleSubmit,
   // addToApi,
-  // isLoggedIn,
+  isLoggedIn,
   error,
   answers,
   setAnswers,
@@ -31,10 +31,8 @@ function PartnerApplicationUi({
 }) {
   return (
     <>
-      {!userData ? (
-        <Login />
-      ) : (
-        <div className="contain">
+      {!isLoggedIn ? (
+         <div className="contain">
           <p className="important-info  ">
             يسعدنا طلبك في الأنضمام الى شبكة شركاء ستوك سكويرز
             <br />
@@ -58,6 +56,9 @@ function PartnerApplicationUi({
             selectedanswer={selectedanswer}
           />
         </div>
+      ) : (
+        <Register />
+       
       )}
     </>
   );

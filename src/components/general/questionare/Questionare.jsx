@@ -10,7 +10,8 @@ function Questionare({
   handleOptionClick,
   questions,
   error,
-  title
+  title,
+  
 }) {
   return (
     <>

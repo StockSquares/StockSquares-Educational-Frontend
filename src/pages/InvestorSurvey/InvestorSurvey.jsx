@@ -26,15 +26,6 @@ function InvestorSurvey() {
     setError(false);
   };
 
-  const handleStart = () => {
-    if (!fullName || !birthDate || !email) {
-      setFormError(true);
-      return;
-    }
-    setFormError(false);
-    setIsLoggedIn(true);
-  };
-
   const next = () => {
     if (selectedOption === null) {
       setError(true);
@@ -45,8 +36,8 @@ function InvestorSurvey() {
     updatedAnswers[index] = selectedOption;
     setAnswers(updatedAnswers);
 
-    if (index === questions.length - 1) {
-      alert("Survey completed! Thank you for your participation.");
+    if (index === questions.length - 1 && !userData) {
+      setIsLoggedIn(true);
       return;
     }
 
@@ -62,9 +53,7 @@ function InvestorSurvey() {
 
   return (
     <>
-      {!userData ? (
-        <Login />
-      ) : (
+      {!isLoggedIn ? (
         <div className="contain">
           <p className="important-info">
             📌 هذا الاستبيان هو أداة لتقييم مستوي المخاطرة في الشخصية. لتقييم
@@ -85,6 +74,8 @@ function InvestorSurvey() {
             error={error}
           />
         </div>
+      ) : (
+        <Register />
       )}
     </>
   );
