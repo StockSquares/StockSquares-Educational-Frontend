@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contain2 {
+    max-width: 640px;
+    margin: 20px auto;
+    background-color: white;
+    color: #262626;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 5px 50px;
+    text-align: right;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: padding 0.3s ease;
+}
+
+.contain2 h1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1b602d;
+    margin-bottom: 5px;
+}
+
+.contain2 h2 {
+    background-color: #f0f8ff;
+    border: 2px solid #25863f;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #262626;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.logo {
+    width: 60%;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+
+.contain2 hr {
+    height: 2px;
+    border: none;
+    background-color: #929292;
+    margin-top: 7px;
+}
+
+
+.contain3 input {
+    height: 45px;
+    border: 2px solid #25863f;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+.bu1 {    
+    background-color: #25863f;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.bu1:hover {
+    background-color: #1b602d;
+}
+
+.googleButton, .facebookButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.googleButton {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    color: #444;
+}
+
+.googleButton img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.googleButton:hover {
+    background-color: #f5f5f5;
+    border-color: #bbb;
+}
+
+.facebookButton {
+    background-color: #0073ff;
+    border: 1px solid #ddd;
+    color: white;
+}
+
+.facebookButton img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    color: white;
+    background-color: white;
+    border-radius: 50%;
+    padding: 3px;
+}
+
+.facebookButton:hover {
+    background-color: #0050b3;
+}
+
+/* روابط التسجيل */
+.registerLink {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.registerLink a {
+    color: #25863f;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.registerLink a:hover {
+    text-decoration: underline;
+    color: #1b602d;
+}
+
+@media (max-width: 768px) {
+    
+    .contain2 {
+        max-width: 540px;
+        padding: 20px;
+    }
+
+    .logo {
+        width: 50%;
+    }
+
+    .contain2 h1 {
+        font-size: 20px;
+    }
+
+    .contain2 h2 {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .contain3 input {
+        font-size: 16px;
+    }
+
+    .bu1, .googleButton, .facebookButton {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .error {
+        font-size: 16px;
+    }
+
+    .eyeIcon {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contain2 {
+        width: 100%;
+        margin: 0;
+        padding: 17px;
+    }
+
+    .logo {
+        width: 60%;
+    }
+
+    .contain2 h1 {
+        font-size: 18px;
+    }
+
+    .contain2 h2 {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .contain3 input {
+        font-size: 14px;
+    }
+
+    .bu1, .googleButton, .facebookButton {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .error {
+        font-size: 14px;
+    }
+
+    .eyeIcon {
+        font-size: 16px;
+    }
+}
+

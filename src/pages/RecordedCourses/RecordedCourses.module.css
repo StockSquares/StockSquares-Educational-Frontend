@@ -1,0 +1,8 @@
+
+.RecordedCourses {}
+
+.search-form-background {
+    background-size: cover;        /* Makes the image cover the entire container */
+    background-position: center;   /* Centers the image within the container */
+    background-repeat: no-repeat;  /* Prevents the image from repeating */
+}

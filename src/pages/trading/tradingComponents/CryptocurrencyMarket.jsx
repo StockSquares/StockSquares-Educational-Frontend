@@ -1,0 +1,38 @@
+// CryptocurrencyMarket.jsx
+import React, { useEffect, useRef, memo } from 'react';
+
+function CryptocurrencyMarket({ Theme }) {
+  const container = useRef();
+
+  useEffect(
+    () => {
+    container.current.innerHTML="";
+      const script = document.createElement("script");
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-screener.js";
+      script.type = "text/javascript";
+      script.async = true;
+      script.innerHTML = `
+        {
+          "defaultColumn": "overview",
+          "screener_type": "crypto_mkt",
+          "displayCurrency": "USD",
+          "colorTheme": "${Theme}",
+          "isTransparent": false,
+          "locale": "en",
+          "width": "100%",
+          "height": 550
+        }`;
+      container.current.appendChild(script);
+    },
+    [Theme]
+  );
+
+  return (
+    <div className="tradingview-widget-container mt-3  w-full" ref={container}>
+      <div className="tradingview-widget-container__widget"></div>
+      <div className="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/cryptocurrencies/prices-all/" rel="noopener nofollow" target="_blank"><span className="blue-text">Crypto markets</span></a><span className="trademark"> by TradingView</span></div>
+    </div>
+  );
+}
+
+export default memo(CryptocurrencyMarket);

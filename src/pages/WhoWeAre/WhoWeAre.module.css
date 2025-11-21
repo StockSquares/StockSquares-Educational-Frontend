@@ -1,0 +1,15 @@
+.title{
+    width: 150px;
+    animation: increase 1.8s 1 ease-in-out;
+    transition: 0.3s ;
+
+}
+@keyframes increase {
+    0%{
+        width: 100px;
+    }
+    100%{
+        width: 150px;
+    }
+    
+}

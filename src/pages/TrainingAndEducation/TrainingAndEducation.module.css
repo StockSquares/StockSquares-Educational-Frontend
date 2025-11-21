@@ -1,0 +1,304 @@
+/* Container centers the card */
+.container {
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    /* Light background for contrast */
+}
+
+
+.icon {
+    color: var(--stocksquares-color);
+    /* Green color for check icons */
+    margin-left: 0.5rem;
+    /* Adjusted for RTL */
+    flex-shrink: 0;
+}
+
+
+/* Trial button styling */
+.buttonTrial {
+    background-color: var(--accent-color);
+    color: #333333;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    padding: 13px;
+}
+
+.buttonTrial:hover {
+    background-color: var(--accent-color-light);
+}
+
+/* Personal trainer button styling */
+.buttonPersonal {
+    background-color: var(--primary-color, #C62E2E);
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    padding: 13px;
+}
+
+.buttonPersonal:hover {
+    background-color: var(--stocksquares-color);
+    /* Green on hover */
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+
+    /* For medium and large screens, make layout side-by-side */
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .card {
+        max-width: 45%;
+        /* Adjust as needed */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 1.5rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .description,
+    .featuresList li {
+        font-size: 0.95rem;
+    }
+
+    .buttonTrial,
+    .buttonPersonal {
+        padding: 0.5rem 1rem;
+        font-size: 0.95rem;
+    }
+}
+
+.pageContainer {
+    padding: 2rem 1rem;
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+/* Logo Styling */
+.rotatingLogo {
+    display: inline-block;
+    margin: auto;
+    /* width: 90%; */
+    height: auto;
+}
+
+/* Apply the spinning animation to the logo when the entire card is hovered */
+
+/* Keyframes for the spinning animation */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.planCard:hover {
+    box-shadow: 0 6px 12px rgba(198, 46, 46, 0.3);
+    transform: translateY(-5px);
+}
+
+/* التنسيق داخل البطاقة الأولى - التدريب الشخصي */
+.planCard img {
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+    height: auto;
+    transform-origin: center;
+    transition: transform 0.5s ease-in-out;
+    /* تدوير الشعار عند التمرير */
+}
+
+/* تدوير الشعار عند التمرير فوق البطاقة */
+.planCard:hover img {
+    animation: spin 1s linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+
+.description {
+    font-size: 1rem;
+    color: #555555;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.featuresList {
+    list-style: none;
+    padding: 0;
+    /* margin: .5rem 0; */
+}
+
+.featuresList li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #333333;
+    font-size: 1.2rem;
+}
+
+.icon {
+    color: var(--stocksquares-color);
+    padding: 0 0.5rem;
+    flex-shrink: 0;
+}
+
+.planCard {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    max-width: 400px;
+    width: 100%;
+
+}
+
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    flex-wrap: wrap;
+}
+
+.planCard:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.planCard .title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333333;
+}
+
+.planCard .EgpPrice {
+    font-size: 1.25rem;
+    color: var(--accent-color-dark);
+    font-weight: bold;
+
+}
+
+.planCard .usdPrice {
+    font-size: 1rem;
+    font-weight: bold;
+
+    color: var(--stocksquares-color);
+    margin-left: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.planCard .duration {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #555555;
+}
+
+.planCard .featuresList {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.planCard .featuresList li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #333333;
+    font-size: 1rem;
+}
+
+.planCard .icon {
+    color: var(--stocksquares-color);
+    margin-left: 0.5rem;
+    flex-shrink: 0;
+}
+
+.planCard .button {
+    background-color: var(--stocksquares-color);
+    color: #ffffff;
+    padding: 0.25rem 1.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.planCard .button:hover {
+    background-color: var(--accent-color-dark);
+}
+
+/* تخصيص تنسيق للعرض على الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .planCard {
+        padding: 1.5rem;
+    }
+
+    .planCard .title {
+        font-size: 1.25rem;
+    }
+
+    .planCard .EgpPrice,
+    .planCard .duration {
+        font-size: 1rem;
+    }
+
+    .planCard .button {
+        font-size: 0.95rem;
+    }
+}
+
+
+@keyframes increase {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 50%;
+    }
+}

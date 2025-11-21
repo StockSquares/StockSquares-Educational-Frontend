@@ -1,0 +1,283 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap'); */
+
+@font-face {
+    font-family: 'Cairo';
+    src: url('./assets/fonts/Cairo/Cairo-VariableFont_slnt,wght.ttf') format('truetype-variations');
+    font-weight: 200 900; /* Defines the range of supported font weights */
+    font-style: normal ; 
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* ===== GENERAL OVERRIDE =====*/
+.preferFontSize{
+    font-size: clamp(10px, 5vw, 40px);
+}
+
+body{
+    font-family: "Cairo";
+}
+:root {
+    /* Brand Colors */
+    --stocksquares-color: rgb(24, 114, 0); /* Stocksquares Green */
+    --primary-color: rgb(37, 134, 63); /* UI Green */
+    --accent-color: rgb(254, 216, 21); /* UI Yellow */
+
+    /* Darker Shades for Effects States */
+    --primary-color-dark: rgb(19, 91, 0); /* Darker Green */
+    --accent-color-dark: rgb(204, 173, 17); /* Darker Yellow */
+
+    /* Lighter Shades for Effects States */
+    --primary-color-light: rgb(57, 150, 36); /* Lighter Green */
+    --accent-color-light: rgb(255, 236, 79); /* Lighter Yellow */
+
+    /* Neutral Colors */
+    --lightgray-color: rgb(246, 248, 247); /* Light Gray */
+    --gray-color: rgb(217, 217, 217); /* Gray */
+    --darkgray-color: rgb(37, 43, 43); /* Dark Gray/Black */
+
+    /* Primary Color's Opacity */
+    --primary-50: #F4F9F5;
+    --primary-100: #E9F3EB;
+    --primary-200: #D3E7D9;
+    --primary-300: #BDDAC5;
+    --primary-400: #A8CFB2;
+    --primary-500: #92C29F;
+    --primary-600: #7CB68C;
+    --primary-700: #66AA78;
+    --primary-800: #519E65;
+    --primary-900: #3A9252;
+    --primary-950: #308C49;
+
+    /* Accent Color's Opacity */
+    --accent-50: #FFFDF3; 
+    --accent-100: #FFFBE7;
+    --accent-200: #FFF7D0;
+    --accent-300: #FFF3B8;
+    --accent-400: #FFEFA1;
+    --accent-500: #FEEB8A;
+    --accent-600: #FEE873;
+    --accent-700: #FEE044;
+    --accent-800: #FEE044;
+    --accent-900: #FEDC2C;
+    --accent-950: #FEDA21;
+
+    /* Fonts */
+    --font-Cairo: 'Cairo', sans-serif;
+    /* --line-height-short: 1.2; */
+
+    /* dark mode */
+    --dark-background: rgba(26, 25, 25, 0.93);
+    --dark-text: #f3f4f6;
+
+}
+
+* {
+    @apply  sm:break-normal box-border;
+}
+
+@layer base {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-medium uppercase
+    }
+    h1 {
+        /* @apply text-2xl sm:text-3xl lg:text-4xl */
+    }
+    h2 {
+        @apply text-lg
+    }
+    h3 {
+        @apply text-lg sm:text-xl lg:text-2xl
+    }
+    h5 {
+        @apply sm:text-base lg:text-lg
+    }
+    p {
+        /* @apply mb-2 */
+    }
+}
+
+/* ===== CUSTOM CLASSES =====*/
+
+/* React-Components */
+/* NavLinks */
+nav.nav-main ul a {
+    @apply relative
+}
+nav.nav-main ul a:hover,
+nav.nav-main ul a.active {
+    /* @apply text-accent-800 transDuration-500 */
+    @apply text-black transDuration-500
+}
+nav.nav-main ul a.active {
+    @apply scale-105 transDuration-300
+}
+nav.nav-main ul li:has(a) {
+    /* @apply border-b-4 border-b-transparent */
+    @apply mx-1
+}
+nav.nav-main ul li:has(a:hover) {
+    /* @apply bg-primary-950 border-b-primary-400 transDuration-500 */
+    /* @apply bg-primary-100 rounded-lg border-b-primary-200 transDuration-500 */
+    @apply bg-primary-100 rounded-lg transDuration-500
+}
+nav.nav-main ul li:has(a.active) {
+    /* @apply bg-primary-900 border-b-primary-200 transDuration-500 */
+    /* @apply bg-primary-200 rounded-lg border-b-primary-300 transDuration-500 */
+    @apply bg-primary-200 rounded-lg transDuration-500
+}
+.test a.active {
+    @apply text-red-300
+}
+.text a {
+    @apply text-red-400
+}
+
+/* Flowbite */
+[aria-label='Tabs with icons'] button,
+[aria-label='Pills'] button {
+    @apply focus:ring-0 hover:bg-primary-100 mx-2 first:ml-2
+}
+[aria-label='Tabs with icons'] button.active,
+[aria-label='Pills'] button[aria-selected='true'] {
+    @apply bg-gray-100 border-primary-800 text-primary-800 font-bold dark:border-primary-500 dark:text-primary-500 
+}
+nav.breadcrumb li button svg {
+    @apply ml-0 ms-2
+}
+
+/* Forms */
+.input-parent input {
+    @apply text-left bg-gray-200 focus:ring-2 focus:border-primary-500 focus:ring-primary-500
+}
+
+/* Flexs */
+.row {
+    @apply flex flex-wrap
+}
+.flex-center {
+    @apply flex flex-wrap justify-center items-center
+}
+.flex-x-center {
+    @apply flex flex-wrap justify-center
+}
+.flex-y-center {
+    @apply flex flex-wrap items-center
+}
+.flex-stretch-parent {
+    @apply flex flex-wrap items-stretch
+}
+.flex-stretch-child {  /* the grandchild, which targeted to be stretched, must get 'grow' class */
+    @apply flex flex-col h-full
+}
+.flex-x-between {
+    @apply flex flex-wrap justify-between
+}
+.flex-col-between {
+    @apply flex flex-col flex-wrap justify-between
+}
+
+/* Imgs */
+.img-cover {
+    @apply w-full h-full object-cover
+}
+.img-adjust {
+    @apply w-full aspect-[1/1] object-contain
+}
+.img-icon {
+    @apply w-6
+}
+
+/* Headers */
+.header-primary {
+    @apply bg-primary
+}
+
+/* Buttons */
+.btn-general {
+    @apply 
+    font-semibold text-sm drop-shadow-lg hover:bg-accent-light hover:scale-105 transDuration-300
+    /* text-white bg-primary rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-800 dark:hover:bg-primary dark:focus:ring-primary-300 */
+}
+.btn-general-full {
+    @apply btn-general py-4 rounded-full
+}
+.btn-bg-white {
+    @apply btn-general bg-white text-black/90 rounded-lg
+}
+.btn-bg-accent {
+    @apply btn-general bg-accent text-black/90 rounded-lg
+}
+.btn-bg-accent-full {
+    @apply btn-general-full text-black/90 bg-accent
+}
+.btn-bg-primary-full {
+    @apply btn-general-full text-white bg-primary hover:text-black/90
+}
+
+/* Transitions */
+.transDuration-300 {
+    @apply transition duration-300 ease-in-out
+}
+.transDuration-500 {
+    @apply transition duration-500 ease-in-out
+}
+
+/* Wrapper Divs (Containers) */
+.wrapperClass-sectionCard {
+    @apply flex-stretch-child 
+}
+.wrapperClass-sectionCard>div {
+    @apply flex-center grow
+}
+
+
+/* @media (prefers-color-scheme: light) {
+    :root {
+        color: #213547;
+        background-color: #ffffff;
+    }
+    a:hover {
+        color: #747bff;
+    }
+    button {
+        background-color: #f9f9f9;
+    }
+} */
+
+
+.slick-prev:before,
+.slick-next:before {
+  color: var(--primary-700); /* اختاري اللون اللي تحبيه */
+  font-size: 20px;
+}
+input:focus, select:focus {
+  outline: none !important; 
+  border: 2px solid #11973bcf !important;
+  box-shadow: 0 0 0 3px rgba(19, 200, 76, 0.25) !important; 
+  color: #17af48 !important;
+}
+
+@keyframes slideFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+.animate-slideFade {
+  animation: slideFade 0.7s ease forwards;
+}

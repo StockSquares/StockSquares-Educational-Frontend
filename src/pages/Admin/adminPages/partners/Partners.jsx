@@ -1,0 +1,49 @@
+import { useState } from "react";
+import Main from "./partnersComponents/Main";
+import Requests from "./partnersComponents/Requests";
+import PerformanceReport from "./partnersComponents/PerformanceReport";
+import PageHeader from "../../../../components/general/PageHeader/PageHeader";
+import PartnersOperations from "./partnersComponents/PartnersOperations";
+import FinancialPartners from "./partnersComponents/FinancialPartners";
+
+function Partners() {
+  const [isClicked, setIsClicked] = useState(0);
+  const buttons = [
+    " الرئيسيه ",
+    " طلبات الانضمام ",
+    " تقارير الأداء ",
+    " اداره العمليات ",
+    " المعاملات الماليه",
+  ];
+
+  const handleClicked = (idx) => {
+    setIsClicked(idx);
+  };
+
+  return (
+    <div className="container-fluid justify-center w-full flex  mt-5">
+      <div className="grid  grid-cols-1 gap-2">
+        <PageHeader
+          Buttons={buttons}
+          Clicked={isClicked}
+          HandleClicked={handleClicked}
+        />
+
+        <div className="show w-full">
+          {isClicked === 0 ? (
+            <Main />
+          ) : isClicked === 1 ? (
+            <Requests />
+          ) : isClicked === 2 ? (
+            <PerformanceReport />
+          ) : isClicked === 3 ? (
+            <PartnersOperations />
+          ) : (
+            <FinancialPartners />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+export default Partners;
