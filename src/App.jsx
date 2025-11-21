@@ -24,9 +24,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { JobStatusProvider } from "./Context/JobStatusContext";
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
+
 import { ToastContainer } from "react-toastify";
 import JoinBrokerPage from "./pages/JoinBroker/JoinBroker";
 import { JoinBrokerProfessional, UserSupportCenterProfessional } from "./components/support";
+
 
 const queryClient = new QueryClient();
 
@@ -81,11 +83,10 @@ const Admin = lazy(() => import("./pages/Admin/Admin"));
 const Employees = lazy(() => import("./pages/employeesPortal/Employees"));
 const Client = lazy(() => import("./pages/Admin/Client"));
 const Trainer = lazy(() => import("./pages/trainerPortal/Trainer"));
+
 const PrivacyPolicy = lazy(() => import("./pages/RiskWarning/RiskWarning"));
 const WhoWeAre = lazy(() => import("./pages/WhoWeAre/WhoWeAre"));
-const TermsAndConditions = lazy(() =>
-  import("./pages/ConditionsAgreementAndPrivacyPolicy/ConditionsAgreementAndPrivacyPolicy")
-);
+const TermsAndConditions = lazy(() =>import("./pages/ConditionsAgreementAndPrivacyPolicy/ConditionsAgreementAndPrivacyPolicy"));
 const Activities = lazy(() => import("./pages/Activities/Activities"));
 const ChatAi = lazy(() => import("./pages/chatAi/ChatAi"));
 const LevelExam = lazy(() => import("./pages/levelexam/LevelExam"));
@@ -99,8 +100,8 @@ const ResetPassword = lazy(() => import("./pages/ResetPassword/ResetPassword"));
 const VerifyOTP = lazy(() => import("./pages/Register/VerifyOTP"));
 const Partner = lazy(() => import("./pages/PartnerPortal/Partner"));
 
-const JoinBroker = lazy(() => import("./pages/JoinBroker/JoinBroker"));
 
+const JoinBroker = lazy(() => import("./pages/JoinBroker/JoinBroker"));
 
 // const pages = {};
 // for (const [key, Path] of Object.entries(lazyPages)) {
@@ -442,6 +443,8 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+
+      { path: "/sidebar", element: <SideBar /> },
     ],
   },
 ]);

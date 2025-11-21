@@ -1,3 +1,4 @@
+
 /* Container centers the card */
 .container {
     padding: 2rem 1rem;
@@ -13,6 +14,8 @@
     /* Green color for check icons */
     margin-left: 0.5rem;
     /* Adjusted for RTL */
+    color: var(--stocksquares-color); /* Green color for check icons */
+    margin-left: 0.5rem; /* Adjusted for RTL */
     flex-shrink: 0;
 }
 
@@ -44,10 +47,18 @@
 .buttonPersonal:hover {
     background-color: var(--stocksquares-color);
     /* Green on hover */
+    cursor: pointer;   
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.buttonPersonal:hover {
+    background-color: var(--stocksquares-color); /* Green on hover */
 }
 
 /* Responsive adjustments */
 @media (min-width: 768px) {
+
 
     /* For medium and large screens, make layout side-by-side */
     .container {
@@ -59,6 +70,7 @@
     .card {
         max-width: 45%;
         /* Adjust as needed */
+        max-width: 45%; /* Adjust as needed */
     }
 }
 
@@ -78,10 +90,16 @@
 
     .buttonTrial,
     .buttonPersonal {
+    .description, .featuresList li {
+        font-size: 0.95rem;
+    }
+
+    .buttonTrial, .buttonPersonal {
         padding: 0.5rem 1rem;
         font-size: 0.95rem;
     }
 }
+
 
 .pageContainer {
     padding: 2rem 1rem;
@@ -90,6 +108,8 @@
 
 }
 
+        
+}
 /* Logo Styling */
 .rotatingLogo {
     display: inline-block;
@@ -105,7 +125,6 @@
     from {
         transform: rotate(0deg);
     }
-
     to {
         transform: rotate(360deg);
     }
@@ -125,6 +144,7 @@
     transform-origin: center;
     transition: transform 0.5s ease-in-out;
     /* تدوير الشعار عند التمرير */
+    transition: transform 0.5s ease-in-out; /* تدوير الشعار عند التمرير */
 }
 
 /* تدوير الشعار عند التمرير فوق البطاقة */
@@ -177,6 +197,7 @@
     flex-shrink: 0;
 }
 
+
 .planCard {
     background-color: #ffffff;
     border-radius: 0.75rem;
@@ -189,6 +210,7 @@
     width: 100%;
 
 }
+
 
 .pageContainer {
     display: flex;
@@ -218,6 +240,7 @@
 .planCard .EgpPrice {
     font-size: 1.25rem;
     color: var(--accent-color-dark);
+    color: var( --accent-color-dark);
     font-weight: bold;
 
 }
@@ -253,12 +276,14 @@
 
 .planCard .icon {
     color: var(--stocksquares-color);
+    color:var(--stocksquares-color);
     margin-left: 0.5rem;
     flex-shrink: 0;
 }
 
 .planCard .button {
     background-color: var(--stocksquares-color);
+    background-color:var(--stocksquares-color);
     color: #ffffff;
     padding: 0.25rem 1.5rem;
     border-radius: 0.5rem;
@@ -270,6 +295,7 @@
 
 .planCard .button:hover {
     background-color: var(--accent-color-dark);
+    background-color:var(--accent-color-dark);
 }
 
 /* تخصيص تنسيق للعرض على الشاشات الصغيرة */
@@ -284,6 +310,7 @@
 
     .planCard .EgpPrice,
     .planCard .duration {
+    .planCard .EgpPrice, .planCard .duration {
         font-size: 1rem;
     }
 
@@ -301,4 +328,6 @@
     100% {
         width: 50%;
     }
+}
+   
 }

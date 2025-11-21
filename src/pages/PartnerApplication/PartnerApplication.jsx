@@ -34,6 +34,8 @@ const PartnerApplication = () => {
     if (index === questions.length - 1) {
       alert("تم إكمال الاستبيان! شكراً لمشاركتك.");
       console.log(updatedAnswers);
+    if (index === questions.length - 1 && !userData) {
+     setIsLoggedIn(true);
       return;
     }
 
@@ -93,6 +95,7 @@ const PartnerApplication = () => {
       // handleSubmit={handleSubmit}
       // addToApi={addToApi}
       // isLoggedIn={isLoggedIn}
+      isLoggedIn={isLoggedIn}
       error={error}
       answers={answers}
       setAnswers={setAnswers}
@@ -102,5 +105,6 @@ const PartnerApplication = () => {
     />
   );
 };
+}
 
 export default PartnerApplication;

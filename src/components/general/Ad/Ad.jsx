@@ -9,6 +9,7 @@ import cardImg from "/src/assets/imgs/1.webp";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+// import style from "./Ad.module.css";
 
 function Ad({ adLocation }) {
   const [ads, setAds] = useState([]);
@@ -24,6 +25,7 @@ function Ad({ adLocation }) {
       if (response.ok) {
         const data = await response.json();
         console.log("row data", data);
+        console.log(data);
         setAds(data);
         const filteredToMain = data.filter((item) => item.locationId === 6);
         const filteredToCourse = data.filter((item) => item.locationId === 7);
@@ -52,6 +54,7 @@ function Ad({ adLocation }) {
     infinite: adLocation === "course" ? false : true,
     speed: 1000,
     slidesToShow: adLocation === "course" ? 3 : 1,
+    slidesToShow: adLocation === "course" ? 4 : 1,
     slidesToScroll: 1,
     autoplay: adLocation === "course" ? false : true,
     autoplaySpeed: 5000,
@@ -72,21 +75,16 @@ function Ad({ adLocation }) {
   const { t } = useTranslation();
   useEffect(() => { }, []);
 
+
   return (
-    <div className="w-full py-5 flex flex-col md:flex-row gap-4 items-center">
+    <div className="w-full flex flex-col lg:flex-row lg:items-center lg:justify-between  my-8">
       {adLocation === "course" ? (
-        <div className="flex-1 min-w-0 p-3">
-          {/* // عروض شركات الاستثمار والتداول// */}
-          <h2 className="font-bold text-xl mb-2">
-            {t("ad.ad")}
-          </h2>
+        <div className="w-full p-3">
+          <h2 className="font-semibold text-lg mb-2">{t("ad.ad")}</h2>
 
           <Slider ref={sliderRef} {...settings} dir="rtl">
             {courseAds.map((ad) => (
-              <div
-                key={ad.id}
-                className="w-1/3 p-2"
-              >
+              <div key={ad.id} className="w-1/3 p-2">
                 <a href={ad.link} className="block h-[100px] rounded-lg overflow-hidden">
                   <img
                     src={`data:image/*;base64,${ad.image}`}
@@ -96,7 +94,6 @@ function Ad({ adLocation }) {
                 </a>
                 <p className="mt-2 text-sm text-gray-700">{ad.title}</p>
               </div>
-
             ))}
           </Slider>
         </div>
@@ -107,11 +104,10 @@ function Ad({ adLocation }) {
               {mainAds.map((ad) => (
                 <div
                   key={ad.id}
-                  className="w-full h-[200px] px-1 rounded-lg overflow-hidden"
+                  className="ad w-full h-[200px] px-1 rounded-lg overflow-hidden"
                 >
                   <Link to={ad.link}>
                     <img
-                      // src={ad.image}
                       src={`data:image/*;base64,${ad.image}`}
                       alt={ad.title}
                       className="object-cover w-full h-full rounded-lg block"
@@ -124,14 +120,15 @@ function Ad({ adLocation }) {
         </div>
       )}
 
-
-      {/* ///////////  بروكر انطلق معنا!////////////// */}
-
-        <Link to="/join-broker" className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition text-lg font-semibold min-w-[180px]">
-          انطلق معنا!
-        </Link>
+      {/* زر بروكر */}
+      <Link
+        to="/join-broker"
+        className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition text-lg font-semibold min-w-[180px]"
+      >
+        انطلق معنا!
+      </Link>
     </div>
   );
 }
 
-export default Ad;
+export default Ad

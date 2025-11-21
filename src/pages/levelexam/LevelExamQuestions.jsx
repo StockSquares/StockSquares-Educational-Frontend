@@ -1,5 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
+// إضافة CircularProgressbar من النسخة البعيدة
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar"; 
 import "react-circular-progressbar/dist/styles.css";
 import assessmentData from './data/assessmentData';
 import { toast } from "react-toastify";
@@ -10,8 +12,6 @@ import { ROUTES } from "../../routes";
 import styles from '../../pages/TrainingAndEducation/TrainingAndEducation.module.css'
 
 import { useTranslation } from "react-i18next";
-
-
 
 
 const LevelExamQuestions = () => {
@@ -25,11 +25,14 @@ const LevelExamQuestions = () => {
   const { t } = useTranslation();
 
 
-
   const score = React.useMemo(
     () => answers.filter(a => a?.isCorrect).length,
     [answers]
   );
+
+  // لحساب نسبة التقدم الكلية (لشريط التقدم)
+  const progressPercentage = (currentIndex / totalQuestions) * 100;
+
 
   useEffect(() => {
     // عند تغيير currentIndex، نجيب الإجابة اللي المستخدم اختارها قبل كده
@@ -47,12 +50,12 @@ const LevelExamQuestions = () => {
   };
 
   const checkLevelUp = (nextIndex) => {
-    //  كل مستوي فيه 10 اسئله
+    // بناءً على المنطق الأول، الأسئلة مقسمة بالتساوي (نفترض 10 أسئلة لكل مستوى)
     if (nextIndex % 10 === 0 && nextIndex !== 0 && nextIndex < 20) {
-      toast.warning("انتِ الآن داخل على المستوى الأصعب!")
+      toast.warning("أنتِ الآن داخل على المستوى الأصعب!")
     }
     if (nextIndex === 20) {
-      toast.warning("انتِ الآن داخل على اخر مستوي!")
+      toast.warning("أنتِ الآن داخل على آخر مستوى!")
     }
   }
 
@@ -62,35 +65,47 @@ const LevelExamQuestions = () => {
     setCurrentIndex(nextIndex);
     checkLevelUp(nextIndex)
   };
+  
   const handlePrev = () => {
     setCurrentIndex(currentIndex - 1);
   };
 
-  const getLevel = (score) => {
-    // مثال بسيط لتقسيم المستويات حسب الدرجة
-    if (score / totalQuestions >= 0.7) return "مستوى محترف";
-    if (score / totalQuestions >= 0.4) return "مستوى متقدم";
+  const getLevel = (finalScore) => {
+    // تقسيم المستويات بناءً على الدرجة/النسبة
+    const percentage = finalScore / totalQuestions;
+    if (percentage >= 0.7) return "مستوى محترف";
+    if (percentage >= 0.4) return "مستوى متقدم";
     return "مستوى مبتدئ";
   };
 
   if (currentIndex >= totalQuestions) {
-    // صفحة النتيجة
+    // صفحة النتيجة (دمجنا فيها CircularProgressbar من النسخة الثانية)
     return (
-      <div className="flex flex-col justify-center items-center gap-4 my-10">
+      <div className="flex flex-col justify-center items-center gap-4 mt-10">
         <h2 className="text-2xl font-bold text-black mb-4">
           نتيجتك في اختبار تحديد المستوى
         </h2>
-        <div className="w-40">
-          {/* ممكن تضيفي CircularProgressbar */}
-          <p className="text-2xl text-center"><span className="text-green-400 font-bold text-3xl">{score}</span> / {totalQuestions}</p>
-        </div>
+        
+        <div className="w-40 h-40">
+           <CircularProgressbar
+             value={(score / totalQuestions) * 100}
+             text={`${score} / ${totalQuestions}`}
+             styles={buildStyles({
+               pathColor: "#10b981", // أخضر
+               textColor: "#1f2937",
+               trailColor: "#e5e7eb",
+               textSize: "16px",
+             })}
+           />
+         </div>
+
         <p className={`text-xl font-bold mt-4 text-green-400`}>
           {getLevel(score)}
         </p>
-        {/* <Link className=""> احجز مدربك الشخصي</Link> */}
+        
         <Link
           to={ROUTES.RESERVATION}
-          className={`${styles.buttonPersonal}  font-semibold  bg-primary-900 text-white  rounded-lg shadow-lg hover:bg-primary-800 `}
+          className={`${styles.buttonPersonal} font-semibold bg-primary-900 text-white rounded-lg shadow-lg hover:bg-primary-800 `}
         >
           {t("TrainingAndEducation.bookYourTrainer")}
         </Link>
@@ -105,26 +120,41 @@ const LevelExamQuestions = () => {
       <div className="w-full min-h-[80vh] flex justify-center items-start p-2">
 
         <div className="min-h-[70%] w-[90%] md:w-[60%] flex flex-col gap-4 bg-gray-50 shadow-md p-4">
+        
+          {/* شريط التقدم (Progress Bar) */}
+          <div className="w-full h-[10px] bg-gray-100 rounded-full overflow-hidden">
+            <span
+              className={`h-full block bg-accent-900 rounded-full transition-all`}
+              style={{ width: `${progressPercentage}%` }}
+            ></span>
+          </div>
+          <p className="m-auto"> {currentIndex + 1}/{totalQuestions} </p>
+          
+          <p className="text-lg font-semibold text-center text-primary-900">
+             {/* عرض المستوى الحالي بناءً على الـ index */}
+             {currentIndex < 10 ? 'مستوى المبتدئين' : currentIndex < 20 ? 'مستوى المتقدمين' : 'مستوى المحترفين'}
+          </p>
+          
           <p className="text-lg font-semibold text-center">
-            {currentIndex + 1}-{currentQuestion.text}
+            {currentIndex + 1}- {currentQuestion.text}
           </p>
 
           <ul className="space-y-3 mt-3">
             {currentQuestion.options.map((opt, i) => {
               let bgColor = "bg-white";
-              let icon = null;
               let showRationale = false;
               let rationaleColor = "";
 
               if (selectedAnswer) {
+                // إذا تم الاختيار بالفعل
                 if (opt === selectedAnswer) {
+                  // هذا هو الاختيار الذي قام به المستخدم
                   bgColor = opt.isCorrect ? "bg-green-200" : "bg-red-100";
-                  icon = opt.isCorrect ? faCheck : faTimes;
                   showRationale = true;
                   rationaleColor = opt.isCorrect ? "text-[#146c2e]" : "text-[#b3261e]";
                 } else if (!selectedAnswer.isCorrect && opt.isCorrect) {
+                  // الاختيار الصحيح الذي فاته المستخدم
                   bgColor = "bg-green-200";
-                  icon = faCheck;
                   showRationale = true;
                   rationaleColor = "text-green-600";
                 }
@@ -151,24 +181,21 @@ const LevelExamQuestions = () => {
             })}
           </ul>
 
-          <div className="flex justify-end">
-            {currentIndex > 0 ?
-              <button className={`px-3 py-2 rounded-lg  font-semibold text-lg bg-transparent text-primary-800`}
+          <div className="flex justify-between mt-5">
+            {currentIndex > 0 && (
+              <button className={`px-3 py-2 rounded-lg font-semibold text-lg bg-transparent text-primary-800`}
                 onClick={handlePrev}
-                disabled={currentIndex === 0}
               >
                 رجوع
               </button>
-              : ''
-            }
+            )}
 
             <button
-              className={`px-3 py-2 rounded-lg text-white font-semibold text-lg ${selectedAnswer ? "bg-primary-800" : "bg-gray-300"
-                }`}
+              className={`px-3 py-2 rounded-lg text-white font-semibold text-lg ${selectedAnswer ? "bg-primary-800" : "bg-gray-300"}`}
               onClick={handleNext}
               disabled={!selectedAnswer}
             >
-              التالي
+              {currentIndex < totalQuestions - 1 ? 'التالي' : 'إنهاء الاختبار'}
             </button>
           </div>
         </div>

@@ -46,5 +46,6 @@ export const ROUTES = {
   PARTNER: "/Partner/*",
   // ADVERTISE :/JOIN-BROKER
   JOIN_BROKER: "/join-broker",
-  SUPPORT:"/support"
+  SUPPORT: "/support"
+
 };

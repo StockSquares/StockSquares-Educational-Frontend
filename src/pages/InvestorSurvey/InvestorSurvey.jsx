@@ -47,6 +47,8 @@ function InvestorSurvey() {
 
     if (index === questions.length - 1) {
       alert("Survey completed! Thank you for your participation.");
+    if (index === questions.length - 1 && !userData) {
+      setIsLoggedIn(true);
       return;
     }
 
@@ -87,11 +89,36 @@ function InvestorSurvey() {
         />
       </div>
       {/* )} */}
+=======
+      {!isLoggedIn ? (
+        <div className="contain">
+          <p className="important-info">
+            📌 هذا الاستبيان هو أداة لتقييم مستوي المخاطرة في الشخصية. لتقييم
+            دقيق وشامل، يجب إجراء تقييم نفسي متخصص مثل مقياس البحث عن الإثارة
+            ومقياس الميل في المخاطرة.
+          </p>
+          <Questionare
+            title={"استبيان شخصيه مستثمر"}
+            next={next}
+            previous={previous}
+            index={index}
+            setIndex={setIndex}
+            selectedOption={selectedOption}
+            answers={answers}
+            handleOptionClick={handleOptionClick}
+            questions={questions}
+            setAnswers={setAnswers}
+            error={error}
+          />
+        </div>
+      ) : (
+        <Register />
+      )}
     </>
   );
 }
-
-{
 }
 
-export default InvestorSurvey;
+
+
+export default InvestorSurvey

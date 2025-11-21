@@ -55,6 +55,7 @@ function ThemeToggleButton() {
         px-2.5
         py-2
        rounded-full 
+        p-2 
         flex 
         items-center 
         justify-center

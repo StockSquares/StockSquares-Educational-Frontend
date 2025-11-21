@@ -124,7 +124,7 @@ export default function JoinBrokerProfessional() {
                 </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 w-full" dir="rtl">
                 {/* Company info */}
                 <div className="bg-gray-50 p-6 rounded-xl">
                     <h3 className="font-semibold mb-4">بيانات الشركة</h3>

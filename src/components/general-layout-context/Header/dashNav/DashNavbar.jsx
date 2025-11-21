@@ -51,6 +51,7 @@ function ThemeToggleButton() {
           `}
     >
       {isDarkMode ? "🌙" : "☀️"}
+      {isDarkMode ? "🌙 Dark" : "☀️ Light"}
     </button>
   );
 }

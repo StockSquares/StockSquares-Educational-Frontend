@@ -1,5 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap'); */
 
+
 @font-face {
     font-family: 'Cairo';
     src: url('./assets/fonts/Cairo/Cairo-VariableFont_slnt,wght.ttf') format('truetype-variations');
@@ -10,6 +11,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 
 

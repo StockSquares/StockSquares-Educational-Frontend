@@ -18,29 +18,28 @@ function PartnerApplicationUi({
   index,
   selectedOption,
   setIndex,
-  // PartnerRegister,
-  // handleSubmit,
-  // addToApi,
-  // isLoggedIn,
+  isLoggedIn,
   error,
   answers,
   setAnswers,
   setSelectedanswer,
   selectedanswer,
-  userData
+  userData,
 }) {
   return (
-    <> 
+    <div className="contain">
+      {!isLoggedIn ? (
         <div className="contain">
-          <p className="important-info  ">
+          <p className="important-info">
             يسعدنا طلبك في الأنضمام الى شبكة شركاء ستوك سكويرز
             <br />
             يرجى الأجابة على الأسئلة التالية لكي نتمكن من تقيم طلبك بشكل أفضل
             نود أن نوضح أننا نبحث عن شركاء يتناسبون مع قيمنا ورؤيتنا وأهدافنا
             ولهذا السبب قد لايتم قبول جميع الطلبات ونشكر تفهمك.
           </p>
+
           <Questionare
-            title={"طلب العمل كشريك"}
+            title="طلب العمل كشريك"
             next={next}
             previous={previous}
             index={index}
@@ -55,7 +54,11 @@ function PartnerApplicationUi({
             selectedanswer={selectedanswer}
           />
         </div>
-    </>
+      ) : (
+        <Register />
+      )}
+    </div>
   );
 }
+
 export default PartnerApplicationUi;
