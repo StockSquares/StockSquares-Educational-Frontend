@@ -253,20 +253,13 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
                 <Field id="acceptTerms" type="checkbox" name="acceptTerms" />
                 <label htmlFor="acceptTerms">
                   <span className="dark:text-dark-text  "> قرأت وأوافق على </span>
-                  <Link
-                    to={ROUTES.CONDITIONS}
-                    className="text-blue-500 underline"
-                  >
-                    {" "}
-                    اتفاقية الشروط والأحكام
-                  </Link>{" "}
-                  و{" "}
-                  <Link
-                    className="text-blue-500 underline"
-                    to={ROUTES.PRIVACYPOLICY}
-                  >
-                    سياسة الخصوصية
-                  </Link>
+                    <Link to={ROUTES.CONDITIONS} className="text-blue-500 underline">
+                      اتفاقية الشروط وسياسة الخصوصية
+                    </Link>{" "}
+                    و{" "}
+                    <Link className="text-blue-500 underline" to={ROUTES.PRIVACYPOLICY}>
+                      تحذير المخاطر
+                    </Link>
                 </label>
               </div>
               {errors.termsAccepted && touched.termsAccepted ? (
@@ -275,9 +268,8 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
 
               <button
                 type="submit"
-                className={`${styles.bu1} ${
-                  addToApi.isPending ? "bg-gray-300" : "bg-primary-900 "
-                }`}
+                className={`${styles.bu1} ${addToApi.isPending ? "bg-gray-300" : "bg-primary-900 "
+                  }`}
                 disabled={addToApi.isPending}
               >
                 {addToApi.isPending ? "جاري التسجيل" : "إنشاء حساب جديد"}
