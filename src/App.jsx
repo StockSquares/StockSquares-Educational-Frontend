@@ -25,6 +25,11 @@ import { JobStatusProvider } from "./Context/JobStatusContext";
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
+import { ToastContainer } from "react-toastify";
+import JoinBrokerPage from "./pages/JoinBroker/JoinBroker";
+import { JoinBrokerProfessional, UserSupportCenterProfessional } from "./components/support";
+
+
 const queryClient = new QueryClient();
 
 const Login = lazy(() => import("./pages/Login/Login"));
@@ -78,11 +83,10 @@ const Admin = lazy(() => import("./pages/Admin/Admin"));
 const Employees = lazy(() => import("./pages/employeesPortal/Employees"));
 const Client = lazy(() => import("./pages/Admin/Client"));
 const Trainer = lazy(() => import("./pages/trainerPortal/Trainer"));
-const PrivacyPolicy = lazy(() => import("./pages/privacyPolicy/PrivacyPolicy"));
+
+const PrivacyPolicy = lazy(() => import("./pages/RiskWarning/RiskWarning"));
 const WhoWeAre = lazy(() => import("./pages/WhoWeAre/WhoWeAre"));
-const TermsAndConditions = lazy(() =>
-  import("./pages/TermsAndConditions/TermsAndConditions")
-);
+const TermsAndConditions = lazy(() => import("./pages/ConditionsAgreementAndPrivacyPolicy/ConditionsAgreementAndPrivacyPolicy"));
 const Activities = lazy(() => import("./pages/Activities/Activities"));
 const ChatAi = lazy(() => import("./pages/chatAi/ChatAi"));
 const LevelExam = lazy(() => import("./pages/levelexam/LevelExam"));
@@ -95,6 +99,9 @@ const ConfirmCode = lazy(() => import("./pages/ResetPassword/ConfirmCode"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword/ResetPassword"));
 const VerifyOTP = lazy(() => import("./pages/Register/VerifyOTP"));
 const Partner = lazy(() => import("./pages/PartnerPortal/Partner"));
+
+
+const JoinBroker = lazy(() => import("./pages/JoinBroker/JoinBroker"));
 
 // const pages = {};
 // for (const [key, Path] of Object.entries(lazyPages)) {
@@ -418,6 +425,24 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      { path: "/sidebar", element: <SideBar /> },
+
+      {
+        path: ROUTES.JOIN_BROKER,
+        element: (
+          <Suspense fallback={<Loader />}>
+            < JoinBrokerProfessional />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTES.SUPPORT,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <UserSupportCenterProfessional />
+          </Suspense>
+        ),
+      },
 
       { path: "/sidebar", element: <SideBar /> },
     ],
@@ -435,6 +460,7 @@ function App() {
                 <AuthProvider>
                   <JobStatusProvider>
                     <GoogleOAuthProvider clientId="914414890801-3noui8aprqr7mnqfk7hd35q47cm72f4e.apps.googleusercontent.com">
+                      <ToastContainer />
                       <RouterProvider router={router} />
                     </GoogleOAuthProvider>
                   </JobStatusProvider>

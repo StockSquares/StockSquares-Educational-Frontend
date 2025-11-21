@@ -1,563 +1,207 @@
+import React from "react";
 import { useState, useEffect } from "react";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+// إضافة CircularProgressbar من النسخة البعيدة
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar"; 
 import "react-circular-progressbar/dist/styles.css";
-import styles from "../TrainingAndEducation/TrainingAndEducation.module.css";
-
+import assessmentData from './data/assessmentData';
+import { toast } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../routes";
+import styles from '../../pages/TrainingAndEducation/TrainingAndEducation.module.css'
 
-function LevelExamQuestions() {
-  const [index, setIndex] = useState(0);
-  const [idx, setIdx] = useState(0);
-  const [x, setX] = useState(0);
-  const [c, setC] = useState(0);
+import { useTranslation } from "react-i18next";
 
-  const [answers, setAnswers] = useState([]);
 
-  const [selectedAnswer, setSelectedAnswer] = useState("");
+const LevelExamQuestions = () => {
+  const levels = assessmentData.assessmentData.levels; // 3 مستويات
+  const allQuestions = levels.flatMap(level => level.questions); // دمج كل الأسئلة في مصفوفة واحدة
+  const totalQuestions = allQuestions.length;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const currentQuestion = allQuestions[currentIndex];
+  const [answers, setAnswers] = useState(Array(allQuestions.length).fill(null))
+  const { t } = useTranslation();
 
-  const [beginnerAnswers, setBeginnerAnswers] = useState([]);
-  const [midAnswers, setMidAnswers] = useState([]);
-  const [proAnswers, setProAnswers] = useState([]);
 
-  const questions = [
-    {
-      title: "مستوي المبتدئين",
-      data: [
-        {
-          question: "ما هو التداول في أسواق المال؟",
-          answers: [
-            "شراء وبيع السلع والخدمات",
-            "تبادل العملات الورقية",
-            "شراء وبيع الأوراق المالية مثل الأسهم والسندات",
-            "شراء العقارات",
-          ],
-        },
-        {
-          question: "ما هو السهم؟",
-          answers: [
-            "جزء من ملكية في شركة",
-            "سند مالي يعطي فائدة ثابتة",
-            "أصل رقمي يمكن تداوله عبر الإنترنت",
-            "عملة ورقية",
-          ],
-        },
-        {
-          question: "ما هو التحليل الفني؟",
-          answers: [
-            "دراسة الاتجاهات الاقتصادية العالمية",
-            "تحليل وتقييم الأداء المالي للشركة",
-            "استخدام الرسوم البيانية والمؤشرات لتحليل حركة الأسعار",
-            "تحليل البيانات الاقتصادية المحلية",
-          ],
-        },
-        {
-          question: "ما هو التحليل الأساسي؟",
-          answers: [
-            "تتبع حركة السيولة",
-            "دراسة الأخبار السياسية",
-            "تحليل وتقييم الأداء المالي للشركة والعوامل الاقتصادية المؤثرة",
-            "استخدام الرسوم البيانية والمؤشرات",
-          ],
-        },
-        {
-          question: "ما هو 'إيقاف الخسارة'؟",
-          answers: [
-            "تقنية لتحقيق أعلى ربح ممكن",
-            "أمر يتم وضعه لتحديد حد الخسارة المقبول",
-            "استراتيجية لزيادة الاستثمار",
-            "عملية لبيع الأسهم عند أقل سعر",
-          ],
-        },
-        {
-          question: "ما هي العقود الآجلة؟",
-          answers: [
-            "اتفاقيات بيع وشراء الأسهم في السوق الفوري",
-            "اتفاقيات لشراء أو بيع الأصل في المستقبل بسعر متفق عليه",
-            "عمليات تداول الأسهم فقط",
-            "عقود لشراء الذهب",
-          ],
-        },
-        {
-          question: "ما المقصود بـ 'الرافعة المالية'؟",
-          answers: [
-            "نسبة الضرائب على الصفقات",
-            "أداة تسمح بالتداول بأموال أكبر من رأس المال",
-            "نسبة الأرباح الشهرية",
-            "مؤشر لقياس المخاطر",
-          ],
-        },
-        {
-          question: "ما المقصود بـ 'الدعم والمقاومة'؟",
-          answers: [
-            "مناطق على الرسم البياني تشير إلى ارتفاع الأسعار",
-            "مستويات سعرية يتوقع فيها تغير الاتجاه",
-            "أدوات لقياس السيولة",
-            "مؤشرات اقتصادية",
-          ],
-        },
-        {
-          question: "ما هي وظيفة منصة MetaTrader؟",
-          answers: [
-            "إدارة الحسابات البنكية",
-            "تنفيذ الصفقات وتحليل الأسواق",
-            "كتابة التقارير الاقتصادية",
-            "متابعة البيانات الاقتصادية",
-          ],
-        },
-        {
-          question: "ما هو اللوت (Lot)؟",
-          answers: [
-            "وحدة قياس لعدد الأسهم",
-            "وحدة قياس لحجم العقد في التداول",
-            "وحدة قياس لعدد العملات الرقمية",
-            "وحدة قياس للذهب",
-          ],
-        },
-        {
-          question: "ما هو حجم العقد في التداول؟",
-          answers: [
-            "كمية الأصول التي يتم تداولها في صفقة واحدة",
-            "سعر الأصل الذي يتم تداوله",
-            "نوع الأصل المتداول",
-            "استراتيجية التداول المستخدمة",
-          ],
-        },
-        {
-          question: "ما هو الـ 'Pip' في تداول العملات؟",
-          answers: [
-            "وحدة قياس لحجم العقد",
-            "وحدة قياس للتحركات الصغيرة في سعر العملة",
-            "وحدة قياس لحجم التداول",
-            "وحدة قياس للذهب",
-          ],
-        },
-      ],
-    },
-    {
-      title: "مستوي المتقدمين",
-      data: [
-        {
-          question: "ما الفرق بين 'Buy Limit' و'Buy Stop'؟",
-          answers: [
-            "لا فرق بينهما",
-            "Buy Limit شراء عند انخفاض السعر، Buy Stop:  شراء عند ارتفاع السعر",
-            "Buy Limit: لبيع الأسهم ، Buy Stop: لشراء الذهب",
-            "كلاهما يستخدم في البورصات المحلية فقط",
-          ],
-        },
-        {
-          question: "ما الهدف الرئيسي من 'سيكولوجيا المتداول'؟",
-          answers: [
-            "تعلم استخدام المنصات المختلفة",
-            "التحكم في العواطف واتخاذ قرارات عقلانية",
-            "دراسة التحليل الأساسي",
-            "شراء الأسهم بأسعار منخفضة",
-          ],
-        },
-        {
-          question: "ما الفرق بين التداول اليومي والتداول طويل الأجل؟",
-          answers: [
-            "التداول اليومي يشمل الاحتفاظ بالأصول لأسابيع",
-            "التداول طويل الأجل يشمل التداول بالسعر المستقبلي بينما التداول اليومي يشمل التداول بالسعر اللحظي",
-            "التداول اليومي يتضمن شراء وبيع الأصول في نفس اليوم، بينما التداول طويل الأجل يشمل الاحتفاظ بالأصول لفترة طويلة",
-            "لا فرق بينهما",
-          ],
-        },
-        {
-          question: "ما هو التحليل الكمي؟",
-          answers: [
-            "تحليل البيانات المالية باستخدام الإحصاءات والنماذج الرياضية",
-            "تحليل السوق باستخدام الرسوم البيانية فقط",
-            "تحليل العواطف والأحاسيس للمتداولين",
-            "تحليل البيانات الاقتصادية العامة",
-          ],
-        },
-        {
-          question: "ما هي استراتيجية 'الاختراق' في التداول؟",
-          answers: [
-            "استراتيجية لشراء الأصول عند أدنى سعر",
-            "استراتيجية لبيع الأصول عند أعلى سعر",
-            "استراتيجية للدخول في السوق عند اختراق مستوى الدعم أو المقاومة",
-            "استراتيجية للاحتفاظ بالأصول لفترة طويلة",
-          ],
-        },
-        {
-          question: "ما الفرق بين السوق الفوري والسوق الآجل؟",
-          answers: [
-            "السوق الفوري يشمل شراء وبيع الأصول فوراً، بينما السوق الآجل يشمل اتفاقيات لتداول الأصول في المستقبل",
-            "السوق الفوري يشمل العملات الرقمية بينما السوق الآجل يشمل السلع والعملات الورقية فقط",
-            "السوق الآجل يشمل العقارات فقط بينما السوق الآجل يشمل السندات وأذون الخزانة فقط",
-            "لا فرق بينهما",
-          ],
-        },
-        {
-          question: "ما هي 'النسبة الذهبية' عند استخدام الفيبوناتشي؟",
-          answers: [
-            "نسبة بين الذهب والفضة",
-            "نسبة بين سعر الأسهم والعائدات",
-            "نسبة محددة (غالبًا 61.8%) تُستخدم لتحديد مستويات الدعم والمقاومة",
-            "نسبة بين القيمة السوقية للشركة وصافي الأرباح",
-          ],
-        },
-        {
-          question:
-            "ما الفرق بين مرحلة 'التجميع' ومرحلة 'التصريف' في دورة السوق؟",
-          answers: [
-            "التجميع: شراء الأصول بأسعار منخفضة، التصريف: بيعها بأسعار مرتفعة",
-            "التجميع: بيع الأصول، التصريف: شراؤها",
-            "كلاهما يشيران إلى استقرار السوق",
-            "لا فرق بينهما",
-          ],
-        },
-        {
-          question:
-            "ما الفرق بين 'نسبة السعر إلى الربحية' و 'نسبة العائد على الأسهم'؟",
-          answers: [
-            "نسبة السعر إلى الربحية تحسب العائد على الأسهم",
-            "نسبة العائد على الأسهم تحسب السعر إلى الربحية",
-            "نسبة السعر إلى الربحية تقيس قيمة السهم بالنسبة للعائدات، بينما نسبة العائد على الأسهم تقيس العائد المالي للشركة على الأسهم",
-            "نسبة السعر إلى الربحية تقيس الأرباح الصافية",
-          ],
-        },
-        {
-          question: "ما هو 'النموذج الشمعداني' في التحليل الفني؟",
-          answers: [
-            "نموذج يعتمد على تحليل الأخبار الاقتصادية",
-            "نموذج يعتمد على تحليل المؤشرات الاقتصادية",
-            "نموذج يعتمد على حركة الأسعار والأنماط في الرسم البياني",
-            "نموذج يعتمد على تحليل العواطف",
-          ],
-        },
-        {
-          question: "ما المقصود بـ 'الرينج السعري' (Trading Range)؟",
-          answers: [
-            "حركة سعرية صاعدة بقوة",
-            "نطاق سعري يتذبذب فيه السعر بين دعم ومقاومة",
-            "مؤشر لقياس أحجام التداول",
-            "نمط شمعداني هابط",
-          ],
-        },
-        {
-          question:
-            "ما البيانات الاقتصادية الأكثر تأثيرًا على حركة الدولار الأمريكي؟",
-          answers: [
-            "أسعار العقارات",
-            "معدل البطالة ومعدلات الفائدة",
-            "أحوال الطقس",
-            "أسعار النفط المحلية",
-          ],
-        },
-      ],
-    },
-    {
-      title: "مستوي المحترفين",
-      data: [
-        {
-          question: "ما المقصود بـ 'الانحراف السعري' (Divergence)؟",
-          answers: [
-            "تطابق بين حركة السعر والمؤشر",
-            "اختلاف بين حركة السعر والمؤشر الفني",
-            "نمط شمعة يابانية",
-            "زيادة مفاجئة في السيولة",
-          ],
-        },
-        {
-          question: "ما هو 'النموذج التصحيحي' في التحليل الفني؟",
-          answers: [
-            "نموذج يعكس تراجعًا مؤقتًا في الاتجاه العام للسوق",
-            "نموذج يعتمد على تحليل الأخبار",
-            "نموذج يعتمد على العواطف",
-            "نموذج خاص بالأصول الرقمية",
-          ],
-        },
-        {
-          question:
-            "ما الفرق بين 'نسبة السعر إلى الربحية' و 'نسبة العائد على الأسهم'؟",
-          answers: [
-            "نسبة السعر إلى الربحية تحسب العائد على الأسهم",
-            "نسبة العائد على الأسهم تحسب السعر إلى الربحية",
-            "نسبة السعر إلى الربحية تقيس قيمة السهم بالنسبة للعائدات، بينما نسبة العائد على الأسهم تقيس العائد المالي للشركة على الأسهم",
-            "نسبة السعر إلى الربحية تقيس الأرباح الصافية بينما نسبة العائد على الاسهم تقيس العائد المالى للاوراق المالية والعملات النقدية",
-          ],
-        },
-        {
-          question: "ما هو أفضل أسلوب لإدارة المخاطر في الصفقات؟",
-          answers: [
-            "تخصيص 20% من رأس المال لكل صفقة",
-            "تحديد نسبة مخاطرة لا تتجاوز 2% من رأس المال في الصفقة الواحدة",
-            "تجاهل استخدام أوامر وقف الخسارة",
-            "الاعتماد على الرافعة المالية العالية",
-          ],
-        },
-        {
-          question: "كيف تحدد 'مناطق الضعف في السيولة' على الرسم البياني؟",
-          answers: [
-            "باستخدام المؤشرات الاقتصادية",
-            "بتحليل المناطق ذات أحجام التداول المنخفضة",
-            "بالاعتماد على الأخبار السياسية",
-            "بتجاهل التحليل الفني",
-          ],
-        },
-        {
-          question: "ما المقصود بـ 'السيولة الذكية' في سوق الفوركس؟",
-          answers: [
-            "مناطق ذات سيولة منخفضة يتجنبها المتداولون",
-            "مناطق تظهر فيها تدفقات كبيرة من صناديق الاستثمار وصناع السوق",
-            "مؤشر لقياس العرض والطلب على العملات",
-            "أداة لإدارة المخاطر",
-          ],
-        },
-        {
-          question:
-            "ما الفرق بين 'الانحراف السعري الإيجابي' و'الانحراف السعري السلبي'؟",
-          answers: [
-            "الإيجابي: السعر ينخفض والمؤشر يرتفع (إشارة صعودية) | السلبي: السعر يرتفع والمؤشر ينخفض (إشارة هبوطية)",
-            "الإيجابي: السعر يرتفع والمؤشر يرتفع | السلبي: السعر ينخفض والمؤشر ينخفض",
-            "كلاهما يشيران إلى استمرار الاتجاه",
-            "لا فرق بينهما",
-          ],
-        },
-        {
-          question:
-            "ما هو 'النموذج العشوائي المتكامل' (Stochastic Integrator) في التحليل الكمي؟",
-          answers: [
-            "نموذج يعتمد على الشموع اليابانية",
-            "نموذج رياضي يحسب التقلبات والاتجاهات باستخدام معادلات تفاضلية عشوائية",
-            "أداة لقياس السيولة",
-            "مؤشر لتحليل الأخبار",
-          ],
-        },
-        {
-          question:
-            "ما هو 'التداول الكمي عالي التردد' (High-Frequency Trading - HFT) وأبرز مخاطره؟",
-          answers: [
-            "تنفيذ آلاف الصفقات في الثانية باستخدام خوارزميات معرضة لمخاطر السيولة والانزلاق السعري",
-            "تداول يدوي بطيء يعتمد على التحليل الأساسي",
-            "استراتيجية طويلة الأجل لشراء الأسهم",
-            "تداول العملات الرقمية فقط",
-          ],
-        },
-        {
-          question:
-            "ما الفرق بين 'التكلفة التنفيذية' (Slippage) و'الانزلاق السعري' (Price Slippage)؟",
-          answers: [
-            "التكلفة التنفيذية: الفرق بين السعر المتوقع والمُنفذ | الانزلاق: تغير السعر أثناء التنفيذ",
-            "كلاهما يشيران إلى نفس المفهوم",
-            "التكلفة التنفيذية تتعلق بالضرائب",
-            "الانزلاق السعري يحدث فقط في العملات المستقرة بينما التكلفة التنفيذية تحدث في الاسهم",
-          ],
-        },
-        {
-          question:
-            "كيف تُحسب 'قيمة في خطر' (Value at Risk - VaR) لمحفظة استثمارية باستخدام المحاكاة التاريخية؟",
-          answers: [
-            "بتحليل أسوأ الخسائر التاريخية خلال فترة محددة",
-            "باستخدام متوسط الأرباح الشهرية",
-            "بتجاهل التقلبات السوقية",
-            "عبر تطبيق نظرية موجات إليوت",
-          ],
-        },
-        {
-          question:
-            "ما هي استراتيجية 'المراجحة الثلاثية' (Triangular Arbitrage) في سوق الفوركس؟",
-          answers: [
-            "استغلال فروق الأسعار بين ثلاثة أزواج عملات لتحقيق ربح",
-            "شراء وبيع نفس الزوج في سوقين مختلفين",
-            "تداول العملات الرقمية فقط",
-            "استراتيجية طويلة الأجل تعتمد على التحليل الأساسي",
-          ],
-        },
-      ],
-    },
-  ];
+  const score = React.useMemo(
+    () => answers.filter(a => a?.isCorrect).length,
+    [answers]
+  );
 
-  const correctAnswers = [
-    "شراء وبيع الأوراق المالية مثل الأسهم والسندات",
-    "جزء من ملكية في شركة",
-    "استخدام الرسوم البيانية والمؤشرات لتحليل حركة الأسعار",
-    "تحليل وتقييم الأداء المالي للشركة والعوامل الاقتصادية المؤثرة",
-    "أمر يتم وضعه لتحديد حد الخسارة المقبول",
-    "اتفاقيات لشراء أو بيع الأصل في المستقبل بسعر متفق عليه",
-    "أداة تسمح بالتداول بأموال أكبر من رأس المال",
-    "مستويات سعرية يتوقع فيها تغير الاتجاه",
-    "تنفيذ الصفقات وتحليل الأسواق",
-    "وحدة قياس لحجم العقد في التداول",
-    "كمية الأصول التي يتم تداولها في صفقة واحدة",
-    "وحدة قياس للتحركات الصغيرة في سعر العملة",
+  // لحساب نسبة التقدم الكلية (لشريط التقدم)
+  const progressPercentage = (currentIndex / totalQuestions) * 100;
 
-    "Buy Limit شراء عند انخفاض السعر، Buy Stop:  شراء عند ارتفاع السعر",
-    "التحكم في العواطف واتخاذ قرارات عقلانية",
-    "التداول اليومي يتضمن شراء وبيع الأصول في نفس اليوم، بينما التداول طويل الأجل يشمل الاحتفاظ بالأصول لفترة طويلة",
-    "تحليل البيانات المالية باستخدام الإحصاءات والنماذج الرياضية",
-    "استراتيجية للدخول في السوق عند اختراق مستوى الدعم أو المقاومة",
-    "السوق الفوري يشمل شراء وبيع الأصول فوراً، بينما السوق الآجل يشمل اتفاقيات لتداول الأصول في المستقبل",
-    "نسبة محددة (غالبًا 61.8%) تُستخدم لتحديد مستويات الدعم والمقاومة",
-    "التجميع: شراء الأصول بأسعار منخفضة، التصريف: بيعها بأسعار مرتفعة",
-    "نسبة السعر إلى الربحية تقيس قيمة السهم بالنسبة للعائدات، بينما نسبة العائد على الأسهم تقيس العائد المالي للشركة على الأسهم",
-    "نموذج يعتمد على حركة الأسعار والأنماط في الرسم البياني",
-    "نطاق سعري يتذبذب فيه السعر بين دعم ومقاومة",
-    "معدل البطالة ومعدلات الفائدة",
-
-    "اختلاف بين حركة السعر والمؤشر الفني",
-    "نموذج يعكس تراجعًا مؤقتًا في الاتجاه العام للسوق",
-    "نسبة السعر إلى الربحية تقيس قيمة السهم بالنسبة للعائدات، بينما نسبة العائد على الأسهم تقيس العائد المالي للشركة على الأسهم",
-    "تحديد نسبة مخاطرة لا تتجاوز 2% من رأس المال في الصفقة الواحدة",
-    "بتحليل المناطق ذات أحجام التداول المنخفضة",
-    "مناطق تظهر فيها تدفقات كبيرة من صناديق الاستثمار وصناع السوق",
-    "الإيجابي: السعر ينخفض والمؤشر يرتفع (إشارة صعودية) | السلبي: السعر يرتفع والمؤشر ينخفض (إشارة هبوطية)",
-    "نموذج رياضي يحسب التقلبات والاتجاهات باستخدام معادلات تفاضلية عشوائية",
-    "تنفيذ آلاف الصفقات في الثانية باستخدام خوارزميات معرضة لمخاطر السيولة والانزلاق السعري",
-    "التكلفة التنفيذية: الفرق بين السعر المتوقع والمُنفذ | الانزلاق: تغير السعر أثناء التنفيذ",
-    "بتحليل أسوأ الخسائر التاريخية خلال فترة محددة",
-    "استغلال فروق الأسعار بين ثلاثة أزواج عملات لتحقيق ربح",
-  ];
-
-  const getLevel = (score) => {
-    if (score <= 12) return "مستوى مبتدئ";
-    if (score <= 24) return "مستوى متقدم";
-    return "مستوى محترف";
-  };
-
-  const handleSubmit = (answer) => {
-    if (!(idx < questions[index].data.length - 1)) {
-      setIndex(index + 1);
-      setIdx(0);
-      setX(x + 1);
-    } else {
-      setIdx(idx + 1);
-      setX(x + 1);
-    }
-
-    if (index === 0) {
-      const updatedBeginnerAnswers = [...beginnerAnswers];
-      updatedBeginnerAnswers[idx] = answer;
-      setBeginnerAnswers(updatedBeginnerAnswers);
-      setSelectedAnswer("");
-    } else if (index === 1) {
-      const updatedMidAnswers = [...midAnswers];
-      updatedMidAnswers[idx] = answer;
-      setMidAnswers(updatedMidAnswers);
-      setSelectedAnswer("");
-    } else if (index === 2) {
-      const updatedProAnswers = [...proAnswers];
-      updatedProAnswers[idx] = answer;
-      setProAnswers(updatedProAnswers);
-      setSelectedAnswer("");
-    }
-
-    // if((x===36)){
-    //   setAnswers([...beginnerAnswers, ...midAnswers, ...proAnswers]);
-    // }
-  };
 
   useEffect(() => {
-    if (x === 36) {
-      const allAnswers = [...beginnerAnswers, ...midAnswers, ...proAnswers];
-      setAnswers(allAnswers);
+    // عند تغيير currentIndex، نجيب الإجابة اللي المستخدم اختارها قبل كده
+    setSelectedAnswer(answers[currentIndex]);
+  }, [currentIndex, answers]);
 
-      let count = 0;
-      for (let i = 0; i < allAnswers.length; i++) {
-        if (allAnswers[i] === correctAnswers[i]) {
-          count++;
-        }
-      }
-      setC(count);
-      console.log("النتيجة:", count);
+  const handleSelectAnswer = (opt) => {
+    console.log('score', score);
+    if (!answers[currentIndex]) { // لو مفيش اختيار سابق
+      const newAnswers = [...answers];
+      newAnswers[currentIndex] = opt; // نخزن الاختيار الحالي
+      setAnswers(newAnswers);
+      setSelectedAnswer(opt);
     }
-  }, [x]);
+  };
+
+  const checkLevelUp = (nextIndex) => {
+    // بناءً على المنطق الأول، الأسئلة مقسمة بالتساوي (نفترض 10 أسئلة لكل مستوى)
+    if (nextIndex % 10 === 0 && nextIndex !== 0 && nextIndex < 20) {
+      toast.warning("أنتِ الآن داخل على المستوى الأصعب!")
+    }
+    if (nextIndex === 20) {
+      toast.warning("أنتِ الآن داخل على آخر مستوى!")
+    }
+  }
+
+  const handleNext = () => {
+    setSelectedAnswer(null);
+    const nextIndex = currentIndex + 1
+    setCurrentIndex(nextIndex);
+    checkLevelUp(nextIndex)
+  };
+  
+  const handlePrev = () => {
+    setCurrentIndex(currentIndex - 1);
+  };
+
+  const getLevel = (finalScore) => {
+    // تقسيم المستويات بناءً على الدرجة/النسبة
+    const percentage = finalScore / totalQuestions;
+    if (percentage >= 0.7) return "مستوى محترف";
+    if (percentage >= 0.4) return "مستوى متقدم";
+    return "مستوى مبتدئ";
+  };
+
+  if (currentIndex >= totalQuestions) {
+    // صفحة النتيجة (دمجنا فيها CircularProgressbar من النسخة الثانية)
+    return (
+      <div className="flex flex-col justify-center items-center gap-4 mt-10">
+        <h2 className="text-2xl font-bold text-black mb-4">
+          نتيجتك في اختبار تحديد المستوى
+        </h2>
+        
+        <div className="w-40 h-40">
+           <CircularProgressbar
+             value={(score / totalQuestions) * 100}
+             text={`${score} / ${totalQuestions}`}
+             styles={buildStyles({
+               pathColor: "#10b981", // أخضر
+               textColor: "#1f2937",
+               trailColor: "#e5e7eb",
+               textSize: "16px",
+             })}
+           />
+         </div>
+
+        <p className={`text-xl font-bold mt-4 text-green-400`}>
+          {getLevel(score)}
+        </p>
+        
+        <Link
+          to={ROUTES.RESERVATION}
+          className={`${styles.buttonPersonal} font-semibold bg-primary-900 text-white rounded-lg shadow-lg hover:bg-primary-800 `}
+        >
+          {t("TrainingAndEducation.bookYourTrainer")}
+        </Link>
+      </div>
+
+    );
+  }
+
 
   return (
-    <div className="w-full" >
-      {index <= 2 ? (
-        <div className="w-full  min-h-[80vh] mb-5 flex justify-center items-start">
-          <div className=" min-h-[70%] w-[90%] md:w-[60%] flex flex-col  gap-4 bg-gray-50 shadow-md p-2">
-            <div className="w-full h-[10px] bg-gray-100 rounded-full overflow-hidden">
-              <span
-                className={` h-full block bg-accent-900 rounded-full transition-all`}
-                style={{ width: `${(x / 36) * 100}%` }}
-              ></span>
-            </div>
-            <p className="m-auto"> {x + 1}/36 </p>
-            <p className="text-lg font-semibold text-center">
-              {questions[index].title}
-            </p>
-            {questions[index].data.map((item, inx) =>
-              inx === idx ? (
-                <div key={inx}>
-                  <p className=" text-lg md:text-2xl text-primary-900"> {item.question} </p>
-                  <ul className="space-y-3 mt-3">
-                    {item.answers.map((answer, i) => (
-                      <li
-                        key={i}
-                        className={`cursor-pointer p-2 border rounded-md ${
-                          selectedAnswer === answer
-                            ? "bg-green-200 "
-                            : "bg-white"
-                        }`}
-                        onClick={() => setSelectedAnswer(answer)}
-                      >
-                        {" "}
-                        {i + 1} - {answer}{" "}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : (
-                ""
-              )
+    <>
+      <div className="w-full min-h-[80vh] flex justify-center items-start p-2">
+
+        <div className="min-h-[70%] w-[90%] md:w-[60%] flex flex-col gap-4 bg-gray-50 shadow-md p-4">
+        
+          {/* شريط التقدم (Progress Bar) */}
+          <div className="w-full h-[10px] bg-gray-100 rounded-full overflow-hidden">
+            <span
+              className={`h-full block bg-accent-900 rounded-full transition-all`}
+              style={{ width: `${progressPercentage}%` }}
+            ></span>
+          </div>
+          <p className="m-auto"> {currentIndex + 1}/{totalQuestions} </p>
+          
+          <p className="text-lg font-semibold text-center text-primary-900">
+             {/* عرض المستوى الحالي بناءً على الـ index */}
+             {currentIndex < 10 ? 'مستوى المبتدئين' : currentIndex < 20 ? 'مستوى المتقدمين' : 'مستوى المحترفين'}
+          </p>
+          
+          <p className="text-lg font-semibold text-center">
+            {currentIndex + 1}- {currentQuestion.text}
+          </p>
+
+          <ul className="space-y-3 mt-3">
+            {currentQuestion.options.map((opt, i) => {
+              let bgColor = "bg-white";
+              let showRationale = false;
+              let rationaleColor = "";
+
+              if (selectedAnswer) {
+                // إذا تم الاختيار بالفعل
+                if (opt === selectedAnswer) {
+                  // هذا هو الاختيار الذي قام به المستخدم
+                  bgColor = opt.isCorrect ? "bg-green-200" : "bg-red-100";
+                  showRationale = true;
+                  rationaleColor = opt.isCorrect ? "text-[#146c2e]" : "text-[#b3261e]";
+                } else if (!selectedAnswer.isCorrect && opt.isCorrect) {
+                  // الاختيار الصحيح الذي فاته المستخدم
+                  bgColor = "bg-green-200";
+                  showRationale = true;
+                  rationaleColor = "text-green-600";
+                }
+              }
+
+              return (
+                <li
+                  key={i}
+                  className={`p-2 border rounded-md ${bgColor} ${selectedAnswer ? "cursor-not-allowed" : "cursor-pointer"}`}
+                  onClick={() => !selectedAnswer && handleSelectAnswer(opt)}
+                >
+                  {i + 1} - {opt.text}
+                  {showRationale && (
+                    <div className="mt-2 p-2 rounded">
+                      <p className={`${rationaleColor} font-bold mb-1 flex gap-2`}>
+                        {opt.isCorrect ? <FontAwesomeIcon icon={faCheck} className="text-green-600 mt-1" /> : <FontAwesomeIcon icon={faTimes} className="text-red-600 text-xl mt-1" />}
+                        {opt.isCorrect ? "الإجابة الصحيحة" : "الإجابة غير صحيحة"}
+                      </p>
+                      <p className="text-black">{currentQuestion.rationale}</p>
+                    </div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="flex justify-between mt-5">
+            {currentIndex > 0 && (
+              <button className={`px-3 py-2 rounded-lg font-semibold text-lg bg-transparent text-primary-800`}
+                onClick={handlePrev}
+              >
+                رجوع
+              </button>
             )}
 
             <button
-              className={`px-3 py-2 rounded-lg text-white font-semibold text-lg ${
-                selectedAnswer ? " bg-primary-800" : "bg-gray-300"
-              }`}
-              onClick={() => handleSubmit(selectedAnswer)}
+              className={`px-3 py-2 rounded-lg text-white font-semibold text-lg ${selectedAnswer ? "bg-primary-800" : "bg-gray-300"}`}
+              onClick={handleNext}
               disabled={!selectedAnswer}
             >
-              {" "}
-              التالي
+              {currentIndex < totalQuestions - 1 ? 'التالي' : 'إنهاء الاختبار'}
             </button>
           </div>
         </div>
-      ) : (
-        <div className="flex flex-col justify-center items-center gap-4 mt-10">
-          <h2 className="text-2xl font-bold text-black mb-4">
-            نتيجتك في اختبار تحديد المستوى
-          </h2>
-          <div className="w-40 h-40">
-            <CircularProgressbar
-              value={(c / 36) * 100}
-              text={`${c} / 36`}
-              styles={buildStyles({
-                pathColor: "#10b981",
-                textColor: "#1f2937",
-                trailColor: "#e5e7eb",
-                textSize: "16px",
-              })}
-            />
-          </div>
-          <p
-            className={`text-xl font-bold mt-4 ${
-              getLevel(c) === "مستوى متقدم"
-                ? "text-accent-950"
-                : getLevel(c) === "مستوى محترف"
-                ? "text-red-600"
-                : "text-primary-900"
-            }`}
-          >
-            {getLevel(c)}
-          </p>
-
-          <Link
-            to={ROUTES.RESERVATION}
-            className={`${styles.buttonTrial} font-semibold   rounded-lg shadow-lg `}
-          >
-            احجز مدربك الشخصي
-          </Link>
-        </div>
-      )}
-    </div>
+      </div>
+    </>
   );
-}
+};
+
 export default LevelExamQuestions;

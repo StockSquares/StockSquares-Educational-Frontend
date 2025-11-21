@@ -133,7 +133,7 @@ function Footer() {
 
             <div className="flex-center  w-full p-1 ">
               <span>{t("footer.followUs")}</span>
-              <hr className="bg-gray-600 h-0.5 w-full mb-4 mt-3"/>
+              <hr className="bg-gray-600 h-0.5 w-full mb-4 mt-3" />
               <div className="flex  w-full justify-around ">
                 {[
                   { icon: facebookIcon, alt: "footer.socialLinks.facebook" },
@@ -174,7 +174,7 @@ function Footer() {
               <form className="w-[85%] h-[10vh]">
                 <div className=" flex gap-3 justify-center items-center " >
                   <div className="flex w-[60%] items-center justify-center gap-2">
-                  <FontAwesomeIcon icon={faEnvelope} size="lg" color="gray" className="" />
+                    <FontAwesomeIcon icon={faEnvelope} size="lg" color="gray" className="" />
                     <input placeholder="name@example.com" className="px-3 py-1 w-full"></input>
                   </div>
 
@@ -183,7 +183,7 @@ function Footer() {
                     textColor="black"
                     bgColor="accent"
                     px={isBelowMdBreakpoint ? "px-2" : "px-5"}
-                  
+
                     btnClassName=" h-[5vh] "
                   >
                     {isBelowMdBreakpoint && (
@@ -196,30 +196,29 @@ function Footer() {
                   </Button>
                 </div>
               </form>
-        
-        
-         
+
+
+
             </div>
-           
+
           </div>
-         
+
         </div>
 
         <div className="flex items-center mb-5 flex-col">
-        
-          <hr className="w-full h-[1px] bg-gray-600 mt-3 mb-3"/>
+
+          <hr className="w-full h-[1px] bg-gray-600 mt-3 mb-3" />
           <div className="flex flex-col sm:flex-row items-center justify-center mt-3 ">
-          <small className="tracking-wider text-gray-400 ">جميع الحقوق محفوظه لموقع و منصه ستوك سكويرز  2018 - 2025 </small>
-          <div className="ms-5 flex gap-1 justify-center">
-            <Link
-            to={ROUTES.PRIVACYPOLICY}
-             className="bg-accent me-1 text-black p-1 rounded-md text-sm">
-              سياسه الخصوصيه{" "}
-            </Link>
-            <Link className="bg-red-600 text-white px-3 py-1 rounded-md text-sm">
-              تحذير المخاطره
-            </Link>
-          </div>
+            <small className="tracking-wider text-gray-400 ">جميع الحقوق محفوظه لموقع و منصه ستوك سكويرز  2018 - 2025 </small>
+            <div className="ms-5 flex gap-1 justify-center">
+              <Link to={ROUTES.CONDITIONS} className="text-blue-500 underline">
+                اتفاقية الشروط وسياسة الخصوصية
+              </Link>{" "}
+              و{" "}
+              <Link className="text-blue-500 underline" to={ROUTES.PRIVACYPOLICY}>
+                تحذير المخاطر
+              </Link>
+            </div>
           </div>
 
         </div>
