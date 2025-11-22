@@ -52,8 +52,10 @@ function ThemeToggleButton() {
       onClick={toggleTheme}
       aria-label={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
       className={`
+        px-2.5
+        py-2
+       rounded-full 
         p-2 
-        rounded-full 
         flex 
         items-center 
         justify-center
@@ -64,7 +66,7 @@ function ThemeToggleButton() {
         }
       `}
     >
-      {isDarkMode ? "🌙 Dark" : "☀️ Light"}
+      {isDarkMode ? "🌙" : "☀️"}
     </button>
   );
 }

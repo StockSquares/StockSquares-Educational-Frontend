@@ -20,8 +20,11 @@ const AdsManagement = () => {
   };
 
   const fetchAds = () => {
+    //?ts=${Date.now()
     fetch(
-      "https://stocksquare1.runasp.net/api/Advertisement/GetAll?ts=${Date.now()}"
+      `https://stocksquare1.runasp.net/api/Advertisement/GetAll`
+    // fetch(
+    //   "https://stocksquare1.runasp.net/api/Advertisement/GetAll?ts=${Date.now()}"
     )
       .then((response) => response.json())
       .then((data) => setAds(data))

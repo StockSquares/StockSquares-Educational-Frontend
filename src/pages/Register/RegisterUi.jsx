@@ -258,14 +258,14 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
                     className="text-blue-500 underline"
                   >
                     {" "}
-                    اتفاقية الشروط والأحكام
+                    اتفاقية الشروط وسياسة الخصوصية
                   </Link>{" "}
                   و{" "}
                   <Link
                     className="text-blue-500 underline"
                     to={ROUTES.PRIVACYPOLICY}
                   >
-                    سياسة الخصوصية
+                     تحذير المخاطر
                   </Link>
                 </label>
               </div>
