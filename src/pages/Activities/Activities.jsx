@@ -4,18 +4,18 @@ import ActivitiesUi from "./ActivitiesUi";
 function Activities() {
   const data = [
     {
-      image:  investor ,
+      image: investor,
       text: " ستوك سكويرز تطلق مبادره تدريب و تأهيل 1000 مستثمر ",
     },
     {
-      image: prog ,
+      image: prog,
       text: " ستوك سكويرز تطلق مبادره تدريب مبرمجين المستقبل ",
     },
   ];
   return (
-    <ActivitiesUi list={data}/>
-    
+    <ActivitiesUi list={data} />
+
   );
 }
-
+// d
 export default Activities;
