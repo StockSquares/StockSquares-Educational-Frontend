@@ -44,4 +44,8 @@ export const ROUTES = {
   RESETPASSWORD: "/resetPassword",
   VERIFYOTP: "/verifyOtp",
   PARTNER: "/Partner/*",
+  // ADVERTISE :/JOIN-BROKER
+  JOIN_BROKER: "/join-broker",
+  SUPPORT: "/support"
+
 };

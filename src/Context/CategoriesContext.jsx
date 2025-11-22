@@ -11,7 +11,11 @@ export const CategoriesProvider = ({ children }) => {
     const fetchCategories = async () => {
       try {
         const response = await fetch(
+
+          // "https://stocksquare1.runasp.net/api/Category/AllCategory"
+
           "https://stocksquare1.runasp.net/api/ArticleCategory/AllCategory"
+
         );
         const data = await response.json();
         setCategories(data);

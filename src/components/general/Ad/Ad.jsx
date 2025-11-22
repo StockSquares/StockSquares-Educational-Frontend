@@ -24,6 +24,7 @@ function Ad({ adLocation }) {
 
       if (response.ok) {
         const data = await response.json();
+        console.log("row data", data);
         console.log(data);
         setAds(data);
         const filteredToMain = data.filter((item) => item.locationId === 6);
@@ -52,6 +53,7 @@ function Ad({ adLocation }) {
     dots: false,
     infinite: adLocation === "course" ? false : true,
     speed: 1000,
+    slidesToShow: adLocation === "course" ? 3 : 1,
     slidesToShow: adLocation === "course" ? 4 : 1,
     slidesToScroll: 1,
     autoplay: adLocation === "course" ? false : true,
@@ -61,42 +63,36 @@ function Ad({ adLocation }) {
     arrows: true,
     responsive: [
       {
-        breakpoint: 1030,
+        breakpoint: 1030, // أقل من 1024px
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1, // يعرض 1 إعلانات
           slidesToScroll: 1,
         },
-      },
-    ],
+      }
+    ]
   };
 
-    const { t } = useTranslation();
-  
-    useEffect(() => {}, []);
+  const { t } = useTranslation();
+  useEffect(() => { }, []);
+
 
   return (
-    <div className="w-full ">
+    <div className="w-full flex flex-col lg:flex-row lg:items-center lg:justify-between  my-8">
       {adLocation === "course" ? (
-        <div className="w-full   p-3">
-          <h2 className="font-semibold text-lg mb-2">
-            
-             {t("ad.ad")}
-          </h2>
+        <div className="w-full p-3">
+          <h2 className="font-semibold text-lg mb-2">{t("ad.ad")}</h2>
+
           <Slider ref={sliderRef} {...settings} dir="rtl">
             {courseAds.map((ad) => (
-              <div
-                key={ad.id}
-                className="ad w-1/3  h-[100px] p-1 rounded-lg overflow-hidden"
-              >
-                <a href={ad.link}>
+              <div key={ad.id} className="w-1/3 p-2">
+                <a href={ad.link} className="block h-[100px] rounded-lg overflow-hidden">
                   <img
-                     src={`data:image/*;base64,${ad.image}`}
-                    // src={ad.image}
-                    className="object-fill px-2 w-full h-[60px] rounded-lg"
+                    src={`data:image/*;base64,${ad.image}`}
                     alt={ad.title}
+                    className="w-full h-[100px] object-fill"
                   />
                 </a>
-                <p>desc</p>
+                <p className="mt-2 text-sm text-gray-700">{ad.title}</p>
               </div>
             ))}
           </Slider>
@@ -112,7 +108,6 @@ function Ad({ adLocation }) {
                 >
                   <Link to={ad.link}>
                     <img
-                      // src={ad.image}
                       src={`data:image/*;base64,${ad.image}`}
                       alt={ad.title}
                       className="object-cover w-full h-full rounded-lg block"
@@ -124,8 +119,16 @@ function Ad({ adLocation }) {
           </div>
         </div>
       )}
+
+      {/* زر بروكر */}
+      <Link
+        to="/join-broker"
+        className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition text-lg font-semibold min-w-[180px]"
+      >
+        انطلق معنا!
+      </Link>
     </div>
   );
 }
 
-export default Ad;
+export default Ad
