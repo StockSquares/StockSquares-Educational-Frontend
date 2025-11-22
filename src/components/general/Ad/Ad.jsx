@@ -53,7 +53,7 @@ function Ad({ adLocation }) {
     dots: false,
     infinite: adLocation === "course" ? false : true,
     speed: 1000,
-    slidesToShow: adLocation === "course" ? 3 : 1,
+
     slidesToShow: adLocation === "course" ? 4 : 1,
     slidesToScroll: 1,
     autoplay: adLocation === "course" ? false : true,
