@@ -32,14 +32,31 @@ function ArticlesManagement() {
       const response = await fetch(
         "https://stocksquare1.runasp.net/api/Articles/GetAll"
       );
-      const data = await response.json();
+
+      // Get raw text first to debug
+      const rawText = await response.text();
+      console.log("📥 Raw API Response (first 500 chars):", rawText.substring(0, 500));
+
+      // Try to parse JSON
+      let data;
+      try {
+        data = JSON.parse(rawText);
+      } catch (parseError) {
+        console.error("❌ JSON Parse Error:", parseError);
+        console.error("🔍 Problematic JSON around position:", rawText.substring(20540580, 20540600));
+        toast.error("خطأ في بيانات المقالات من السيرفر", { theme: "colored" });
+        return;
+      }
+
       if (response.ok) {
         setArticles(data);
+        console.log("✅ Articles loaded:", data.length);
       } else {
         console.error("Failed to fetch articles");
       }
     } catch (error) {
       console.error("Error fetching articles:", error);
+      toast.error("فشل تحميل المقالات", { theme: "colored" });
     }
   };
 
