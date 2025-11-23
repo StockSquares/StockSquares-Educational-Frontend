@@ -300,7 +300,7 @@ function ArticlesManagement() {
           {articles.map((item) => (
             <div
               key={item.id}
-              className="border p-4 rounded-lg shadow-sm bg-white dark:bg-dark-background flex flex-col justify-between"
+              className="border p-4 rounded-lg shadow-sm bg-white dark:bg-dark-background flex flex-col justify-between min-h-[350px]"
             >
               <div>
                 <img
