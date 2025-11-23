@@ -23,6 +23,7 @@ const RegistrationForm = Yup.object().shape({
   acceptTerms: FormValidation.acceptTerms,
   referralCode: FormValidation.referralCode,
 });
+
 function Register() {
   const navigate = useNavigate();
   const addToApi = usePostApi();
@@ -31,7 +32,12 @@ function Register() {
     let url = "";
     const isobirthday = new Date(values.birthday).toISOString();
 
-    const updatedData = { ...values, birthday: isobirthday };
+    const updatedData = {
+      ...values,
+      birthday: isobirthday,
+      clientIdStatus: "0",  // Send as String
+      ScientificStatus: values.jobStatus || "0" // Map jobStatus to ScientificStatus
+    };
 
     url = "https://stocksquare1.runasp.net/api/Account/user-register";
 

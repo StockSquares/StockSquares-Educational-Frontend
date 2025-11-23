@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 
 export function usePostApi() {
   return useMutation({
-    mutationFn: async ({url, updatedData}) => {
+    mutationFn: async ({ url, updatedData }) => {
       const res = await fetch(url, {
         method: "POST",
         headers: {
@@ -11,7 +11,9 @@ export function usePostApi() {
         body: JSON.stringify(updatedData),
       });
       if (!res.ok) {
-        throw new Error("حدث خطأ أثناء الإرسال");
+        const errorData = await res.json().catch(() => ({}));
+        console.error("Server Error Details:", errorData);
+        throw new Error(errorData.title || JSON.stringify(errorData.errors) || "حدث خطأ أثناء الإرسال");
       }
       return res.json();
     },
