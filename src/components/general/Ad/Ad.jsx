@@ -53,8 +53,7 @@ function Ad({ adLocation }) {
     dots: false,
     infinite: adLocation === "course" ? false : true,
     speed: 1000,
-
-    slidesToShow: adLocation === "course" ? 4 : 1,
+    slidesToShow: adLocation === "course" ? 3 : 1,
     slidesToScroll: 1,
     autoplay: adLocation === "course" ? false : true,
     autoplaySpeed: 5000,
@@ -63,9 +62,9 @@ function Ad({ adLocation }) {
     arrows: true,
     responsive: [
       {
-        breakpoint: 1030, // أقل من 1024px
+        breakpoint: 1030,
         settings: {
-          slidesToShow: 1, // يعرض 1 إعلانات
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       }
@@ -77,25 +76,35 @@ function Ad({ adLocation }) {
 
 
   return (
-    <div className="w-full flex flex-col lg:flex-row lg:items-center lg:justify-between  my-8">
+    <div className="w-full flex flex-col lg:flex-row lg:items-center lg:justify-between py-5">
       {adLocation === "course" ? (
-        <div className="w-full p-3">
-          <h2 className="font-semibold text-lg mb-2">{t("ad.ad")}</h2>
+        <div className="w-full flex flex-col lg:flex-row lg:items-center lg:justify-between gap-1">
+          <div className="flex-1">
+            <h2 className="font-semibold text-lg mb-2">{t("ad.ad")}</h2>
 
-          <Slider ref={sliderRef} {...settings} dir="rtl">
-            {courseAds.map((ad) => (
-              <div key={ad.id} className="w-1/3 p-2">
-                <a href={ad.link} className="block h-[100px] rounded-lg overflow-hidden">
-                  <img
-                    src={`data:image/*;base64,${ad.image}`}
-                    alt={ad.title}
-                    className="w-full h-[100px] object-fill"
-                  />
-                </a>
-                <p className="mt-2 text-sm text-gray-700">{ad.title}</p>
-              </div>
-            ))}
-          </Slider>
+            <Slider ref={sliderRef} {...settings}>
+              {courseAds.map((ad) => (
+                <div key={ad.id} className="px-1">
+                  <a href={ad.link} className="block h-[150px] rounded-lg overflow-hidden">
+                    <img
+                      src={`data:image/*;base64,${ad.image}`}
+                      alt={ad.title}
+                      className="w-full h-[150px] object-fill"
+                    />
+                  </a>
+                  <p className="mt-2 text-sm text-gray-700">{ad.title}</p>
+                </div>
+              ))}
+            </Slider>
+          </div>
+
+          {/* زر بروكر - يظهر فقط في صفحة الكورسات */}
+          <Link
+            to="/join-broker"
+            className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition text-lg font-semibold min-w-[180px] text-center"
+          >
+            بروكر؟انطلق معنا
+          </Link>
         </div>
       ) : (
         <div className="w-full overflow-hidden">
@@ -119,14 +128,6 @@ function Ad({ adLocation }) {
           </div>
         </div>
       )}
-
-      {/* زر بروكر */}
-      <Link
-        to="/join-broker"
-        className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition text-lg font-semibold min-w-[180px]"
-      >
-        انطلق معنا!
-      </Link>
     </div>
   );
 }
