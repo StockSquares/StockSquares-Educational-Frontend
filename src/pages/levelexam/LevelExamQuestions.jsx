@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 // إضافة CircularProgressbar من النسخة البعيدة
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar"; 
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import assessmentData from './data/assessmentData';
 import { toast } from "react-toastify";
@@ -14,7 +14,7 @@ import styles from '../../pages/TrainingAndEducation/TrainingAndEducation.module
 import { useTranslation } from "react-i18next";
 
 
-const LevelExamQuestions = () => {
+const LevelExamQuestions = ({ onFinish }) => {
   const levels = assessmentData.assessmentData.levels; // 3 مستويات
   const allQuestions = levels.flatMap(level => level.questions); // دمج كل الأسئلة في مصفوفة واحدة
   const totalQuestions = allQuestions.length;
@@ -65,53 +65,16 @@ const LevelExamQuestions = () => {
     setCurrentIndex(nextIndex);
     checkLevelUp(nextIndex)
   };
-  
+
   const handlePrev = () => {
     setCurrentIndex(currentIndex - 1);
   };
 
-  const getLevel = (finalScore) => {
-    // تقسيم المستويات بناءً على الدرجة/النسبة
-    const percentage = finalScore / totalQuestions;
-    if (percentage >= 0.7) return "مستوى محترف";
-    if (percentage >= 0.4) return "مستوى متقدم";
-    return "مستوى مبتدئ";
-  };
-
   if (currentIndex >= totalQuestions) {
-    // صفحة النتيجة (دمجنا فيها CircularProgressbar من النسخة الثانية)
-    return (
-      <div className="flex flex-col justify-center items-center gap-4 mt-10">
-        <h2 className="text-2xl font-bold text-black mb-4">
-          نتيجتك في اختبار تحديد المستوى
-        </h2>
-        
-        <div className="w-40 h-40">
-           <CircularProgressbar
-             value={(score / totalQuestions) * 100}
-             text={`${score} / ${totalQuestions}`}
-             styles={buildStyles({
-               pathColor: "#10b981", // أخضر
-               textColor: "#1f2937",
-               trailColor: "#e5e7eb",
-               textSize: "16px",
-             })}
-           />
-         </div>
-
-        <p className={`text-xl font-bold mt-4 text-green-400`}>
-          {getLevel(score)}
-        </p>
-        
-        <Link
-          to={ROUTES.RESERVATION}
-          className={`${styles.buttonPersonal} font-semibold bg-primary-900 text-white rounded-lg shadow-lg hover:bg-primary-800 `}
-        >
-          {t("TrainingAndEducation.bookYourTrainer")}
-        </Link>
-      </div>
-
-    );
+    if (onFinish) {
+      onFinish(score, totalQuestions);
+    }
+    return null;
   }
 
 
@@ -120,7 +83,7 @@ const LevelExamQuestions = () => {
       <div className="w-full min-h-[80vh] flex justify-center items-start p-2">
 
         <div className="min-h-[70%] w-[90%] md:w-[60%] flex flex-col gap-4 bg-gray-50 shadow-md p-4">
-        
+
           {/* شريط التقدم (Progress Bar) */}
           <div className="w-full h-[10px] bg-gray-100 rounded-full overflow-hidden">
             <span
@@ -129,12 +92,12 @@ const LevelExamQuestions = () => {
             ></span>
           </div>
           <p className="m-auto"> {currentIndex + 1}/{totalQuestions} </p>
-          
+
           <p className="text-lg font-semibold text-center text-primary-900">
-             {/* عرض المستوى الحالي بناءً على الـ index */}
-             {currentIndex < 10 ? 'مستوى المبتدئين' : currentIndex < 20 ? 'مستوى المتقدمين' : 'مستوى المحترفين'}
+            {/* عرض المستوى الحالي بناءً على الـ index */}
+            {currentIndex < 10 ? 'مستوى المبتدئين' : currentIndex < 20 ? 'مستوى المتقدمين' : 'مستوى المحترفين'}
           </p>
-          
+
           <p className="text-lg font-semibold text-center">
             {currentIndex + 1}- {currentQuestion.text}
           </p>
@@ -152,12 +115,8 @@ const LevelExamQuestions = () => {
                   bgColor = opt.isCorrect ? "bg-green-200" : "bg-red-100";
                   showRationale = true;
                   rationaleColor = opt.isCorrect ? "text-[#146c2e]" : "text-[#b3261e]";
-                } else if (!selectedAnswer.isCorrect && opt.isCorrect) {
-                  // الاختيار الصحيح الذي فاته المستخدم
-                  bgColor = "bg-green-200";
-                  showRationale = true;
-                  rationaleColor = "text-green-600";
-                }
+                } 
+               
               }
 
               return (

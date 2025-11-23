@@ -6,6 +6,7 @@ import { useCategories } from "../../../../Context";
 
 function ArticlesManagement() {
   const [article, setArticle] = useState({
+    id: null,
     title: "",
     Body: "",
     Writer: "",
@@ -15,6 +16,8 @@ function ArticlesManagement() {
   });
 
   const [articles, setArticles] = useState([]); // Store list of articles
+  const [isEditing, setIsEditing] = useState(false); // Track if editing
+  const [isLoading, setIsLoading] = useState(false); // Track loading state
 
   const handleFileChange = (e, type) => {
     const file = e.target.files[0];
@@ -32,31 +35,14 @@ function ArticlesManagement() {
       const response = await fetch(
         "https://stocksquare1.runasp.net/api/Articles/GetAll"
       );
-
-      // Get raw text first to debug
-      const rawText = await response.text();
-      console.log("📥 Raw API Response (first 500 chars):", rawText.substring(0, 500));
-
-      // Try to parse JSON
-      let data;
-      try {
-        data = JSON.parse(rawText);
-      } catch (parseError) {
-        console.error("❌ JSON Parse Error:", parseError);
-        console.error("🔍 Problematic JSON around position:", rawText.substring(20540580, 20540600));
-        toast.error("خطأ في بيانات المقالات من السيرفر", { theme: "colored" });
-        return;
-      }
-
+      const data = await response.json();
       if (response.ok) {
         setArticles(data);
-        console.log("✅ Articles loaded:", data.length);
       } else {
         console.error("Failed to fetch articles");
       }
     } catch (error) {
       console.error("Error fetching articles:", error);
-      toast.error("فشل تحميل المقالات", { theme: "colored" });
     }
   };
 
@@ -95,16 +81,33 @@ function ArticlesManagement() {
     }
   };
 
+  // Handle edit button click
+  const handleEdit = (item) => {
+    setArticle({
+      id: item.id,
+      title: item.title,
+      Body: item.body,
+      Writer: item.writername,
+      WriterImage: null, // Will be updated if user uploads new image
+      MainImageFile: null, // Will be updated if user uploads new image
+      CategoryId: item.categoryId,
+    });
+    setIsEditing(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const saveArticle = async () => {
-    if (
-      !article.title ||
-      !article.CategoryId ||
-      !article.Body ||
-      !article.Writer ||
-      !article.MainImageFile ||
-      !article.WriterImage
-    ) {
-      toast.error("يرجى ملء جميع الحقول وإرفاق الصور المطلوبة", {
+    // Validation (images optional for update)
+    if (!article.title || !article.CategoryId || !article.Body || !article.Writer) {
+      toast.error("يرجى ملء جميع الحقول المطلوبة", {
+        theme: "colored",
+      });
+      return;
+    }
+
+    // For new articles, images are required
+    if (!isEditing && (!article.MainImageFile || !article.WriterImage)) {
+      toast.error("يرجى إرفاق الصور المطلوبة", {
         theme: "colored",
       });
       return;
@@ -116,22 +119,36 @@ function ArticlesManagement() {
       formData.append("Body", article.Body);
       formData.append("Writername", article.Writer);
       formData.append("CategoryId", article.CategoryId);
-      formData.append("MainImageFile", article.MainImageFile);
-      formData.append("WriterImage", article.WriterImage);
+
+      // Only append images if provided
+      if (article.MainImageFile) {
+        formData.append("MainImage", article.MainImageFile);
+      }
+      if (article.WriterImage) {
+        formData.append("WriterImage", article.WriterImage);
+      }
 
       // DEBUG: Log what we are sending
       console.log("🚀 Sending Article Data:");
+      console.log("📝 Mode:", isEditing ? "UPDATE" : "CREATE");
+      console.log("🆔 Article ID:", article.id);
       for (let [key, value] of formData.entries()) {
         console.log(`${key}:`, value);
       }
 
-      const response = await fetch(
-        "https://stocksquare1.runasp.net/api/Articles/create",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const url = isEditing
+        ? `https://stocksquare1.runasp.net/api/Articles/Update?Id=${article.id}&Title=${encodeURIComponent(article.title)}&Body=${encodeURIComponent(article.Body)}&CategoryId=${article.CategoryId}&Writername=${encodeURIComponent(article.Writer)}`
+        : "https://stocksquare1.runasp.net/api/Articles/create";
+
+      const method = isEditing ? "PUT" : "POST";
+
+      console.log("🌐 Request URL:", url);
+      console.log("📡 Request Method:", method);
+
+      const response = await fetch(url, {
+        method: method,
+        body: formData,
+      });
 
       // DEBUG: Log the raw response status
       console.log("📡 Response Status:", response.status);
@@ -145,9 +162,11 @@ function ArticlesManagement() {
       const data = await response.json();
       console.log("✅ Success Data:", data);
 
-      toast.success("تم إرسال المقال بنجاح!", { theme: "colored" });
+      const successMessage = isEditing ? "تم تعديل المقال بنجاح!" : "تم إرسال المقال بنجاح!";
+      toast.success(successMessage, { theme: "colored" });
 
       setArticle({
+        id: null,
         title: "",
         Body: "",
         Writer: "",
@@ -155,8 +174,9 @@ function ArticlesManagement() {
         MainImageFile: null,
         CategoryId: "",
       });
+      setIsEditing(false);
       setAddArticle(false);
-      fetchArticles(); // Refresh list after add
+      fetchArticles(); // Refresh list
     } catch (error) {
       toast.error(`حدث خطأ: ${error.message}`);
       console.error("❌ Exception:", error);
@@ -305,8 +325,28 @@ function ArticlesManagement() {
             className="bg-primary-950 text-white px-4 py-2 mt-3 rounded hover:bg-gray-600"
             onClick={saveArticle}
           >
-            نشر المقال
+            {isEditing ? "تحديث المقال" : "نشر المقال"}
           </button>
+
+          {isEditing && (
+            <button
+              className="bg-gray-500 text-white px-4 py-2 mt-3 rounded hover:bg-gray-600"
+              onClick={() => {
+                setArticle({
+                  id: null,
+                  title: "",
+                  Body: "",
+                  Writer: "",
+                  WriterImage: null,
+                  MainImageFile: null,
+                  CategoryId: "",
+                });
+                setIsEditing(false);
+              }}
+            >
+              إلغاء التعديل
+            </button>
+          )}
         </div>
       </div>
 
@@ -330,12 +370,20 @@ function ArticlesManagement() {
                   الكاتب: {item.writername}
                 </p>
               </div>
-              <button
-                onClick={() => deleteArticle(item.id)}
-                className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 w-full mt-2"
-              >
-                حذف المقال
-              </button>
+              <div className="flex gap-2 mt-2">
+                <button
+                  onClick={() => handleEdit(item)}
+                  className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 flex-1"
+                >
+                  تعديل
+                </button>
+                <button
+                  onClick={() => deleteArticle(item.id)}
+                  className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 flex-1"
+                >
+                  حذف
+                </button>
+              </div>
             </div>
           ))}
         </div>
