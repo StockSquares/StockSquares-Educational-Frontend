@@ -307,6 +307,8 @@ function ArticlesManagement() {
             setArticle((prev) => ({ ...prev, Body: content }))
           }
           setOptions={{
+            height: "500px",
+            minHeight: "400px",
             buttonList: [
               ["bold", "italic", "underline", "strike"],
               ["font", "fontColor", "hiliteColor", "fontSize"],
