@@ -122,7 +122,7 @@ function ArticlesManagement() {
 
       // Only append images if provided
       if (article.MainImageFile) {
-        formData.append("MainImage", article.MainImageFile);
+        formData.append("MainImageFile", article.MainImageFile);
       }
       if (article.WriterImage) {
         formData.append("WriterImage", article.WriterImage);
