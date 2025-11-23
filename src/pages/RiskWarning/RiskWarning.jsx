@@ -82,7 +82,7 @@ function RiskDisclosure() {
         <div className="">
           <div className=" gap-3  ">
             <h1 className="font-[600] text-3xl mb-3 ">تحذير المخاطر والإقرار :</h1>
-            <p className="font-[600]">
+            <p className="font-[600] mb-6 text-green-600">
               يُعد هذا التحذير جزءاً لا يتجزأ من شروط الخدمة والأحكام الخاصة بـ "ستوك سكويرز" (شركة 55Invest). يرجى قراءة هذه الوثيقة بعناية فائقة.
             </p>
           </div>
@@ -98,13 +98,13 @@ function RiskDisclosure() {
                 </div>
 
                 {riskdata.data.map((d, idx) => (
-                  <div className="flex flex-col md:flex-row gap-2 text-[14px] md:text-lg">
-                    <p key={idx} className="text-red-700 font-semibold">
+                  <div className="mb-3 text-sm md:text-lg leading-relaxed">
+                    <span key={idx} className="text-red-700 font-semibold ml-1 whitespace-nowrap">
                       {" "}
-                      {d.name}
-                    </p>
+                      {d.name}:
+                    </span>
                     {/* استخدام <p> عادية لأن المحتوى لا يحتاج لـ HTML هنا */}
-                    <p>{d.detail}</p>
+                    <span className="text-gray-800">{d.detail}</span>
                   </div>
                 ))}
               </div>
