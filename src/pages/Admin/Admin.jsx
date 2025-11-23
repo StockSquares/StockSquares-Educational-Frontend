@@ -4,7 +4,7 @@ import {
   faGraduationCap,
   faHome,
 } from "@fortawesome/free-solid-svg-icons";
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { faNewspaper, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";
 import MainComponent from "./adminPages/main/Main.jsx";
@@ -17,6 +17,7 @@ import BooksComponent from "./adminPages/books/Books.jsx";
 import ArticlesComponent from "./adminPages/articlesPages/Articles.jsx";
 import Activities from "./adminPages/activities/Activities.jsx";
 import SideBar from "../../components/general/SideBar/SideBar.jsx";
+import CategoriesManagement from "./adminPages/categories/CategoriesManagement.jsx";
 
 function Admin() {
   const links = [
@@ -56,6 +57,11 @@ function Admin() {
 
     },
     {
+      icon: faNewspaper, // Using same icon for now, or could import faList
+      name: "أقسام المقالات",
+      path: "/Admin/Categories"
+    },
+    {
       icon: faGraduationCap,
       name: "الكورسات",
       path: "/Admin/Courses"
@@ -84,6 +90,7 @@ function Admin() {
         <Route path="Employees" element={<EmployeesComponent />} />
         <Route path="Ads" element={<AdsComponent />} />
         <Route path="Articles" element={<ArticlesComponent />} />
+        <Route path="Categories" element={<CategoriesManagement />} />
         <Route path="Courses" element={<CoursesComponent />} />
         <Route path="Books" element={<BooksComponent />} />
         <Route path="Activities" element={<Activities />} />
