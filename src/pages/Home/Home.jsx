@@ -33,7 +33,7 @@ function Home() {
         </section>
       </section>
 
-      <div className="w-full gap-2 text-center font-semibold min-h-[130px] px-1">
+      <div className="w-full gap-2 text-center font-semibold px-1">
         <Ad adLocation="course" />
       </div>
 
