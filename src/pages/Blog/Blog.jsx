@@ -26,6 +26,8 @@ function Blog() {
         const data = await response.json();
         if (response.ok) {
           setArticles(data);
+          console.log("data",data);
+
         } else {
           console.log("فشل استرجاع البيانات");
         }
