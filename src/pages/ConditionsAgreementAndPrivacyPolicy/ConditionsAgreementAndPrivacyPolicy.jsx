@@ -267,15 +267,13 @@ function TermsAndConditions() {
                 </div>
 
                 {termsdata.data.map((d, idx) => (
-                  <div className="flex flex-col text-[10px] gap-0 md:flex-row md:text-lg">
-                    <p key={idx} className="text-red-700 font-semibold">
-                      {" "}
-                      {d.name}
-                    </p>
-                    <div className="text-sm">
+                  <div key={idx} className="mb-3 text-sm md:text-lg leading-relaxed">
+                    <span className="text-red-700 font-semibold ml-1 whitespace-nowrap">
+                      {d.name}:
+                    </span>
+                    <span className="text-gray-800">
                       {d.detail}
-                    </div>
-
+                    </span>
                   </div>
                 ))}
               </div>

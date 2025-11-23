@@ -93,18 +93,18 @@ function RiskDisclosure() {
                 <div className="flex items-center gap-4">
                   <FontAwesomeIcon icon={faCircle} className="" size="xs" />
                   <h1 className="font-[600] text-2xl mt-3 mb-4">
-                    {riskData.title}
+                    {riskdata.title}
                   </h1>
                 </div>
 
                 {riskdata.data.map((d, idx) => (
-                  <div className="flex flex-col md:flex-row gap-2 text-[14px] md:text-lg">
-                    <p key={idx} className="text-red-700 font-semibold">
-                      {" "}
-                      {d.name}
-                    </p>
-                    {/* استخدام <p> عادية لأن المحتوى لا يحتاج لـ HTML هنا */}
-                    <p>{d.detail}</p>
+                  <div key={idx} className="mb-3 text-sm md:text-lg leading-relaxed">
+                    <span className="text-red-700 font-semibold ml-1 whitespace-nowrap">
+                      {d.name}:
+                    </span>
+                    <span className="text-gray-800">
+                      {d.detail}
+                    </span>
                   </div>
                 ))}
               </div>
