@@ -82,7 +82,7 @@ function RiskDisclosure() {
         <div className="">
           <div className=" gap-3  ">
             <h1 className="font-[600] text-3xl mb-3 ">تحذير المخاطر والإقرار :</h1>
-            <p className="font-[600]">
+            <p className="font-[600] text-green-600">
               يُعد هذا التحذير جزءاً لا يتجزأ من شروط الخدمة والأحكام الخاصة بـ "ستوك سكويرز" (شركة 55Invest). يرجى قراءة هذه الوثيقة بعناية فائقة.
             </p>
           </div>
