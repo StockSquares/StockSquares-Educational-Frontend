@@ -93,7 +93,7 @@ function ChatAiUi({ list, username }) {
           <Tabs.Item active title=" البورصه السعوديه "></Tabs.Item>
           <Tabs.Item active title=" البورصه الاماراتيه "></Tabs.Item>
           <Tabs.Item active title=" البورصه العالميه "></Tabs.Item>
-          <Tabs.Item active title="  بورصه العملات المشفره ">
+          <Tabs.Item active title="  بورصه العملات المشفرة ">
             <div className="flex gap-7 justify-center">
               <div className="relative flex  flex-col gap-4 w-[300px] rounded-2xl shadow-inner bg-white/30 backdrop-blur-sm p-6 border border-gray-300">
                 <div className="absolute inset-0 rounded-2xl z-10 flex flex-col gap-3 items-center justify-center">

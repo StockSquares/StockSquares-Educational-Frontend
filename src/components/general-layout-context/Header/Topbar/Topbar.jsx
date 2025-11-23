@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ThemeContext } from "../../../../Context/ThemeContext";
 import { ROUTES } from "../../../../routes";
-import Login from "./../../../../pages/Login/Login";
+
 import { useAuth } from "../../../../Context/AuthContext";
 
 import {
@@ -26,7 +26,7 @@ import switchLanguage from "../../../../utilities/i18n/lang";
 function LanguageToggleButton() {
   const { i18n } = useTranslation();
   const currentLang = i18n.language;
-    switchLanguage(currentLang);
+  switchLanguage(currentLang);
 
 
   const toggleLanguage = () => {
@@ -59,10 +59,9 @@ function ThemeToggleButton() {
         flex 
         items-center 
         justify-center
-        ${
-          isDarkMode
-            ? "bg-gray-700 text-yellow-300"
-            : "bg-gray-200 text-yellow-500"
+        ${isDarkMode
+          ? "bg-gray-700 text-yellow-300"
+          : "bg-gray-200 text-yellow-500"
         }
       `}
     >
@@ -139,7 +138,7 @@ function SideNavigation({ isOpen, onClose, isLoggedIn }) {
                     <p>
                       {
                         userData[
-                          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+                        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
                         ]
                       }
                     </p>
@@ -297,9 +296,8 @@ function Topbar({
       {isAboveMdBreakpoint && (
         <div
           ref={ref_md}
-          className={`hidden md:block px-6 bg-white dark:bg-black transition-transform transDuration-500 ${
-            translateY_topbar ? "transform -translate-y-full" : ""
-          }`}
+          className={`hidden md:block px-6 bg-white dark:bg-black transition-transform transDuration-500 ${translateY_topbar ? "transform -translate-y-full" : ""
+            }`}
         >
           <div className="flex-y-center  justify-between py-3 border-b">
             <div className="w-24 lg:w-40 me-3">
@@ -335,7 +333,7 @@ function Topbar({
                       <li className="border-b-2 rounded-lg rounded-b-none p-3 dark:hover:bg-gray-700 hover:bg-gray-100 hover:transition-all cursor-pointer">
                         {
                           userData[
-                            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+                          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
                           ]
                         }
                       </li>

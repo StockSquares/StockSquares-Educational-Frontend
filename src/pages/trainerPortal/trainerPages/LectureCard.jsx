@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-function LectureCard({ subject, trainee, date, level, traineeRequests=false, courseInterval }) {
+function LectureCard({ subject, trainee, date, level, traineeRequests = false, courseInterval }) {
   const [showConfirm, setShowConfirm] = useState(false);
 
   return (
     <div className=" flex flex-col items-center  mt-2 mb-5 font-Cairo ">
       <div className="container flex flex-col ">
         <div className=" self-end text-center ">
-          <h1 className= {` px-10 font-semibold   p-1 ${subject.trim()=== "البورصه المصريه" ?"bg-red-600 text-white" : subject.trim()==="البورصه السعوديه" ? "bg-green-600 text-white" : subject.trim()==="بورصه العملات المشفره"?"bg-purple-950 text-white": "bg-yellow-200 text-black"}`}>
+          <h1 className={` px-10 font-semibold   p-1 ${subject.trim() === "البورصه المصريه" ? "bg-red-600 text-white" : subject.trim() === "البورصه السعوديه" ? "bg-green-600 text-white" : subject.trim() === "بورصه العملات المشفرة" ? "bg-purple-950 text-white" : "bg-yellow-200 text-black"}`}>
             {subject}
           </h1>
         </div>
@@ -17,13 +17,12 @@ function LectureCard({ subject, trainee, date, level, traineeRequests=false, cou
               اسم المتدرب :{" "}
               <span className="text-black me-3 text-[15px] md:text-lg dark:text-dark-text">{trainee}</span>|
               <span
-                className={` ms-2 font-bold text-[15px] md:text-[20px]  ${
-                  level === "محترف"
+                className={` ms-2 font-bold text-[15px] md:text-[20px]  ${level === "محترف"
                     ? "text-red-600"
                     : level === "متقدم"
-                    ? " text-orange-400"
-                    : " text-green-500"
-                } `}
+                      ? " text-orange-400"
+                      : " text-green-500"
+                  } `}
               >
                 {level}
               </span>
@@ -32,23 +31,22 @@ function LectureCard({ subject, trainee, date, level, traineeRequests=false, cou
             <h1 className="text-gray-600 text-lg mt-3 px-2 dark:text-dark-text ">
               مستوي الكورس:{" "}
               <span
-                className={` ms-2 font-bold text-[15px] md:text-[20px] ${
-                  level === "محترف"
+                className={` ms-2 font-bold text-[15px] md:text-[20px] ${level === "محترف"
                     ? "text-red-600"
                     : level === "متقدم"
-                    ? " text-orange-400"
-                    : " text-green-500"
-                } `}
+                      ? " text-orange-400"
+                      : " text-green-500"
+                  } `}
               >
                 {level}
               </span>{" "}
             </h1>
           )}
           <div className="flex  mb-5 px-2 mt-3 py-3">
-          {traineeRequests?(<p className="text-lg text-gray-600 dark:text-primary-700"> مده الكورس: <span className="text-black font-semibold dark:text-dark-text">{courseInterval}</span> </p>):(
-            <p className="text-lg"> {date} </p>
-          )}  
-           {!traineeRequests&&  <button className="ms-4 px-5  bg-white rounded-lg text-black  border border-2  border-y-green-500 border-x-yellow-300 hover:bg-green-500 hover:text-white">
+            {traineeRequests ? (<p className="text-lg text-gray-600 dark:text-primary-700"> مده الكورس: <span className="text-black font-semibold dark:text-dark-text">{courseInterval}</span> </p>) : (
+              <p className="text-lg"> {date} </p>
+            )}
+            {!traineeRequests && <button className="ms-4 px-5  bg-white rounded-lg text-black  border border-2  border-y-green-500 border-x-yellow-300 hover:bg-green-500 hover:text-white">
               انضم الان
             </button>}
           </div>

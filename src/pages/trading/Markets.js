@@ -258,7 +258,7 @@ export const MARKETS = [
   },
   {
     id: 2,
-    name: "البورصه الاماراتيه",
+    name: "البورصة الاماراتيه",
     data: [
       "ADX:ADCB",
       "DFM:EMAAR",

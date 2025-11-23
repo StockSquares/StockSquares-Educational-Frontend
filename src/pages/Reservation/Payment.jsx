@@ -155,13 +155,12 @@ export default function Payment() {
             {steps.map((step, index) => (
               <div key={index} className="flex items-center">
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                    index + 1 === currentStep
+                  className={`w-8 h-8 rounded-full flex items-center justify-center ${index + 1 === currentStep
                       ? "bg-green-600 text-white"
                       : index + 1 < currentStep
-                      ? "bg-green-200"
-                      : "bg-gray-200"
-                  }`}
+                        ? "bg-green-200"
+                        : "bg-gray-200"
+                    }`}
                 >
                   {index + 1}
                 </div>
@@ -216,17 +215,16 @@ export default function Payment() {
             {[
               { id: "credit", label: "بطاقة ائتمان" },
               { id: "wallet", label: " محفظه الكترونيه" },
-              { id: "bitcoin", label: "  العملات المشفره" },
+              { id: "bitcoin", label: "  العملات المشفرة" },
               { id: "debit", label: "   التقسيط" },
             ].map((method) => (
               <button
                 key={method.id}
                 onClick={() => handleInputChange("paymentMethod", method.id)}
-                className={`flex-1 px-6 py-3 rounded-xl border transition-all duration-200 ${
-                  formData.paymentMethod === method.id
+                className={`flex-1 px-6 py-3 rounded-xl border transition-all duration-200 ${formData.paymentMethod === method.id
                     ? "bg-green-600 text-white border-transparent shadow-lg"
                     : "border-gray-300 text-gray-600 hover:bg-gray-50"
-                }`}
+                  }`}
               >
                 {method.label}
               </button>
@@ -260,9 +258,8 @@ export default function Payment() {
                   handleInputChange("cardNumber", e.target.value)
                 }
                 maxLength={19}
-                className={`w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-600 ${
-                  errors.cardNumber ? "border-red-500" : "border-gray-300"
-                }`}
+                className={`w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-600 ${errors.cardNumber ? "border-red-500" : "border-gray-300"
+                  }`}
                 placeholder="**** **** **** ****"
               />
               {errors.cardNumber && (
@@ -287,9 +284,8 @@ export default function Payment() {
                   }
                   placeholder="MM/YY"
                   maxLength={5}
-                  className={`w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-600 ${
-                    errors.expiryDate ? "border-red-500" : "border-gray-300"
-                  }`}
+                  className={`w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-600 ${errors.expiryDate ? "border-red-500" : "border-gray-300"
+                    }`}
                 />
                 {errors.expiryDate && (
                   <p className="text-red-500 text-sm mt-2 flex items-center">
@@ -309,9 +305,8 @@ export default function Payment() {
                   value={formData.cvv}
                   onChange={(e) => handleInputChange("cvv", e.target.value)}
                   maxLength={3}
-                  className={`w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-600 ${
-                    errors.cvv ? "border-red-500" : "border-gray-300"
-                  }`}
+                  className={`w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-600 ${errors.cvv ? "border-red-500" : "border-gray-300"
+                    }`}
                   placeholder="***"
                 />
                 {errors.cvv && (
@@ -334,9 +329,8 @@ export default function Payment() {
                 onChange={(e) =>
                   handleInputChange("nameOnCard", e.target.value)
                 }
-                className={`w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-600 ${
-                  errors.nameOnCard ? "border-red-500" : "border-gray-300"
-                }`}
+                className={`w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-600 ${errors.nameOnCard ? "border-red-500" : "border-gray-300"
+                  }`}
                 placeholder="الاسم كما يظهر على البطاقة"
               />
               {errors.nameOnCard && (
@@ -365,11 +359,10 @@ export default function Payment() {
                 <button
                   onClick={handlePromoCode}
                   disabled={loading || !formData.promoCode}
-                  className={`px-6 py-2 rounded-xl transition-colors ${
-                    loading
+                  className={`px-6 py-2 rounded-xl transition-colors ${loading
                       ? "bg-gray-200 text-gray-500"
                       : "bg-green-600 text-white hover:bg-green-700"
-                  }`}
+                    }`}
                 >
                   {loading ? "جارٍ التحقق..." : "تطبيق"}
                 </button>
@@ -472,11 +465,10 @@ export default function Payment() {
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className={`px-8 py-3 rounded-xl transition-colors ${
-              loading
+            className={`px-8 py-3 rounded-xl transition-colors ${loading
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-green-600 hover:bg-green-700"
-            } text-white shadow-lg flex items-center`}
+              } text-white shadow-lg flex items-center`}
           >
             {loading ? "جارٍ المعالجة..." : "تأكيد الدفع"}
           </button>

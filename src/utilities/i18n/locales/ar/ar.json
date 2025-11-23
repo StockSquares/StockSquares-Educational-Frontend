@@ -196,23 +196,23 @@
   },
 
   "practicalTraining": {
-    "egyptianStock": "دورة البورصه المصريه",
+    "egyptianStock": "دورة البورصة المصريه",
     "hours": "٨ ساعات",
     "beginner": "مبتدئ",
     "juniorPrice": "٣٥٠٠",
     "pound": "جنيه",
-    "saudiStock": "دورة البورصه السعوديه",
+    "saudiStock": "دورة البورصة السعوديه",
     "advanced": "متقدم",
     "advancedHours": "١٢ ساعة",
     "advancedPrice": "٥٥٠٠",
-    "globalStock": "دورة البورصه العالميه",
+    "globalStock": "دورة البورصة العالميه",
     "proLevel": "محترف",
     "proHours": "١٦ ساعة",
     "proPrice": "٧٥٠٠",
     "bitCoinStock": "دورة العملات المشفرة"
   },
   "RecordedCourse": {
-    "recordedCourse": " الدورات المسجله ",
+    "recordedCourse": "الدورات المسجلة ",
     "start_Bulding_Strong_Future_Money": "   ابدأ بناء مستقبل مالي قوي",
     "learning_Gold_Coins": " تعلم تداول الأسهم والعملات والذهب",
     "Tarek_Ellithy": " أ/طارق الليثي ",
