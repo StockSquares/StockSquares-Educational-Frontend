@@ -53,7 +53,7 @@ function Ad({ adLocation }) {
     dots: false,
     infinite: adLocation === "course" ? false : true,
     speed: 1000,
-    slidesToShow: adLocation === "course" ? 3 : 1,
+    slidesToShow: adLocation === "course" ? 4 : 1,
     slidesToScroll: 1,
     autoplay: adLocation === "course" ? false : true,
     autoplaySpeed: 5000,
@@ -84,12 +84,12 @@ function Ad({ adLocation }) {
 
             <Slider ref={sliderRef} {...settings}>
               {courseAds.map((ad) => (
-                <div key={ad.id} className="px-1">
-                  <a href={ad.link} className="block h-[150px] rounded-lg overflow-hidden">
+                <div key={ad.id} className="pl-10">
+                  <a href={ad.link} className="block h-[90px] rounded-lg overflow-hidden">
                     <img
                       src={`data:image/*;base64,${ad.image}`}
                       alt={ad.title}
-                      className="w-full h-[150px] object-fill"
+                      className="w-full h-[90px] object-cover"
                     />
                   </a>
                   <p className="mt-2 text-sm text-gray-700">{ad.title}</p>
