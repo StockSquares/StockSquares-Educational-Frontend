@@ -107,43 +107,50 @@ function ArticlesManagement() {
 
     // For new articles, images are required
     if (!isEditing && (!article.MainImageFile || !article.WriterImage)) {
-      toast.error("يرجى إرفاق الصور المطلوبة", {
-        theme: "colored",
-      });
+      toast.error("يرجى إضافة الصور للمقال الجديد", { theme: "colored" });
       return;
     }
 
+    // Determine URL and Method
+    let url;
+    let method;
+    const formData = new FormData();
+
+    if (isEditing) {
+      // Update Endpoint: Text fields in Query Params, Images in FormData
+      // Endpoint from Swagger: PUT /api/Articles/Update
+      const queryParams = new URLSearchParams({
+        Id: article.id || "",
+        Title: article.title || "",
+        Body: article.Body || "",
+        CategoryId: article.CategoryId || "",
+        Writename: article.Writer || "",
+      }).toString();
+
+      url = `https://stocksquare1.runasp.net/api/Articles/Update?${queryParams}`;
+      method = "PUT";
+
+      // Append images if they exist (Swagger: MainImage, WriterImage)
+      if (article.MainImageFile) formData.append("MainImage", article.MainImageFile);
+      if (article.WriterImage) formData.append("WriterImage", article.WriterImage);
+
+    } else {
+      // Add Endpoint
+      url = "https://stocksquare1.runasp.net/api/Articles/AddArticle";
+      method = "POST";
+
+      formData.append("title", article.title || "");
+      formData.append("Body", article.Body || "");
+      formData.append("Writer", article.Writer || "");
+      formData.append("CategoryId", article.CategoryId || "");
+
+      if (article.MainImageFile) formData.append("MainImage", article.MainImageFile);
+      if (article.WriterImage) formData.append("WriterImage", article.WriterImage);
+    }
+
     try {
-      const formData = new FormData();
-      formData.append("Title", article.title);
-      formData.append("Body", article.Body);
-      formData.append("Writername", article.Writer);
-      formData.append("CategoryId", article.CategoryId);
-
-      // Only append images if provided
-      if (article.MainImageFile) {
-        formData.append("MainImageFile", article.MainImageFile);
-      }
-      if (article.WriterImage) {
-        formData.append("WriterImage", article.WriterImage);
-      }
-
       // DEBUG: Log what we are sending
-      console.log("🚀 Sending Article Data:");
-      console.log("📝 Mode:", isEditing ? "UPDATE" : "CREATE");
-      console.log("🆔 Article ID:", article.id);
-      for (let [key, value] of formData.entries()) {
-        console.log(`${key}:`, value);
-      }
-
-      const url = isEditing
-        ? `https://stocksquare1.runasp.net/api/Articles/Update?Id=${article.id}&Title=${encodeURIComponent(article.title)}&Body=${encodeURIComponent(article.Body)}&CategoryId=${article.CategoryId}&Writername=${encodeURIComponent(article.Writer)}`
-        : "https://stocksquare1.runasp.net/api/Articles/create";
-
-      const method = isEditing ? "PUT" : "POST";
-
-      console.log("🌐 Request URL:", url);
-      console.log("📡 Request Method:", method);
+      console.log(`🚀 Sending ${method} Request to: ${url}`);
 
       const response = await fetch(url, {
         method: method,
@@ -155,12 +162,24 @@ function ArticlesManagement() {
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error("❌ Server Error Response:", errorText);
-        throw new Error(`Server Error: ${response.status} - ${errorText}`);
+        console.error("Server Error Response:", errorText);
+
+        // Check for specific 500 errors related to Drive
+        if (response.status === 500 && errorText.includes("service drive")) {
+          throw new Error(`خطأ في السيرفر (Google Drive): يبدو أن هناك مشكلة في رفع أو حذف الصور من السيرفر.`);
+        }
+
+        throw new Error(`فشل الطلب (${response.status}): ${errorText.substring(0, 100)}...`);
       }
 
-      const data = await response.json();
-      console.log("✅ Success Data:", data);
+      // Check if response has content before parsing JSON
+      const contentType = response.headers.get("content-type");
+      let data = {};
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        data = await response.json();
+      }
+
+      console.log("Success Data:", data);
 
       const successMessage = isEditing ? "تم تعديل المقال بنجاح!" : "تم إرسال المقال بنجاح!";
       toast.success(successMessage, { theme: "colored" });

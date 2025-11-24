@@ -203,11 +203,19 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
                 className="dark:bg-darkgray dark:text-dark-text"
               >
                 <option value=""> الحالة العمليه</option>
-                {jobStatus.map((item) => (
-                  <option key={item.id} value={item.value}>
-                    {item.value}
-                  </option>
-                ))}
+                {jobStatus.map((item) => {
+                  const translations = {
+                    "Student": "طالب",
+                    "Employee": "موظف",
+                    "Freelancer": "عمل حر",
+                    "Business Owner": "صاحب عمل"
+                  };
+                  return (
+                    <option key={item.id} value={item.value}>
+                      {translations[item.value] || item.value}
+                    </option>
+                  );
+                })}
               </Field>
 
               {errors.jobStatus && touched.jobStatus ? (
@@ -265,7 +273,7 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
                     className="text-blue-500 underline"
                     to={ROUTES.PRIVACYPOLICY}
                   >
-                     تحذير المخاطر
+                    تحذير المخاطر
                   </Link>
                 </label>
               </div>
@@ -275,9 +283,8 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
 
               <button
                 type="submit"
-                className={`${styles.bu1} ${
-                  addToApi.isPending ? "bg-gray-300" : "bg-primary-900 "
-                }`}
+                className={`${styles.bu1} ${addToApi.isPending ? "bg-gray-300" : "bg-primary-900 "
+                  }`}
                 disabled={addToApi.isPending}
               >
                 {addToApi.isPending ? "جاري التسجيل" : "إنشاء حساب جديد"}
@@ -288,9 +295,9 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
 
         <p className={`${styles.redirectText} dark:text-dark-text`}>
           هل لديك حساب؟{" "}
-          <a href="/login" className={styles.redirectLink}>
+          <Link to="/login" className={styles.redirectLink}>
             تسجيل الدخول
-          </a>
+          </Link>
         </p>
       </div>
     </div>

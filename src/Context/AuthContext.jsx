@@ -27,9 +27,14 @@ export const AuthProvider = ({ children }) => {
   const revokeTokens = async () => {
     try {
       await revoke.mutateAsync();
-      setUserData(null);
     } catch (e) {
-      console.log("error in revokee");
+      console.log("error in revokee", e);
+    } finally {
+      // Force logout locally regardless of server success/failure
+      Cookies.remove("token");
+      Cookies.remove("refreshToken");
+      setToken(null);
+      setUserData(null);
     }
   };
 
