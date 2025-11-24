@@ -29,9 +29,13 @@ function Login() {
       setIsError(false);
 
       setDecodedUser(res.data["token"]);
-      // Cookies.set("token", res.data["token"]);
-      // navigate(ROUTES.HOME);
-      navigate(`/${res.data["role"]}`);
+
+      // Check if there are pending survey answers
+      if (localStorage.getItem("tempAnswers")) {
+        navigate(ROUTES.INVESTORSURVEY);
+      } else {
+        navigate(`/${res.data["role"]}`);
+      }
     } catch (e) {
       console.log("error sendind");
       setIsError(true);
