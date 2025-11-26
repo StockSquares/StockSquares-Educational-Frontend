@@ -51,11 +51,11 @@ function Ad({ adLocation }) {
 
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: adLocation === "course" ? courseAds.length >= 4 : true,
     speed: 1000,
     slidesToShow: adLocation === "course" ? 4 : 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: adLocation === "course" ? courseAds.length >= 4 : true,
     autoplaySpeed: 3000,
     cssEase: "linear",
     rtl: false,
@@ -66,6 +66,8 @@ function Ad({ adLocation }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: true,
+          autoplay: true
         },
       }
     ]
@@ -80,11 +82,12 @@ function Ad({ adLocation }) {
       {adLocation === "course" ? (
         <div className="w-full flex flex-col lg:flex-row lg:items-center gap-3">
           {/* الإعلانات - تاخد باقي المساحة */}
-          <div className="flex-1" style={{ maxWidth: 'calc(100% - 220px)' }}>
-            <h2 className="font-semibold text-lg mb-2">{t("ad.ad")}</h2>
+          <div className="flex-1 w-full lg:min-w-0">
+            <h2 className="font-semibold text-lg mb-2 text-center lg:text-start whitespace-nowrap">{t("ad.ad")}</h2>
 
-            {courseAds.length >= 4 ? (
-              // لو 4 إعلانات أو أكتر - استخدم Slider
+            {courseAds.length > 1 ? (
+              // لو أكتر من إعلان - استخدم Slider
+              // (في الديسك توب هيتصرف كأنه ثابت لو أقل من 4 بسبب الإعدادات)
               <Slider ref={sliderRef} {...settings}>
                 {courseAds.map((ad) => (
                   <div key={ad.id} className="px-2">
@@ -100,10 +103,10 @@ function Ad({ adLocation }) {
                 ))}
               </Slider>
             ) : (
-              // لو أقل من 4 - اعرضهم ثابتين على اليمين
-              <div className="flex gap-2 justify-start">
+              // لو إعلان واحد فقط - اعرضه ثابت
+              <div className="flex flex-col lg:flex-row gap-2 justify-center lg:justify-start w-full">
                 {courseAds.map((ad) => (
-                  <div key={ad.id} style={{ width: 'calc(25% - 8px)', flexShrink: 0 }}>
+                  <div key={ad.id} className="w-full lg:w-[calc(25%-8px)] flex-shrink-0">
                     <a href={ad.link} className="block h-[90px] rounded-lg overflow-hidden">
                       <img
                         src={`data:image/*;base64,${ad.image}`}
@@ -119,10 +122,10 @@ function Ad({ adLocation }) {
           </div>
 
           {/* زر بروكر - عرض ثابت */}
-          <div style={{ width: '200px', flexShrink: 0 }}>
+          <div className="w-full lg:w-[200px] flex justify-center lg:block flex-shrink-0">
             <Link
               to="/join-broker"
-              className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition text-lg font-semibold block text-center"
+              className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition text-lg font-semibold block text-center whitespace-nowrap"
             >
               بروكر؟انطلق معنا
             </Link>
