@@ -16,8 +16,8 @@ export default function JoinBrokerProfessional() {
         contactPhone: "",
         contactEmail: "",
         activityAreas: [],
-        dealSize: [],
-        companyStage: [],
+        dealSize: "",
+        companyStage: "",
         strategicPartnership: "",
         notes: "",
     });
@@ -81,8 +81,8 @@ export default function JoinBrokerProfessional() {
         if (!formData.contactEmail) newErrors.contactEmail = "يرجى إدخال البريد الإلكتروني";
         // if (!formData.strategicPartnership) newErrors.strategicPartnership = " يرجي الاختيار";
         if ((formData.activityAreas || []).length === 0) newErrors.activityAreas = "اختر على الأقل مجالًا واحدًا";
-        if ((formData.dealSize || []).length === 0) newErrors.dealSize = "اختر حجم صفقتك ";
-        if ((formData.companyStage || []).length === 0) newErrors.companyStage = "اختر  المرحلة الحالية لشركتك ";
+        if (!formData.dealSize) newErrors.dealSize = "اختر حجم صفقتك ";
+        if (!formData.companyStage) newErrors.companyStage = "اختر  المرحلة الحالية لشركتك ";
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -104,8 +104,8 @@ export default function JoinBrokerProfessional() {
             contactPhone: "",
             contactEmail: "",
             activityAreas: [],
-            dealSize: [],
-            companyStage: [],
+            dealSize: "",
+            companyStage: "",
             strategicPartnership: "",
             notes: "",
         });
@@ -118,7 +118,7 @@ export default function JoinBrokerProfessional() {
                 <div className="inline-block p-3 bg-gray-50 rounded-full mb-4">
                     <Building2 className="h-8 w-8 text-green-600" />
                 </div>
-                <h2 className="text-2xl font-bold">انضم كبروكر/شركة استثمار</h2>
+                <h2 className="text-2xl font-bold">الرعاية التجارية</h2>
                 <p className="text-[12px] md:text-xl lg:text-xl px-1 md:px-3 mb-4 flex flex-col text-green-400 font-semibold leading-5">إذا كانت شركتكم تعمل في مجال الوساطة المالية أو الاستثمار، ففرص التعاون معنا مفتوحة.
                     سجّل بياناتكم وأستعد لنبدأ شراكة ناجحة وفعالة ومستمرة
                 </p>
@@ -300,8 +300,8 @@ export default function JoinBrokerProfessional() {
                             <button
                                 key={d}
                                 type="button"
-                                onClick={() => handleToggle("dealSize", d)}
-                                className={`px-3 py-2 rounded-lg border ${(formData.dealSize || []).includes(d)
+                                onClick={() => handleChange("dealSize", d)}
+                                className={`px-3 py-2 rounded-lg border ${formData.dealSize === d
                                     ? "bg-green-600 text-white border-transparent"
                                     : "border-gray-300 text-gray-700 hover:bg-green-100 hover:border-green-100"
                                     }`}
@@ -322,8 +322,8 @@ export default function JoinBrokerProfessional() {
                             <button
                                 key={s}
                                 type="button"
-                                onClick={() => handleToggle("companyStage", s)}
-                                className={`px-3 py-2 rounded-lg border ${(formData.companyStage || []).includes(s)
+                                onClick={() => handleChange("companyStage", s)}
+                                className={`px-3 py-2 rounded-lg border ${formData.companyStage === s
                                     ? "bg-green-600 text-white border-transparent"
                                     : "border-gray-300 text-gray-700 hover:bg-green-100 hover:border-green-100"
                                     }`}

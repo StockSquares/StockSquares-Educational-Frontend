@@ -9,20 +9,20 @@
     padding: 10px 50px;
 }
 
-.contain hr{
+.contain hr {
     height: 2px;
     border: none;
     background-color: #262626;
     margin-top: 10px;
 }
 
-.contain h1{
+.contain h1 {
     font-size: 25px;
     font-weight: bold;
     color: #25863f;
 }
 
-.contain h2{
+.contain h2 {
     font-size: 20px;
     font-weight: bold;
     margin: 20px 0px;
@@ -41,23 +41,23 @@
     text-align: start;
     box-sizing: border-box;
     transition: all 0.3s ease;
-    font-weight: 500; 
+    font-weight: 500;
 }
 
 .contain ul li:hover {
-    background-color: #dfdfdf; 
+    background-color: #dfdfdf;
 }
 
 .contain ul li.selected {
     background-color: #25863f;
     color: white;
-    border: 1px solid #1f7034; 
+    border: 1px solid #1f7034;
 }
 
-.contain button{
+.contain button {
     margin: auto;
     min-width: 160px;
-    
+
     height: 45px;
     background-color: #25863f;
     color: #fff;
@@ -67,23 +67,23 @@
     cursor: pointer;
 }
 
-.pop button{
+.pop button {
     margin: 0px 10px;
 }
 
-.contain .index{
+.contain .index {
     margin: auto;
     font-size: 18px;
     text-align: center;
     /* direction: ltr; */
     margin-top: 10px;
     bottom: 0;
-} 
+}
 
-.contain .index .top{
+.contain .index .top {
     color: #25863f;
     margin-top: 10px;
-} 
+}
 
 .error {
     color: red;
@@ -124,16 +124,16 @@ input {
     margin-top: 10px;
 }
 
-.lab1{
+.lab1 {
     margin-top: 25px;
 }
 
-.full label{
+.full label {
     font-size: 19px;
     margin: 15px 0px;
 }
 
-.full input{
+.full input {
     height: 55px;
     border: 2px solid #25863f;
     border-radius: 8px;
@@ -142,39 +142,40 @@ input {
     cursor: pointer;
     text-align: start;
     box-sizing: border-box;
-    font-weight: 500; 
+    font-weight: 500;
 }
 
 .important-info {
     background-color: #f0f8ff;
-    border: 2px solid #25863f; 
-    border-radius: 8px; 
-    padding: 20px; 
-    margin: 20px 0; 
-    font-size: 18px; 
-    font-weight: 500; 
-    color: #262626; 
-    line-height: 1.8; 
+    border: 2px solid #25863f;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #262626;
+    line-height: 1.8;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.login h1{
+.login h1 {
     text-align: center;
     margin-bottom: 30px;
 }
 
-.login button{
+.login button {
     margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.pop{
+.pop {
     text-align: center;
     margin-top: 20px;
 }
+
 .react-datepicker__navigation {
     background: none !important;
     border: none !important;
@@ -183,18 +184,20 @@ input {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-  }
-  .react-datepicker__navigation-icon {
+}
+
+.react-datepicker__navigation-icon {
     display: none;
-  }
-  .react-datepicker-wrapper {
+}
+
+.react-datepicker-wrapper {
     width: 100% !important;
-  }
-  
-  .react-datepicker__input-container input {
+}
+
+.react-datepicker__input-container input {
     width: 100% !important;
-  }
-  
+}
+
 @media (max-width: 768px) {
     .contain {
         width: 90%;
@@ -216,10 +219,31 @@ input {
     .contain button {
         width: 100%;
     }
+
     .pop button:nth-child(1) {
-        margin-bottom: 20px; 
+        margin-bottom: 20px;
     }
 }
 
 
+/* PhoneInput styling */
+.PhoneInput {
+    width: 100%;
+}
 
+.PhoneInput input {
+    width: 100% !important;
+    padding: 8px 12px !important;
+    font-size: 16px !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 6px !important;
+    outline: none !important;
+}
+
+.PhoneInput input:focus {
+    border-color: #25863f !important;
+}
+
+.PhoneInputCountry {
+    margin-right: 8px;
+}
