@@ -10,22 +10,30 @@ import { Form, Field } from "formik";
 import { ROUTES } from "../../routes";
 import 'react-phone-number-input/style.css';
 
-function RegisterUi({ RegistrationForm, handleSubmit }) {
+function RegisterUi({ RegistrationForm, handleSubmit, hideHeader, customTitle, customButtonText, hideLoginLink }) {
   const addToApi = usePostApi();
   const jobStatus = useJobStatus();
-  const isPartner = {
-    checked: true,
-  };
+
   return (
     <div
       className={`${styles.contain2} dark:bg-dark-background dark:border-black dark:shadow-md`}
     >
-      <img src={logo} alt="Logo" className={styles.logo} />
-      <h2 className="dark:bg-darkgray dark:text-dark-text">
-        أول منصة عربية ذكية لدعم المستثمرين ورواد الأعمال
-      </h2>
-      <h1>تسجيل حساب جديد</h1>
-      <hr />
+      {customTitle ? (
+        <div style={{ textAlign: "center", marginBottom: "20px" }}>
+          {customTitle}
+        </div>
+      ) : (
+        !hideHeader && (
+          <>
+            <img src={logo} alt="Logo" className={styles.logo} />
+            <h2 className="dark:bg-darkgray dark:text-dark-text">
+              أول منصة عربية ذكية لدعم المستثمرين ورواد الأعمال
+            </h2>
+            <h1>تسجيل حساب جديد</h1>
+            <hr />
+          </>
+        )
+      )}
       <div className={styles.contain3}>
         <Formik
           initialValues={{
@@ -39,13 +47,13 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
             gender: "",
             jobStatus: "",
             email: "",
-            acceptTerms: "",
+            acceptTerms: false,
             referralCode: "",
           }}
           validationSchema={RegistrationForm}
           onSubmit={handleSubmit}
         >
-          {({ errors, touched }) => (
+          {({ errors, touched, setFieldValue }) => (
             <Form
               className="w-full text-start bg-transparent border-0 drop-shadow-none p-0 mt-5"
               style={{ boxShadow: "none" }}
@@ -277,8 +285,8 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
                   </Link>
                 </label>
               </div>
-              {errors.termsAccepted && touched.termsAccepted ? (
-                <p className="text-red-500"> {errors.termsAccepted} </p>
+              {errors.acceptTerms && touched.acceptTerms ? (
+                <p className="text-red-500"> {errors.acceptTerms} </p>
               ) : null}
 
               <button
@@ -287,18 +295,20 @@ function RegisterUi({ RegistrationForm, handleSubmit }) {
                   }`}
                 disabled={addToApi.isPending}
               >
-                {addToApi.isPending ? "جاري التسجيل" : "إنشاء حساب جديد"}
+                {addToApi.isPending ? "جاري التسجيل" : (customButtonText || "إنشاء حساب جديد")}
               </button>
             </Form>
           )}
         </Formik>
 
-        <p className={`${styles.redirectText} dark:text-dark-text`}>
-          هل لديك حساب؟{" "}
-          <Link to="/login" className={styles.redirectLink}>
-            تسجيل الدخول
-          </Link>
-        </p>
+        {!hideLoginLink && (
+          <p className={`${styles.redirectText} dark:text-dark-text`}>
+            هل لديك حساب؟{" "}
+            <Link to="/login" className={styles.redirectLink}>
+              تسجيل الدخول
+            </Link>
+          </p>
+        )}
       </div>
     </div>
   );

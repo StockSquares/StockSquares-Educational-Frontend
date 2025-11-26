@@ -51,15 +51,15 @@ function Ad({ adLocation }) {
 
   const settings = {
     dots: false,
-    infinite: adLocation === "course" ? false : true,
+    infinite: true,
     speed: 1000,
     slidesToShow: adLocation === "course" ? 4 : 1,
     slidesToScroll: 1,
-    autoplay: adLocation === "course" ? false : true,
-    autoplaySpeed: 5000,
+    autoplay: true,
+    autoplaySpeed: 3000,
     cssEase: "linear",
     rtl: false,
-    arrows: true,
+    arrows: adLocation === "course" ? false : true,  // إخفاء الأسهم في الكورسات فقط
     responsive: [
       {
         breakpoint: 1030,
@@ -78,33 +78,55 @@ function Ad({ adLocation }) {
   return (
     <div className="w-full flex flex-col lg:flex-row lg:items-center lg:justify-between py-5">
       {adLocation === "course" ? (
-        <div className="w-full flex flex-col lg:flex-row lg:items-center lg:justify-between gap-1">
-          <div className="flex-1">
+        <div className="w-full flex flex-col lg:flex-row lg:items-center gap-3">
+          {/* الإعلانات - تاخد باقي المساحة */}
+          <div className="flex-1" style={{ maxWidth: 'calc(100% - 220px)' }}>
             <h2 className="font-semibold text-lg mb-2">{t("ad.ad")}</h2>
 
-            <Slider ref={sliderRef} {...settings}>
-              {courseAds.map((ad) => (
-                <div key={ad.id} className="pl-10">
-                  <a href={ad.link} className="block h-[90px] rounded-lg overflow-hidden">
-                    <img
-                      src={`data:image/*;base64,${ad.image}`}
-                      alt={ad.title}
-                      className="w-full h-[90px] object-cover"
-                    />
-                  </a>
-                  <p className="mt-2 text-sm text-gray-700">{ad.title}</p>
-                </div>
-              ))}
-            </Slider>
+            {courseAds.length >= 4 ? (
+              // لو 4 إعلانات أو أكتر - استخدم Slider
+              <Slider ref={sliderRef} {...settings}>
+                {courseAds.map((ad) => (
+                  <div key={ad.id} className="px-2">
+                    <a href={ad.link} className="block h-[90px] rounded-lg overflow-hidden">
+                      <img
+                        src={`data:image/*;base64,${ad.image}`}
+                        alt={ad.title}
+                        className="w-full h-[90px] object-cover"
+                      />
+                    </a>
+                    <p className="mt-2 text-sm text-gray-700">{ad.title}</p>
+                  </div>
+                ))}
+              </Slider>
+            ) : (
+              // لو أقل من 4 - اعرضهم ثابتين على اليمين
+              <div className="flex gap-2 justify-start">
+                {courseAds.map((ad) => (
+                  <div key={ad.id} style={{ width: 'calc(25% - 8px)', flexShrink: 0 }}>
+                    <a href={ad.link} className="block h-[90px] rounded-lg overflow-hidden">
+                      <img
+                        src={`data:image/*;base64,${ad.image}`}
+                        alt={ad.title}
+                        className="w-full h-[90px] object-cover"
+                      />
+                    </a>
+                    <p className="mt-2 text-sm text-gray-700">{ad.title}</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* زر بروكر - يظهر فقط في صفحة الكورسات */}
-          <Link
-            to="/join-broker"
-            className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition text-lg font-semibold min-w-[180px] text-center"
-          >
-            بروكر؟انطلق معنا
-          </Link>
+          {/* زر بروكر - عرض ثابت */}
+          <div style={{ width: '200px', flexShrink: 0 }}>
+            <Link
+              to="/join-broker"
+              className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition text-lg font-semibold block text-center"
+            >
+              بروكر؟انطلق معنا
+            </Link>
+          </div>
         </div>
       ) : (
         <div className="w-full overflow-hidden">

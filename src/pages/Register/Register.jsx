@@ -24,7 +24,7 @@ const RegistrationForm = Yup.object().shape({
   referralCode: FormValidation.referralCode,
 });
 
-function Register() {
+function Register({ onSuccess, hideHeader, customTitle, customButtonText, hideLoginLink }) {
   const navigate = useNavigate();
   const addToApi = usePostApi();
 
@@ -32,8 +32,6 @@ function Register() {
     let url = "";
     const isobirthday = new Date(values.birthday).toISOString();
 
-    // Reverting to the original structure that was working, but with safe defaults
-    // Strictly matching the Swagger schema shown in the image
     const updatedData = {
       firstName: values.firstName,
       parentName: values.parentName,
@@ -43,7 +41,7 @@ function Register() {
       password: values.password,
       confirmPassword: values.confirmPassword,
       gender: values.gender,
-      scientificStatus: values.jobStatus || "0", // Matches 'scientificStatus' in Swagger
+      scientificStatus: values.jobStatus || "0",
       birthday: isobirthday,
       referralCode: values.referralCode || null,
       acceptTerms: values.acceptTerms
@@ -53,14 +51,13 @@ function Register() {
 
     try {
       localStorage.setItem("email", updatedData.email);
-
       console.log("Sending Data:", JSON.stringify(updatedData));
 
       const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "text/plain" // Matching Swagger
+          "Accept": "text/plain"
         },
         body: JSON.stringify(updatedData)
       });
@@ -74,7 +71,16 @@ function Register() {
       console.log("تم التسجيل", data);
 
       if (data.isSuccess) {
-        navigate(ROUTES.VERIFYOTP);
+        if (onSuccess) {
+          // Pass email and password for auto-login
+          onSuccess({
+            ...data,
+            email: updatedData.email,
+            password: updatedData.password
+          });
+        } else {
+          navigate(ROUTES.VERIFYOTP);
+        }
       } else {
         alert("فشل التسجيل: " + (data.error?.description || "خطأ غير معروف"));
       }
@@ -89,6 +95,10 @@ function Register() {
     <RegisterUi
       RegistrationForm={RegistrationForm}
       handleSubmit={handleSubmit}
+      hideHeader={hideHeader}
+      customTitle={customTitle}
+      customButtonText={customButtonText}
+      hideLoginLink={hideLoginLink}
     />
   );
 }

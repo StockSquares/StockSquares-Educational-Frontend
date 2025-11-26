@@ -6,6 +6,17 @@ import { useTranslation } from "react-i18next";
 import { useCategories } from "../../Context/CategoriesContext";
 import BlogUi from "./BlogUi";
 
+// Helper function to decode base64 to text
+const decodeFromBase64 = (base64Text) => {
+  if (!base64Text) return "";
+  try {
+    return decodeURIComponent(escape(atob(base64Text)));
+  } catch (error) {
+    console.error("Failed to decode base64:", error);
+    return base64Text; // Return original if decode fails
+  }
+};
+
 function Blog() {
   const { t } = useTranslation();
   const { handleAisle } = useContext(AisleContext);
@@ -25,9 +36,13 @@ function Blog() {
         );
         const data = await response.json();
         if (response.ok) {
-          setArticles(data);
-          console.log("data",data);
-
+          // Decode base64 body for each article
+          const decodedArticles = data.map(article => ({
+            ...article,
+            body: decodeFromBase64(article.body)
+          }));
+          setArticles(decodedArticles);
+          console.log("data", decodedArticles);
         } else {
           console.log("فشل استرجاع البيانات");
         }

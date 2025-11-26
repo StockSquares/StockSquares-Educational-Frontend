@@ -4,6 +4,24 @@ import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
 import { useCategories } from "../../../../Context";
 
+// Helper function to encode text to base64
+const encodeToBase64 = (text) => {
+  if (!text) return "";
+  return btoa(unescape(encodeURIComponent(text)));
+};
+
+// Helper function to decode base64 to text
+const decodeFromBase64 = (base64Text) => {
+  if (!base64Text) return "";
+  try {
+    return decodeURIComponent(escape(atob(base64Text)));
+  } catch (error) {
+    console.error("Failed to decode base64:", error);
+    return base64Text; // Return original if decode fails
+  }
+};
+
+
 function ArticlesManagement() {
   const [article, setArticle] = useState({
     id: null,
@@ -37,7 +55,12 @@ function ArticlesManagement() {
       );
       const data = await response.json();
       if (response.ok) {
-        setArticles(data);
+        // Decode base64 body for each article
+        const decodedArticles = data.map(article => ({
+          ...article,
+          body: decodeFromBase64(article.body)
+        }));
+        setArticles(decodedArticles);
       } else {
         console.error("Failed to fetch articles");
       }
@@ -86,7 +109,7 @@ function ArticlesManagement() {
     setArticle({
       id: item.id,
       title: item.title,
-      Body: item.body,
+      Body: decodeFromBase64(item.body), // Decode base64 for editing
       Writer: item.writername,
       WriterImage: null, // Will be updated if user uploads new image
       MainImageFile: null, // Will be updated if user uploads new image
@@ -122,7 +145,7 @@ function ArticlesManagement() {
       const queryParams = new URLSearchParams({
         Id: article.id || "",
         Title: article.title || "",
-        Body: article.Body || "",
+        Body: encodeToBase64(article.Body) || "",
         CategoryId: article.CategoryId || "",
         Writename: article.Writer || "",
       }).toString();
@@ -135,16 +158,16 @@ function ArticlesManagement() {
       if (article.WriterImage) formData.append("WriterImage", article.WriterImage);
 
     } else {
-      // Add Endpoint
-      url = "https://stocksquare1.runasp.net/api/Articles/AddArticle";
+      // Add Endpoint (Fixed to match Swagger: /create)
+      url = "https://stocksquare1.runasp.net/api/Articles/create";
       method = "POST";
 
-      formData.append("title", article.title || "");
-      formData.append("Body", article.Body || "");
-      formData.append("Writer", article.Writer || "");
+      formData.append("Title", article.title || "");
+      formData.append("Body", encodeToBase64(article.Body) || "");
+      formData.append("Writername", article.Writer || "");
       formData.append("CategoryId", article.CategoryId || "");
 
-      if (article.MainImageFile) formData.append("MainImage", article.MainImageFile);
+      if (article.MainImageFile) formData.append("MainImageFile", article.MainImageFile);
       if (article.WriterImage) formData.append("WriterImage", article.WriterImage);
     }
 
@@ -337,10 +360,11 @@ function ArticlesManagement() {
             ],
           }}
         />
+
         <div className="flex gap-5">
-          <button className="bg-accent-950 dark:text-black text-dark px-4 py-2 mt-3 rounded hover:bg-gray-600">
+          {/* <button className="bg-accent-950 dark:text-black text-dark px-4 py-2 mt-3 rounded hover:bg-gray-600">
             حفظ المقال
-          </button>
+          </button> */}
 
           <button
             className="bg-primary-950 text-white px-4 py-2 mt-3 rounded hover:bg-gray-600"
