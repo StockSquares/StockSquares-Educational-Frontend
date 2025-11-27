@@ -8,9 +8,7 @@ import additionalLogo from "../../../assets/imgs/additionalLogo.png";
 import cardImg from "/src/assets/imgs/1.webp";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
 // import style from "./Ad.module.css";
-
 function Ad({ adLocation }) {
   const [ads, setAds] = useState([]);
   const [mainAds, setMainAds] = useState([]);
