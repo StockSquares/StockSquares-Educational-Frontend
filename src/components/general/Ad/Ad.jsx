@@ -93,45 +93,82 @@ function Ad({ adLocation }) {
           {/* الإعلانات وزر البروكر - جنب بعض */}
           <div className="w-full flex flex-col lg:flex-row lg:items-center gap-3">
             {/* الإعلانات - تاخد باقي المساحة - على اليمين */}
-            {/* استخدام flex-1 عشان ياخد المساحة المتبقية */}
             <div className="flex-1 w-full lg:min-w-0">
               {courseAds.length > 0 ? (
-                courseAds.length >= 5 ? (
-                  // حالة السلايدر: 5 إعلانات أو أكثر
-                  <Slider ref={sliderRef} {...settings}>
-                    {courseAds.map((ad) => (
-                      <div key={ad.id} className="px-2" dir="rtl">
-                        <a href={ad.link} className="block h-[100px] lg:h-[100px] rounded-lg overflow-hidden">
-                          <img
-                            src={`data:image/*;base64,${ad.image}`}
-                            alt={ad.title}
-                            className="w-full h-full object-cover"
-                          />
-                        </a>
-                        <p className="text-sm text-gray-700 text-center">{ad.title}</p>
-                      </div>
-                    ))}
-                  </Slider>
-                ) : (
-                  // حالة الثبات: من 1 إلى 4 إعلانات
-                  // نستخدم فليكس عادي مع اتجاه RTL عشان يبدأ من اليمين
-                  <div className="w-full flex" dir="rtl">
-                    {courseAds.map((ad) => (
-                      <div key={ad.id} className="w-1/4 px-2 flex-shrink-0">
-                        <a href={ad.link} className="block h-[100px] lg:h-[100px] rounded-lg overflow-hidden">
-                          <img
-                            src={`data:image/*;base64,${ad.image}`}
-                            alt={ad.title}
-                            className="w-full h-full object-cover"
-                          />
-                        </a>
-                        <p className="text-sm text-gray-700 text-center">{ad.title}</p>
-                      </div>
-                    ))}
-                    {/* مساحة فاضية لو الإعلانات أقل من 4 عشان يحافظوا على حجمهم */}
-                    {/* بما أننا محددين العرض 25%، المساحة الفاضية هتتساب تلقائي على الشمال في الـ RTL */}
-                  </div>
-                )
+                <>
+                  {/* في الموبايل: لو إعلان واحد بس */}
+                  {courseAds.length === 1 ? (
+                    <div className="w-full lg:hidden">
+                      {courseAds.map((ad) => (
+                        <div key={ad.id} className="w-full px-2">
+                          <a href={ad.link} className="block h-[100px] rounded-lg overflow-hidden">
+                            <img
+                              src={`data:image/*;base64,${ad.image}`}
+                              alt={ad.title}
+                              className="w-full h-full object-cover"
+                            />
+                          </a>
+                          <p className="text-sm text-gray-700 text-center">{ad.title}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    // في الموبايل: لو 2 إعلانات أو أكتر - سلايدر
+                    <div className="w-full lg:hidden">
+                      <Slider ref={sliderRef} {...settings}>
+                        {courseAds.map((ad) => (
+                          <div key={ad.id} className="px-2">
+                            <a href={ad.link} className="block h-[100px] rounded-lg overflow-hidden">
+                              <img
+                                src={`data:image/*;base64,${ad.image}`}
+                                alt={ad.title}
+                                className="w-full h-full object-cover"
+                              />
+                            </a>
+                            <p className="text-sm text-gray-700 text-center">{ad.title}</p>
+                          </div>
+                        ))}
+                      </Slider>
+                    </div>
+                  )}
+
+                  {/* في الشاشات الكبيرة */}
+                  {courseAds.length >= 5 ? (
+                    // حالة السلايدر: 5 إعلانات أو أكثر
+                    <div className="hidden lg:block">
+                      <Slider ref={sliderRef} {...settings}>
+                        {courseAds.map((ad) => (
+                          <div key={ad.id} className="px-2" dir="rtl">
+                            <a href={ad.link} className="block h-[100px] rounded-lg overflow-hidden">
+                              <img
+                                src={`data:image/*;base64,${ad.image}`}
+                                alt={ad.title}
+                                className="w-full h-full object-cover"
+                              />
+                            </a>
+                            <p className="text-sm text-gray-700 text-center">{ad.title}</p>
+                          </div>
+                        ))}
+                      </Slider>
+                    </div>
+                  ) : (
+                    // حالة الثبات: من 1 إلى 4 إعلانات
+                    <div className="w-full hidden lg:flex" dir="rtl">
+                      {courseAds.map((ad) => (
+                        <div key={ad.id} className="w-1/4 px-2 flex-shrink-0">
+                          <a href={ad.link} className="block h-[100px] rounded-lg overflow-hidden">
+                            <img
+                              src={`data:image/*;base64,${ad.image}`}
+                              alt={ad.title}
+                              className="w-full h-full object-cover"
+                            />
+                          </a>
+                          <p className="text-sm text-gray-700 text-center">{ad.title}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </>
               ) : null}
             </div>
 
