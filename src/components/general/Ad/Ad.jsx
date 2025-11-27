@@ -49,17 +49,22 @@ function Ad({ adLocation }) {
   const next = () => sliderRef.current && sliderRef.current.slickNext();
   const previous = () => sliderRef.current && sliderRef.current.slickPrev();
 
+  // إعدادات السلايدر
   const settings = {
     dots: false,
-    infinite: adLocation === "course" ? courseAds.length >= 4 : true,
+    // لو الكورسات أقل من 5 (يعني 1، 2، 3، 4) مفيش حركة لا نهائية
+    infinite: adLocation === "course" ? courseAds.length >= 5 : true,
     speed: 1000,
+    // عرض 4 إعلانات في الشاشات الكبيرة (كل واحد ياخد 25%)
     slidesToShow: adLocation === "course" ? 4 : 1,
     slidesToScroll: 1,
-    autoplay: adLocation === "course" ? courseAds.length >= 4 : true,
+    // التشغيل التلقائي فقط لو فيه 5 إعلانات أو أكتر
+    autoplay: adLocation === "course" ? courseAds.length >= 5 : true,
     autoplaySpeed: 3000,
     cssEase: "linear",
-    rtl: false,
-    arrows: adLocation === "course" ? false : true,  // إخفاء الأسهم في الكورسات فقط
+    // تفعيل الـ RTL للكورسات عشان تبدأ من اليمين
+    rtl: adLocation === "course",
+    arrows: adLocation === "course" ? false : true,
     responsive: [
       {
         breakpoint: 1030,
@@ -67,7 +72,8 @@ function Ad({ adLocation }) {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          autoplay: true
+          autoplay: true,
+          rtl: false // في الموبايل العرض عادي
         },
       }
     ]
@@ -78,57 +84,66 @@ function Ad({ adLocation }) {
 
 
   return (
-    <div className="w-full flex flex-col lg:flex-row lg:items-center lg:justify-between py-5">
+    <div className="w-full flex flex-col lg:flex-row lg:items-center lg:justify-start py-5">
       {adLocation === "course" ? (
-        <div className="w-full flex flex-col lg:flex-row lg:items-center gap-3">
-          {/* الإعلانات - تاخد باقي المساحة */}
-          <div className="flex-1 w-full lg:min-w-0">
-            <h2 className="font-semibold text-lg mb-2 text-center lg:text-start whitespace-nowrap">{t("ad.ad")}</h2>
+        <div className="w-full">
+          {/* العنوان - فوق كل حاجة */}
+          <h2 className="font-semibold text-lg text-center whitespace-nowrap mb-2">{t("ad.ad")}</h2>
 
-            {courseAds.length > 1 ? (
-              // لو أكتر من إعلان - استخدم Slider
-              // (في الديسك توب هيتصرف كأنه ثابت لو أقل من 4 بسبب الإعدادات)
-              <Slider ref={sliderRef} {...settings}>
-                {courseAds.map((ad) => (
-                  <div key={ad.id} className="px-2">
-                    <a href={ad.link} className="block h-[90px] rounded-lg overflow-hidden">
-                      <img
-                        src={`data:image/*;base64,${ad.image}`}
-                        alt={ad.title}
-                        className="w-full h-[90px] object-cover"
-                      />
-                    </a>
-                    <p className="mt-2 text-sm text-gray-700">{ad.title}</p>
+          {/* الإعلانات وزر البروكر - جنب بعض */}
+          <div className="w-full flex flex-col lg:flex-row lg:items-center gap-3">
+            {/* الإعلانات - تاخد باقي المساحة - على اليمين */}
+            {/* استخدام flex-1 عشان ياخد المساحة المتبقية */}
+            <div className="flex-1 w-full lg:min-w-0">
+              {courseAds.length > 0 ? (
+                courseAds.length >= 5 ? (
+                  // حالة السلايدر: 5 إعلانات أو أكثر
+                  <Slider ref={sliderRef} {...settings}>
+                    {courseAds.map((ad) => (
+                      <div key={ad.id} className="px-2" dir="rtl">
+                        <a href={ad.link} className="block h-[100px] lg:h-[100px] rounded-lg overflow-hidden">
+                          <img
+                            src={`data:image/*;base64,${ad.image}`}
+                            alt={ad.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </a>
+                        <p className="text-sm text-gray-700 text-center">{ad.title}</p>
+                      </div>
+                    ))}
+                  </Slider>
+                ) : (
+                  // حالة الثبات: من 1 إلى 4 إعلانات
+                  // نستخدم فليكس عادي مع اتجاه RTL عشان يبدأ من اليمين
+                  <div className="w-full flex" dir="rtl">
+                    {courseAds.map((ad) => (
+                      <div key={ad.id} className="w-1/4 px-2 flex-shrink-0">
+                        <a href={ad.link} className="block h-[100px] lg:h-[100px] rounded-lg overflow-hidden">
+                          <img
+                            src={`data:image/*;base64,${ad.image}`}
+                            alt={ad.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </a>
+                        <p className="text-sm text-gray-700 text-center">{ad.title}</p>
+                      </div>
+                    ))}
+                    {/* مساحة فاضية لو الإعلانات أقل من 4 عشان يحافظوا على حجمهم */}
+                    {/* بما أننا محددين العرض 25%، المساحة الفاضية هتتساب تلقائي على الشمال في الـ RTL */}
                   </div>
-                ))}
-              </Slider>
-            ) : (
-              // لو إعلان واحد فقط - اعرضه ثابت
-              <div className="flex flex-col lg:flex-row gap-2 justify-center lg:justify-start w-full">
-                {courseAds.map((ad) => (
-                  <div key={ad.id} className="w-full lg:w-[calc(25%-8px)] flex-shrink-0">
-                    <a href={ad.link} className="block h-[90px] rounded-lg overflow-hidden">
-                      <img
-                        src={`data:image/*;base64,${ad.image}`}
-                        alt={ad.title}
-                        className="w-full h-[90px] object-cover"
-                      />
-                    </a>
-                    <p className="mt-2 text-sm text-gray-700">{ad.title}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+                )
+              ) : null}
+            </div>
 
-          {/* زر بروكر - عرض ثابت */}
-          <div className="w-full lg:w-[200px] flex justify-center lg:block flex-shrink-0">
-            <Link
-              to="/join-broker"
-              className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition text-lg font-semibold block text-center whitespace-nowrap"
-            >
-              بروكر؟انطلق معنا
-            </Link>
+            {/* زر بروكر - عرض ثابت - على الشمال */}
+            <div className="w-full lg:w-[200px] flex justify-center lg:items-center flex-shrink-0 self-center">
+              <Link
+                to="/join-broker"
+                className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition text-lg font-semibold block text-center whitespace-nowrap"
+              >
+                بروكر؟انطلق معنا
+              </Link>
+            </div>
           </div>
         </div>
       ) : (
