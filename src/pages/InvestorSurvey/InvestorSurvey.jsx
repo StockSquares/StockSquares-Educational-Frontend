@@ -149,11 +149,14 @@ function InvestorSurvey() {
       if (loginResponse.ok) {
         const loginData = await loginResponse.json();
 
-        if (loginData.token) {
-          // Save token and set user data
-          setDecodedUser(loginData.token);
+        // Check for token in loginData.data.token or loginData.token
+        const token = loginData.data?.token || loginData.token;
 
-          alert("تم إنشاء الحساب وتسجيل الدخول بنجاح! يمكنك الآن بدء الاستبيان.");
+        if (token) {
+          // Save token and set user data
+          setDecodedUser(token);
+
+          // alert("تم إنشاء الحساب وتسجيل الدخول بنجاح! يمكنك الآن بدء الاستبيان.");
           setIsLoggedIn(true);
         } else {
           console.warn("Login successful but no token found:", loginData);
