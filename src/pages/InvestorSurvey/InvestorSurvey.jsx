@@ -117,135 +117,9 @@ const PortfolioPlan = ({ personalityType }) => {
   if (!plan) return null;
 
   return (
-    // <div className="mt-8 p-8 bg-gray-50 border border-gray-200 rounded-lg w-full max-w-4xl shadow-md  mx-auto" dir="rtl">
-    //   <h3 className="text-2xl font-bold text-primary-700 mb-6">{plan.title}</h3>
 
-    //   {/* الأهداف */}
-    //   <div className="mb-6">
-    //     <h4 className="text-lg font-semibold border-b pb-1 mb-2 text-gray-800">أهداف الاستثمار:</h4>
-    //     <ul className="list-disc pr-5 space-y-1 text-gray-700">
-    //       {plan.goals.map((goal, i) => (<li key={i}>{goal}</li>))}
-    //     </ul>
-    //   </div>
-
-    //   {/* الجدول */}
-    //   <div className="mb-6">
-    //     <h4 className="text-lg font-semibold border-b pb-1 mb-2 text-gray-800">تقسيم المحفظة المقترح:</h4>
-    //     <div className="overflow-x-auto">
-    //       <table className="min-w-full divide-y divide-gray-200 table-fixed">
-    //         <thead className="bg-gray-200">
-    //           <tr>
-    //             <th className="w-3/10 px-4 py-4 text-right text-sm font-medium text-gray-500 uppercase tracking-wider">الأصل</th>
-    //             <th className="w-1/6 px-4 py-4 text-center text-sm font-medium text-gray-500 uppercase tracking-wider">النسبة المقترحة</th>
-    //             <th className="w-1/2 px-4 py-4 text-right text-sm font-medium text-gray-500 uppercase tracking-wider">الوصف</th>
-    //           </tr>
-    //         </thead>
-    //         <tbody className="bg-white divide-y divide-gray-200">
-    //           {plan.sections.map((item, i) => (
-    //             <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-    //               <td className="px-4 py-5 text-base font-medium text-gray-900">{item.asset}</td>
-    //               <td className="px-4 py-5 text-base text-gray-700 font-bold text-center">{item.percentage}</td>
-    //               <td className="px-4 py-5 text-base text-gray-700 leading-relaxed">{item.details}</td>
-    //             </tr>
-    //           ))}
-    //         </tbody>
-    //       </table>
-    //     </div>
-    //   </div>
-
-    //   {/* نصائح */}
-    //   <div>
-    //     <h4 className="text-lg font-semibold border-b pb-1 mb-2 text-gray-800">نصائح إضافية:</h4>
-    //     <ul className="list-disc pr-5 space-y-1 text-sm text-red-600 font-medium">
-    //       <li>**هذه الخطة هي نقطة بداية فقط ولا تعتبر نصيحة مالية.**</li>
-    //       {plan.advice.map((advice, i) => (<li key={i}>{advice}</li>))}
-    //       <li>**التعليم المستمر:** استمر في تعلم كل ما هو جديد في عالم الاستثمار.</li>
-    //     </ul>
-    //   </div>
-    // </div>
-
-
-
-//     <div className="mt-8 p-6 sm:p-8 bg-gray-50 border border-gray-200 rounded-lg w-full max-w-4xl shadow-md mx-auto" dir="rtl">
-//   <h3 className="text-xl sm:text-2xl font-bold text-primary-700 mb-6">{plan.title}</h3>
-
-//   {/* الأهداف */}
-//   <div className="mb-6">
-//     <h4 className="text-md sm:text-lg font-semibold border-b pb-1 mb-3 text-gray-800">أهداف الاستثمار:</h4>
-//     <ul className="list-disc pr-5 space-y-1 text-sm sm:text-base text-gray-700">
-//       {plan.goals.map((goal, i) => (<li key={i}>{goal}</li>))}
-//     </ul>
-//   </div>
-
-//   {/* جدول على الشاشات الكبيرة - وكروت على الموبايل */}
-//   <div className="mb-6">
-//     <h4 className="text-md sm:text-lg font-semibold border-b pb-1 mb-3 text-gray-800">تقسيم المحفظة المقترح:</h4>
-
-//     {/* --- desktop table (lg+) --- */}
-//     <div className="hidden lg:block">
-//       <div className="overflow-x-auto">
-//         <table className="min-w-full divide-y divide-gray-200 table-fixed">
-//           <thead className="bg-gray-200">
-//             <tr>
-//               <th className="w-3/10 px-4 py-3 text-right text-sm sm:text-sm font-medium text-gray-500 uppercase tracking-wider">الأصل</th>
-//               <th className="w-1/6 px-4 py-3 text-center text-sm sm:text-sm font-medium text-gray-500 uppercase tracking-wider">النسبة المقترحة</th>
-//               <th className="w-1/2 px-4 py-3 text-right text-sm sm:text-sm font-medium text-gray-500 uppercase tracking-wider">الوصف</th>
-//             </tr>
-//           </thead>
-//           <tbody className="bg-white divide-y divide-gray-200">
-//             {plan.sections.map((item, i) => (
-//               <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-//                 <td className="px-4 py-4 text-base sm:text-base font-medium text-gray-900 align-top">{item.asset}</td>
-//                 <td className="px-4 py-4 text-base sm:text-base text-gray-700 font-bold text-center align-top">
-//                   <span className="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
-//                     {item.percentage}
-//                   </span>
-//                 </td>
-//                 <td className="px-4 py-4 text-sm sm:text-base text-gray-700 leading-relaxed align-top">
-//                   <p className="whitespace-normal">{item.details}</p>
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       </div>
-//     </div>
-
-//     {/* --- mobile cards (lg:hidden) --- */}
-//     <div className="lg:hidden space-y-3">
-//       {plan.sections.map((item, i) => (
-//         <article key={i} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-//           <div className="flex items-start justify-between gap-3">
-//             <div className="flex-1 min-w-0">
-//               <h5 className="text-sm sm:text-base font-semibold text-gray-900 truncate">{item.asset}</h5>
-//               <p className="mt-2 text-xs sm:text-sm text-gray-600 leading-relaxed">{item.details}</p>
-//             </div>
-//             <div className="flex-shrink-0 ml-3">
-//               <span className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-green-100 text-green-800 font-semibold text-sm">
-//                 {item.percentage}
-//               </span>
-//             </div>
-//           </div>
-//         </article>
-//       ))}
-//     </div>
-//   </div>
-
-//   {/* نصائح */}
-//   <div>
-//     <h4 className="text-md sm:text-lg font-semibold border-b pb-1 mb-2 text-gray-800">نصائح إضافية:</h4>
-//     <ul className="list-disc pr-5 space-y-1 text-sm sm:text-base text-red-600 font-medium">
-//       <li className="font-bold">هذه الخطة هي نقطة بداية فقط ولا تعتبر نصيحة مالية.</li>
-//       {plan.advice.map((advice, i) => (<li key={i}>{advice}</li>))}
-//       <li className="font-medium text-gray-700">التعليم المستمر: استمر في تعلم كل ما هو جديد في عالم الاستثمار.</li>
-//     </ul>
-//   </div>
-// </div>
-
-
-
-<div className="mt-10 p-4 sm:p-4 bg-gray-50 border border-gray-200 rounded-2xl w-full lgmax-w-5xl shadow-lg mx-auto" dir="rtl">
-  <h3 className="text-3xl font-bold text-primary-700 mb-10">{plan.title}</h3>
+<div className="mt-10 p-4 sm:p-4 bg-gray-50 border border-gray-200 rounded-2xl w-full  shadow-lg mx-auto" dir="rtl">
+  <h3 className="text-xl font-bold text-primary-700 mb-10">{plan.title}</h3>
 
   {/* الأهداف */}
   <div className="mb-10">
@@ -269,7 +143,7 @@ const PortfolioPlan = ({ personalityType }) => {
     </h4>
 
     <div className="overflow-x-auto w-full">
-      <table className="w-full text-sm border-collapse">
+      <table className="w-full text-sm border-collapse rounded-xl overflow-hidden">
         <thead className="bg-gray-300">
           <tr>
             <th className="px-8 py-6 text-right font-bold text-gray-800 text-xl w-1/3">
@@ -322,8 +196,8 @@ const PortfolioPlan = ({ personalityType }) => {
           key={i}
           className="bg-white rounded-xl shadow p-4 border border-gray-200"
         >
-          <div className="flex justify-between items-center mb-3">
-            <h5 className="text-lg font-bold text-gray-900">{item.asset}</h5>
+          <div className="flex flex-col gap-2 justify-between  items-center mb-3">
+            <h5 className="text-md font-bold text-gray-900">{item.asset}</h5>
 
             <span className="inline-block bg-green-200 text-green-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">
               {item.percentage}
