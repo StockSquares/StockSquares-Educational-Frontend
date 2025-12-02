@@ -45,7 +45,7 @@ function RegisterUi({ RegistrationForm, handleSubmit, hideHeader, customTitle, c
             confirmPassword: "",
             birthday: "",
             gender: "",
-            jobStatus: "",
+            scientificStatus: "",
             email: "",
             acceptTerms: false,
             referralCode: "",
@@ -201,13 +201,13 @@ function RegisterUi({ RegistrationForm, handleSubmit, hideHeader, customTitle, c
                 <p className="text-red-500"> {errors.email} </p>
               ) : null}
 
-              <label htmlFor="jobStatus" className="sr-only">
+              <label htmlFor="scientificStatus" className="sr-only">
                 الحالة العملية
               </label>
               <Field
                 as="select"
-                id="jobStatus"
-                name="jobStatus"
+                id="scientificStatus"
+                name="scientificStatus"
                 className="dark:bg-darkgray dark:text-dark-text"
               >
                 <option value=""> الحالة العمليه</option>
@@ -219,15 +219,15 @@ function RegisterUi({ RegistrationForm, handleSubmit, hideHeader, customTitle, c
                     "Business Owner": "صاحب عمل"
                   };
                   return (
-                    <option key={item.id} value={item.value}>
+                    <option key={item.id} value={item.id}>
                       {translations[item.value] || item.value}
                     </option>
                   );
                 })}
               </Field>
 
-              {errors.jobStatus && touched.jobStatus ? (
-                <p className="text-red-500"> {errors.jobStatus} </p>
+              {errors.scientificStatus && touched.scientificStatus ? (
+                <p className="text-red-500"> {errors.scientificStatus} </p>
               ) : null}
 
               <label htmlFor="referralCode" className="sr-only">

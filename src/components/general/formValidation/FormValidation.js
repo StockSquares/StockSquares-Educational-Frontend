@@ -27,7 +27,7 @@ export const FormValidation = {
   gender: Yup.string()
     .oneOf(["female", "male"], "select the gender")
     .required("مطلوب"),
-  jobStatus: Yup.string().required("مطلوب"),
+  scientificStatus: Yup.string().required("مطلوب"),
   acceptTerms: Yup.boolean(),
   referralCode: Yup.string(),
 };

@@ -10,7 +10,7 @@ function Questionare({
   handleOptionClick,
   questions,
   error,
-  title  
+  title
 }) {
   return (
     <>
@@ -27,14 +27,9 @@ function Questionare({
           .map((key, i) => (
             <li
               key={i}
-              className={selectedOption?.optionIndex === i + 1 ? "selected" : ""}
+              className={selectedOption === i ? "selected" : ""}
               onClick={() => {
-                
-                handleOptionClick({
-                  optionIndex: i + 1,
-                  answer: questions[index][key],
-                  question: questions[index].question,
-                });
+                handleOptionClick(i);
               }}
             >
               {questions[index][key]}

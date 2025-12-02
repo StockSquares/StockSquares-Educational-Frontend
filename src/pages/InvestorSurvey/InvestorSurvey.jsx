@@ -99,7 +99,24 @@ function InvestorSurvey() {
     if (index === questions.length - 1) {
       const optionsMap = ["أ", "ب", "ج", "د", "هـ"];
       const mappedAnswers = updatedAnswers.map((idx) => optionsMap[idx]);
+
+      // Debug: طباعة الإجابات للتأكد من صحتها
+      console.log("=== نتائج الاستبيان ===");
+      console.log("الإجابات (أرقام):", updatedAnswers);
+      console.log("الإجابات (حروف):", mappedAnswers);
+
+      const conservative = mappedAnswers.filter((a) => a === "أ" || a === "هـ").length;
+      const moderate = mappedAnswers.filter((a) => a === "ج").length;
+      const risk = mappedAnswers.filter((a) => a === "ب" || a === "د").length;
+
+      console.log("عدد الإجابات المتحفظة (أ/هـ):", conservative);
+      console.log("عدد الإجابات المتوازنة (ج):", moderate);
+      console.log("عدد الإجابات المخاطرة (ب/د):", risk);
+
       const personality = calculatePersonalityFromMapped(mappedAnswers);
+      console.log("النتيجة النهائية:", personality);
+      console.log("======================");
+
       setResult(personality);
       if (userData) submitPersonality(mappedAnswers);
       return;

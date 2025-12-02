@@ -19,7 +19,7 @@ const RegistrationForm = Yup.object().shape({
   confirmPassword: FormValidation.confirmPassword,
   birthday: FormValidation.birthday,
   gender: FormValidation.gender,
-  jobStatus: FormValidation.jobStatus,
+  scientificStatus: FormValidation.scientificStatus,
   acceptTerms: FormValidation.acceptTerms,
   referralCode: FormValidation.referralCode,
 });
@@ -40,8 +40,9 @@ function Register({ onSuccess, hideHeader, customTitle, customButtonText, hideLo
       phoneNumber: values.phoneNumber,
       password: values.password,
       confirmPassword: values.confirmPassword,
-      gender: values.gender,
-      scientificStatus: values.jobStatus || "0",
+      // Convert gender to "Male" or "Female" (backend expects String enum name)
+      gender: values.gender === "male" ? "Male" : "Female",
+      scientificStatus: values.scientificStatus || "0",
       birthday: isobirthday,
       referralCode: values.referralCode || null,
       acceptTerms: values.acceptTerms
