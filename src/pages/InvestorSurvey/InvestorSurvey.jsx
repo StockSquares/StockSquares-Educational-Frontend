@@ -1,15 +1,364 @@
-// InvestorSurvey.jsx – full implementation using shared Register component
+// InvestorSurvey.jsx – full implementation with Portfolio Plan
 import { useEffect, useState } from "react";
 import "./investorSurvey.css";
 import Cookies from "js-cookie";
 import { questions } from "../../assets/data";
 import Questionare from "../../components/general/questionare/Questionare";
-import { Register } from ".."; // Importing Register from pages index
+import { Register } from "..";
 import { useAuth } from "../../Context/AuthContext";
 
+// Portfolio Plans Data
+const PORTFOLIO_PLANS = {
+  Conservative: {
+    title: "خطة تقسيم محفظة مالية بطريقة متحفظة",
+    goals: [
+      "الحفاظ على رأس المال",
+      "تحقيق عائد ثابت ومستقر",
+      "تقليل المخاطر إلى أدنى حد",
+    ],
+    sections: [
+      {
+        asset: "السندات الحكومية",
+        percentage: "40-50%",
+        details: "من الاستثمارات الأكثر أمانًا، وتوفر عائداً ثابتاً.",
+      },
+      {
+        asset: "الصناديق الاستثمارية المتداولة (ETFs) ذات الدخل الثابت",
+        percentage: "20-30%",
+        details: "توفر تنويعاً أكبر ضمن فئة السندات، مما يساعد على تقليل المخاطر.",
+      },
+      {
+        asset: "الأسهم ذات القيمة العالية",
+        percentage: "15-20%",
+        details: "أكثر استقراراً من الأسهم النامية، وتوفر عائداً جيداً على المدى الطويل.",
+      },
+      {
+        asset: "العقارات (مباشر أو REITs)",
+        percentage: "10-15%",
+        details: "توفر تدفقاً نقدياً شهرياً وتقدير رأسمال على المدى الطويل.",
+      },
+    ],
+    advice: [
+      "التنويع الجغرافي: لا تركز استثماراتك في منطقة جغرافية واحدة.",
+      "إعادة التوازن: قم بإعادة تقييم محفظتك بشكل دوري.",
+      "الاستعانة بمحترف: استشر خبير مالي لمساعدتك.",
+    ],
+  },
+  Moderate: {
+    title: "خطة تقسيم محفظة بقيمة مليون دولار بمخاطر متوسطة",
+    goals: [
+      "التوازن للوصول لعائد اعلى من الاستثمارات الآمنة",
+      "الحفاظ على نسبة كبيرة من رأس المال",
+      "تحقيق عائد ونمو اكبر على المدى المتوسط",
+    ],
+    sections: [
+      {
+        asset: "الأسهم (الكبيرة والراسخة، وصناديق ETFs)",
+        percentage: "40-50%",
+        details: "شركات أكثر استقرارًا وعوائد جيدة، وتوفر الصناديق تنويعًا إضافيًا.",
+      },
+      {
+        asset: "السندات (حكومية وذات جودة عالية للشركات)",
+        percentage: "30-40%",
+        details: "توفر استقرارًا ودخلاً ثابتًا، مع عوائد أعلى قليلاً للسندات الشركات.",
+      },
+      {
+        asset: "العقارات (REITs)",
+        percentage: "10-15%",
+        details: "توفر تنويعًا في استثمارات العقارات وتدفقًا نقديًا منتظمًا.",
+      },
+      {
+        asset: "الأصول البديلة (الذهب، المعادن الثمينة)",
+        percentage: "5-10%",
+        details: "تعمل كتحوط ضد التضخم وتقلبات الأسواق.",
+      },
+    ],
+    advice: [
+      "التنويع: لا تركز استثماراتك في قطاع أو منطقة جغرافية واحدة.",
+      "إعادة التوازن: قم بإعادة تقييم محفظتك بشكل دوري.",
+      "الاستعانة بمحترف: استشر خبير مالي لمساعدتك.",
+    ],
+  },
+  "Risk Taker": {
+    title: "تقسيم محفظة بقيمة مليون دولار بطريقة مخاطرة عالية",
+    goals: [
+      "تحمل تقلبات كبيرة من اجل عوائد مرتفعة",
+      "المخاطرة بنسبة كبيرة من رأس المال",
+      "تحقيق عائد ونمو كبير على المدى القصير او الطويل",
+    ],
+    sections: [
+      {
+        asset: "الأسهم (النامية، التكنولوجية، صناديق الأسواق الناشئة)",
+        percentage: "60-70%",
+        details: "إمكانية نمو عالية مع تقلبات شديدة، للبحث عن عوائد مرتفعة.",
+      },
+      {
+        asset: "العقارات (التجارية، في الأسواق الناشئة)",
+        percentage: "20-25%",
+        details: "عوائد إيجارية عالية وعوائد مرتفعة محتملة، ولكن مع مخاطر اقتصادية وسياسية.",
+      },
+      {
+        asset: "الأصول البديلة (البتكوين والعملات المشفرة، صناديق رأس المال المخاطر)",
+        percentage: "10-15%",
+        details: "إمكانية نمو هائلة مع تقلبات شديدة جدًا.",
+      },
+    ],
+    advice: [
+      "التنويع: لا تركز استثماراتك في شركة أو قطاع واحد.",
+      "إعادة التوازن: قم بإعادة تقييم محفظتك بشكل دوري.",
+      "الاستعانة بمحترف: استشر خبير مالي لمساعدتك.",
+    ],
+  },
+};
+
+// Portfolio Plan Component
+const PortfolioPlan = ({ personalityType }) => {
+  const plan = PORTFOLIO_PLANS[personalityType];
+  if (!plan) return null;
+
+  return (
+    // <div className="mt-8 p-8 bg-gray-50 border border-gray-200 rounded-lg w-full max-w-4xl shadow-md  mx-auto" dir="rtl">
+    //   <h3 className="text-2xl font-bold text-primary-700 mb-6">{plan.title}</h3>
+
+    //   {/* الأهداف */}
+    //   <div className="mb-6">
+    //     <h4 className="text-lg font-semibold border-b pb-1 mb-2 text-gray-800">أهداف الاستثمار:</h4>
+    //     <ul className="list-disc pr-5 space-y-1 text-gray-700">
+    //       {plan.goals.map((goal, i) => (<li key={i}>{goal}</li>))}
+    //     </ul>
+    //   </div>
+
+    //   {/* الجدول */}
+    //   <div className="mb-6">
+    //     <h4 className="text-lg font-semibold border-b pb-1 mb-2 text-gray-800">تقسيم المحفظة المقترح:</h4>
+    //     <div className="overflow-x-auto">
+    //       <table className="min-w-full divide-y divide-gray-200 table-fixed">
+    //         <thead className="bg-gray-200">
+    //           <tr>
+    //             <th className="w-3/10 px-4 py-4 text-right text-sm font-medium text-gray-500 uppercase tracking-wider">الأصل</th>
+    //             <th className="w-1/6 px-4 py-4 text-center text-sm font-medium text-gray-500 uppercase tracking-wider">النسبة المقترحة</th>
+    //             <th className="w-1/2 px-4 py-4 text-right text-sm font-medium text-gray-500 uppercase tracking-wider">الوصف</th>
+    //           </tr>
+    //         </thead>
+    //         <tbody className="bg-white divide-y divide-gray-200">
+    //           {plan.sections.map((item, i) => (
+    //             <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+    //               <td className="px-4 py-5 text-base font-medium text-gray-900">{item.asset}</td>
+    //               <td className="px-4 py-5 text-base text-gray-700 font-bold text-center">{item.percentage}</td>
+    //               <td className="px-4 py-5 text-base text-gray-700 leading-relaxed">{item.details}</td>
+    //             </tr>
+    //           ))}
+    //         </tbody>
+    //       </table>
+    //     </div>
+    //   </div>
+
+    //   {/* نصائح */}
+    //   <div>
+    //     <h4 className="text-lg font-semibold border-b pb-1 mb-2 text-gray-800">نصائح إضافية:</h4>
+    //     <ul className="list-disc pr-5 space-y-1 text-sm text-red-600 font-medium">
+    //       <li>**هذه الخطة هي نقطة بداية فقط ولا تعتبر نصيحة مالية.**</li>
+    //       {plan.advice.map((advice, i) => (<li key={i}>{advice}</li>))}
+    //       <li>**التعليم المستمر:** استمر في تعلم كل ما هو جديد في عالم الاستثمار.</li>
+    //     </ul>
+    //   </div>
+    // </div>
+
+
+
+//     <div className="mt-8 p-6 sm:p-8 bg-gray-50 border border-gray-200 rounded-lg w-full max-w-4xl shadow-md mx-auto" dir="rtl">
+//   <h3 className="text-xl sm:text-2xl font-bold text-primary-700 mb-6">{plan.title}</h3>
+
+//   {/* الأهداف */}
+//   <div className="mb-6">
+//     <h4 className="text-md sm:text-lg font-semibold border-b pb-1 mb-3 text-gray-800">أهداف الاستثمار:</h4>
+//     <ul className="list-disc pr-5 space-y-1 text-sm sm:text-base text-gray-700">
+//       {plan.goals.map((goal, i) => (<li key={i}>{goal}</li>))}
+//     </ul>
+//   </div>
+
+//   {/* جدول على الشاشات الكبيرة - وكروت على الموبايل */}
+//   <div className="mb-6">
+//     <h4 className="text-md sm:text-lg font-semibold border-b pb-1 mb-3 text-gray-800">تقسيم المحفظة المقترح:</h4>
+
+//     {/* --- desktop table (lg+) --- */}
+//     <div className="hidden lg:block">
+//       <div className="overflow-x-auto">
+//         <table className="min-w-full divide-y divide-gray-200 table-fixed">
+//           <thead className="bg-gray-200">
+//             <tr>
+//               <th className="w-3/10 px-4 py-3 text-right text-sm sm:text-sm font-medium text-gray-500 uppercase tracking-wider">الأصل</th>
+//               <th className="w-1/6 px-4 py-3 text-center text-sm sm:text-sm font-medium text-gray-500 uppercase tracking-wider">النسبة المقترحة</th>
+//               <th className="w-1/2 px-4 py-3 text-right text-sm sm:text-sm font-medium text-gray-500 uppercase tracking-wider">الوصف</th>
+//             </tr>
+//           </thead>
+//           <tbody className="bg-white divide-y divide-gray-200">
+//             {plan.sections.map((item, i) => (
+//               <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+//                 <td className="px-4 py-4 text-base sm:text-base font-medium text-gray-900 align-top">{item.asset}</td>
+//                 <td className="px-4 py-4 text-base sm:text-base text-gray-700 font-bold text-center align-top">
+//                   <span className="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+//                     {item.percentage}
+//                   </span>
+//                 </td>
+//                 <td className="px-4 py-4 text-sm sm:text-base text-gray-700 leading-relaxed align-top">
+//                   <p className="whitespace-normal">{item.details}</p>
+//                 </td>
+//               </tr>
+//             ))}
+//           </tbody>
+//         </table>
+//       </div>
+//     </div>
+
+//     {/* --- mobile cards (lg:hidden) --- */}
+//     <div className="lg:hidden space-y-3">
+//       {plan.sections.map((item, i) => (
+//         <article key={i} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+//           <div className="flex items-start justify-between gap-3">
+//             <div className="flex-1 min-w-0">
+//               <h5 className="text-sm sm:text-base font-semibold text-gray-900 truncate">{item.asset}</h5>
+//               <p className="mt-2 text-xs sm:text-sm text-gray-600 leading-relaxed">{item.details}</p>
+//             </div>
+//             <div className="flex-shrink-0 ml-3">
+//               <span className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-green-100 text-green-800 font-semibold text-sm">
+//                 {item.percentage}
+//               </span>
+//             </div>
+//           </div>
+//         </article>
+//       ))}
+//     </div>
+//   </div>
+
+//   {/* نصائح */}
+//   <div>
+//     <h4 className="text-md sm:text-lg font-semibold border-b pb-1 mb-2 text-gray-800">نصائح إضافية:</h4>
+//     <ul className="list-disc pr-5 space-y-1 text-sm sm:text-base text-red-600 font-medium">
+//       <li className="font-bold">هذه الخطة هي نقطة بداية فقط ولا تعتبر نصيحة مالية.</li>
+//       {plan.advice.map((advice, i) => (<li key={i}>{advice}</li>))}
+//       <li className="font-medium text-gray-700">التعليم المستمر: استمر في تعلم كل ما هو جديد في عالم الاستثمار.</li>
+//     </ul>
+//   </div>
+// </div>
+
+
+
+<div className="mt-10 p-4 sm:p-4 bg-gray-50 border border-gray-200 rounded-2xl w-full lgmax-w-5xl shadow-lg mx-auto" dir="rtl">
+  <h3 className="text-3xl font-bold text-primary-700 mb-10">{plan.title}</h3>
+
+  {/* الأهداف */}
+  <div className="mb-10">
+    <h4 className="text-xl font-semibold border-b pb-2 mb-4 text-gray-800">أهداف الاستثمار:</h4>
+    <ul className="list-disc pr-6 space-y-3 text-lg text-gray-700 leading-relaxed">
+      {plan.goals.map((goal, i) => (<li key={i}>{goal}</li>))}
+    </ul>
+  </div>
+
+
+
+
+  {/* تقسيم المحفظة */}
+  {/* الجدول */}
+<div className="mb-10">
+
+  {/* جدول للشاشات الكبيرة فقط */}
+  <div className="hidden lg:block">
+    <h4 className="text-xl font-semibold border-b pb-2 mb-4 text-gray-800">
+      تقسيم المحفظة المقترح:
+    </h4>
+
+    <div className="overflow-x-auto w-full">
+      <table className="w-full text-sm border-collapse">
+        <thead className="bg-gray-300">
+          <tr>
+            <th className="px-8 py-6 text-right font-bold text-gray-800 text-xl w-1/3">
+              الأصل
+            </th>
+            <th className="px-8 py-6 text-center font-bold text-gray-800 text-xl w-1/5">
+              النسبة المقترحة
+            </th>
+            <th className="px-8 py-6 text-right font-bold text-gray-800 text-xl w-1/2">
+              الوصف
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {plan.sections.map((item, i) => (
+            <tr
+              key={i}
+              className={i % 2 === 0 ? "bg-white" : "bg-gray-100"}
+            >
+              <td className="px-2 py-8 text-lg font-medium text-gray-900">
+                {item.asset}
+              </td>
+
+              <td className="px-2 py-8 text-center">
+                <span className="inline-block bg-green-200 text-green-800 px-5 py-3 rounded-full text-lg font-semibold shadow-sm">
+                  {item.percentage}
+                </span>
+              </td>
+
+              <td className="px-2 py-8 text-lg text-gray-700 leading-relaxed">
+                {item.details}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {/* كروت للشاشات الصغيرة فقط */}
+  <div className="lg:hidden">
+    <h4 className="text-xl font-semibold border-b pb-2 mb-4 text-gray-800">
+      تقسيم المحفظة المقترح:
+    </h4>
+
+    <div className="space-y-4">
+      {plan.sections.map((item, i) => (
+        <div
+          key={i}
+          className="bg-white rounded-xl shadow p-4 border border-gray-200"
+        >
+          <div className="flex justify-between items-center mb-3">
+            <h5 className="text-lg font-bold text-gray-900">{item.asset}</h5>
+
+            <span className="inline-block bg-green-200 text-green-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">
+              {item.percentage}
+            </span>
+          </div>
+
+          <p className="text-gray-700 leading-relaxed text-base">
+            {item.details}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+</div>
+
+
+
+  {/* نصائح */}
+  <div>
+    <h4 className="text-xl font-semibold border-b pb-2 mb-4 text-gray-800">نصائح إضافية:</h4>
+    <ul className="list-disc pr-6 space-y-3 text-lg text-red-600 font-medium leading-relaxed">
+      <li className="font-bold">هذه الخطة هي نقطة بداية فقط ولا تعتبر نصيحة مالية.</li>
+      {plan.advice.map((advice, i) => (<li key={i}>{advice}</li>))}
+      <li className="text-gray-700">التعليم المستمر هو طريق نجاح أي مستثمر.</li>
+    </ul>
+  </div>
+</div>
+
+
+  );
+};
+
 function InvestorSurvey() {
-  // ---------- عام ----------
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // يتحكم بعرض النموذج أو الاستبيان
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [index, setIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [error, setError] = useState(false);
@@ -17,18 +366,6 @@ function InvestorSurvey() {
   const [result, setResult] = useState(null);
 
   const { userData, setDecodedUser } = useAuth();
-
-  // ---------- حساب الشخصية ----------
-  const calculatePersonality = (finalAnswers) => {
-    const optionsMap = ["أ", "ب", "ج", "د", "هـ"];
-    const mappedAnswers = finalAnswers.map((idx) => optionsMap[idx]);
-    const conservative = mappedAnswers.filter((a) => a === "أ" || a === "هـ").length;
-    const moderate = mappedAnswers.filter((a) => a === "ج").length;
-    const risk = mappedAnswers.filter((a) => a === "ب" || a === "د").length;
-    if (risk >= conservative && risk >= moderate) return "Risk Taker";
-    if (conservative >= risk && conservative >= moderate) return "Conservative";
-    return "Moderate";
-  };
 
   const calculatePersonalityFromMapped = (mappedAnswers) => {
     const conservative = mappedAnswers.filter((a) => a === "أ" || a === "هـ").length;
@@ -39,14 +376,11 @@ function InvestorSurvey() {
     return "Moderate";
   };
 
-  // ---------- إرسال النتائج للـ backend ----------
   const submitPersonality = async (mappedAnswers) => {
     try {
       const token = Cookies.get("token");
-      if (!token) {
-        console.error("No token found");
-        return;
-      }
+      if (!token) return;
+
       const response = await fetch(`https://stocksquare1.runasp.net/api/User/UpdatePersonalityUser`, {
         method: "PUT",
         headers: {
@@ -67,7 +401,6 @@ function InvestorSurvey() {
     }
   };
 
-  // ---------- استرجاع إجابات مخزنة للزوار العائدين ----------
   useEffect(() => {
     const tempAnswers = localStorage.getItem("tempAnswers");
     if (userData && tempAnswers) {
@@ -82,7 +415,6 @@ function InvestorSurvey() {
     }
   }, [userData]);
 
-  // ---------- التعامل مع خيارات الاستبيان ----------
   const handleOptionClick = (optionIndex) => {
     setSelectedOption(optionIndex);
     setError(false);
@@ -96,29 +428,18 @@ function InvestorSurvey() {
     const updatedAnswers = [...answers];
     updatedAnswers[index] = selectedOption;
     setAnswers(updatedAnswers);
+
     if (index === questions.length - 1) {
       const optionsMap = ["أ", "ب", "ج", "د", "هـ"];
       const mappedAnswers = updatedAnswers.map((idx) => optionsMap[idx]);
-
-      // Debug: طباعة الإجابات للتأكد من صحتها
-      console.log("=== نتائج الاستبيان ===");
-      console.log("الإجابات (أرقام):", updatedAnswers);
-      console.log("الإجابات (حروف):", mappedAnswers);
-
-      const conservative = mappedAnswers.filter((a) => a === "أ" || a === "هـ").length;
-      const moderate = mappedAnswers.filter((a) => a === "ج").length;
-      const risk = mappedAnswers.filter((a) => a === "ب" || a === "د").length;
-
-      console.log("عدد الإجابات المتحفظة (أ/هـ):", conservative);
-      console.log("عدد الإجابات المتوازنة (ج):", moderate);
-      console.log("عدد الإجابات المخاطرة (ب/د):", risk);
-
       const personality = calculatePersonalityFromMapped(mappedAnswers);
-      console.log("النتيجة النهائية:", personality);
-      console.log("======================");
-
       setResult(personality);
-      if (userData) submitPersonality(mappedAnswers);
+
+      if (userData) {
+        submitPersonality(mappedAnswers);
+      } else {
+        localStorage.setItem("tempAnswers", JSON.stringify(mappedAnswers));
+      }
       return;
     }
     setIndex(index + 1);
@@ -131,49 +452,32 @@ function InvestorSurvey() {
     setSelectedOption(answers[index - 1] || null);
   };
 
-  // ---------- معالجة نجاح التسجيل ----------
   const handleRegistrationSuccess = async (data) => {
     try {
-      // Auto-login after successful registration
       const loginResponse = await fetch("https://stocksquare1.runasp.net/api/Account/Login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email: data.email,
-          password: data.password
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: data.email, password: data.password })
       });
 
       if (loginResponse.ok) {
         const loginData = await loginResponse.json();
-
-        // Check for token in loginData.data.token or loginData.token
         const token = loginData.data?.token || loginData.token;
 
         if (token) {
-          // Save token and set user data
           setDecodedUser(token);
-
-          // alert("تم إنشاء الحساب وتسجيل الدخول بنجاح! يمكنك الآن بدء الاستبيان.");
           setIsLoggedIn(true);
         } else {
-          console.warn("Login successful but no token found:", loginData);
           alert("تم التسجيل بنجاح، لكن حدث خطأ في تسجيل الدخول. الرجاء تسجيل الدخول يدوياً.");
         }
       } else {
-        const errorText = await loginResponse.text();
-        console.error("Auto-login failed:", errorText);
         alert("تم التسجيل بنجاح! الرجاء تسجيل الدخول للمتابعة.");
       }
     } catch (error) {
-      console.error("Auto-login error:", error);
       alert("تم التسجيل بنجاح! الرجاء تسجيل الدخول للمتابعة.");
     }
   };
 
-  // Check login status on component mount
   useEffect(() => {
     if (userData) {
       setIsLoggedIn(true);
@@ -182,29 +486,46 @@ function InvestorSurvey() {
     }
   }, [userData]);
 
-  // ---------- عرض النتيجة إذا وجدت ----------
   if (result) {
     return (
-      <div className="contain" style={{ textAlign: "center", padding: "50px" }} dir="rtl">
-        <h2 className="text-2xl font-bold mb-4">نتيجة الاستبيان</h2>
-        <p className="text-xl mb-4">نوع شخصيتك الاستثمارية هو:</p>
-        <div className="text-3xl font-bold text-primary-900 mb-6">
-          {result === "Risk Taker" && "مخاطر (Risk Taker)"}
-          {result === "Conservative" && "متحفظ (Conservative)"}
-          {result === "Moderate" && "متوازن (Moderate)"}
+      <div className="contain" style={{ padding: "30px 10px" }} dir="rtl">
+        <div className="text-center">
+          <h2 className="text-3xl font-extrabold mb-2 text-gray-900">تهانينا! نتائج الاستبيان</h2>
+          <p className="text-xl mb-4 text-gray-600">نوع شخصيتك الاستثمارية هو:</p>
+          <div className={`text-4xl font-bold p-3 rounded-xl inline-block shadow-lg 
+              ${result === "Risk Taker" ? "bg-red-100 text-red-600" :
+              result === "Conservative" ? "bg-green-100 text-green-600" :
+                "bg-blue-100 text-blue-600"} 
+              mb-6`}>
+            {result === "Risk Taker" && "مخاطر (Risk Taker)"}
+            {result === "Conservative" && "متحفظ (Conservative)"}
+            {result === "Moderate" && "متوازن (Moderate)"}
+          </div>
+
+          <p className="text-gray-600 mb-6">
+            {userData ?
+              "تم حفظ النتيجة في ملفك الشخصي. بناءً على هذه النتيجة، إليك خطة تقسيم محفظة استثمارية مقترحة." :
+              "شكراً لمشاركتك. يرجى تسجيل الدخول لحفظ نتيجتك ورؤية الخطة بشكل دائم."}
+          </p>
+
+          <p className="text-sm font-medium text-red-500">
+            📌 تذكر أن هذا الاستبيان هو أداة أولية لتقييم مستوى المخاطرة.
+          </p>
         </div>
-        <p className="text-gray-600">
-          {userData ? "شكراً لمشاركتك في الاستبيان. تم حفظ النتيجة في ملفك الشخصي." : "شكراً لمشاركتك في الاستبيان."}
-        </p>
+
+        <PortfolioPlan personalityType={result} />
+
+        <div className="mt-8 text-center p-4 bg-yellow-50 border-l-4 border-yellow-500 text-yellow-700">
+          <p className="font-semibold">تنويه هام:</p>
+          <p>هذه الخطة هي نقطة بداية فقط، ولا تعتبر **نصيحة مالية**. يرجى استشارة خبير مالي لتخصيصها لتناسب احتياجاتك الفردية.</p>
+        </div>
       </div>
     );
   }
 
-  // ---------- العرض الرئيسي ----------
   return (
     <div className="contain" dir="rtl" style={{ width: "100%", padding: "10px" }}>
       {!isLoggedIn ? (
-        // إذا لم يكن مسجلاً -> اعرض مكون التسجيل الجاهز
         <div style={{ width: "100%", margin: "0 auto" }}>
           <Register
             onSuccess={handleRegistrationSuccess}
@@ -222,7 +543,6 @@ function InvestorSurvey() {
           />
         </div>
       ) : (
-        // بعد تسجيل الدخول – نعرض الاستبيان
         <div className="contain" dir="rtl">
           <h2 className="text-2xl font-bold text-center mb-2">استبيان شخصية مستثمر</h2>
           <p className="important-info">

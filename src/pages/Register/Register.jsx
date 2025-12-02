@@ -44,9 +44,12 @@ function Register({ onSuccess, hideHeader, customTitle, customButtonText, hideLo
       gender: values.gender === "male" ? "Male" : "Female",
       scientificStatus: values.scientificStatus || "0",
       birthday: isobirthday,
-      referralCode: values.referralCode || null,
+      referralCode: values.referralCode || "",
       acceptTerms: values.acceptTerms
     };
+
+    // Removed the conditional block that excluded referralCode
+    // if (values.referralCode) { ... }
 
     url = "https://stocksquare1.runasp.net/api/Account/user-register";
 
