@@ -80,6 +80,7 @@ function LevelExam() {
 
   // 3. عرض الأسئلة (الوضع الافتراضي)
   return (
+    
     <div className="flex flex-col items-center gap-5 mt-5">
       <div className="p-2 rounded-2xl border w-[90%] md:w-[60%] shadow-md bg-green-100">
         <FontAwesomeIcon
