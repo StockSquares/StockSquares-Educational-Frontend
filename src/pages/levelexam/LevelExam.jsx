@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LevelExamQuestions from "./LevelExamQuestions";
 import { useAuth } from "../../Context/AuthContext";
-import { Login } from "..";
+import { Register } from ".."; // Changed from Login to Register
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Link } from "react-router-dom";
@@ -12,11 +12,20 @@ import styles from '../../pages/TrainingAndEducation/TrainingAndEducation.module
 import { useTranslation } from "react-i18next";
 
 function LevelExam() {
-  const { userData } = useAuth();
+  const { userData, setDecodedUser, isAuthLoading } = useAuth();
   const { t } = useTranslation();
 
   const [isExamFinished, setIsExamFinished] = useState(false);
   const [examResult, setExamResult] = useState({ score: 0, total: 0 });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (userData) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [userData]);
 
   const handleExamFinish = (score, total) => {
     setExamResult({ score, total });
@@ -30,8 +39,81 @@ function LevelExam() {
     return "مستوى مبتدئ";
   };
 
-  // 1. عرض النتيجة (لو الامتحان خلص والمستخدم مسجل دخول)
-  if (isExamFinished && userData) {
+  const handleRegistrationSuccess = async (data) => {
+    try {
+      const loginResponse = await fetch("https://stocksquare1.runasp.net/api/Account/Login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: data.email, password: data.password })
+      });
+
+      if (loginResponse.ok) {
+        const loginData = await loginResponse.json();
+        const token = loginData.data?.token || loginData.token;
+
+        if (token) {
+          setDecodedUser(token);
+          setIsLoggedIn(true);
+        } else {
+          alert("تم التسجيل بنجاح، لكن حدث خطأ في تسجيل الدخول. الرجاء تسجيل الدخول يدوياً.");
+        }
+      } else {
+        alert("تم التسجيل بنجاح! الرجاء تسجيل الدخول للمتابعة.");
+      }
+    } catch (error) {
+      alert("تم التسجيل بنجاح! الرجاء تسجيل الدخول للمتابعة.");
+    }
+  };
+
+  // 1. Loading State
+  if (isAuthLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-[60vh] text-lg font-semibold text-gray-600" dir="rtl">
+        <p>يتم التحقق من حالة تسجيل الدخول...</p>
+      </div>
+    );
+  }
+
+  // 2. Registration Screen (if not logged in)
+  if (!isLoggedIn) {
+    return (
+      <div className="contain" dir="rtl" style={{ width: "100%", padding: "10px" }}>
+        <div style={{ width: "100%", margin: "0 auto" }}>
+          <Register
+            onSuccess={handleRegistrationSuccess}
+            hideHeader={true}
+            customTitle={
+              <>
+                <h2 className="text-2xl font-bold text-center mb-2">اختبار تحديد المستوى</h2>
+                <div className="p-2 rounded-2xl border w-full shadow-md bg-green-100 mb-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <FontAwesomeIcon
+                      icon={faCircle}
+                      className="text-white border bg-[#25863f] rounded-full p-1 text-xs"
+                    />
+                    <span className="font-bold text-green-700">لماذا هذا الاختبار؟</span>
+                  </div>
+                  <h4 className="text-sm md:text-base text-green-800 leading-6 px-2">
+                    يساعدك اختبار تحديد المستوى على اختيار مستوى التدريب المناسب
+                    لخبرتك والحصول على تدريب تفاعلي فعال بناء على الاجابات المختارة.
+                    <br />
+                    <span className="text-green-600 block mt-2 font-bold text-xs">
+                      *لا تحتاج الي عمل الاختبار اذا كنت ستبدأ من المستوي المبتدئ
+                    </span>
+                  </h4>
+                </div>
+              </>
+            }
+            customButtonText="ابدأ الاختبار"
+            hideLoginLink={true}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  // 3. Result Screen (if exam finished)
+  if (isExamFinished) {
     return (
       <div className="flex flex-col justify-center items-center gap-4 mt-10 min-h-[60vh]">
         <h2 className="text-2xl font-bold text-black mb-4">
@@ -65,22 +147,8 @@ function LevelExam() {
     );
   }
 
-  // 2. عرض تسجيل الدخول (لو الامتحان خلص والمستخدم مش مسجل)
-  if (isExamFinished && !userData) {
-    return (
-      <div className="flex flex-col items-center gap-5 mt-5">
-        <div className="p-4 bg-yellow-100 border border-yellow-400 rounded-lg text-yellow-800">
-          <p className="font-bold">أحسنت! لقد أنهيت الاختبار.</p>
-          <p>يرجى تسجيل الدخول لحفظ نتيجتك وعرضها.</p>
-        </div>
-        <Login />
-      </div>
-    );
-  }
-
-  // 3. عرض الأسئلة (الوضع الافتراضي)
+  // 4. Exam Questions (Default view for logged in user)
   return (
-    
     <div className="flex flex-col items-center gap-5 mt-5">
       <div className="p-2 rounded-2xl border w-[90%] md:w-[60%] shadow-md bg-green-100">
         <FontAwesomeIcon
