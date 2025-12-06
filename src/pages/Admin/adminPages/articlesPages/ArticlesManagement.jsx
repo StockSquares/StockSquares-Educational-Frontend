@@ -325,11 +325,11 @@ function ArticlesManagement({ selectedCategoryId }) {
   );
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen font-sans" dir="rtl">
+    <div className="p-0 md:p-6 bg-transparent min-h-screen font-sans" dir="rtl">
       <ToastContainer />
-      <div className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-800">إدارة المقالات</h1>
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <div className="w-full md:w-auto">
+          <h1 className="text-xl md:text-3xl font-bold text-gray-800">إدارة المقالات</h1>
           {selectedCategoryId && (
             <div className="mt-2 flex items-center gap-2">
               <span className="text-sm text-gray-600 bg-gray-200 px-2 py-1 rounded">
@@ -343,13 +343,13 @@ function ArticlesManagement({ selectedCategoryId }) {
             resetForm();
             setIsModalOpen(true);
           }}
-          className="bg-green-600 text-white px-6 py-2 rounded-lg shadow hover:bg-green-700 transition duration-300 flex items-center gap-2"
+          className="w-full md:w-auto justify-center bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700 transition duration-300 flex items-center gap-2 text-sm md:text-base"
         >
           <FontAwesomeIcon icon={faPlus} /> إضافة مقال جديد
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {filteredArticles.length > 0 ? (
           filteredArticles.map((item) => (
             <div

@@ -5,6 +5,8 @@ import { useAuth } from "../../../../Context/AuthContext";
 import {
   faArrowRightFromBracket,
   faUserCircle,
+  faSun,
+  faMoon,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
@@ -44,14 +46,14 @@ function ThemeToggleButton() {
             flex 
             items-center 
             justify-center
-            ${
-              isDarkMode
-                ? "bg-gray-700 text-yellow-300"
-                : "bg-gray-200 text-yellow-500"
-            }
+            transition-colors duration-300
+            ${isDarkMode
+          ? "bg-gray-700 text-yellow-300"
+          : "bg-gray-200 text-yellow-500"
+        }
           `}
     >
-      {isDarkMode ? "🌙" : "☀️"}
+      <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} />
     </button>
   );
 }
@@ -67,7 +69,7 @@ function DashNavbar() {
   };
 
   return (
-    <div className="w-full px-8 h-[10vh] bg-gray-100 dark:bg-dark-background shadow-md flex justify-end items-center gap-3">
+    <div className="w-full px-8 h-[10vh] bg-gray-100 dark:bg-dark-background shadow-md flex justify-end items-center gap-3" dir="rtl">
       {!userData ? (
         ""
       ) : (
@@ -87,7 +89,7 @@ function DashNavbar() {
               <li className="border-b-2 rounded-lg rounded-b-none p-3 dark:hover:bg-gray-700 hover:bg-gray-100 hover:transition-all cursor-pointer">
                 {
                   userData[
-                    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+                  "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
                   ]
                 }
               </li>
