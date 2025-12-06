@@ -50,15 +50,8 @@ function Admin() {
       path: "/Admin/Ads"
     },
     {
-      id: "articles",
       icon: faNewspaper,
-      name: "المقالات",
-      path: "/Admin/Articles"
-
-    },
-    {
-      icon: faNewspaper, // Using same icon for now, or could import faList
-      name: "أقسام المقالات",
+      name: "المدونة التعليمية",
       path: "/Admin/Categories"
     },
     {

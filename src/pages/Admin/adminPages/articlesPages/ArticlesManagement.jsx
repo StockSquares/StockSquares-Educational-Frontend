@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { ToastContainer, toast } from "react-toastify";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
 import { useCategories } from "../../../../Context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 // Helper function to encode text to base64
 const encodeToBase64 = (text) => {
@@ -14,15 +17,82 @@ const encodeToBase64 = (text) => {
 const decodeFromBase64 = (base64Text) => {
   if (!base64Text) return "";
   try {
-    return decodeURIComponent(escape(atob(base64Text)));
+    // Use TextDecoder for proper UTF-8 handling (supports Arabic)
+    const binaryString = atob(base64Text);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    const decoder = new TextDecoder('utf-8');
+    return decoder.decode(bytes);
   } catch (error) {
     console.error("Failed to decode base64:", error);
-    return base64Text; // Return original if decode fails
+    return ""; // Return empty string if decode fails to prevent crashes
   }
 };
 
+// API function to fetch articles
+const fetchArticles = async () => {
+  const response = await fetch(
+    "https://stocksquare1.runasp.net/api/Articles/GetAll",
+    {
+      headers: {
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache"
+      }
+    }
+  );
 
-function ArticlesManagement() {
+  const textData = await response.text();
+
+  let data;
+  try {
+    data = JSON.parse(textData);
+  } catch (e) {
+    console.error("❌ JSON Parse Failed. Attempting recovery...", e);
+
+    // Attempt to recover truncated JSON
+    try {
+      const lastObjectEnd = textData.lastIndexOf("},");
+      if (lastObjectEnd !== -1) {
+        const recoveredText = textData.substring(0, lastObjectEnd + 1) + "]";
+        data = JSON.parse(recoveredText);
+        toast.warning("تم استرجاع بعض المقالات فقط. يبدو أن هناك مقالاً حجمه كبير جداً يسبب مشكلة.", { autoClose: 10000 });
+      } else {
+        throw new Error("Could not recover JSON");
+      }
+    } catch (recoveryError) {
+      console.error("❌ Recovery Failed:", recoveryError);
+      toast.error("بيانات السيرفر تالفة أو كبيرة جداً ولا يمكن عرضها.");
+      throw recoveryError;
+    }
+  }
+
+  if (!Array.isArray(data)) {
+    console.error("❌ Expected array but got:", typeof data);
+    return [];
+  }
+
+  // Decode base64 body for each article
+  const decodedArticles = data.map(article => {
+    try {
+      return {
+        ...article,
+        body: article.body ? decodeFromBase64(article.body) : ""
+      };
+    } catch (err) {
+      console.error("⚠️ Error decoding article:", article.id, err);
+      return article;
+    }
+  });
+
+  return decodedArticles;
+};
+
+
+function ArticlesManagement({ selectedCategoryId }) {
+  const queryClient = useQueryClient();
+
   const [article, setArticle] = useState({
     id: null,
     title: "",
@@ -31,11 +101,13 @@ function ArticlesManagement() {
     WriterImage: null,
     MainImageFile: null,
     CategoryId: "",
+    MainImageBase64: "",
+    WriterImageBase64: "",
   });
 
-  const [articles, setArticles] = useState([]); // Store list of articles
-  const [isEditing, setIsEditing] = useState(false); // Track if editing
-  const [isLoading, setIsLoading] = useState(false); // Track loading state
+  const [isEditing, setIsEditing] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const categories = useCategories(); // Fix: useCategories returns the array directly
 
   const handleFileChange = (e, type) => {
     const file = e.target.files[0];
@@ -44,397 +116,479 @@ function ArticlesManagement() {
     }
   };
 
-  const [addArticle, setAddArticle] = useState(false);
-  const categories = useCategories();
+  // Use React Query to fetch articles
+  const { data: articles = [], isLoading, isError, error } = useQuery({
+    queryKey: ['articles'],
+    queryFn: fetchArticles,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    retry: 1,
+  });
 
-  // Fetch all articles
-  const fetchArticles = async () => {
-    try {
+  // Filter articles based on selectedCategoryId
+  const filteredArticles = selectedCategoryId
+    ? articles.filter(article => article.categoryId === selectedCategoryId)
+    : articles;
+
+  // Get selected category name
+  const selectedCategoryName = selectedCategoryId
+    ? categories.find(c => c.id === selectedCategoryId)?.name
+    : null;
+
+  // Delete mutation
+  const deleteMutation = useMutation({
+    mutationFn: async (id) => {
       const response = await fetch(
-        "https://stocksquare1.runasp.net/api/Articles/GetAll"
-      );
-      const data = await response.json();
-      if (response.ok) {
-        // Decode base64 body for each article
-        const decodedArticles = data.map(article => ({
-          ...article,
-          body: decodeFromBase64(article.body)
-        }));
-        setArticles(decodedArticles);
-      } else {
-        console.error("Failed to fetch articles");
-      }
-    } catch (error) {
-      console.error("Error fetching articles:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchArticles();
-  }, []);
-
-  // Delete article
-  const deleteArticle = async (id) => {
-    if (!window.confirm("هل أنت متأكد من حذف هذا المقال؟")) return;
-
-    console.log("🗑️ Deleting Article ID:", id); // DEBUG
-
-    try {
-      const response = await fetch(
-        `https://stocksquare1.runasp.net/api/Articles/Delete?id=${id}`,
+        `https://stocksquare1.runasp.net/api/Articles/Delete?Id=${id}`,
         {
           method: "DELETE",
           headers: {
-            Accept: "text/plain",
+            "Accept": "*/*",
           },
         }
       );
 
-      if (response.ok) {
-        toast.success("تم حذف المقال بنجاح", { theme: "colored" });
-        fetchArticles(); // Refresh list
-      } else {
-        const errorText = await response.text();
-        console.error("❌ Delete Failed:", errorText);
-        toast.error(`فشل الحذف: ${errorText}`, { theme: "colored" });
+      if (!response.ok) {
+        throw new Error("فشل حذف المقال");
       }
-    } catch (error) {
-      toast.error("حدث خطأ أثناء الحذف", { theme: "colored" });
-      console.error(error);
+
+      return id;
+    },
+    onSuccess: () => {
+      toast.success("تم حذف المقال بنجاح", { theme: "colored" });
+      queryClient.invalidateQueries(['articles']);
+    },
+    onError: (error) => {
+      toast.error(`فشل الحذف: ${error.message}`, { theme: "colored" });
     }
-  };
+  });
 
-  // Handle edit button click
-  const handleEdit = (item) => {
-    setArticle({
-      id: item.id,
-      title: item.title,
-      Body: decodeFromBase64(item.body), // Decode base64 for editing
-      Writer: item.writername,
-      WriterImage: null, // Will be updated if user uploads new image
-      MainImageFile: null, // Will be updated if user uploads new image
-      CategoryId: item.categoryId,
-    });
-    setIsEditing(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const saveArticle = async () => {
-    // Validation (images optional for update)
-    if (!article.title || !article.CategoryId || !article.Body || !article.Writer) {
-      toast.error("يرجى ملء جميع الحقول المطلوبة", {
-        theme: "colored",
-      });
-      return;
-    }
-
-    // For new articles, images are required
-    if (!isEditing && (!article.MainImageFile || !article.WriterImage)) {
-      toast.error("يرجى إضافة الصور للمقال الجديد", { theme: "colored" });
-      return;
-    }
-
-    // Determine URL and Method
-    let url;
-    let method;
-    const formData = new FormData();
-
-    if (isEditing) {
-      // Update Endpoint: Text fields in Query Params, Images in FormData
-      // Endpoint from Swagger: PUT /api/Articles/Update
-      const queryParams = new URLSearchParams({
-        Id: article.id || "",
-        Title: article.title || "",
-        Body: encodeToBase64(article.Body) || "",
-        CategoryId: article.CategoryId || "",
-        Writename: article.Writer || "",
-      }).toString();
-
-      url = `https://stocksquare1.runasp.net/api/Articles/Update?${queryParams}`;
-      method = "PUT";
-
-      // Append images if they exist (Swagger: MainImage, WriterImage)
-      if (article.MainImageFile) formData.append("MainImage", article.MainImageFile);
-      if (article.WriterImage) formData.append("WriterImage", article.WriterImage);
-
-    } else {
-      // Add Endpoint (Fixed to match Swagger: /create)
-      url = "https://stocksquare1.runasp.net/api/Articles/create";
-      method = "POST";
-
-      formData.append("Title", article.title || "");
-      formData.append("Body", encodeToBase64(article.Body) || "");
-      formData.append("Writername", article.Writer || "");
-      formData.append("CategoryId", article.CategoryId || "");
-
-      if (article.MainImageFile) formData.append("MainImageFile", article.MainImageFile);
-      if (article.WriterImage) formData.append("WriterImage", article.WriterImage);
-    }
-
-    try {
-      // DEBUG: Log what we are sending
-      console.log(`🚀 Sending ${method} Request to: ${url}`);
-
+  // Save mutation (Create/Update)
+  const saveMutation = useMutation({
+    mutationFn: async ({ url, method, formData }) => {
       const response = await fetch(url, {
         method: method,
         body: formData,
       });
 
-      // DEBUG: Log the raw response status
-      console.log("📡 Response Status:", response.status);
-
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Server Error Response:", errorText);
-
-        // Check for specific 500 errors related to Drive
-        if (response.status === 500 && errorText.includes("service drive")) {
-          throw new Error(`خطأ في السيرفر (Google Drive): يبدو أن هناك مشكلة في رفع أو حذف الصور من السيرفر.`);
+        // Check if it's a 500 error (often means server-side issue, but we might want to see the message)
+        let errorMessage = "فشل حفظ المقال";
+        try {
+          const errorText = await response.text();
+          // Try to parse JSON error if possible
+          try {
+            const errorJson = JSON.parse(errorText);
+            errorMessage = errorJson.message || errorJson.error || errorText;
+          } catch {
+            errorMessage = errorText;
+          }
+        } catch (e) {
+          errorMessage = response.statusText;
         }
 
-        throw new Error(`فشل الطلب (${response.status}): ${errorText.substring(0, 100)}...`);
+        throw new Error(errorMessage);
       }
 
-      // Check if response has content before parsing JSON
-      const contentType = response.headers.get("content-type");
-      let data = {};
-      if (contentType && contentType.indexOf("application/json") !== -1) {
-        data = await response.json();
-      }
+      return response.json(); // Or response.text() if API doesn't return JSON on success
+    },
+    onSuccess: () => {
+      toast.success(isEditing ? "تم تعديل المقال بنجاح" : "تم إضافة المقال بنجاح", { theme: "colored" });
+      setIsModalOpen(false);
+      resetForm();
+      queryClient.invalidateQueries(['articles']);
+    },
+    onError: (error) => {
+      console.error("Save error:", error);
+      toast.error(`حدث خطأ: ${error.message}`, { theme: "colored" });
+    }
+  });
 
-      console.log("Success Data:", data);
+  const resetForm = () => {
+    setArticle({
+      id: null,
+      title: "",
+      Body: "",
+      Writer: "",
+      WriterImage: null,
+      MainImageFile: null,
+      CategoryId: "",
+      MainImageBase64: "",
+      WriterImageBase64: "",
+    });
+    setIsEditing(false);
+  };
 
-      const successMessage = isEditing ? "تم تعديل المقال بنجاح!" : "تم إرسال المقال بنجاح!";
-      toast.success(successMessage, { theme: "colored" });
+  const handleEdit = (item) => {
+    console.log("📝 Editing article:", item);
 
-      setArticle({
-        id: null,
-        title: "",
-        Body: "",
-        Writer: "",
-        WriterImage: null,
-        MainImageFile: null,
-        CategoryId: "",
-      });
-      setIsEditing(false);
-      setAddArticle(false);
-      fetchArticles(); // Refresh list
+    // Decode body with fallback
+    let decodedBody = "";
+    try {
+      decodedBody = item.body ? decodeFromBase64(item.body) : "";
+      console.log("✅ Decoded body length:", decodedBody.length);
     } catch (error) {
-      toast.error(`حدث خطأ: ${error.message}`);
-      console.error("❌ Exception:", error);
+      console.error("❌ Failed to decode body:", error);
+      decodedBody = item.body || ""; // Fallback to original if decode fails
+    }
+
+    setArticle({
+      id: item.id,
+      title: item.title,
+      Body: decodedBody,
+      Writer: item.writername,
+      WriterImage: null,
+      MainImageFile: null,
+      CategoryId: item.categoryId,
+      MainImageBase64: item.mainImage,
+      WriterImageBase64: item.writerImage,
+    });
+    setIsEditing(true);
+    setIsModalOpen(true);
+  };
+
+  const saveArticle = () => {
+    // Basic validation
+    if (!article.title || !article.CategoryId || !article.Writer) {
+      toast.error("يرجى ملء الحقول المطلوبة (العنوان، التصنيف، الكاتب)", { theme: "colored" });
+      return;
+    }
+
+    // Body is required only for NEW articles
+    if (!isEditing && !article.Body) {
+      toast.error("يرجى إضافة محتوى المقال", { theme: "colored" });
+      return;
+    }
+
+    // Images required only for NEW articles
+    if (!isEditing && (!article.MainImageFile || !article.WriterImage)) {
+      toast.error("يرجى إضافة الصور للمقال الجديد", { theme: "colored" });
+      return;
+    }
+
+    let url;
+    let method;
+    const formData = new FormData();
+
+    if (isEditing) {
+      url = `https://stocksquare1.runasp.net/api/Articles/Update?Id=${article.id}`;
+      method = "PUT";
+
+      // Ensure Body is always a string (fallback to space if empty to avoid server errors)
+      const bodyContent = article.Body && article.Body.trim() ? article.Body : " ";
+
+      formData.append("Id", article.id || "");
+      formData.append("Title", article.title || "");
+      formData.append("Body", encodeToBase64(bodyContent));
+      formData.append("CategoryId", article.CategoryId || "");
+      formData.append("Writername", article.Writer || "");
+
+      if (article.MainImageFile) formData.append("MainImage", article.MainImageFile);
+      if (article.WriterImage) formData.append("WriterImage", article.WriterImage);
+    } else {
+      url = "https://stocksquare1.runasp.net/api/Articles/Create";
+      method = "POST";
+
+      formData.append("Title", article.title);
+      formData.append("Body", encodeToBase64(article.Body));
+      formData.append("CategoryId", article.CategoryId);
+      formData.append("Writername", article.Writer);
+      formData.append("MainImage", article.MainImageFile);
+      formData.append("WriterImage", article.WriterImage);
+    }
+
+    saveMutation.mutate({ url, method, formData });
+  };
+
+  const deleteArticle = (id) => {
+    if (window.confirm("هل أنت متأكد من حذف هذا المقال؟")) {
+      deleteMutation.mutate(id);
     }
   };
 
-  // // دالة لتحميل صورة عبر API واسترجاع الرابط
-  // const uploadImageToAPI = async (file) => {
-  //   const formData = new FormData();
-  //   formData.append("file", file);
+  if (isLoading) return (
+    <div className="flex justify-center items-center py-20">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+      <span className="mr-3 text-lg text-gray-600">جاري تحميل المقالات...</span>
+    </div>
+  );
 
-  //   try {
-  //     const response = await fetch(
-  //       "https://lawmaster.runasp.net/api/CourtSession/UploadCourtSessionAttachments?courtSessionId=5",
-  //       {
-  //         method: "POST",
-  //         body: formData,
-  //       }
-  //     );
-  //     if (!response.ok) throw new Error("فشل رفع الصورة");
-
-  //     const data = await response.json();
-  //     return data.url; // استرجاع رابط الصورة من API
-  //   } catch (error) {
-  //     toast.error("فشل رفع الصورة");
-  //     console.error("❌ خطأ في رفع الصورة:", error);
-  //     return null;
-  //   }
-  //   };
-
-  // دالة لرفع الصورة داخل SunEditor واستخدام URL مخصص بدل Base64
-  console.log(article);
+  if (isError) return (
+    <div className="text-center py-10 text-red-600">
+      <p>حدث خطأ أثناء تحميل المقالات: {error.message}</p>
+      <button
+        onClick={() => queryClient.invalidateQueries(['articles'])}
+        className="mt-4 bg-red-100 text-red-700 px-4 py-2 rounded hover:bg-red-200"
+      >
+        إعادة المحاولة
+      </button>
+    </div>
+  );
 
   return (
-    <div className="flex flex-col gap-3 mt-4">
-      <div className="flex gap-3">
-        <input
-          type="text"
-          placeholder="عنوان المقال"
-          value={article.title}
-          className="dark:bg-dark-background w-full dark:placeholder-100"
-          onChange={(e) =>
-            setArticle((prev) => ({ ...prev, title: e.target.value }))
-          }
-        />
-        <select
-          value={article.CategoryId}
-          className="dark:bg-dark-background w-full dark:placeholder-100"
-          onChange={(e) =>
-            setArticle({ ...article, CategoryId: e.target.value })
-          }
-        >
-          <option value="">اختر التصنيف</option>
-          {/* <option value="mn">n m</option> */}
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <input
-        type="text"
-        placeholder="الكاتب"
-        value={article.Writer}
-        className="dark:bg-dark-background  dark:placeholder-100"
-        onChange={(e) => setArticle({ ...article, Writer: e.target.value })}
-      />
-
-      <div className="article">
-        <div className="flex justify-between gap-3">
-          <div className="flex flex-col md:flex-row gap-3 w-full items-center mb-3">
-            <label
-              htmlFor="mainArticleImage"
-              className="px-3 py-2 bg-accent-900 dark:text-black font-semibold rounded-md cursor-pointer hover:bg-accent-400"
-            >
-              اضف صورة للمقال
-            </label>
-            <input
-              type="file"
-              className="hidden "
-              id="mainArticleImage"
-              onChange={(e) => handleFileChange(e, "MainImageFile")}
-            />
-            {article.MainImageFile && (
-              <div className="flex items-center gap-2 ">
-                <span className="text-green-600">
-                  {article.MainImageFile.name}
-                </span>
-                <img
-                  src={URL.createObjectURL(article.MainImageFile)}
-                  alt="معاينة المقال"
-                  className="w-[50px] h-[50px] rounded-md border"
-                />
-              </div>
-            )}
-          </div>
-
-          <div className="flex flex-col md:flex-row w-full justify-start  gap-3 items-center mb-3">
-            <label
-              htmlFor="WriterImage"
-              className="px-3 py-2 bg-primary-900  text-white rounded-md cursor-pointer  font-semibold hover:bg-green-700"
-            >
-              اضف صورة للكاتب
-            </label>
-            <input
-              type="file"
-              className="hidden"
-              id="WriterImage"
-              onChange={(e) => handleFileChange(e, "WriterImage")}
-            />
-            {article.WriterImage && (
-              <div className="flex items-center gap-2">
-                <span className="text-green-600">{article.WriterImage.name}</span>
-                <img
-                  src={URL.createObjectURL(article.WriterImage)}
-                  alt="معاينة الكاتب"
-                  className="w-[50px] h-[50px] rounded-md border"
-                />
-              </div>
-            )}
-          </div>
-        </div>
-
-        <SunEditor
-          setContents={article.Body}
-          onChange={(content) =>
-            setArticle((prev) => ({ ...prev, Body: content }))
-          }
-          setOptions={{
-            height: "500px",
-            minHeight: "400px",
-            buttonList: [
-              ["bold", "italic", "underline", "strike"],
-              ["font", "fontColor", "hiliteColor", "fontSize"],
-              ["align", "list", "table"],
-              ["link", "image"],
-              ["preview"],
-            ],
-          }}
-        />
-
-        <div className="flex gap-5">
-          {/* <button className="bg-accent-950 dark:text-black text-dark px-4 py-2 mt-3 rounded hover:bg-gray-600">
-            حفظ المقال
-          </button> */}
-
-          <button
-            className="bg-primary-950 text-white px-4 py-2 mt-3 rounded hover:bg-gray-600"
-            onClick={saveArticle}
-          >
-            {isEditing ? "تحديث المقال" : "نشر المقال"}
-          </button>
-
-          {isEditing && (
-            <button
-              className="bg-gray-500 text-white px-4 py-2 mt-3 rounded hover:bg-gray-600"
-              onClick={() => {
-                setArticle({
-                  id: null,
-                  title: "",
-                  Body: "",
-                  Writer: "",
-                  WriterImage: null,
-                  MainImageFile: null,
-                  CategoryId: "",
-                });
-                setIsEditing(false);
-              }}
-            >
-              إلغاء التعديل
-            </button>
+    <div className="p-6 bg-gray-50 min-h-screen font-sans" dir="rtl">
+      <ToastContainer />
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-800">إدارة المقالات</h1>
+          {selectedCategoryId && (
+            <div className="mt-2 flex items-center gap-2">
+              <span className="text-sm text-gray-600 bg-gray-200 px-2 py-1 rounded">
+                تصفية حسب القسم: <strong>{selectedCategoryName || '...'}</strong>
+              </span>
+            </div>
           )}
         </div>
+        <button
+          onClick={() => {
+            resetForm();
+            setIsModalOpen(true);
+          }}
+          className="bg-green-600 text-white px-6 py-2 rounded-lg shadow hover:bg-green-700 transition duration-300 flex items-center gap-2"
+        >
+          <FontAwesomeIcon icon={faPlus} /> إضافة مقال جديد
+        </button>
       </div>
 
-      {/* Article List Section */}
-      <div className="mt-10 border-t pt-5">
-        <h2 className="text-xl font-bold mb-4">قائمة المقالات</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {articles.map((item) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredArticles.length > 0 ? (
+          filteredArticles.map((item) => (
             <div
               key={item.id}
-              className="border p-4 rounded-lg shadow-sm bg-white dark:bg-dark-background flex flex-col justify-between min-h-[350px]"
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col"
             >
-              <div>
+              <div className="relative h-48">
                 <img
                   src={`data:image/*;base64,${item.mainImage}`}
                   alt={item.title}
-                  className="w-full h-40 object-cover rounded mb-3"
+                  className="w-full h-full object-cover"
                 />
-                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                <p className="text-sm text-gray-500 mb-2">
-                  الكاتب: {item.writername}
-                </p>
+                <div className="absolute top-0 right-0 bg-green-600 text-white text-xs px-2 py-1 rounded-bl-lg">
+                  {categories.find(c => c.id === item.categoryId)?.name || "غير مصنف"}
+                </div>
               </div>
-              <div className="flex gap-2 mt-2">
-                <button
-                  onClick={() => handleEdit(item)}
-                  className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 flex-1"
-                >
-                  تعديل
-                </button>
-                <button
-                  onClick={() => deleteArticle(item.id)}
-                  className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 flex-1"
-                >
-                  حذف
-                </button>
+
+              <div className="p-4 flex-1 flex flex-col">
+                <h3 className="font-bold text-lg text-gray-800 mb-2 line-clamp-2" title={item.title}>
+                  {item.title}
+                </h3>
+
+                <div className="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-200">
+                      {item.writerImage ? (
+                        <img
+                          src={`data:image/*;base64,${item.writerImage}`}
+                          alt={item.writername}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-gray-400">
+                          <i className="fas fa-user"></i>
+                        </div>
+                      )}
+                    </div>
+                    <span className="text-sm text-gray-600 truncate max-w-[100px]">{item.writername}</span>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => handleEdit(item)}
+                      className="text-blue-600 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50 transition-colors"
+                    >
+                      تعديل
+                    </button>
+                    <button
+                      onClick={() => deleteArticle(item.id)}
+                      className="text-red-600 hover:text-red-800 px-2 py-1 rounded hover:bg-red-50 transition-colors"
+                    >
+                      حذف
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
+          ))
+        ) : (
+          <div className="col-span-full text-center py-16 bg-white rounded-lg border border-dashed border-gray-300">
+            <div className="text-gray-400 mb-4">
+              <FontAwesomeIcon icon={faPlus} size="3x" />
+            </div>
+            <p className="text-xl text-gray-600 font-medium">لا توجد مقالات {selectedCategoryId ? 'في هذا القسم' : ''}</p>
+            <p className="text-gray-500 mt-2">ابدأ بإضافة مقال جديد</p>
+          </div>
+        )}
       </div>
 
-      <ToastContainer position="top-right" autoClose={5000} />
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl my-8 relative flex flex-col max-h-[90vh]">
+            <div className="flex justify-between items-center p-6 border-b">
+              <h2 className="text-2xl font-bold text-gray-800">
+                {isEditing ? "تعديل المقال" : "إضافة مقال جديد"}
+              </h2>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="text-gray-500 hover:text-gray-700 transition-colors"
+              >
+                <FontAwesomeIcon icon={faTimes} size="lg" />
+              </button>
+            </div>
+
+            <div className="p-6 overflow-y-auto flex-1">
+              <div className="flex flex-col gap-4">
+                <div className="flex gap-3">
+                  <div className="w-full">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">عنوان المقال</label>
+                    <input
+                      type="text"
+                      placeholder="عنوان المقال"
+                      value={article.title}
+                      className="w-full p-2 border rounded focus:ring-2 focus:ring-green-500"
+                      onChange={(e) =>
+                        setArticle((prev) => ({ ...prev, title: e.target.value }))
+                      }
+                    />
+                  </div>
+                  <div className="w-full">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">التصنيف</label>
+                    <select
+                      value={article.CategoryId}
+                      className="w-full p-2 border rounded focus:ring-2 focus:ring-green-500"
+                      onChange={(e) =>
+                        setArticle({ ...article, CategoryId: e.target.value })
+                      }
+                    >
+                      <option value="">اختر التصنيف</option>
+                      {categories.map((category) => (
+                        <option key={category.id} value={category.id}>
+                          {category.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">الكاتب</label>
+                  <input
+                    type="text"
+                    placeholder="اسم الكاتب"
+                    value={article.Writer}
+                    className="w-full p-2 border rounded focus:ring-2 focus:ring-green-500"
+                    onChange={(e) => setArticle({ ...article, Writer: e.target.value })}
+                  />
+                </div>
+
+                <div className="flex flex-col md:flex-row gap-6">
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">صورة المقال الرئيسية</label>
+                    <div className="flex items-center gap-3">
+                      <label
+                        htmlFor="mainArticleImage"
+                        className="px-4 py-2 bg-gray-100 text-gray-700 border border-gray-300 rounded cursor-pointer hover:bg-gray-200 transition-colors"
+                      >
+                        اختر صورة
+                      </label>
+                      <input
+                        type="file"
+                        className="hidden"
+                        id="mainArticleImage"
+                        onChange={(e) => handleFileChange(e, "MainImageFile")}
+                      />
+                      {article.MainImageFile && (
+                        <span className="text-sm text-green-600 truncate max-w-[200px]">
+                          {article.MainImageFile.name}
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-2">
+                      {article.MainImageFile ? (
+                        <img src={URL.createObjectURL(article.MainImageFile)} alt="New Preview" className="h-24 w-auto rounded border shadow-sm" />
+                      ) : (isEditing && article.MainImageBase64) ? (
+                        <div className="relative inline-block">
+                          <img src={`data:image/*;base64,${article.MainImageBase64}`} alt="Current" className="h-24 w-auto rounded border shadow-sm opacity-90" />
+                          <span className="absolute top-0 right-0 bg-gray-800 text-white text-xs px-1 rounded-bl">الحالية</span>
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">صورة الكاتب</label>
+                    <div className="flex items-center gap-3">
+                      <label
+                        htmlFor="WriterImage"
+                        className="px-4 py-2 bg-gray-100 text-gray-700 border border-gray-300 rounded cursor-pointer hover:bg-gray-200 transition-colors"
+                      >
+                        اختر صورة
+                      </label>
+                      <input
+                        type="file"
+                        className="hidden"
+                        id="WriterImage"
+                        onChange={(e) => handleFileChange(e, "WriterImage")}
+                      />
+                      {article.WriterImage && (
+                        <span className="text-sm text-green-600 truncate max-w-[200px]">
+                          {article.WriterImage.name}
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-2">
+                      {article.WriterImage ? (
+                        <img src={URL.createObjectURL(article.WriterImage)} alt="New Preview" className="h-24 w-auto rounded border shadow-sm" />
+                      ) : (isEditing && article.WriterImageBase64) ? (
+                        <div className="relative inline-block">
+                          <img src={`data:image/*;base64,${article.WriterImageBase64}`} alt="Current" className="h-24 w-auto rounded border shadow-sm opacity-90" />
+                          <span className="absolute top-0 right-0 bg-gray-800 text-white text-xs px-1 rounded-bl">الحالية</span>
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">محتوى المقال</label>
+                  <SunEditor
+                    key={`editor-${article.id || 'new'}-${isEditing}`}
+                    setContents={article.Body}
+                    onChange={(content) =>
+                      setArticle((prev) => ({ ...prev, Body: content }))
+                    }
+                    setOptions={{
+                      height: "400px",
+                      minHeight: "300px",
+                      buttonList: [
+                        ["bold", "italic", "underline", "strike"],
+                        ["font", "fontColor", "hiliteColor", "fontSize"],
+                        ["align", "list", "table"],
+                        ["link", "image"],
+                        ["preview"],
+                        ["fullScreen", "showBlocks", "codeView"],
+                      ],
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 border-t bg-gray-50 rounded-b-lg flex justify-end gap-3">
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="px-6 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition-colors"
+              >
+                إلغاء
+              </button>
+              <button
+                onClick={saveArticle}
+                className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+              >
+                {isEditing ? "حفظ التعديلات" : "نشر المقال"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
