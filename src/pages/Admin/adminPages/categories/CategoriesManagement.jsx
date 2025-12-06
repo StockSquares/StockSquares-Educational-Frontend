@@ -204,7 +204,7 @@ const BlogManagement = () => {
     };
 
     return (
-        <div className="p-6 bg-gray-50 min-h-screen" dir="rtl">
+        <div className="p-2 md:p-6 bg-gray-50 min-h-screen" dir="rtl">
             <h1 className="text-xl md:text-3xl font-bold text-gray-800 mb-6">المدونة التعليمية</h1>
 
             {/* Tabs */}
@@ -471,7 +471,7 @@ const BlogManagement = () => {
 
             {/* Articles Tab Content */}
             {activeTab === "articles" && (
-                <div className="bg-white rounded-lg shadow p-6">
+                <div className="bg-white rounded-lg shadow p-2 md:p-6">
                     <ArticlesManagement selectedCategoryId={selectedCategoryId} />
                 </div>
             )}
