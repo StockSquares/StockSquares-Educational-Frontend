@@ -1,8 +1,10 @@
+import AppointmentsManagement from "./adminPages/appointments/AppointmentsManagement.jsx";
 import {
   faBook,
   faBullhorn,
   faGraduationCap,
   faHome,
+  faCalendarCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { Routes, Route } from "react-router-dom";
 import { faNewspaper, faUser } from "@fortawesome/free-regular-svg-icons";
@@ -72,6 +74,11 @@ function Admin() {
       path: "/Admin/Activities"
 
     },
+    {
+      icon: faCalendarCheck,
+      name: "إدارة المواعيد",
+      path: "/Admin/Appointments"
+    },
   ];
 
   return (
@@ -87,6 +94,7 @@ function Admin() {
         <Route path="Courses" element={<CoursesComponent />} />
         <Route path="Books" element={<BooksComponent />} />
         <Route path="Activities" element={<Activities />} />
+        <Route path="Appointments" element={<AppointmentsManagement />} />
       </Routes>
     </SideBar>
   );
