@@ -76,9 +76,11 @@ const fetchArticles = async () => {
   // Decode base64 body for each article
   const decodedArticles = data.map(article => {
     try {
+      // Check both lowercase and PascalCase for body property
+      const rawBody = article.body || article.Body;
       return {
         ...article,
-        body: article.body ? decodeFromBase64(article.body) : ""
+        body: rawBody ? decodeFromBase64(rawBody) : ""
       };
     } catch (err) {
       console.error("⚠️ Error decoding article:", article.id, err);
@@ -221,20 +223,10 @@ function ArticlesManagement({ selectedCategoryId }) {
   const handleEdit = (item) => {
     console.log("📝 Editing article:", item);
 
-    // Decode body with fallback
-    let decodedBody = "";
-    try {
-      decodedBody = item.body ? decodeFromBase64(item.body) : "";
-      console.log("✅ Decoded body length:", decodedBody.length);
-    } catch (error) {
-      console.error("❌ Failed to decode body:", error);
-      decodedBody = item.body || ""; // Fallback to original if decode fails
-    }
-
     setArticle({
       id: item.id,
       title: item.title,
-      Body: decodedBody,
+      Body: item.body || "", // Body is already decoded in fetchArticles
       Writer: item.writername,
       WriterImage: null,
       MainImageFile: null,
@@ -282,7 +274,7 @@ function ArticlesManagement({ selectedCategoryId }) {
       formData.append("CategoryId", article.CategoryId || "");
       formData.append("Writername", article.Writer || "");
 
-      if (article.MainImageFile) formData.append("MainImage", article.MainImageFile);
+      if (article.MainImageFile) formData.append("MainImageFile", article.MainImageFile);
       if (article.WriterImage) formData.append("WriterImage", article.WriterImage);
     } else {
       url = "https://stocksquare1.runasp.net/api/Articles/Create";
@@ -292,7 +284,7 @@ function ArticlesManagement({ selectedCategoryId }) {
       formData.append("Body", encodeToBase64(article.Body));
       formData.append("CategoryId", article.CategoryId);
       formData.append("Writername", article.Writer);
-      formData.append("MainImage", article.MainImageFile);
+      formData.append("MainImageFile", article.MainImageFile);
       formData.append("WriterImage", article.WriterImage);
     }
 
