@@ -7,7 +7,7 @@ export { default as Register } from "./Register/Register.jsx";
 export { default as NotFound } from "./NotFound/NotFound.jsx";
 export { default as TrainingAndEducation } from "./TrainingAndEducation/TrainingAndEducation.jsx";
 export { default as RecordedCourses } from "./RecordedCourses/RecordedCourses.jsx";
-export { default as BookYourTrainer } from "./BookYourTrainer/BookYourTrainer";
+// export { default as BookYourTrainer } from "./BookYourTrainer/BookYourTrainer";
 export { default as Course } from "./Course/Course.jsx";
 export { default as OpportunitiesAndRecommendations } from "./OpportunitiesAndRecommendations/OpportunitiesAndRecommendations.jsx";
 export { default as FinanceAndBusinessLibrary } from "./FinanceAndBusinessLibrary/FinanceAndBusinessLibrary.jsx";

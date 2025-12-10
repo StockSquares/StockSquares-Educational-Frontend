@@ -9,7 +9,7 @@ export default function SignInWithGoogle() {
   return (
     <button
       onClick={() => login()}
-      className="bg-white text-black shadow-sm border-2 border-solid border-black  px-20 py-2 sm:py-[10px] sm:px-[20px]  hover:bg-gray-50 dark:bg-dark-background dark:text-dark-text dark:border-primary-700"
+      className="bg-white text-black shadow-sm hover:bg-green-600  px-20 py-2 sm:py-[10px] sm:px-[20px]  hover:bg-gray-50 dark:bg-dark-background dark:text-dark-text dark:border-primary-700"
       style={{
         // backgroundColor: "#fff",
         // color: "#000000",

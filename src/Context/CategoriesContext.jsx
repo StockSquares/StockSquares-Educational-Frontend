@@ -18,6 +18,7 @@ export const CategoriesProvider = ({ children }) => {
 
         );
         const data = await response.json();
+        console.log("📚 Categories loaded:", data);
         setCategories(data);
       } catch (error) {
         console.error("❌ فشل تحميل التصنيفات:", error);

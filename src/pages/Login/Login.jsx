@@ -13,7 +13,7 @@ const loginForm = Yup.object().shape({
   password: FormValidation.password,
 });
 
-function Login() {
+function Login({ onSuccess, hideHeader, hideRegisterLink, hideSocial }) {
   const login = useLoginData();
   const navigate = useNavigate();
   const { setDecodedUser } = useAuth();
@@ -29,6 +29,11 @@ function Login() {
       setIsError(false);
 
       setDecodedUser(res.data["token"]);
+
+      if (onSuccess) {
+        onSuccess(res.data);
+        return;
+      }
 
       // Check if there are pending survey answers
       if (localStorage.getItem("tempAnswers")) {
@@ -46,6 +51,9 @@ function Login() {
       loginForm={loginForm}
       isError={isError}
       handleSubmit={handleSubmit}
+      hideHeader={hideHeader}
+      hideRegisterLink={hideRegisterLink}
+      hideSocial={hideSocial}
     />
   );
 }
