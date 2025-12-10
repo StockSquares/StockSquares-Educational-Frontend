@@ -12,7 +12,7 @@ import { usePostApi } from "../../components/general/custom-hooks/usePostApi";
 const RegistrationForm = Yup.object().shape({
   firstName: FormValidation.name,
   parentName: FormValidation.name,
-  familyName: FormValidation.name,
+  // familyName: FormValidation.name, // Removed from UI
   phoneNumber: FormValidation.phoneNumber,
   email: FormValidation.email,
   password: FormValidation.password,
@@ -21,7 +21,7 @@ const RegistrationForm = Yup.object().shape({
   gender: FormValidation.gender,
   scientificStatus: FormValidation.scientificStatus,
   acceptTerms: FormValidation.acceptTerms,
-  referralCode: FormValidation.referralCode,
+  // referralCode: FormValidation.referralCode, // Removed from UI
 });
 
 function Register({ onSuccess, hideHeader, customTitle, customButtonText, hideLoginLink }) {
@@ -30,12 +30,21 @@ function Register({ onSuccess, hideHeader, customTitle, customButtonText, hideLo
 
   const handleSubmit = async (values) => {
     let url = "";
-    const isobirthday = new Date(values.birthday).toISOString();
+
+    // Ensure birthday is valid before ISO string conversion
+    let isobirthday = new Date().toISOString();
+    if (values.birthday) {
+      try {
+        isobirthday = new Date(values.birthday).toISOString();
+      } catch (e) {
+        console.error("Invalid date:", values.birthday);
+      }
+    }
 
     const updatedData = {
       firstName: values.firstName,
       parentName: values.parentName,
-      familyName: values.familyName,
+      familyName: ".", // Dummy value since field was removed from UI
       email: values.email,
       phoneNumber: values.phoneNumber,
       password: values.password,
@@ -44,7 +53,7 @@ function Register({ onSuccess, hideHeader, customTitle, customButtonText, hideLo
       gender: values.gender === "male" ? "Male" : "Female",
       scientificStatus: values.scientificStatus || "0",
       birthday: isobirthday,
-      referralCode: values.referralCode || "",
+      referralCode: "", // Removed from UI
       acceptTerms: values.acceptTerms
     };
 

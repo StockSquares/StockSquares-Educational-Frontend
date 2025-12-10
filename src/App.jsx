@@ -62,9 +62,7 @@ const VIPInvestorServices = lazy(() =>
 const User = lazy(() => import("./pages/User/User"));
 // const Employee = lazy(() => import("./pages/Employee/Employee"));
 // const Article = lazy(() => import("./pages/Article/Article"));
-const BookYourTrainer = lazy(() =>
-  import("./pages/BookYourTrainer/BookYourTrainer")
-);
+// BookYourTrainer route removed in favor of unified Reservation route
 const Blog = lazy(() => import("./pages/Blog/Blog"));
 const Course = lazy(() => import("./pages/Course/Course"));
 const Reservation = lazy(() => import("./pages/Reservation/Reservation"));
@@ -86,7 +84,7 @@ const Trainer = lazy(() => import("./pages/trainerPortal/Trainer"));
 
 const PrivacyPolicy = lazy(() => import("./pages/RiskWarning/RiskWarning"));
 const WhoWeAre = lazy(() => import("./pages/WhoWeAre/WhoWeAre"));
-const TermsAndConditions = lazy(() =>import("./pages/ConditionsAgreementAndPrivacyPolicy/ConditionsAgreementAndPrivacyPolicy"));
+const TermsAndConditions = lazy(() => import("./pages/ConditionsAgreementAndPrivacyPolicy/ConditionsAgreementAndPrivacyPolicy"));
 const Activities = lazy(() => import("./pages/Activities/Activities"));
 const ChatAi = lazy(() => import("./pages/chatAi/ChatAi"));
 const LevelExam = lazy(() => import("./pages/levelexam/LevelExam"));
@@ -151,14 +149,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      {
-        path: ROUTES.BOOK_YOUR_TRAINER,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <BookYourTrainer />
-          </Suspense>
-        ),
-      },
+      /* BookYourTrainer route removed in favor of Reservation */
       {
         path: ROUTES.BLOG,
         element: (
@@ -431,7 +422,7 @@ const router = createBrowserRouter([
         path: ROUTES.JOIN_BROKER,
         element: (
           <Suspense fallback={<Loader />}>
-            < JoinBrokerProfessional/>
+            < JoinBrokerProfessional />
           </Suspense>
         ),
       },

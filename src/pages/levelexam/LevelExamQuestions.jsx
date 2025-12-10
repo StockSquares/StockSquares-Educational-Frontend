@@ -11,7 +11,13 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../routes";
 import styles from '../../pages/TrainingAndEducation/TrainingAndEducation.module.css'
 
+
 import { useTranslation } from "react-i18next";
+import { useAuth } from "../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
+import { ToastContainer } from "react-toastify";
 
 
 const LevelExamQuestions = ({ onFinish }) => {
@@ -23,6 +29,31 @@ const LevelExamQuestions = ({ onFinish }) => {
   const currentQuestion = allQuestions[currentIndex];
   const [answers, setAnswers] = useState(Array(allQuestions.length).fill(null))
   const { t } = useTranslation();
+
+  const { userData } = useAuth();
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authMode, setAuthMode] = useState('login');
+
+  useEffect(() => {
+    setIsLoggedIn(!!userData);
+  }, [userData]);
+
+  const handleRegistrationSuccess = async (data) => {
+    if (data?.email || localStorage.getItem('email')) {
+      toast.success("تم إنشاء الحساب بنجاح! جاري التوجيه لتفعيل الحساب...");
+      setTimeout(() => {
+        navigate("/verify-otp");
+      }, 1500);
+    } else {
+      toast.error("حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.");
+    }
+  };
+
+  const handleLoginSuccess = (data) => {
+    setIsLoggedIn(true);
+    toast.success("تم تسجيل الدخول بنجاح!");
+  };
 
 
   const score = React.useMemo(
@@ -78,8 +109,51 @@ const LevelExamQuestions = ({ onFinish }) => {
   }
 
 
+  if (!isLoggedIn) {
+    return (
+      <div className="w-full min-h-[80vh] flex justify-center items-start p-2 font-sans" dir="rtl">
+        <ToastContainer position="top-center" theme="colored" />
+        <div className="min-h-[70%] w-[90%] md:w-[60%] flex flex-col gap-4 bg-gray-50 shadow-md p-6 rounded-3xl">
+          {authMode === 'login' ? (
+            <div>
+              <Login
+                onSuccess={handleLoginSuccess}
+                hideHeader={true}
+                hideRegisterLink={true}
+              />
+              <div className="text-center mt-4">
+                <p className="text-gray-600">ليس لديك حساب؟ <button onClick={() => setAuthMode('register')} className="text-green-600 font-bold underline">إنشاء حساب جديد</button></p>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <Register
+                onSuccess={handleRegistrationSuccess}
+                hideHeader={true}
+                customTitle={
+                  <>
+                    <h2 className="text-2xl font-bold text-center mb-2 text-green-700">إنشاء حساب جديد</h2>
+                    <p className="text-center text-gray-600 mb-6 text-sm">
+                      قم بإنشاء حساب لتتمكن من إجراء اختبار تحديد المستوى.
+                    </p>
+                  </>
+                }
+                customButtonText="تسجيل وابدأ الاختبار"
+                hideLoginLink={true}
+              />
+              <div className="text-center mt-4">
+                <p className="text-gray-600">لديك حساب بالفعل؟ <button onClick={() => setAuthMode('login')} className="text-green-600 font-bold underline">تسجيل الدخول</button></p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
+      <ToastContainer position="top-center" theme="colored" />
       <div className="w-full min-h-[80vh] flex justify-center items-start p-2">
 
         <div className="min-h-[70%] w-[90%] md:w-[60%] flex flex-col gap-4 bg-gray-50 shadow-md p-4">
@@ -115,8 +189,8 @@ const LevelExamQuestions = ({ onFinish }) => {
                   bgColor = opt.isCorrect ? "bg-green-200" : "bg-red-100";
                   showRationale = true;
                   rationaleColor = opt.isCorrect ? "text-[#146c2e]" : "text-[#b3261e]";
-                } 
-               
+                }
+
               }
 
               return (

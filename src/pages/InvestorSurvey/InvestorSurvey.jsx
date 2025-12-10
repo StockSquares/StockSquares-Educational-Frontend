@@ -1,11 +1,18 @@
 // InvestorSurvey.jsx – full implementation with Portfolio Plan
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./investorSurvey.css";
 import Cookies from "js-cookie";
 import { questions } from "../../assets/data";
 import Questionare from "../../components/general/questionare/Questionare";
 import { Register } from "..";
+import Login from "../Login/Login";
 import { useAuth } from "../../Context/AuthContext";
+// import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify"; // Ensure toast is imported if used, otherwise rely on alert or pass it via props? Actually Date.jsx used toast. Let's see if InvestorSurvey uses it. It doesn't seem to import it. I'll stick to alert or add toast if needed. The previous code used alert in handleRegistrationSuccess. I will switch to using the existing notification method or standard alerts as per existing code style in this file, but to be consistent with the user's "same story" request, I should probably handle it similarly. Since toast is better, I will check if I can add it, but without standard toast setup in this file it might break. I will stick to the existing alerts or add toast import if the project uses react-toastify globally. The project DOES use react-toastify in Date.jsx. I see existing alerts in handleRegistrationSuccess. I will keep alerts for now to minimize dependencies unless I add the import.
+// Wait, I see "import { toast, ToastContainer } from 'react-toastify';" in Date.jsx but not here. I will add the import to make it nice.
+// import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Portfolio Plans Data
 const PORTFOLIO_PLANS = {
@@ -118,128 +125,132 @@ const PortfolioPlan = ({ personalityType }) => {
 
   return (
 
-<div className="mt-10 p-4 sm:p-4 bg-gray-50 border border-gray-200 rounded-2xl w-full  shadow-lg mx-auto" dir="rtl">
-  <h3 className="text-xl font-bold text-primary-700 mb-10">{plan.title}</h3>
+    <div className="mt-10 p-4 sm:p-4 bg-gray-50 border border-gray-200 rounded-2xl w-full  shadow-lg mx-auto" dir="rtl">
+      <h3 className="text-xl font-bold text-primary-700 mb-10">{plan.title}</h3>
 
-  {/* الأهداف */}
-  <div className="mb-10">
-    <h4 className="text-xl font-semibold border-b pb-2 mb-4 text-gray-800">أهداف الاستثمار:</h4>
-    <ul className="list-disc pr-6 space-y-3 text-lg text-gray-700 leading-relaxed">
-      {plan.goals.map((goal, i) => (<li key={i}>{goal}</li>))}
-    </ul>
-  </div>
-
-
+      {/* الأهداف */}
+      <div className="mb-10">
+        <h4 className="text-xl font-semibold border-b pb-2 mb-4 text-gray-800">أهداف الاستثمار:</h4>
+        <ul className="list-disc pr-6 space-y-3 text-lg text-gray-700 leading-relaxed">
+          {plan.goals.map((goal, i) => (<li key={i}>{goal}</li>))}
+        </ul>
+      </div>
 
 
-  {/* تقسيم المحفظة */}
-  {/* الجدول */}
-<div className="mb-10">
 
-  {/* جدول للشاشات الكبيرة فقط */}
-  <div className="hidden lg:block">
-    <h4 className="text-xl font-semibold border-b pb-2 mb-4 text-gray-800">
-      تقسيم المحفظة المقترح:
-    </h4>
 
-    <div className="overflow-x-auto w-full">
-      <table className="w-full text-sm border-collapse rounded-xl overflow-hidden">
-        <thead className="bg-gray-300">
-          <tr>
-            <th className="px-8 py-6 text-right font-bold text-gray-800 text-xl w-1/3">
-              الأصل
-            </th>
-            <th className="px-8 py-6 text-center font-bold text-gray-800 text-xl w-1/5">
-              النسبة المقترحة
-            </th>
-            <th className="px-8 py-6 text-right font-bold text-gray-800 text-xl w-1/2">
-              الوصف
-            </th>
-          </tr>
-        </thead>
+      {/* تقسيم المحفظة */}
+      {/* الجدول */}
+      <div className="mb-10">
 
-        <tbody>
-          {plan.sections.map((item, i) => (
-            <tr
-              key={i}
-              className={i % 2 === 0 ? "bg-white" : "bg-gray-100"}
-            >
-              <td className="px-2 py-8 text-lg font-medium text-gray-900">
-                {item.asset}
-              </td>
+        {/* جدول للشاشات الكبيرة فقط */}
+        <div className="hidden lg:block">
+          <h4 className="text-xl font-semibold border-b pb-2 mb-4 text-gray-800">
+            تقسيم المحفظة المقترح:
+          </h4>
 
-              <td className="px-2 py-8 text-center">
-                <span className="inline-block bg-green-200 text-green-800 px-5 py-3 rounded-full text-lg font-semibold shadow-sm">
-                  {item.percentage}
-                </span>
-              </td>
+          <div className="overflow-x-auto w-full">
+            <table className="w-full text-sm border-collapse rounded-xl overflow-hidden">
+              <thead className="bg-gray-300">
+                <tr>
+                  <th className="px-8 py-6 text-right font-bold text-gray-800 text-xl w-1/3">
+                    الأصل
+                  </th>
+                  <th className="px-8 py-6 text-center font-bold text-gray-800 text-xl w-1/5">
+                    النسبة المقترحة
+                  </th>
+                  <th className="px-8 py-6 text-right font-bold text-gray-800 text-xl w-1/2">
+                    الوصف
+                  </th>
+                </tr>
+              </thead>
 
-              <td className="px-2 py-8 text-lg text-gray-700 leading-relaxed">
-                {item.details}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </div>
+              <tbody>
+                {plan.sections.map((item, i) => (
+                  <tr
+                    key={i}
+                    className={i % 2 === 0 ? "bg-white" : "bg-gray-100"}
+                  >
+                    <td className="px-2 py-8 text-lg font-medium text-gray-900">
+                      {item.asset}
+                    </td>
 
-  {/* كروت للشاشات الصغيرة فقط */}
-  <div className="lg:hidden">
-    <h4 className="text-xl font-semibold border-b pb-2 mb-4 text-gray-800">
-      تقسيم المحفظة المقترح:
-    </h4>
+                    <td className="px-2 py-8 text-center">
+                      <span className="inline-block bg-green-200 text-green-800 px-5 py-3 rounded-full text-lg font-semibold shadow-sm">
+                        {item.percentage}
+                      </span>
+                    </td>
 
-    <div className="space-y-4">
-      {plan.sections.map((item, i) => (
-        <div
-          key={i}
-          className="bg-white rounded-xl shadow p-4 border border-gray-200"
-        >
-          <div className="flex flex-col gap-2 justify-between  items-center mb-3">
-            <h5 className="text-md font-bold text-gray-900">{item.asset}</h5>
-
-            <span className="inline-block bg-green-200 text-green-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">
-              {item.percentage}
-            </span>
+                    <td className="px-2 py-8 text-lg text-gray-700 leading-relaxed">
+                      {item.details}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-
-          <p className="text-gray-700 leading-relaxed text-base">
-            {item.details}
-          </p>
         </div>
-      ))}
+
+        {/* كروت للشاشات الصغيرة فقط */}
+        <div className="lg:hidden">
+          <h4 className="text-xl font-semibold border-b pb-2 mb-4 text-gray-800">
+            تقسيم المحفظة المقترح:
+          </h4>
+
+          <div className="space-y-4">
+            {plan.sections.map((item, i) => (
+              <div
+                key={i}
+                className="bg-white rounded-xl shadow p-4 border border-gray-200"
+              >
+                <div className="flex flex-col gap-2 justify-between  items-center mb-3">
+                  <h5 className="text-md font-bold text-gray-900">{item.asset}</h5>
+
+                  <span className="inline-block bg-green-200 text-green-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">
+                    {item.percentage}
+                  </span>
+                </div>
+
+                <p className="text-gray-700 leading-relaxed text-base">
+                  {item.details}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+
+
+      {/* نصائح */}
+      <div>
+        <h4 className="text-xl font-semibold border-b pb-2 mb-4 text-gray-800">نصائح إضافية:</h4>
+        <ul className="list-disc pr-6 space-y-3 text-lg text-red-600 font-medium leading-relaxed">
+          <li className="font-bold">هذه الخطة هي نقطة بداية فقط ولا تعتبر نصيحة مالية.</li>
+          {plan.advice.map((advice, i) => (<li key={i}>{advice}</li>))}
+          <li className="text-gray-700">التعليم المستمر هو طريق نجاح أي مستثمر.</li>
+        </ul>
+      </div>
     </div>
-  </div>
-
-</div>
-
-
-
-  {/* نصائح */}
-  <div>
-    <h4 className="text-xl font-semibold border-b pb-2 mb-4 text-gray-800">نصائح إضافية:</h4>
-    <ul className="list-disc pr-6 space-y-3 text-lg text-red-600 font-medium leading-relaxed">
-      <li className="font-bold">هذه الخطة هي نقطة بداية فقط ولا تعتبر نصيحة مالية.</li>
-      {plan.advice.map((advice, i) => (<li key={i}>{advice}</li>))}
-      <li className="text-gray-700">التعليم المستمر هو طريق نجاح أي مستثمر.</li>
-    </ul>
-  </div>
-</div>
 
 
   );
 };
 
 function InvestorSurvey() {
+  const { userData, setDecodedUser } = useAuth();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authMode, setAuthMode] = useState('login'); // 'login' or 'register'
+  const navigate = useNavigate();
+
   const [index, setIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [error, setError] = useState(false);
   const [answers, setAnswers] = useState([]);
   const [result, setResult] = useState(null);
 
-  const { userData, setDecodedUser } = useAuth();
+
 
   const calculatePersonalityFromMapped = (mappedAnswers) => {
     const conservative = mappedAnswers.filter((a) => a === "أ" || a === "هـ").length;
@@ -326,30 +337,22 @@ function InvestorSurvey() {
     setSelectedOption(answers[index - 1] || null);
   };
 
+  /* Removed auto-login logic to prioritize OTP verification flow, similar to Reservation */
   const handleRegistrationSuccess = async (data) => {
-    try {
-      const loginResponse = await fetch("https://stocksquare1.runasp.net/api/Account/Login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: data.email, password: data.password })
-      });
-
-      if (loginResponse.ok) {
-        const loginData = await loginResponse.json();
-        const token = loginData.data?.token || loginData.token;
-
-        if (token) {
-          setDecodedUser(token);
-          setIsLoggedIn(true);
-        } else {
-          alert("تم التسجيل بنجاح، لكن حدث خطأ في تسجيل الدخول. الرجاء تسجيل الدخول يدوياً.");
-        }
-      } else {
-        alert("تم التسجيل بنجاح! الرجاء تسجيل الدخول للمتابعة.");
-      }
-    } catch (error) {
-      alert("تم التسجيل بنجاح! الرجاء تسجيل الدخول للمتابعة.");
+    // Store email for OTP page and redirect
+    if (data?.email || localStorage.getItem('email')) {
+      toast.success("تم إنشاء الحساب بنجاح! جاري التوجيه لتفعيل الحساب...");
+      setTimeout(() => {
+        navigate("/verify-otp");
+      }, 1500);
+    } else {
+      toast.error("حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.");
     }
+  };
+
+  const handleLoginSuccess = (data) => {
+    setIsLoggedIn(true);
+    toast.success("تم تسجيل الدخول بنجاح!");
   };
 
   useEffect(() => {
@@ -400,21 +403,52 @@ function InvestorSurvey() {
   return (
     <div className="contain" dir="rtl" style={{ width: "100%", padding: "10px" }}>
       {!isLoggedIn ? (
-        <div style={{ width: "100%", margin: "0 auto" }}>
-          <Register
-            onSuccess={handleRegistrationSuccess}
-            hideHeader={true}
-            customTitle={
-              <>
-                <h2 className="text-2xl font-bold text-center mb-2">استبيان شخصية مستثمر</h2>
-                <p className="important-info">
-                  📌 هذا الاستبيان هو أداة لتقييم مستوي المخاطرة في الشخصية. لتقييم دقيق وشامل، يجب إجراء تقييم نفسي متخصص مثل مقياس البحث عن الإثارة ومقياس الميل في المخاطرة.
-                </p>
-              </>
-            }
-            customButtonText="ابدأ الاستبيان"
-            hideLoginLink={true}
-          />
+        <div style={{ width: "100%", margin: "0 auto", maxWidth: "800px" }}>
+          <ToastContainer position="top-center" theme="colored" />
+          {authMode === 'login' ? (
+            <div className="bg-white p-6 rounded-3xl shadow-lg border border-gray-100">
+              <Login
+                onSuccess={handleLoginSuccess}
+                hideHeader={true}
+                hideRegisterLink={true}
+              />
+              <div className="flex items-center justify-center gap-2 mt-6">
+                <p className="text-gray-500 font-medium">ليس لديك حساب؟</p>
+                <span
+                  onClick={() => setAuthMode('register')}
+                  className="text-green-600 font-bold hover:text-green-700 hover:underline transition-all cursor-pointer text-base select-none"
+                >
+                  إنشاء حساب جديد
+                </span>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <Register
+                onSuccess={handleRegistrationSuccess}
+                hideHeader={true}
+                customTitle={
+                  <>
+                    <h2 className="text-2xl font-bold text-center mb-2">استبيان شخصية مستثمر</h2>
+                    <p className="important-info">
+                      📌 هذا الاستبيان هو أداة لتقييم مستوي المخاطرة في الشخصية. لتقييم دقيق وشامل، يجب إجراء تقييم نفسي متخصص مثل مقياس البحث عن الإثارة ومقياس الميل في المخاطرة.
+                    </p>
+                  </>
+                }
+                customButtonText="تسجيل وابدأ الاستبيان"
+                hideLoginLink={true}
+              />
+              <div className="flex items-center justify-center gap-2 mt-6">
+                <p className="text-gray-500 font-medium">لديك حساب بالفعل؟</p>
+                <span
+                  onClick={() => setAuthMode('login')}
+                  className="text-green-600 font-bold hover:text-green-700 hover:underline transition-all cursor-pointer text-base select-none"
+                >
+                  تسجيل الدخول
+                </span>
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <div className="contain" dir="rtl">

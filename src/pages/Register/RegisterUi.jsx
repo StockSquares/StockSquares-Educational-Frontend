@@ -49,11 +49,14 @@ function RegisterUi({ RegistrationForm, handleSubmit, hideHeader, customTitle, c
             email: "",
             acceptTerms: false,
             referralCode: "",
+            birthDay: "",
+            birthMonth: "",
+            birthYear: "",
           }}
           validationSchema={RegistrationForm}
           onSubmit={handleSubmit}
         >
-          {({ errors, touched, setFieldValue }) => (
+          {({ errors, touched, setFieldValue, values }) => (
             <Form
               className="w-full text-start bg-transparent border-0 drop-shadow-none p-0 mt-5"
               style={{ boxShadow: "none" }}
@@ -95,61 +98,89 @@ function RegisterUi({ RegistrationForm, handleSubmit, hideHeader, customTitle, c
 
               <div className="flex gap-1 sm:gap-3">
                 <div className="flex flex-col gap-1 w-[50%]">
-                  <label htmlFor="familyName" className="sr-only">
-                    الاسم الأخير
+                  <label htmlFor="phoneNumber" className="sr-only">
+                    رقم الهاتف
                   </label>
-                  <Field
-                    id="familyName"
-                    name="familyName"
-                    placeholder="الاسم الأخير"
-                    autoComplete="family-name"
-                    className="dark:text-dark-text"
-                  />
-                  {errors.familyName && touched.familyName ? (
-                    <p className="text-red-500"> {errors.familyName} </p>
+                  <Field name="phoneNumber">
+                    {({ field, form }) => (
+                      <PhoneInput
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        international
+                        defaultCountry="EG"
+                        value={field.value}
+                        onChange={(value) =>
+                          form.setFieldValue("phoneNumber", value)
+                        }
+                        placeholder="أدخل رقم الهاتف"
+                        autoComplete="tel"
+                        className="dark:bg-darkgray"
+                      />
+                    )}
+                  </Field>
+                  {errors.phoneNumber && touched.phoneNumber ? (
+                    <p className="text-red-500"> {errors.phoneNumber} </p>
                   ) : null}
                 </div>
                 <div className="flex flex-col gap-1 w-[50%]">
-                  <label htmlFor="birthday" className="sr-only">
-                    تاريخ الميلاد
-                  </label>
-                  <Field
-                    id="birthday"
-                    name="birthday"
-                    type="date"
-                    placeholder="تاريخ الميلاد"
-                    autoComplete="bday"
-                    className="dark:bg-darkgray dark:text-dark-text"
-                  />
+                  <label className="sr-only">تاريخ الميلاد</label>
+                  <div className="flex gap-1">
+                    <Field
+                      name="birthDay"
+                      placeholder="يوم"
+                      className="dark:bg-darkgray dark:text-dark-text w-1/3 text-center px-1"
+                      maxLength="2"
+                      validate={value => !value ? 'مطلوب' : null}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, '').slice(0, 2);
+                        setFieldValue("birthDay", val);
+                        if (val && values.birthMonth && values.birthYear) {
+                          setFieldValue("birthday", `${values.birthYear}-${values.birthMonth}-${val}`);
+                        }
+                      }}
+                    />
+                    <Field
+                      name="birthMonth"
+                      placeholder="شهر"
+                      className="dark:bg-darkgray dark:text-dark-text w-1/3 text-center px-1"
+                      maxLength="2"
+                      validate={value => !value ? 'مطلوب' : null}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, '').slice(0, 2);
+                        setFieldValue("birthMonth", val);
+                        if (values.birthDay && val && values.birthYear) {
+                          setFieldValue("birthday", `${values.birthYear}-${val}-${values.birthDay}`);
+                        }
+                      }}
+                    />
+                    <Field
+                      name="birthYear"
+                      placeholder="سنة"
+                      className="dark:bg-darkgray dark:text-dark-text w-1/3 text-center px-1"
+                      maxLength="4"
+                      validate={value => !value ? 'مطلوب' : null}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, '').slice(0, 4);
+                        setFieldValue("birthYear", val);
+                        if (values.birthDay && values.birthMonth && val) {
+                          setFieldValue("birthday", `${val}-${values.birthMonth}-${values.birthDay}`);
+                        }
+                      }}
+                    />
+                  </div>
+                  {/* Hidden field to store full ISO date for backend compatibility if needed, or construct it in onSubmit */}
+                  <input type="hidden" name="birthday" />
+
+                  {(errors.birthDay || errors.birthMonth || errors.birthYear) && (touched.birthDay || touched.birthMonth || touched.birthYear) ? (
+                    <p className="text-red-500 text-xs"> التاريخ مطلوب </p>
+                  ) : null}
                   {errors.birthday && touched.birthday ? (
                     <p className="text-red-500"> {errors.birthday} </p>
                   ) : null}
                 </div>
               </div>
 
-              <label htmlFor="phoneNumber" className="sr-only">
-                رقم الهاتف
-              </label>
-              <Field name="phoneNumber">
-                {({ field, form }) => (
-                  <PhoneInput
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    international
-                    defaultCountry="EG"
-                    value={field.value}
-                    onChange={(value) =>
-                      form.setFieldValue("phoneNumber", value)
-                    }
-                    placeholder="أدخل رقم الهاتف"
-                    autoComplete="tel"
-                    className="dark:bg-darkgray"
-                  />
-                )}
-              </Field>
-              {errors.phoneNumber && touched.phoneNumber ? (
-                <p className="text-red-500"> {errors.phoneNumber} </p>
-              ) : null}
+              {/* Phone number field removed from here */}
 
               <div className="flex gap-1 sm:gap-3">
                 <div className="flex flex-col gap-1 w-[50%]">
@@ -230,15 +261,7 @@ function RegisterUi({ RegistrationForm, handleSubmit, hideHeader, customTitle, c
                 <p className="text-red-500"> {errors.scientificStatus} </p>
               ) : null}
 
-              <label htmlFor="referralCode" className="sr-only">
-                كود الدعوة
-              </label>
-              <Field
-                id="referralCode"
-                name="referralCode"
-                placeholder=" ادخل كود الدعوه (اختياري) "
-                className="dark:text-dark-text w-full"
-              />
+              {/* Referral code field removed */}
 
               <div className="flex items-center gap-3">
                 <Field

@@ -7,15 +7,19 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../routes";
 import React from "react";
 
-function LoginUi({ loginForm, isError, handleSubmit }) {
+function LoginUi({ loginForm, isError, handleSubmit, hideHeader, hideRegisterLink, hideSocial }) {
   return (
     <div className={`${styles.contain2} dark:bg-dark-background `}>
-      <img src={logo} alt="Logo" className={styles.logo} />
-      <h2 className="dark:bg-dark-background dark:text-dark-text">
-        أول منصة عربية ذكية لدعم المستثمرين ورواد الأعمال
-      </h2>
-      <h1>تسجيل الدخول</h1>
-      <hr />
+      {!hideHeader && (
+        <>
+          <img src={logo} alt="Logo" className={styles.logo} />
+          <h2 className="dark:bg-dark-background dark:text-dark-text">
+            أول منصة عربية ذكية لدعم المستثمرين ورواد الأعمال
+          </h2>
+          <h1>تسجيل الدخول</h1>
+          <hr />
+        </>
+      )}
       {isError && (
         <p className="text-red-500 mt-2 font-semibold">
           البريد الالكتروني / كلمه المرور غير صحيحه
@@ -60,27 +64,35 @@ function LoginUi({ loginForm, isError, handleSubmit }) {
                   هل نسيت كلمة المرور؟
                 </p>
               </Link>
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center pb-4">
                 <button
                   type="submit"
-                  className={`${styles.bu1} w-full p-2 sm:w-[50%] `}
+                  className={`${styles.bu1} w-full p-2 sm:w-[50%]`}
+                  style={{ marginBottom: '20px' }}
                 >
                   تسجيل الدخول
                 </button>
 
-                <div className=" w-full flex items-center justify-center gap-2 mb-3">
-                  <hr className="w-[140px] sm:w-[100%] " />
-                  <p className="dark:text-dark-text"> أو </p>
-                  <hr className="w-[140px] sm:w-[100%] " />
-                </div>
+                {!hideSocial && (
+                  <>
+                    <>
+                      <div className="flex items-center w-full sm:w-[50%] my-4">
+                        <div className="flex-grow h-px bg-gray-300"></div>
+                        <span className="px-4 text-gray-500 text-sm font-medium">أو قم بالدخول عبر</span>
+                        <div className="flex-grow h-px bg-gray-300"></div>
+                      </div>
 
-                <div className="flex flex-col mb-3 sm:flex-row gap-3">
-                  <SignInWithGoogle />
-
-                </div>
-                <p className={`${styles.registerLink} dark:text-dark-text`}>
-                  ليس لديك حساب؟ <Link to="/register">إنشاء حساب جديد</Link>
-                </p>
+                      <div className="flex justify-center w-full sm:w-[50%] mb-5">
+                        <SignInWithGoogle />
+                      </div>
+                    </>
+                  </>
+                )}
+                {!hideRegisterLink && (
+                  <p className={`${styles.registerLink} dark:text-dark-text`}>
+                    ليس لديك حساب؟ <Link to="/register">إنشاء حساب جديد</Link>
+                  </p>
+                )}
               </div>
             </Form>
           )}

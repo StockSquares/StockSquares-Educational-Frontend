@@ -9,7 +9,7 @@ export const ROUTES = {
   ARTICLE: "/educational-article",
   TRAINING_AND_EDUCATION: "/training-and-education",
   JOIN_AS_TRAINER: "/JoinAsTrainer",
-  BOOK_YOUR_TRAINER: "/book-your-trainer",
+  BOOK_YOUR_TRAINER: "/reservation",
   RECORDED_COURSES: "/recorded-courses",
   // COURSE: '/recorded-courses/recorded-course',
   COURSE: "/recorded-course",

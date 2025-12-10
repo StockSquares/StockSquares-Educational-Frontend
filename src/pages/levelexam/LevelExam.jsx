@@ -11,13 +11,20 @@ import { ROUTES } from "../../routes";
 import styles from '../../pages/TrainingAndEducation/TrainingAndEducation.module.css';
 import { useTranslation } from "react-i18next";
 
+import { useNavigate } from "react-router-dom";
+import Login from "../Login/Login";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function LevelExam() {
   const { userData, setDecodedUser, isAuthLoading } = useAuth();
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const [isExamFinished, setIsExamFinished] = useState(false);
   const [examResult, setExamResult] = useState({ score: 0, total: 0 });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authMode, setAuthMode] = useState('login'); // 'login' or 'register'
 
   useEffect(() => {
     if (userData) {
@@ -40,29 +47,20 @@ function LevelExam() {
   };
 
   const handleRegistrationSuccess = async (data) => {
-    try {
-      const loginResponse = await fetch("https://stocksquare1.runasp.net/api/Account/Login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: data.email, password: data.password })
-      });
-
-      if (loginResponse.ok) {
-        const loginData = await loginResponse.json();
-        const token = loginData.data?.token || loginData.token;
-
-        if (token) {
-          setDecodedUser(token);
-          setIsLoggedIn(true);
-        } else {
-          alert("تم التسجيل بنجاح، لكن حدث خطأ في تسجيل الدخول. الرجاء تسجيل الدخول يدوياً.");
-        }
-      } else {
-        alert("تم التسجيل بنجاح! الرجاء تسجيل الدخول للمتابعة.");
-      }
-    } catch (error) {
-      alert("تم التسجيل بنجاح! الرجاء تسجيل الدخول للمتابعة.");
+    // Store email for OTP page and redirect
+    if (data?.email || localStorage.getItem('email')) {
+      toast.success("تم إنشاء الحساب بنجاح! جاري التوجيه لتفعيل الحساب...");
+      setTimeout(() => {
+        navigate("/verify-otp");
+      }, 1500);
+    } else {
+      toast.error("حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.");
     }
+  };
+
+  const handleLoginSuccess = (data) => {
+    setIsLoggedIn(true);
+    toast.success("تم تسجيل الدخول بنجاح!");
   };
 
   // 1. Loading State
@@ -75,38 +73,67 @@ function LevelExam() {
   }
 
   // 2. Registration Screen (if not logged in)
+  // 2. Auth Screen (Login/Register Toggle)
   if (!isLoggedIn) {
     return (
       <div className="contain" dir="rtl" style={{ width: "100%", padding: "10px" }}>
-        <div style={{ width: "100%", margin: "0 auto" }}>
-          <Register
-            onSuccess={handleRegistrationSuccess}
-            hideHeader={true}
-            customTitle={
-              <>
-                <h2 className="text-2xl font-bold text-center mb-2">اختبار تحديد المستوى</h2>
-                <div className="p-2 rounded-2xl border w-full shadow-md bg-green-100 mb-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <FontAwesomeIcon
-                      icon={faCircle}
-                      className="text-white border bg-[#25863f] rounded-full p-1 text-xs"
-                    />
-                    <span className="font-bold text-green-700">لماذا هذا الاختبار؟</span>
-                  </div>
-                  <h4 className="text-sm md:text-base text-green-800 leading-6 px-2">
-                    يساعدك اختبار تحديد المستوى على اختيار مستوى التدريب المناسب
-                    لخبرتك والحصول على تدريب تفاعلي فعال بناء على الاجابات المختارة.
-                    <br />
-                    <span className="text-green-600 block mt-2 font-bold text-xs">
-                      *لا تحتاج الي عمل الاختبار اذا كنت ستبدأ من المستوي المبتدئ
-                    </span>
-                  </h4>
-                </div>
-              </>
-            }
-            customButtonText="ابدأ الاختبار"
-            hideLoginLink={true}
-          />
+        <ToastContainer position="top-center" theme="colored" />
+        <div style={{ width: "100%", margin: "0 auto", maxWidth: "800px" }}>
+          <div className="p-2 rounded-2xl border w-full shadow-md bg-green-100 mb-4">
+            <div className="flex items-center gap-2 mb-2">
+              <FontAwesomeIcon
+                icon={faCircle}
+                className="text-white border bg-[#25863f] rounded-full p-1 text-xs"
+              />
+              <span className="font-bold text-green-700">لماذا هذا الاختبار؟</span>
+            </div>
+            <h4 className="text-sm md:text-base text-green-800 leading-6 px-2">
+              يساعدك اختبار تحديد المستوى على اختيار مستوى التدريب المناسب
+              لخبرتك والحصول على تدريب تفاعلي فعال بناء على الاجابات المختارة.
+              <br />
+              <span className="text-green-600 block mt-2 font-bold text-xs">
+                *لا تحتاج الي عمل الاختبار اذا كنت ستبدأ من المستوي المبتدئ
+              </span>
+            </h4>
+          </div>
+
+          {authMode === 'login' ? (
+            <div className="bg-white p-6 rounded-3xl shadow-lg border border-gray-100 ">
+              <Login
+                onSuccess={handleLoginSuccess}
+                hideHeader={true}
+                hideRegisterLink={true}
+              />
+              <div className="flex items-center justify-center gap-2 mt-6">
+                <p className="text-gray-500 font-medium">ليس لديك حساب؟</p>
+                <span
+                  onClick={() => setAuthMode('register')}
+                  className="text-green-600 font-bold hover:text-green-700 hover:underline transition-all cursor-pointer text-base select-none"
+                >
+                  إنشاء حساب جديد
+                </span>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <Register
+                onSuccess={handleRegistrationSuccess}
+                hideHeader={true}
+                customTitle={<h2 className="text-2xl font-bold text-center mb-2">إنشاء حساب جديد</h2>}
+                customButtonText="تسجيل وابدأ الاختبار"
+                hideLoginLink={true}
+              />
+              <div className="flex items-center justify-center gap-2 mt-6">
+                <p className="text-gray-500 font-medium">لديك حساب بالفعل؟</p>
+                <span
+                  onClick={() => setAuthMode('login')}
+                  className="text-green-600 font-bold hover:text-green-700 hover:underline transition-all  cursor-pointer text-base select-none"
+                >
+                  تسجيل الدخول
+                </span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
