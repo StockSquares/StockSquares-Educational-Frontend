@@ -23,7 +23,7 @@ function InlineBlog({ article, categoryName, setArticleDetails, handleLike, isLi
       title: article.title,
       category: categoryName,
       writer: article.writername || "طارق الليثي",
-      views: 1000,
+      views: article.numberOfViews || article.NumberOfViews || 0,
       likes: likes || article.numberOfLikes || article.NumberOfLikes || 0,
       description1: article.content || article.body || "",
       description2: "",

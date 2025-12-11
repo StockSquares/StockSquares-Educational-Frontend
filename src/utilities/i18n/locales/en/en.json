@@ -105,7 +105,6 @@
     },
     "PracticalTraining": {
       "title": "Practical personal Training",
-
       "btn": "Join As A Personal Trainer",
       "trainingCard": {
         "btn": "Book trainer"
@@ -192,7 +191,6 @@
       "label": "Reset"
     }
   },
-
   "practicalTraining": {
     "egyptianStock": "Egyptian Stock Market Course",
     "hours": "8 hours",
@@ -232,7 +230,6 @@
     "field_of_money": "The Science of Money",
     "200EGP": "200 EGP"
   },
-
   "TrainingAndEducation": {
     "gainSkills": "Gain trading skills and join ",
     "successful_people": "successful",
@@ -309,48 +306,41 @@
       }
     }
   },
-
   "testimonials": {
     "review1": {
       "text": "I tried to learn trading on my own, but my results weren’t successful. When my friend recommended Stock Squares and I learned with a professional trainer, my performance became disciplined and successful.",
       "name": "Mohamed Samir",
       "position": "(Supply Chain Manager)"
     },
-
     "review2": {
       "text": "I was confused at the beginning of my trading journey, but after joining Stock Squares, I gained clear understanding and effective strategies. The practical training helped me achieve real results and become more confident in my decisions.",
       "name": "Anas Ayoub",
       "position": "(Operations Manager)"
     },
-
     "review3": {
       "text": "Heartfelt thanks! The course truly added great value to my trading knowledge. The explanation was clear, deep, and delivered by real professionals. Customer service follow-up was excellent in every way.",
       "name": "Abdullah Ibrahim",
       "position": "(Executive Director)"
     },
-
     "review4": {
       "text": "The content is rich and highly beneficial, offering practical and effective information that helps any beginner enter the stock and forex markets with confidence and clarity.",
       "name": "Hossam Obeid",
       "position": "(Data Analysis Expert)"
     },
-
     "review5": {
       "text": "The asset management service at Stock Squares exceeded my expectations — high professionalism, precise follow-up, and strategies truly tailored to my needs. I felt my wealth was in safe hands.",
       "name": "Badr Fahdan",
       "position": "(Businessman)"
     },
-
     "review6": {
       "text": "When I joined the first level, I thought it would be difficult and I wouldn’t understand much, but the experience really made a difference. Now I see clear progress in my skills and I’m very happy with how far I’ve come. Thanks to everyone who contributed to this journey!",
       "name": "Ibrahim Emam",
       "position": "(Freelancer)"
     }
   },
-
   "chatAi": {
-  "greeting": "Welcome",
-  "iamChat": "I basir your smart assistant for trading in the financial markets",
-  "intro": "The nature of financial markets is price volatility, and that’s why professional traders aim to secure profits regularly. For successful trading, adjust the trade’s stop-loss to the entry price after reaching the first target. You can also take partial profit to convert floating profit into actual realized profit."
-}
+    "greeting": "Welcome",
+    "iamChat": "I basir your smart assistant for trading in the financial markets",
+    "intro": "The nature of financial markets is price volatility, and that’s why professional traders aim to secure profits regularly. For successful trading, adjust the trade’s stop-loss to the entry price after reaching the first target. You can also take partial profit to convert floating profit into actual realized profit."
+  }
 }
