@@ -92,10 +92,10 @@ function ReservationDate() {
   const marketOptions = [
     { value: "EgyptStockExchange", label: "البورصة المصرية" },
     { value: "SaudiStockExchange", label: "البورصة السعودية" },
-    { value: "EmiratiStockExchange", label: "البورصة الإماراتية"},
-    { value: "CryptoExchange", label: "العملات الرقمية"},
-    { value: "USStockExchange", label: "البورصة الأمريكية"},
-    { value: "GlobalStocksAndForex", label: "البورصة العالمية والفوركس"},
+    { value: "EmiratiStockExchange", label: "البورصة الإماراتية" },
+    { value: "CryptoExchange", label: "العملات الرقمية" },
+    { value: "USStockExchange", label: "البورصة الأمريكية" },
+    { value: "GlobalStocksAndForex", label: "البورصة العالمية والفوركس" },
   ];
 
   const predefinedSlots = [
@@ -276,22 +276,22 @@ function ReservationDate() {
   const plans = [
     {
       title: "مبتدئ",
-      price: "3000 ج.م",
-      hours: "18 ساعه| 4 محاضرات",
+      price: "5000 ج.م",
+      hours: "10 ساعات | 5 محاضرات",
       color: "bg-green-100 text-green-900",
       active: "bg-green-300",
     },
     {
       title: "متقدم",
-      price: "5000 ج.م",
-      hours: "36 ساعه| 8 محاضرات",
+      price: "7500 ج.م",
+      hours: "12 ساعة | 6 محاضرات",
       color: "bg-yellow-100 text-yellow-600",
       active: "bg-yellow-300",
     },
     {
       title: "محترف",
-      price: "7000 ج.م",
-      hours: "36 ساعه| 8 محاضرات",
+      price: "15000 ج.م",
+      hours: "14 ساعة | 7 محاضرات",
       color: "bg-red-100 text-red-600",
       active: "bg-red-300",
     },
@@ -432,8 +432,8 @@ function ReservationDate() {
               </motion.div>
 
               {/* Section 0.75: Assessment Method */}
-              <motion.div 
-               variants={itemVariants} className="space-y-4">
+              <motion.div
+                variants={itemVariants} className="space-y-4">
                 <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
                   <span className="text-2xl"></span> أسلوب التقييم المفضل :
                 </h3>
@@ -457,8 +457,8 @@ function ReservationDate() {
               </motion.div>
 
               {/* Section 2: Market Selection */}
-              <motion.div 
-               variants={itemVariants} className="space-y-4">
+              <motion.div
+                variants={itemVariants} className="space-y-4">
                 <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
                   <span className="text-2xl"></span> البورصة المستهدفة للتدريب العملي :
                 </h3>

@@ -17,6 +17,7 @@ function BlogUi({
   categories,
   setArticleDetails,
   ads,
+  handleIncreaseViews, // New prop
 }) {
   const [activeTab, setActiveTab] = useState("most-read");
 
@@ -41,6 +42,9 @@ function BlogUi({
                 onClick={() => {
                   setSelectedArticle(article);
                   setArticleDetails(true);
+                  if (handleIncreaseViews) {
+                    handleIncreaseViews(article.id);
+                  }
                 }}
               >
                 <FlexibleCard
@@ -54,6 +58,7 @@ function BlogUi({
                   writerName={article.writername}
                   writerImage={article.writerImage}
                   numberOfLikes={article.numberOfLikes || 0}
+                  numberOfViews={article.numberOfViews || 0}
                 />
               </div>
             ))

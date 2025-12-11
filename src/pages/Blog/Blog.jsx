@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 import { AisleContext } from "../../Context";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 import { useCategories } from "../../Context/CategoriesContext";
 import BlogUi from "./BlogUi";
@@ -51,6 +53,7 @@ function Blog() {
           "https://stocksquare1.runasp.net/api/Articles/GetAll"
         );
         const data = await response.json();
+        console.log("RAW API DATA:", data); // Debug views field name
         if (response.ok) {
           // Decode base64 body for each article
           const decodedArticles = data.map(article => {
@@ -58,7 +61,8 @@ function Blog() {
             return {
               ...article,
               body: rawBody ? decodeFromBase64(rawBody) : "",
-              numberOfLikes: article.numberOfLikes || article.NumberOfLikes || 0
+              numberOfLikes: article.numberOfLikes || article.NumberOfLikes || 0,
+              numberOfViews: article.views || article.numberOfViews || article.NumberOfViews || 0
             };
           });
           setArticles(decodedArticles);
@@ -94,14 +98,22 @@ function Blog() {
   };
 
   const handleLike = async (articleId) => {
+    const token = Cookies.get("token");
+    console.log("MY TOKEN:", token); // Log token for easy copying
+
+    if (!token) {
+      toast.error("يجب تسجيل الدخول للإعجاب بالمقال");
+      return;
+    }
+
     try {
-      // Optimistic Update (or Update on success without refetch)
       const response = await fetch(
         `https://stocksquare1.runasp.net/api/Articles/AddLike?id=${articleId}`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
           }
         }
       );
@@ -125,20 +137,36 @@ function Blog() {
             numberOfLikes: (prev.numberOfLikes || 0) + 1,
           }));
         }
+      } else {
+        if (response.status === 401) {
+          toast.error("انتهت جلسة تسجيل الدخول، يرجى تسجيل الدخول مرة أخرى");
+        } else {
+          const text = await response.text();
+          console.error("Like failed with status:", response.status, text);
+          toast.error("فشل تسجيل الإعجاب");
+        }
       }
     } catch (error) {
       console.error("Error liking article:", error);
+      toast.error("حدث خطأ في الاتصال");
     }
   };
 
   const handleDislike = async (articleId) => {
+    const token = Cookies.get("token");
+    if (!token) {
+      toast.error("يجب تسجيل الدخول");
+      return;
+    }
+
     try {
       const response = await fetch(
         `https://stocksquare1.runasp.net/api/Articles/RemoveLike?id=${articleId}`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
           }
         }
       );
@@ -172,6 +200,51 @@ function Blog() {
     }
   };
 
+  const handleIncreaseViews = async (articleId) => {
+    const token = Cookies.get("token");
+    try {
+      const headers = { "Content-Type": "application/json" };
+      if (token) {
+        headers["Authorization"] = `Bearer ${token}`;
+      }
+
+      // Just fire the request, we don't strictly need to await the result for UI flow
+      console.log(`Sending view increment request for article: ${articleId}`);
+      const response = await fetch(
+        `https://stocksquare1.runasp.net/api/Articles/${articleId}/views`,
+        {
+          method: "GET",
+          headers: headers
+        }
+      );
+      if (response.ok) {
+        console.log("View count incremented successfully");
+
+        // Update local state immediately
+        setArticles((prevArticles) =>
+          prevArticles.map((article) => {
+            if (article.id === articleId) {
+              return { ...article, numberOfViews: (article.numberOfViews || 0) + 1 };
+            }
+            return article;
+          })
+        );
+
+        setSelectedArticle((prev) => {
+          if (prev && prev.id === articleId) {
+            return { ...prev, numberOfViews: (prev.numberOfViews || 0) + 1 };
+          }
+          return prev;
+        });
+
+      } else {
+        console.error("Failed to increment views:", response.status, await response.text());
+      }
+    } catch (error) {
+      console.error("Error increasing views:", error);
+    }
+  };
+
   return (
     <BlogUi
       ads={ads}
@@ -187,8 +260,8 @@ function Blog() {
       handleLike={handleLike}
       handleDislike={handleDislike}
       likedArticles={likedArticles}
+      handleIncreaseViews={handleIncreaseViews}
     />
   );
 }
-
 export default Blog;

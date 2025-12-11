@@ -13,6 +13,7 @@ function FlexibleCard({
   writerName = "",
   writerImage = "",
   numberOfLikes = 0,
+  numberOfViews = 0,
 }) {
   return (
     <div className="w-full">
@@ -43,7 +44,7 @@ function FlexibleCard({
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
                   <FontAwesomeIcon icon={faEye} className="text-primary-700" />
-                  <span>1000</span>
+                  <span>{numberOfViews}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <FontAwesomeIcon icon={faHeart} className="text-red-500" />
