@@ -41,6 +41,7 @@ function Blog() {
   const [selectedArticle, setSelectedArticle] = useState({});
   const [likedArticles, setLikedArticles] = useState(new Set());
   const categories = useCategories();
+  const [ads, setAds] = useState([]);
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -56,7 +57,8 @@ function Blog() {
             const rawBody = article.body || article.Body || "";
             return {
               ...article,
-              body: rawBody ? decodeFromBase64(rawBody) : ""
+              body: rawBody ? decodeFromBase64(rawBody) : "",
+              numberOfLikes: article.numberOfLikes || article.NumberOfLikes || 0
             };
           });
           setArticles(decodedArticles);
@@ -74,6 +76,18 @@ function Blog() {
     fetchArticles();
   }, []);
 
+  useEffect(() => {
+    fetch("https://stocksquare1.runasp.net/api/Advertisement/GetAll")
+      .then((res) => res.json())
+      .then((data) => {
+        // Filter for "Articles" location (Assuming ID 3)
+        // Adjust filter logic if ID differs
+        const articleAds = data.filter(ad => ad.locationId == 3 || ad.LocationId == 3);
+        setAds(articleAds);
+      })
+      .catch((e) => console.log(e.message));
+  }, []);
+
   const getCategoryName = (categoryId) => {
     const category = categories.find((cat) => cat.id === categoryId);
     return category ? category.name : "غير معروف";
@@ -81,6 +95,7 @@ function Blog() {
 
   const handleLike = async (articleId) => {
     try {
+      // Optimistic Update (or Update on success without refetch)
       const response = await fetch(
         `https://stocksquare1.runasp.net/api/Articles/AddLike?id=${articleId}`,
         {
@@ -92,31 +107,23 @@ function Blog() {
       );
 
       if (response.ok) {
-        // Add to liked articles for visual feedback
-        setLikedArticles(prev => new Set([...prev, articleId]));
+        setLikedArticles((prev) => new Set([...prev, articleId]));
 
-        // Refresh articles to get updated like count
-        const articlesResponse = await fetch(
-          "https://stocksquare1.runasp.net/api/Articles/GetAll"
-        );
-        const data = await articlesResponse.json();
-        if (articlesResponse.ok) {
-          const decodedArticles = data.map(article => {
-            const rawBody = article.body || article.Body || "";
-            return {
-              ...article,
-              body: rawBody ? decodeFromBase64(rawBody) : ""
-            };
-          });
-          setArticles(decodedArticles);
-
-          // Update selected article if it's the one that was liked
-          if (selectedArticle.id === articleId) {
-            const updatedArticle = decodedArticles.find(a => a.id === articleId);
-            if (updatedArticle) {
-              setSelectedArticle(updatedArticle);
+        // Manually update state to reflect change immediately
+        setArticles((prevArticles) =>
+          prevArticles.map((article) => {
+            if (article.id === articleId) {
+              return { ...article, numberOfLikes: (article.numberOfLikes || 0) + 1 };
             }
-          }
+            return article;
+          })
+        );
+
+        if (selectedArticle.id === articleId) {
+          setSelectedArticle((prev) => ({
+            ...prev,
+            numberOfLikes: (prev.numberOfLikes || 0) + 1,
+          }));
         }
       }
     } catch (error) {
@@ -137,35 +144,27 @@ function Blog() {
       );
 
       if (response.ok) {
-        // Remove from liked articles
-        setLikedArticles(prev => {
+        setLikedArticles((prev) => {
           const newSet = new Set(prev);
           newSet.delete(articleId);
           return newSet;
         });
 
-        // Refresh articles to get updated like count
-        const articlesResponse = await fetch(
-          "https://stocksquare1.runasp.net/api/Articles/GetAll"
-        );
-        const data = await articlesResponse.json();
-        if (articlesResponse.ok) {
-          const decodedArticles = data.map(article => {
-            const rawBody = article.body || article.Body || "";
-            return {
-              ...article,
-              body: rawBody ? decodeFromBase64(rawBody) : ""
-            };
-          });
-          setArticles(decodedArticles);
-
-          // Update selected article if it's the one that was disliked
-          if (selectedArticle.id === articleId) {
-            const updatedArticle = decodedArticles.find(a => a.id === articleId);
-            if (updatedArticle) {
-              setSelectedArticle(updatedArticle);
+        // Manually update state
+        setArticles((prevArticles) =>
+          prevArticles.map((article) => {
+            if (article.id === articleId) {
+              return { ...article, numberOfLikes: Math.max((article.numberOfLikes || 0) - 1, 0) };
             }
-          }
+            return article;
+          })
+        );
+
+        if (selectedArticle.id === articleId) {
+          setSelectedArticle((prev) => ({
+            ...prev,
+            numberOfLikes: Math.max((prev.numberOfLikes || 0) - 1, 0),
+          }));
         }
       }
     } catch (error) {
@@ -175,6 +174,7 @@ function Blog() {
 
   return (
     <BlogUi
+      ads={ads}
       articles={articles}
       loading={loading}
       articleDetails={articleDetails}

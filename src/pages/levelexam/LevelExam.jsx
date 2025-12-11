@@ -80,16 +80,16 @@ function LevelExam() {
         <ToastContainer position="top-center" theme="colored" />
         <div style={{ width: "100%", margin: "0 auto", maxWidth: "800px" }}>
           <div className="p-2 rounded-2xl border w-full shadow-md bg-green-100 mb-4">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center justify-center gap-2 mb-2 w-full">
               <FontAwesomeIcon
                 icon={faCircle}
                 className="text-white border bg-[#25863f] rounded-full p-1 text-xs"
               />
-              <span className="font-bold text-green-700">لماذا هذا الاختبار؟</span>
+              <span className="font-bold text-green-900 text-lg">لماذا هذا الاختبار؟</span>
             </div>
             <h4 className="text-sm md:text-base text-green-800 leading-6 px-2">
               يساعدك اختبار تحديد المستوى على اختيار مستوى التدريب المناسب
-              لخبرتك والحصول على تدريب تفاعلي فعال بناء على الاجابات المختارة.
+              لخبرتك <br /> والحصول على تدريب تفاعلي فعال بناء على الاجابات المختارة.
               <br />
               <span className="text-green-600 block mt-2 font-bold text-xs">
                 *لا تحتاج الي عمل الاختبار اذا كنت ستبدأ من المستوي المبتدئ
@@ -182,11 +182,12 @@ function LevelExam() {
           icon={faCircle}
           className="text-white border bg-[#25863f] rounded-full"
         />
-        <h4 className="text-[12px] md:text-xl lg:text-xl px-1 md:px-3 mb-4 flex flex-col text-green-400 font-semibold leading-5">
-          يساعدك اختبار تحديد المستوى على اختيار مستوى التدريب المناسب
-          لخبرتك والحصول على تدريب تفاعلي فعال بناء على الاجابات المختارة…
+        <h2 className="text-xl font-bold text-green-600 mb-2  text-center">لماذا هذا الاختبار؟</h2>
+        <h4 className="text-[12px] md:text-xl lg:text-xl px-1 md:px-3 mb-4 flex flex-col text-green-400 font-semibold leading-5 text-center">
+          يساعدك اختبار تحديد المستوى على اختيار مستوى التدريب المناسب 
+          لخبرتك  <br />والحصول على تدريب تفاعلي فعال بناء على الاجابات المختارة…
           <br />
-          <span className="text-green-600 self-center mt-2 font-bold">
+          <span className="text-green-600 self-center mt-2 font-semibold">
             *لا تحتاج الي عمل الاختبار اذا كنت ستبدأ من المستوي المبتدئ
           </span>
         </h4>
