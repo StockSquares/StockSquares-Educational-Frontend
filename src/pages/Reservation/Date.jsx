@@ -391,7 +391,7 @@ function ReservationDate() {
                 animate={{ scale: step >= 2 ? 1.1 : 1, backgroundColor: step >= 2 ? "#10b981" : "#e5e7eb" }}
                 className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-lg transition-colors border-4 border-white`}
               >
-                {/* <FontAwesomeIcon icon={faMoneyBillWave} /> */}
+                2
               </motion.div>
               <span className={`text-sm font-semibold ${step >= 2 ? 'text-green-700' : 'text-gray-400'}`}>الدفع</span>
             </div>

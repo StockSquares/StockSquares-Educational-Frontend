@@ -23,8 +23,8 @@ const AdsManagement = () => {
     //?ts=${Date.now()
     fetch(
       `https://stocksquare1.runasp.net/api/Advertisement/GetAll`
-    // fetch(
-    //   "https://stocksquare1.runasp.net/api/Advertisement/GetAll?ts=${Date.now()}"
+      // fetch(
+      //   "https://stocksquare1.runasp.net/api/Advertisement/GetAll?ts=${Date.now()}"
     )
       .then((response) => response.json())
       .then((data) => setAds(data))
@@ -162,11 +162,18 @@ const AdsManagement = () => {
           onChange={handleInputChange}
         >
           <option>اختر موقع الإعلان</option>
-          {locations.map((location) => (
-            <option key={location.id} value={location.id}>
-              {location.value}
-            </option>
-          ))}
+          {locations.map((location) => {
+            const val = location.value.toLowerCase();
+            let display = location.value;
+            if (val.includes("main")) display = "الصفحة الرئيسية";
+            if (val.includes("course")) display = "الكورسات";
+            return (
+              <option key={location.id} value={location.id}>
+                {display}
+              </option>
+            );
+          })}
+          <option value="3">اعلانات المقالات</option>
         </select>
 
         <label

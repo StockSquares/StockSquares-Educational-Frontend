@@ -24,18 +24,17 @@ function TrainingPlanCard({ plan, index }) {
     <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col min-h-[50vh] justify-between items-start transition-all hover:shadow-2xl duration-300">
       {/* العنوان */}
       <div className="flex flex-col items-center w-full">
-      <h2
-        className={`text-2xl font-bold   mb-2 ${
-          index === 1
+        <h2
+          className={`text-2xl font-bold   mb-2 ${index === 1
             ? "text-accent-900"
             : index === 2
-            ? "text-red-600"
-            : "text-primary-700"
-        } `}
-      >
-        {plan.title}
-      </h2>
-      <p className="text-gray-600  text-sm mb-2 border-b pb-1 ">{plan.brief}</p>
+              ? "text-red-600"
+              : "text-primary-700"
+            } `}
+        >
+          {plan.title}
+        </h2>
+        <p className="text-gray-600  text-sm mb-2 border-b pb-1 ">{plan.brief}</p>
       </div>
       <p className="text-gray-500 text-sm mb-3">{plan.miniContent}</p>
 
@@ -206,7 +205,7 @@ function TrainingAndEducation() {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row items-center px-4 md:px-4 py-8 md:py-1 ">
+      <div className="flex flex-col lg:flex-row items-center px-4 md:px-4 pt-4 md:pt-1 pb-0 ">
         <div className="w-full lg:w-2/3 flex flex-col items-start space-y-5 lg:pr-6 ">
           <p className="text-2xl mt-1 lg:text-3xl font-[650] text-center lg:text-right ">
             {t("TrainingAndEducation.gainSkills")}
@@ -269,11 +268,10 @@ function TrainingAndEducation() {
                   </div>
                   <img
                     src={arrow}
-                    className={`absolute hidden sm:block  w-[210px] ${
-                      lang === "ar"
-                        ? "left-[-110px] top-[10px] rotate-[30deg]"
-                        : "right-[-90px] top-[10px] rotate-[-30deg]  scale-x-[-1] "
-                    } `}
+                    className={`absolute hidden sm:block  w-[210px] ${lang === "ar"
+                      ? "left-[-110px] top-[10px] rotate-[30deg]"
+                      : "right-[-90px] top-[10px] rotate-[-30deg]  scale-x-[-1] "
+                      } `}
                   />
                 </div>
               </li>
@@ -282,7 +280,7 @@ function TrainingAndEducation() {
         </div>
 
         <div
-          className={`${styles.card} w-full  lg:w-1/3 flex justify-center items-center mt-8 lg:mt-0 card`}
+          className={`${styles.card} w-full  lg:w-1/3 flex justify-center items-center mt-8 lg:mt-0 mb-0 card`}
         >
           <img
             src={entryLevel}
@@ -292,9 +290,9 @@ function TrainingAndEducation() {
         </div>
       </div>
 
-      <hr className="h-[2px] w-[60%] m-auto bg-gray-100 mb-2 rounded-lg transition-all animate-bounce" />
+      <hr className="h-[2px] w-[60%] m-auto bg-gray-100 mb-0 -mt-10 rounded-lg transition-all animate-bounce" />
 
-      <div className={`px-5 py-3`}>
+      <div className={`px-5 pt-1 pb-3`}>
         <h1 className="text-start px-4 text-2xl font-[650] mb-2 ">
           {t("TrainingAndEducation.chooseYourLevel")}
         </h1>
