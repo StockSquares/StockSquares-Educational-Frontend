@@ -48,9 +48,33 @@ function ReservationDate() {
   const handleLoginSuccess = (data) => {
     setIsLoggedIn(true);
     toast.success("تم تسجيل الدخول بنجاح!");
+    setStep(1); // Start at first step of logged-in flow (Features)
   };
 
   const [step, setStep] = useState(1);
+
+  // Dynamic Steps Configuration
+  const steps = isLoggedIn
+    ? [
+      { id: 'features', label: 'خصائص التدريب' },
+      { id: 'payment', label: 'الدفع' }
+    ]
+    : [
+      { id: 'auth', label: 'الدخول' },
+      { id: 'features', label: 'خصائص التدريب' },
+      { id: 'payment', label: 'الدفع' }
+    ];
+
+  const currentStepContent = steps[step - 1]?.id;
+  const totalSteps = steps.length;
+
+  // Ensure step is valid when switching modes
+  useEffect(() => {
+    if (step > totalSteps) {
+      setStep(totalSteps);
+    }
+  }, [totalSteps, step]);
+
   const [gender, setGender] = useState("male");
   const [dob, setDob] = useState("");
   const [selectedMarket, setSelectedMarket] = useState("EgyptStockExchange");
@@ -245,7 +269,11 @@ function ReservationDate() {
 
       if (response.ok && result?.isSuccess) {
         toast.success('تم الحجز بنجاح!');
-        setStep(2);
+        // Move to next step (Payment)
+        const paymentStepIndex = steps.findIndex(s => s.id === 'payment');
+        if (paymentStepIndex !== -1) {
+          setStep(paymentStepIndex + 1);
+        }
       } else {
         const serverMessage = result?.message || result?.title || text || `HTTP ${response.status}`;
         toast.error(`فشل الحجز: ${serverMessage}`);
@@ -297,49 +325,7 @@ function ReservationDate() {
     },
   ];
 
-
-
-  if (!isLoggedIn) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 py-12 px-4 sm:px-6 lg:px-8 font-sans" dir="rtl">
-        <ToastContainer position="top-center" theme="colored" />
-        <div className="max-w-3xl mx-auto bg-white/90 backdrop-blur-sm shadow-2xl rounded-3xl overflow-hidden border border-white/50 p-6">
-          {authMode === 'login' ? (
-            <div>
-              <Login
-                onSuccess={handleLoginSuccess}
-                hideHeader={true}
-                hideRegisterLink={true}
-              />
-              <div className="text-center mt-4">
-                <p className="text-gray-600">ليس لديك حساب؟ <button onClick={() => setAuthMode('register')} className="text-green-600 font-bold underline">إنشاء حساب جديد</button></p>
-              </div>
-            </div>
-          ) : (
-            <div>
-              <Register
-                onSuccess={handleRegistrationSuccess}
-                hideHeader={true}
-                customTitle={
-                  <>
-                    <h2 className="text-2xl font-bold text-center mb-2 text-green-700">إنشاء حساب جديد</h2>
-                    <p className="text-center text-gray-600 mb-6 text-sm">
-                      قم بإنشاء حساب لتتمكن من حجز جلسة تدريبية.
-                    </p>
-                  </>
-                }
-                customButtonText="تسجيل ومتابعة الحجز"
-                hideLoginLink={true}
-              />
-              <div className="text-center mt-4">
-                <p className="text-gray-600">لديك حساب بالفعل؟ <button onClick={() => setAuthMode('login')} className="text-green-600 font-bold underline">تسجيل الدخول</button></p>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    );
-  }
+  /* REMOVED EARLY RETURN TO INTEGRATE LOGIN AS STEP 1 */
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 py-12 px-4 sm:px-6 lg:px-8 font-sans" dir="rtl">
@@ -366,43 +352,98 @@ function ReservationDate() {
           <p className="mt-2 text-green-100 relative z-10 text-lg">ارتقِ بمهاراتك في التداول مع خبرائنا</p>
         </div>
 
-        {/* Steps Navigation */}
+        {/* Steps Navigation - Dynamic */}
         <div className="flex justify-center items-center p-6 bg-gray-50/50 border-b border-gray-100">
-          <div className="flex items-center w-full max-w-sm justify-between px-6 relative">
-            {/* Line */}
+          <div className="flex items-center w-full max-w-lg justify-between px-6 relative">
+            {/* Progress Line */}
             <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 -z-10 rounded-full mx-10">
-              <div className={`h-full bg-green-500 transition-all duration-500 rounded-full ${step === 2 ? 'w-full' : 'w-0'}`}></div>
+              <div
+                className="h-full bg-green-500 transition-all duration-500 rounded-full"
+                style={{ width: `${((step - 1) / (totalSteps - 1)) * 100}%` }}
+              ></div>
             </div>
 
-            {/* Step 1 */}
-            <div className={`flex flex-col items-center gap-2 bg-white px-2 cursor-default`}>
-              <motion.div
-                animate={{ scale: step >= 1 ? 1.1 : 1, backgroundColor: step >= 1 ? "#10b981" : "#e5e7eb" }}
-                className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-lg transition-colors border-4 border-white`}
-              >
-                1
-              </motion.div>
-              <span className={`text-sm font-semibold ${step >= 1 ? 'text-green-700' : 'text-gray-400'}`}>خصائص التدريب</span>
-            </div>
+            {/* Dynamic Steps Mapping */}
+            {steps.map((s, index) => {
+              const stepNum = index + 1;
+              const isActive = step >= stepNum;
+              const isCurrent = step === stepNum;
 
-            {/* Step 2 */}
-            <div className={`flex flex-col items-center gap-2 bg-white px-2 cursor-default`}>
-              <motion.div
-                animate={{ scale: step >= 2 ? 1.1 : 1, backgroundColor: step >= 2 ? "#10b981" : "#e5e7eb" }}
-                className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-lg transition-colors border-4 border-white`}
-              >
-                2
-              </motion.div>
-              <span className={`text-sm font-semibold ${step >= 2 ? 'text-green-700' : 'text-gray-400'}`}>الدفع</span>
-            </div>
+              return (
+                <div key={s.id} className={`flex flex-col items-center gap-2 bg-white px-2 cursor-default relative`}>
+                  <motion.div
+                    animate={{ scale: isActive ? 1.1 : 1, backgroundColor: isActive ? "#10b981" : "#E5E7EB" }}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-lg transition-colors border-4 border-white ${isCurrent ? 'ring-2 ring-green-100' : ''}`}
+                  >
+                    {stepNum}
+                  </motion.div>
+                  <span className={`text-sm font-semibold transition-colors ${isActive ? 'text-green-700' : 'text-gray-400'}`}>
+                    {s.label}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
 
+
         <div className="p-8 md:p-12">
-          {step === 1 && (
+
+          {/* CONTENT: AUTH */}
+          {currentStepContent === 'auth' && (
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="max-w-xl mx-auto"
+            >
+              <div className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100">
+                {authMode === 'login' ? (
+                  <div>
+                    <div className="text-center mb-8">
+                      <h2 className="text-2xl font-bold text-gray-800 mb-2">تسجيل الدخول للمتابعة</h2>
+                      <p className="text-gray-500">يرجى تسجيل الدخول لحجز جلستك التدريبية</p>
+                    </div>
+                    <Login
+                      onSuccess={handleLoginSuccess}
+                      hideHeader={true}
+                      hideRegisterLink={true}
+                    />
+                    <div className="text-center mt-6 pt-6 border-t border-gray-100">
+                      <p className="text-gray-600">ليس لديك حساب؟ <button onClick={() => setAuthMode('register')} className="text-green-600 font-bold hover:text-green-700 underline transition-colors">إنشاء حساب جديد</button></p>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    {/* Register component handles its own title via props usually, but we wrap it nicely */}
+                    <Register
+                      onSuccess={handleRegistrationSuccess}
+                      hideHeader={true}
+                      customTitle={
+                        <div className="text-center mb-6">
+                          <h2 className="text-2xl font-bold text-gray-800 mb-2">إنشاء حساب جديد</h2>
+                          <p className="text-gray-500 text-sm">قم بإنشاء حسابك في خطوات بسيطة</p>
+                        </div>
+                      }
+                      customButtonText="حفظ ومتابعة"
+                      hideLoginLink={true}
+                    />
+                    <div className="text-center mt-6 pt-6 border-t border-gray-100">
+                      <p className="text-gray-600">لديك حساب بالفعل؟ <button onClick={() => setAuthMode('login')} className="text-green-600 font-bold hover:text-green-700 underline transition-colors">تسجيل الدخول</button></p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          )}
+
+
+          {/* CONTENT: FEATURES */}
+          {currentStepContent === 'features' && (
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
               exit={{ opacity: 0, x: -20 }}
               className="space-y-10"
             >
@@ -615,7 +656,7 @@ function ReservationDate() {
             </motion.div>
           )}
 
-          {step === 2 && (
+          {currentStepContent === 'payment' && (
             <div className="text-center py-20">
               <motion.div
                 initial={{ scale: 0 }}
@@ -631,8 +672,9 @@ function ReservationDate() {
         </div>
       </motion.div >
     </div >
-  );
 
 
+
+  )
 }
 export default ReservationDate;

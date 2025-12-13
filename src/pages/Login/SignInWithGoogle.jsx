@@ -9,28 +9,19 @@ export default function SignInWithGoogle() {
   return (
     <button
       onClick={() => login()}
-      className="bg-white text-black shadow-sm hover:bg-green-600  px-20 py-2 sm:py-[10px] sm:px-[20px]  hover:bg-gray-50 dark:bg-dark-background dark:text-dark-text dark:border-primary-700"
+      className="bg-white text-black shadow-sm hover:bg-gray-50 border border-gray-200 w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl dark:bg-dark-background dark:text-dark-text dark:border-primary-700 transition-colors whitespace-nowrap"
       style={{
-        // backgroundColor: "#fff",
-        // color: "#000000",
         fontFamily: "Cairo",
         fontSize: "15px",
-        // padding: "10px 20px",
-        // border: "1px solid black",
-        borderRadius: "8px",
-        display: "flex",
-        alignItems: "center",
-        gap: "10px",
         cursor: "pointer",
-        
       }}
     >
+      تسجيل الدخول بـ Google
       <img
         src={googleIcon}
         alt="Google"
-        style={{ width: "20px", height: "20px" }}
+        style={{ width: "22px", height: "22px" }}
       />
-      تسجيل الدخول بـ Google
     </button>
   );
 }
