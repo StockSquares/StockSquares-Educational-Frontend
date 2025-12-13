@@ -48,22 +48,18 @@ function ReservationDate() {
   const handleLoginSuccess = (data) => {
     setIsLoggedIn(true);
     toast.success("تم تسجيل الدخول بنجاح!");
-    setStep(1); // Start at first step of logged-in flow (Features)
+    setStep(2); // Move to Features step, keeping Auth step visible as completed
   };
 
-  const [step, setStep] = useState(1);
+  // Static Steps Configuration (Always show 3 steps)
+  const steps = [
+    { id: 'auth', label: 'الدخول' },
+    { id: 'features', label: 'خصائص التدريب' },
+    { id: 'payment', label: 'الدفع' }
+  ];
 
-  // Dynamic Steps Configuration
-  const steps = isLoggedIn
-    ? [
-      { id: 'features', label: 'خصائص التدريب' },
-      { id: 'payment', label: 'الدفع' }
-    ]
-    : [
-      { id: 'auth', label: 'الدخول' },
-      { id: 'features', label: 'خصائص التدريب' },
-      { id: 'payment', label: 'الدفع' }
-    ];
+  // If already logged in, start at step 2 (Features), pointing that step 1 is done.
+  const [step, setStep] = useState(isLoggedIn ? 2 : 1);
 
   const currentStepContent = steps[step - 1]?.id;
   const totalSteps = steps.length;
@@ -74,6 +70,13 @@ function ReservationDate() {
       setStep(totalSteps);
     }
   }, [totalSteps, step]);
+
+  // If user logs in (or is logged in), force move from step 1 to 2
+  useEffect(() => {
+    if (isLoggedIn && step === 1) {
+      setStep(2);
+    }
+  }, [isLoggedIn, step]);
 
   const [gender, setGender] = useState("male");
   const [dob, setDob] = useState("");
